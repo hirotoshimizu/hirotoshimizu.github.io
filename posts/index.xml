@@ -5,7 +5,20 @@
     <link>https://hirotoshimizu.github.io/posts/</link>
     <description>Recent content in Posts on Shiglass</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 05 Jul 2021 16:02:47 +0900</lastBuildDate><atom:link href="https://hirotoshimizu.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 06 Jul 2021 08:50:31 +0900</lastBuildDate><atom:link href="https://hirotoshimizu.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GitHub Pages で静的サイトの公開方法</title>
+      <link>https://hirotoshimizu.github.io/posts/host-a-website-on-github/</link>
+      <pubDate>Tue, 06 Jul 2021 08:50:31 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/host-a-website-on-github/</guid>
+      <description>公開したいページのあるリポジトリの Settings をクリック。
+サイドナビの　Pages をクリック。
+公開したいブランチを選択
+事前にCNAMEでドメインを設定しておいて
+設定したドメインを適用</description>
+    </item>
+    
     <item>
       <title>Hugo の始め方</title>
       <link>https://hirotoshimizu.github.io/posts/how-to-start-hugo/</link>

@@ -5,7 +5,16 @@
     <link>https://hirotoshimizu.github.io/categories/</link>
     <description>Recent content in Categories on Shiglass</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 05 Jul 2021 16:02:47 +0900</lastBuildDate><atom:link href="https://hirotoshimizu.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 06 Jul 2021 08:50:31 +0900</lastBuildDate><atom:link href="https://hirotoshimizu.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Github</title>
+      <link>https://hirotoshimizu.github.io/categories/github/</link>
+      <pubDate>Tue, 06 Jul 2021 08:50:31 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/categories/github/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Hugo</title>
       <link>https://hirotoshimizu.github.io/categories/hugo/</link>
