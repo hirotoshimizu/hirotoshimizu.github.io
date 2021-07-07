@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Posts on Shiglass</title>
-    <link>https://hirotoshimizu.github.io/posts/</link>
-    <description>Recent content in Posts on Shiglass</description>
+    <title>DRF on Shiglass</title>
+    <link>https://hirotoshimizu.github.io/tags/drf/</link>
+    <description>Recent content in DRF on Shiglass</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 07 Jul 2021 11:51:51 +0900</lastBuildDate><atom:link href="https://hirotoshimizu.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 07 Jul 2021 11:51:51 +0900</lastBuildDate><atom:link href="https://hirotoshimizu.github.io/tags/drf/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Django Rest Framework</title>
       <link>https://hirotoshimizu.github.io/posts/django-rest-framework/</link>
@@ -23,37 +23,6 @@ GenericViewSetクラスを使用するには、クラスをオーバーライド
 DRF ドキュメント
 ModelSerializer ModelSerializerクラスはSerializer  class とモデルの一致するフィールドを自動で作成する
 ModelSerializer クラスは Serializer と同じだが、 *モデルを基にフィールドを自動で作成する *unique_together のようなserializerのためのvalidatorを自動で作成する *デフォルトで .create() .update() 含む。</description>
-    </item>
-    
-    <item>
-      <title>GitHub Pages で静的サイトの公開方法</title>
-      <link>https://hirotoshimizu.github.io/posts/host-a-website-on-github/</link>
-      <pubDate>Tue, 06 Jul 2021 08:50:31 +0900</pubDate>
-      
-      <guid>https://hirotoshimizu.github.io/posts/host-a-website-on-github/</guid>
-      <description>公開したいページのあるリポジトリの Settings をクリック。
-サイドナビの　Pages をクリック。
-公開したいブランチを選択
-事前にCNAMEでドメインを設定しておいて
-設定したドメインを適用</description>
-    </item>
-    
-    <item>
-      <title>Hugo の始め方</title>
-      <link>https://hirotoshimizu.github.io/posts/how-to-start-hugo/</link>
-      <pubDate>Mon, 05 Jul 2021 16:02:47 +0900</pubDate>
-      
-      <guid>https://hirotoshimizu.github.io/posts/how-to-start-hugo/</guid>
-      <description>日々学んだ事を記録に残そうと始めました。
-Word Press や Django でブログを作成しようと思いましたが、
-速度やメンテナンスを楽にしたかったので、Hugoで作成。
-設定環境
- Win 10 WSL2 Ubuntu 20.04  1. Hugoのインストール Ubuntuでのインストール
-sudo apt-get install hugo 2. サイトの作成 hugo new site sitename sitename は自分の好きな名前に置き換えてください。
-3. テーマの追加 Hugo のテーマ から好きなテンプレートを選択。
-PaperMod を選択したので、 インストラクションに沿ってgit clone
-git clone https://github.com/adityatelange/hugo-PaperMod themes/PaperMod --depth=1 4. コンテンツの追加 hugo new posts/my-first-post.md --- title: &amp;quot;My First Post&amp;quot; date: 2019-03-26T08:47:11+01:00 draft: true --- ※draft: false に変更で公開
-5. Hugo server を起動 hugo server </description>
     </item>
     
   </channel>

@@ -178,6 +178,27 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Django Rest Framework</h2>
+  </header>
+  <section class="entry-content">
+    <p>APIClient APIClientは Djang の Clientクラスを拡張したもの .get()、.post()、.put()、.pathch()、.delete()、.head()、.options()が利用可能。
+例
+from rest_framework.test import APIClient client = APIClient() client.post(&#39;/notes/&#39;, {&#39;title&#39;: &#39;new idea&#39;}, format=&#39;json&#39;) status from rest_framework import status 人間が読むことができるステータスコードを含む。 テストの際に理解が簡単 github
+refresh_from_db() モデルのバリューをリフレッシュ使うのに使用。 このメソッドが引数なしで呼ばれると
+ モデル上の遅延評価されない全てのフィールドはその時点でデータベース上に存在する値に更新されます。 キャッシュされたリレーションはリロードされたインスタンスに削除される。 Django ドキュメント  force_authenticate() テストする際に強制的に認証をリクエストする
+force_authenticate(request, user=None, token=None)が呼ばれる時 user か token のいずれか、または両方を設定できる。
+GenericViewSet GenericViewSet クラスは GenericAPIView の継承し、get_object、get_queryset を提供し、デフォルトでは
+GenericViewSetクラスを使用するには、クラスをオーバーライドして、必要なmixinクラスをミックスインするか、アクションの実装を明示的に定義します。
+DRF ドキュメント
+ModelSerializer ModelSerializerクラスはSerializer  class とモデルの一致するフィールドを自動で作成する
+ModelSerializer クラスは Serializer と同じだが、 *モデルを基にフィールドを自動で作成する *unique_together のようなserializerのためのvalidatorを自動で作成する *デフォルトで .create() .update() 含む。...</p>
+  </section>
+  <footer class="entry-footer">July 7, 2021</footer>
+  <a class="entry-link" aria-label="post link to Django Rest Framework" href="https://hirotoshimizu.github.io/posts/django-rest-framework/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>GitHub Pages で静的サイトの公開方法</h2>
   </header>
   <section class="entry-content">
