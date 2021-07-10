@@ -5,7 +5,34 @@
     <link>https://hirotoshimizu.github.io/tags/drf/</link>
     <description>Recent content in DRF on Shiglass</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 07 Jul 2021 11:51:51 +0900</lastBuildDate><atom:link href="https://hirotoshimizu.github.io/tags/drf/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 09 Jul 2021 23:37:25 +0900</lastBuildDate><atom:link href="https://hirotoshimizu.github.io/tags/drf/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2021 07 10 2</title>
+      <link>https://hirotoshimizu.github.io/posts/2021-07-10-2/</link>
+      <pubDate>Fri, 09 Jul 2021 23:37:25 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/2021-07-10-2/</guid>
+      <description>python での JSON の扱いについてわすれるのでメモ。
+json.dumps json.dumps()に入れた変数を JSON string に変換する。
+&amp;gt;&amp;gt;&amp;gt; import json &amp;gt;&amp;gt;&amp;gt; data = {&#39;abc&#39;: 123} &amp;gt;&amp;gt;&amp;gt; type(data_json) &amp;lt;class &#39;str&#39;&amp;gt; &amp;gt;&amp;gt;&amp;gt; data_json = json.dumps(data) &amp;gt;&amp;gt;&amp;gt; data_json &#39;{&amp;quot;abc&amp;quot;: 123}&#39; json.loads json.loads(JSON string) で python dictionary に型を変換する。
+&amp;gt;&amp;gt;&amp;gt; import json &amp;gt;&amp;gt;&amp;gt; data = {&#39;abc&#39;: 123} &amp;gt;&amp;gt;&amp;gt; type(data_json) &amp;lt;class &#39;str&#39;&amp;gt; &amp;gt;&amp;gt;&amp;gt; data_json = json.dumps(data) &amp;gt;&amp;gt;&amp;gt; data_json &#39;{&amp;quot;abc&amp;quot;: 123}&#39; &amp;gt;&amp;gt;&amp;gt; load_json = json.loads(data_json) &amp;gt;&amp;gt;&amp;gt; load_json {&#39;abc&#39;: 123} &amp;gt;&amp;gt;&amp;gt; type(load_json) &amp;lt;class &#39;dict&#39;&amp;gt; &amp;gt;&amp;gt;&amp;gt; load_json[&#39;abc&#39;] 123 </description>
+    </item>
+    
+    <item>
+      <title>2021 07 08</title>
+      <link>https://hirotoshimizu.github.io/posts/2021-07-08/</link>
+      <pubDate>Thu, 08 Jul 2021 08:04:28 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/2021-07-08/</guid>
+      <description>DRFでオブジェクトを作成したとき、 デフォルトで、 作成したオブジェクトを含むディクショナリー型でデータを返す。
+keys() Pythonの組み込み関数。
+keys() dict = {&amp;#34;A&amp;#34;: &amp;#34;Abalone&amp;#34;, &amp;#34;B&amp;#34;: &amp;#34;bluefin tuna&amp;#34;, &amp;#34;C&amp;#34;: &amp;#34;cod&amp;#34;} print(dict.keys()) &amp;gt;&amp;gt;&amp;gt;dict_keys([&amp;#39;A&amp;#39;, &amp;#39;B&amp;#39;, &amp;#39;C&amp;#39;]) dict = {&amp;#34;A&amp;#34;: &amp;#34;Abalone&amp;#34;, &amp;#34;B&amp;#34;: &amp;#34;bluefin tuna&amp;#34;, &amp;#34;C&amp;#34;: &amp;#34;cod&amp;#34;} for key in dict.keys(): print(key) &amp;gt;&amp;gt;&amp;gt;A &amp;gt;&amp;gt;&amp;gt;B &amp;gt;&amp;gt;&amp;gt;C getattr Pythonの組み込み関数。
+getattr(object, name[,default]) 第一引数に指定された object の値を返す。 第二引数の name は文字列である必要があり、文字列が object の属性の一つの名前であった場合、戻り値はその属性の値になる。
+query_params request.GETと同義語。
+DRF では query_params を使用することを推奨。
+DRF ドキュメント</description>
+    </item>
+    
     <item>
       <title>Django Rest Framework</title>
       <link>https://hirotoshimizu.github.io/posts/django-rest-framework/</link>

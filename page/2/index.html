@@ -5,11 +5,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>Categories | Shiglass</title>
-<meta name="keywords" content="" />
+<title>Shiglass</title>
+
 <meta name="description" content="">
 <meta name="author" content="">
-<link rel="canonical" href="https://hirotoshimizu.github.io/categories/" />
+<link rel="canonical" href="https://hirotoshimizu.github.io/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.d9015f4cb657fd3539b79b29ffbd11de4175ccd105ad7591beffaadfafb48488.css" integrity="sha256-2QFfTLZX/TU5t5sp/70R3kF1zNEFrXWRvv&#43;q36&#43;0hIg=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://hirotoshimizu.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://hirotoshimizu.github.io/favicon-16x16.png">
@@ -19,16 +19,30 @@
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
 <meta name="generator" content="Hugo 0.68.3" />
-<link rel="alternate" type="application/rss+xml" href="https://hirotoshimizu.github.io/categories/index.xml">
-<meta property="og:title" content="Categories" />
+<link rel="alternate" type="application/rss+xml" href="https://hirotoshimizu.github.io/index.xml">
+<link rel="alternate" type="application/json" href="https://hirotoshimizu.github.io/index.json">
+<meta property="og:title" content="" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://hirotoshimizu.github.io/categories/" />
+<meta property="og:url" content="https://hirotoshimizu.github.io/" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Categories"/>
+<meta name="twitter:title" content=""/>
 <meta name="twitter:description" content=""/>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Shiglass",
+  "url": "https://hirotoshimizu.github.io",
+  "description": "",
+  "thumbnailUrl": "https://hirotoshimizu.github.io/favicon.ico",
+  "sameAs": [
+      "https://github.com/hirotoshimizu", "index.xml"
+  ]
+}
+</script>
 </head>
 
 <body class="list" id="top">
@@ -120,7 +134,7 @@
             </li>
             <li>
                 <a href="https://hirotoshimizu.github.io/categories/" title="categories">
-                    <span class="active">categories</span>
+                    <span>categories</span>
                 </a>
             </li>
             <li>
@@ -131,22 +145,32 @@
         </ul>
     </nav>
 </header>
-<main class="main">
-<header class="page-header">
-    <h1>Categories</h1>
-</header>
+<main class="main"> 
 
-<ul class="terms-tags">
-    <li>
-        <a href="https://hirotoshimizu.github.io/categories/django/">Django <sup><strong><sup>3</sup></strong></sup> </a>
-    </li>
-    <li>
-        <a href="https://hirotoshimizu.github.io/categories/github/">Github <sup><strong><sup>1</sup></strong></sup> </a>
-    </li>
-    <li>
-        <a href="https://hirotoshimizu.github.io/categories/hugo/">Hugo <sup><strong><sup>1</sup></strong></sup> </a>
-    </li>
-</ul>
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Hugo の始め方</h2>
+  </header>
+  <section class="entry-content">
+    <p>日々学んだ事を記録に残そうと始めました。
+Word Press や Django でブログを作成しようと思いましたが、
+速度やメンテナンスを楽にしたかったので、Hugoで作成。
+設定環境
+ Win 10 WSL2 Ubuntu 20.04  1. Hugoのインストール Ubuntuでのインストール
+sudo apt-get install hugo 2. サイトの作成 hugo new site sitename sitename は自分の好きな名前に置き換えてください。
+3. テーマの追加 Hugo のテーマ から好きなテンプレートを選択。
+PaperMod を選択したので、 インストラクションに沿ってgit clone
+git clone https://github.com/adityatelange/hugo-PaperMod themes/PaperMod --depth=1 4. コンテンツの追加 hugo new posts/my-first-post.md --- title: &#34;My First Post&#34; date: 2019-03-26T08:47:11&#43;01:00 draft: true --- ※draft: false に変更で公開
+5. Hugo server を起動 hugo server </p>
+  </section>
+  <footer class="entry-footer">July 5, 2021</footer>
+  <a class="entry-link" aria-label="post link to Hugo の始め方" href="https://hirotoshimizu.github.io/posts/how-to-start-hugo/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="https://hirotoshimizu.github.io/">« Prev Page</a>
+  </nav>
+</footer>
     </main>
     <footer class="footer">
     <span>&copy; 2021 <a href="https://hirotoshimizu.github.io">Shiglass</a></span>
