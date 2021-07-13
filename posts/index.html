@@ -153,16 +153,44 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>2021 07 10 2</h2>
+    <h2>2021 07 13</h2>
+  </header>
+  <section class="entry-content">
+    <p>PrimaryKeyRelatedField PrimaryKeyRelatedField を使用することでリレーションのあるテーブルのプライマリーキーを取得することが出来る。
+class StatusSerializer(serializers.ModelSerializer): uri = serializers.SerializerMethodField(read_only=True) user = UserPublicSerializer(read_only=True) user_id = serializers.PrimaryKeyRelatedField(source=&#39;user&#39;, read_only=True) class Meta: model = Status fields = [ &#39;uri&#39;, &#39;user_id&#39;, &#39;id&#39;, &#39;user&#39;, &#39;content&#39;, &#39;image&#39; ] read_only_fields = [&#39;user&#39;]  &#34;results&#34;: [ { &#34;uri&#34;: &#34;http://127.0.0.1:8000/api/status/1/&#34;, &#34;id&#34;: 7, &#34;user_id&#34;: 1, &#34;user&#34;: { &#34;id&#34;: 1, &#34;username&#34;: &#34;test&#34;, &#34;uri&#34;: &#34;http://127.0.0.1:8000/api/user/test/&#34; }, &#34;content&#34;: &#34;do some stuff here&#34;, &#34;image&#34;: &#34;http://127.0.0.1:8000/media/status/test/images.png&#34; }, DRF ドキュメント
+HyperlinkedRelatedField PrimaryKeyRelatedField を使用することでリレーションのあるテーブルのターゲットのハイパーリンクを取得することが出来る。
+class StatusSerializer(serializers.ModelSerializer): uri = serializers.SerializerMethodField(read_only=True) user = UserPublicSerializer(read_only=True) user_id = serializers....</p>
+  </section>
+  <footer class="entry-footer">July 13, 2021</footer>
+  <a class="entry-link" aria-label="post link to 2021 07 13" href="https://hirotoshimizu.github.io/posts/2021-07-14/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>2021 07 12</h2>
+  </header>
+  <section class="entry-content">
+    <p>Authenticating users authenticate(request=None, **credentials)
+authenticate() は認証の承認のために使用する関数。 デフォルトでは keyword arguments で username と password で認証し、 User オブジェクトを返す。
+set_password(raw_password)
+パスワードをハッシュ化するのに使う。</p>
+  </section>
+  <footer class="entry-footer">July 11, 2021</footer>
+  <a class="entry-link" aria-label="post link to 2021 07 12" href="https://hirotoshimizu.github.io/posts/2021-07-12/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>2021 07 11</h2>
   </header>
   <section class="entry-content">
     <p>python での JSON の扱いについてわすれるのでメモ。
 json.dumps json.dumps()に入れた変数を JSON string に変換する。
 &gt;&gt;&gt; import json &gt;&gt;&gt; data = {&#39;abc&#39;: 123} &gt;&gt;&gt; type(data_json) &lt;class &#39;str&#39;&gt; &gt;&gt;&gt; data_json = json.dumps(data) &gt;&gt;&gt; data_json &#39;{&#34;abc&#34;: 123}&#39; json.loads json.loads(JSON string) で python dictionary に型を変換する。
-&gt;&gt;&gt; import json &gt;&gt;&gt; data = {&#39;abc&#39;: 123} &gt;&gt;&gt; type(data_json) &lt;class &#39;str&#39;&gt; &gt;&gt;&gt; data_json = json.dumps(data) &gt;&gt;&gt; data_json &#39;{&#34;abc&#34;: 123}&#39; &gt;&gt;&gt; load_json = json.loads(data_json) &gt;&gt;&gt; load_json {&#39;abc&#39;: 123} &gt;&gt;&gt; type(load_json) &lt;class &#39;dict&#39;&gt; &gt;&gt;&gt; load_json[&#39;abc&#39;] 123 </p>
+&gt;&gt;&gt; import json &gt;&gt;&gt; data = {&#39;abc&#39;: 123} &gt;&gt;&gt; type(data_json) &lt;class &#39;str&#39;&gt; &gt;&gt;&gt; data_json = json.dumps(data) &gt;&gt;&gt; data_json &#39;{&#34;abc&#34;: 123}&#39; &gt;&gt;&gt; load_json = json.loads(data_json) &gt;&gt;&gt; load_json {&#39;abc&#39;: 123} &gt;&gt;&gt; type(load_json) &lt;class &#39;dict&#39;&gt; &gt;&gt;&gt; load_json[&#39;abc&#39;] 123 Django Rest Framework...</p>
   </section>
   <footer class="entry-footer">July 9, 2021</footer>
-  <a class="entry-link" aria-label="post link to 2021 07 10 2" href="https://hirotoshimizu.github.io/posts/2021-07-10-2/"></a>
+  <a class="entry-link" aria-label="post link to 2021 07 11" href="https://hirotoshimizu.github.io/posts/2021-07-11/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -195,42 +223,6 @@ DRF ドキュメント</p>
   </section>
   <footer class="entry-footer">July 8, 2021</footer>
   <a class="entry-link" aria-label="post link to 2021 07 08" href="https://hirotoshimizu.github.io/posts/2021-07-08/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Django Rest Framework</h2>
-  </header>
-  <section class="entry-content">
-    <p>APIClient APIClientは Djang の Clientクラスを拡張したもの .get()、.post()、.put()、.pathch()、.delete()、.head()、.options()が利用可能。
-例
-from rest_framework.test import APIClient client = APIClient() client.post(&#39;/notes/&#39;, {&#39;title&#39;: &#39;new idea&#39;}, format=&#39;json&#39;) status from rest_framework import status 人間が読むことができるステータスコードを含む。 テストの際に理解が簡単 github
-refresh_from_db() モデルのバリューをリフレッシュ使うのに使用。 このメソッドが引数なしで呼ばれると
- モデル上の遅延評価されない全てのフィールドはその時点でデータベース上に存在する値に更新されます。 キャッシュされたリレーションはリロードされたインスタンスに削除される。 Django ドキュメント  force_authenticate() テストする際に強制的に認証をリクエストする
-force_authenticate(request, user=None, token=None)が呼ばれる時 user か token のいずれか、または両方を設定できる。
-GenericViewSet GenericViewSet クラスは GenericAPIView の継承し、get_object、get_queryset を提供し、デフォルトでは
-GenericViewSetクラスを使用するには、クラスをオーバーライドして、必要なmixinクラスをミックスインするか、アクションの実装を明示的に定義します。
-DRF ドキュメント
-ModelSerializer ModelSerializerクラスはSerializer  class とモデルの一致するフィールドを自動で作成する
-ModelSerializer クラスは Serializer と同じだが、 *モデルを基にフィールドを自動で作成する *unique_together のようなserializerのためのvalidatorを自動で作成する *デフォルトで .create() .update() 含む。...</p>
-  </section>
-  <footer class="entry-footer">July 7, 2021</footer>
-  <a class="entry-link" aria-label="post link to Django Rest Framework" href="https://hirotoshimizu.github.io/posts/django-rest-framework/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>GitHub Pages で静的サイトの公開方法</h2>
-  </header>
-  <section class="entry-content">
-    <p>公開したいページのあるリポジトリの Settings をクリック。
-サイドナビの　Pages をクリック。
-公開したいブランチを選択
-事前にCNAMEでドメインを設定しておいて
-設定したドメインを適用</p>
-  </section>
-  <footer class="entry-footer">July 6, 2021</footer>
-  <a class="entry-link" aria-label="post link to GitHub Pages で静的サイトの公開方法" href="https://hirotoshimizu.github.io/posts/host-a-website-on-github/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

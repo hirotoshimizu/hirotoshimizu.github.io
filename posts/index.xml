@@ -5,17 +5,41 @@
     <link>https://hirotoshimizu.github.io/posts/</link>
     <description>Recent content in Posts on Shiglass</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 09 Jul 2021 23:37:25 +0900</lastBuildDate><atom:link href="https://hirotoshimizu.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 13 Jul 2021 23:32:01 +0900</lastBuildDate><atom:link href="https://hirotoshimizu.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>2021 07 10 2</title>
-      <link>https://hirotoshimizu.github.io/posts/2021-07-10-2/</link>
+      <title>2021 07 13</title>
+      <link>https://hirotoshimizu.github.io/posts/2021-07-14/</link>
+      <pubDate>Tue, 13 Jul 2021 23:32:01 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/2021-07-14/</guid>
+      <description>PrimaryKeyRelatedField PrimaryKeyRelatedField を使用することでリレーションのあるテーブルのプライマリーキーを取得することが出来る。
+class StatusSerializer(serializers.ModelSerializer): uri = serializers.SerializerMethodField(read_only=True) user = UserPublicSerializer(read_only=True) user_id = serializers.PrimaryKeyRelatedField(source=&amp;#39;user&amp;#39;, read_only=True) class Meta: model = Status fields = [ &amp;#39;uri&amp;#39;, &amp;#39;user_id&amp;#39;, &amp;#39;id&amp;#39;, &amp;#39;user&amp;#39;, &amp;#39;content&amp;#39;, &amp;#39;image&amp;#39; ] read_only_fields = [&amp;#39;user&amp;#39;]  &amp;quot;results&amp;quot;: [ { &amp;quot;uri&amp;quot;: &amp;quot;http://127.0.0.1:8000/api/status/1/&amp;quot;, &amp;quot;id&amp;quot;: 7, &amp;quot;user_id&amp;quot;: 1, &amp;quot;user&amp;quot;: { &amp;quot;id&amp;quot;: 1, &amp;quot;username&amp;quot;: &amp;quot;test&amp;quot;, &amp;quot;uri&amp;quot;: &amp;quot;http://127.0.0.1:8000/api/user/test/&amp;quot; }, &amp;quot;content&amp;quot;: &amp;quot;do some stuff here&amp;quot;, &amp;quot;image&amp;quot;: &amp;quot;http://127.0.0.1:8000/media/status/test/images.png&amp;quot; }, DRF ドキュメント
+HyperlinkedRelatedField PrimaryKeyRelatedField を使用することでリレーションのあるテーブルのターゲットのハイパーリンクを取得することが出来る。
+class StatusSerializer(serializers.ModelSerializer): uri = serializers.SerializerMethodField(read_only=True) user = UserPublicSerializer(read_only=True) user_id = serializers.</description>
+    </item>
+    
+    <item>
+      <title>2021 07 12</title>
+      <link>https://hirotoshimizu.github.io/posts/2021-07-12/</link>
+      <pubDate>Sun, 11 Jul 2021 06:49:02 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/2021-07-12/</guid>
+      <description>Authenticating users authenticate(request=None, **credentials)
+authenticate() は認証の承認のために使用する関数。 デフォルトでは keyword arguments で username と password で認証し、 User オブジェクトを返す。
+set_password(raw_password)
+パスワードをハッシュ化するのに使う。</description>
+    </item>
+    
+    <item>
+      <title>2021 07 11</title>
+      <link>https://hirotoshimizu.github.io/posts/2021-07-11/</link>
       <pubDate>Fri, 09 Jul 2021 23:37:25 +0900</pubDate>
       
-      <guid>https://hirotoshimizu.github.io/posts/2021-07-10-2/</guid>
+      <guid>https://hirotoshimizu.github.io/posts/2021-07-11/</guid>
       <description>python での JSON の扱いについてわすれるのでメモ。
 json.dumps json.dumps()に入れた変数を JSON string に変換する。
 &amp;gt;&amp;gt;&amp;gt; import json &amp;gt;&amp;gt;&amp;gt; data = {&#39;abc&#39;: 123} &amp;gt;&amp;gt;&amp;gt; type(data_json) &amp;lt;class &#39;str&#39;&amp;gt; &amp;gt;&amp;gt;&amp;gt; data_json = json.dumps(data) &amp;gt;&amp;gt;&amp;gt; data_json &#39;{&amp;quot;abc&amp;quot;: 123}&#39; json.loads json.loads(JSON string) で python dictionary に型を変換する。
-&amp;gt;&amp;gt;&amp;gt; import json &amp;gt;&amp;gt;&amp;gt; data = {&#39;abc&#39;: 123} &amp;gt;&amp;gt;&amp;gt; type(data_json) &amp;lt;class &#39;str&#39;&amp;gt; &amp;gt;&amp;gt;&amp;gt; data_json = json.dumps(data) &amp;gt;&amp;gt;&amp;gt; data_json &#39;{&amp;quot;abc&amp;quot;: 123}&#39; &amp;gt;&amp;gt;&amp;gt; load_json = json.loads(data_json) &amp;gt;&amp;gt;&amp;gt; load_json {&#39;abc&#39;: 123} &amp;gt;&amp;gt;&amp;gt; type(load_json) &amp;lt;class &#39;dict&#39;&amp;gt; &amp;gt;&amp;gt;&amp;gt; load_json[&#39;abc&#39;] 123 </description>
+&amp;gt;&amp;gt;&amp;gt; import json &amp;gt;&amp;gt;&amp;gt; data = {&#39;abc&#39;: 123} &amp;gt;&amp;gt;&amp;gt; type(data_json) &amp;lt;class &#39;str&#39;&amp;gt; &amp;gt;&amp;gt;&amp;gt; data_json = json.dumps(data) &amp;gt;&amp;gt;&amp;gt; data_json &#39;{&amp;quot;abc&amp;quot;: 123}&#39; &amp;gt;&amp;gt;&amp;gt; load_json = json.loads(data_json) &amp;gt;&amp;gt;&amp;gt; load_json {&#39;abc&#39;: 123} &amp;gt;&amp;gt;&amp;gt; type(load_json) &amp;lt;class &#39;dict&#39;&amp;gt; &amp;gt;&amp;gt;&amp;gt; load_json[&#39;abc&#39;] 123 Django Rest Framework</description>
     </item>
     
     <item>
