@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Dynamic Programming on Shiglass</title>
+    <link>https://hirotoshimizu.github.io/tags/dynamic-programming/</link>
+    <description>Recent content in Dynamic Programming on Shiglass</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 26 Sep 2021 12:04:50 +0900</lastBuildDate><atom:link href="https://hirotoshimizu.github.io/tags/dynamic-programming/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Climbing Stairs</title>
+      <link>https://hirotoshimizu.github.io/posts/climbing-stairs/</link>
+      <pubDate>Sun, 26 Sep 2021 12:04:50 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/climbing-stairs/</guid>
+      <description>https://leetcode.com/problems/climbing-stairs/
+n = 5
+ 0 ／　＼ 1 2 ／＼ ／＼ 2 3 3 4 ／＼ ／＼ ／＼ ／＼ 3 4 4 5 4 5 5 6  ／＼ ／＼ ／＼　／＼ 4 5 5 6 5 6　5 6 ／＼ 5 6
+n が 5 steps の場合、 8通りの選択が出来る。
+DFS でも出来るかが 2^n となる。
+そのため Dynamic Programming を使う。
+同じ計算をする値は memoize する
+ | 8 | 5 | 3 | 2 | 1 | 1 | n に辿り着くまでの数 0 1 2 3 4 5(step) one two</description>
+    </item>
+    
+  </channel>
+</rss>

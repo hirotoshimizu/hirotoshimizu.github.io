@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Interval on Shiglass</title>
+    <link>https://hirotoshimizu.github.io/tags/interval/</link>
+    <description>Recent content in Interval on Shiglass</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 25 Sep 2021 15:04:07 +0900</lastBuildDate><atom:link href="https://hirotoshimizu.github.io/tags/interval/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Meeting Rooms</title>
+      <link>https://hirotoshimizu.github.io/posts/meeting-rooms/</link>
+      <pubDate>Sat, 25 Sep 2021 15:04:07 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/meeting-rooms/</guid>
+      <description>https://leetcode.com/problems/meeting-rooms/
+先ず始めに intervals のスタート時間でソートする。
+intervals の時間がソートされたため、 ループで最初の会議の終わりの時間と次の会議の始まりの時間を比較し、 最初の会議の終わりの時間 が 次の会議の始まりの時間より大きい場合、 会議の時間が重なっているので、False を返す。
+次の会議の開始時間 が 前の会議の終わり時間より小さい場合ループを続ける。
+ループする際、次のリストと比較するため for の range で -1 をする。
+ソートをするので Time complexity は O(n log n) となる。
+Time complexity: O(n log n) Mem complexity: O(1)
+class Solution(object): def canAttendMeetings(self, intervals): &amp;#34;&amp;#34;&amp;#34; :type intervals: List[List[int]] :rtype: bool &amp;#34;&amp;#34;&amp;#34; intervals.sort() for i in range(len(intervals) -1): if intervals[i][1] &amp;gt; intervals[i + 1][0]: return False return True </description>
+    </item>
+    
+  </channel>
+</rss>

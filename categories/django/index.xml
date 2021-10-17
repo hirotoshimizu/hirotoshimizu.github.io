@@ -5,7 +5,58 @@
     <link>https://hirotoshimizu.github.io/categories/django/</link>
     <description>Recent content in Django on Shiglass</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 13 Jul 2021 23:32:01 +0900</lastBuildDate><atom:link href="https://hirotoshimizu.github.io/categories/django/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 28 Jul 2021 19:59:35 +0900</lastBuildDate><atom:link href="https://hirotoshimizu.github.io/categories/django/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2021 07 29</title>
+      <link>https://hirotoshimizu.github.io/posts/2021-07-29/</link>
+      <pubDate>Wed, 28 Jul 2021 19:59:35 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/2021-07-29/</guid>
+      <description>Responses HttpResponse オブジェクトと違い、レンダリングされたコンテンツでResponseオブジェクトをインスタンス化する必要がない。 その代わりにレンダリングされていないデータをパスする必要がある。
+Responseクラスで使用されるレンダラーは、Djangoモデルインスタンスなどの複雑なデータ型をネイティブに処理できないため、Responseオブジェクトを作成する前に、データをプリミティブデータ型にシリアル化する必要があります。
+REST frameworkのSerializerクラスを使ってこのデータをシリアライズするか、カスタムシリアライザーを使用する。
+引数
+ data : レスポンス用のシリアライズされたデータ status : レスポンス用のステータスコード　デフォルトでは 200 template_name : HTMLRenderer が選択されているならテンプレート名 header : レスポンス用の辞書型 HTTP ヘッダー content_type : レスポンス用のコンテンツタイプ。一般的にコンテンツネゴシエーションのrenderer によって自動的に設定される。しかし、場合によっては明示的にコンテンツタイプを特定する必要もある。  プロジェクトが既にある場合 ユーザーモデルは拡張する。
+最初から作成する場合は モデルをオーバーライドして独自のカスタムモデルを作成
+カスタムユーザーモデルは</description>
+    </item>
+    
+    <item>
+      <title>2021 07 28</title>
+      <link>https://hirotoshimizu.github.io/posts/2021-07-28/</link>
+      <pubDate>Tue, 27 Jul 2021 21:51:50 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/2021-07-28/</guid>
+      <description>APIView REST frameworkは Djangoの View class のサブクラスである、 APIViewclassを提供する。
+APIViewclass は下記のようにView classとは異なる。
+  handler methods を通ったRequests は REST frameworkの Request インスタンスになり。 Django の HttpRequestインスタンスではない。
+  handler methods の return は REST frameworkの Responseとなり、 その view は content negotiation と response に一致した renderer を返す。
+  どの APIException のエクセプションは正しいレスポンスに仲介される。
+  来るリクエストは認証され、handler methodsに送る前に、 適切な権限やスロットルチェックが行われる。
+  DRF ドキュメント
+ViewSet viewSet classは APIViewを継承している。 viewsetで API policy をコントロールするにあたり、 スタンダードの属性であるpermission_classes,authentication_classesが使える。
+viewSet classはどのアクションも含んでいないので、 クラスをオーバーライドして明示的に定義する必要がある。</description>
+    </item>
+    
+    <item>
+      <title>Djnagoの管理画面からCSVファイルをアップしてデータ登録</title>
+      <link>https://hirotoshimizu.github.io/posts/2021-07-19/</link>
+      <pubDate>Mon, 19 Jul 2021 11:56:10 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/2021-07-19/</guid>
+      <description>今回は restaurants というアプリを作成し進めていきます。
+CSVのファイルは管理画面のレストランの一覧画面 http://127.0.0.1:8000/admin/restaurants/restaurant/ からアップ。
+アプリの作成
+python manage.py startapp restaurants モデルは restaurant で作成。
+Admin テンプレートの Override templatesフォルダは manage.py と同じ階層に作成。
+templates/admin/restaurants/restaurant/change_list.html を作成
+{% extends &amp;#39;admin/change_list.html&amp;#39; %} {% load static %} {% block content %} &amp;lt;a href=&amp;#34;upload-csv/&amp;#34;&amp;gt;Upload a csv file&amp;lt;/a&amp;gt; {{ block.super }} {% endblock %} {{ block.super }} は親のテンプレートコンテンツ。
+Django change_list.html
+Custom Admin Page の作成 上記で作成したリンク先の upload-csv/ の URL を設定
+restaurants/admin.py の RestaurantAdmin で get_urls()を設定。
+def get_urls(self): urls = super().get_urls() new_urls = [ path(&amp;#39;upload-csv/&amp;#39;, self.</description>
+    </item>
+    
     <item>
       <title>2021 07 13</title>
       <link>https://hirotoshimizu.github.io/posts/2021-07-14/</link>

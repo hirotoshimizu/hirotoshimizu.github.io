@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>String on Shiglass</title>
+    <link>https://hirotoshimizu.github.io/tags/string/</link>
+    <description>Recent content in String on Shiglass</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 22 Sep 2021 20:06:14 +0900</lastBuildDate><atom:link href="https://hirotoshimizu.github.io/tags/string/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Valid Parentheses</title>
+      <link>https://hirotoshimizu.github.io/posts/valid-parentheses/</link>
+      <pubDate>Wed, 22 Sep 2021 20:06:14 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/valid-parentheses/</guid>
+      <description>https://leetcode.com/problems/valid-parentheses/
+Prerequisite Hash Map Stack
+最初にどのカッコがどの 括弧閉じ にマッチしているかわかるために HashMap を作る必要がある。 この際、括弧閉じ をキーにする。
+for 文で list の中を確認し、 括弧開きは stack に入れる。
+stack は 最後に入れたものから出すので、 括弧開き と 括弧閉じ がマッチしていれば、 stack から pop できる。
+最後に stack に何も残らなければ、 全てがマッチして True を return する。
+Time complexity: O(n) Mem complexity: O(n)
+class Solution(object): def isValid(self, s): &amp;#34;&amp;#34;&amp;#34; :type s: str :rtype: bool &amp;#34;&amp;#34;&amp;#34; stack = [] closeToOpen = { &amp;#39;)&amp;#39; : &amp;#39;(&amp;#39;, &amp;#39;]&amp;#39; : &amp;#39;[&amp;#39;, &amp;#39;}&amp;#39; : &amp;#39;{&amp;#39; } for c in s: if c in closeToOpen: if stack and stack[-1] == closeToOpen[c]: stack.</description>
+    </item>
+    
+  </channel>
+</rss>

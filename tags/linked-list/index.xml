@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Linked List on Shiglass</title>
+    <link>https://hirotoshimizu.github.io/tags/linked-list/</link>
+    <description>Recent content in Linked List on Shiglass</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 24 Sep 2021 22:39:14 +0900</lastBuildDate><atom:link href="https://hirotoshimizu.github.io/tags/linked-list/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Merge Two Sorted Lists</title>
+      <link>https://hirotoshimizu.github.io/posts/merge-two-sorted-lists/</link>
+      <pubDate>Fri, 24 Sep 2021 22:39:14 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/merge-two-sorted-lists/</guid>
+      <description>https://leetcode.com/problems/merge-two-sorted-lists/
+ダミー Node を作って edge case の 空の Linked List が挿入されても大丈夫なようにする。
+その後はループで l1 と l2 の val を比べ、 小さい値を tail.next に入れる。 その後、 next をずらす。
+ループ後 l1, l2 のどちらかのリストが empty の場合、 Linked List に追加する必要があるので、 リストが empty か確認し、値があれば Linked List に追加する。
+# Definition for singly-linked list. # class ListNode(object): # def __init__(self, val=0, next=None): # self.val = val # self.next = next class Solution(object): def mergeTwoLists(self, l1, l2): &amp;#34;&amp;#34;&amp;#34; :type l1: ListNode :type l2: ListNode :rtype: ListNode &amp;#34;&amp;#34;&amp;#34; dummy = ListNode() tail = dummy while l1 and l2: if l1.</description>
+    </item>
+    
+    <item>
+      <title>Linked List Cycle</title>
+      <link>https://hirotoshimizu.github.io/posts/linked-list-cycle/</link>
+      <pubDate>Fri, 24 Sep 2021 21:04:07 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/linked-list-cycle/</guid>
+      <description>https://leetcode.com/problems/linked-list-cycle/
+Linked List が Cycle なのかを確認する。
+Linked List が Cycle な場合、 2つのポインターを使う。 (1つめのポインターは 1つずつ進み、 2つめのポインターは 2つずつ進む。) Cycle な場合どこかの時点で2つ進むポインター が1つしか進まないポインターに追いつくので Cycle だとわかる。
+Cycle ではない場合 いずれかの時点で ポインターが Null になる。
+Time complexity: O(n) Mem complexity: O(1)
+# Definition for singly-linked list. # class ListNode(object): # def __init__(self, x): # self.val = x # self.next = None class Solution(object): def hasCycle(self, head): &amp;#34;&amp;#34;&amp;#34; :type head: ListNode :rtype: bool &amp;#34;&amp;#34;&amp;#34; slow, fast = head, head while fast and fast.</description>
+    </item>
+    
+    <item>
+      <title>Reverse Linked List</title>
+      <link>https://hirotoshimizu.github.io/posts/reverse-linked-list/</link>
+      <pubDate>Fri, 24 Sep 2021 11:13:49 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/reverse-linked-list/</guid>
+      <description>https://leetcode.com/problems/reverse-linked-list/
+考え方としては、
+1 → 2 → 3 → 4 → 5
+1 ← 2 ← 3 ← 4 ← 5
+とするように考える。
+回答方法は iterative なやり方と recursive なやり方がある。 iterative なやり方は 2つの pointer を使う。
+prev と curr
+まず prev に　None を設定する。 curr は head にする
+Null → 1 → 2 → 3 → 4 → 5 ↑ ↑ prev curr
+ループしている間 Linked List の 矢印の向き (curr.next) をずらしつつ、prev と next の pointer もずらしていく。</description>
+    </item>
+    
+  </channel>
+</rss>

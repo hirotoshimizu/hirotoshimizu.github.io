@@ -5,11 +5,20 @@
     <link>https://hirotoshimizu.github.io/categories/</link>
     <description>Recent content in Categories on Shiglass</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 13 Jul 2021 23:32:01 +0900</lastBuildDate><atom:link href="https://hirotoshimizu.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 17 Oct 2021 19:23:52 +0900</lastBuildDate><atom:link href="https://hirotoshimizu.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>leetcode</title>
+      <link>https://hirotoshimizu.github.io/categories/leetcode/</link>
+      <pubDate>Sun, 17 Oct 2021 19:23:52 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/categories/leetcode/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Django</title>
       <link>https://hirotoshimizu.github.io/categories/django/</link>
-      <pubDate>Tue, 13 Jul 2021 23:32:01 +0900</pubDate>
+      <pubDate>Wed, 28 Jul 2021 19:59:35 +0900</pubDate>
       
       <guid>https://hirotoshimizu.github.io/categories/django/</guid>
       <description></description>

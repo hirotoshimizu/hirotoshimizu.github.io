@@ -5,7 +5,283 @@
     <link>https://hirotoshimizu.github.io/posts/</link>
     <description>Recent content in Posts on Shiglass</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 13 Jul 2021 23:32:01 +0900</lastBuildDate><atom:link href="https://hirotoshimizu.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 17 Oct 2021 19:23:52 +0900</lastBuildDate><atom:link href="https://hirotoshimizu.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Find the Town Judge</title>
+      <link>https://hirotoshimizu.github.io/posts/find-the-town-judge/</link>
+      <pubDate>Sun, 17 Oct 2021 19:23:52 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/find-the-town-judge/</guid>
+      <description>https://leetcode.com/problems/find-the-town-judge/
+graphの問題で、trust のペア, [a, b] は a から b に向かう directed edge である。
+例えば、 N = 5 で trust trust = [[1,3],[2,3],[4,3],[4,1],[5,3],[5,1],[5,4]] の場合下記のような graph になる。
+3 は 1,2,4,5 から信頼されていて、 誰も信頼していない。 そのため、judge は 3 になる。
+この graph theory の、 outdegree の辺は、 その人が他の人を信頼している数になる。
+indegree の辺は他の人から信頼されている数になる。
+そのため indegree と outdegree によって誰が judge か判断できる。
+judge は outdegree が 0 で indegree が N - 1 となる。
+trust をループして全員の indegree, outdegree の数を調査できる。
+indegree = [0] * (N + 1) outdegree = [0] * (N + 1) for a, b in trust: outdegree[a] += 1 indegree[b] += 1 そして、1 ～ N 人全員をループして、チェックすれば、 judge がわかる。</description>
+    </item>
+    
+    <item>
+      <title>Invert Binary Tree</title>
+      <link>https://hirotoshimizu.github.io/posts/invert-binary-tree/</link>
+      <pubDate>Fri, 01 Oct 2021 11:25:38 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/invert-binary-tree/</guid>
+      <description>DFS
+Base Case root が Null は None を返す。
+Tree を反転して値が同じなら True を返すので、
+children node の値を swap して同じか確かめる。
+Time complexity: O(n)
+Mem complexity: O(n)
+# Definition for a binary tree node. # class TreeNode(object): # def __init__(self, val=0, left=None, right=None): # self.val = val # self.left = left # self.right = right class Solution(object): def invertTree(self, root): &amp;#34;&amp;#34;&amp;#34; :type root: TreeNode :rtype: TreeNode &amp;#34;&amp;#34;&amp;#34; if not root: return None tmp = root.</description>
+    </item>
+    
+    <item>
+      <title>Same Tree</title>
+      <link>https://hirotoshimizu.github.io/posts/same-tree/</link>
+      <pubDate>Fri, 01 Oct 2021 11:00:05 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/same-tree/</guid>
+      <description>DFS recursive
+Base Case は p,q が Null の場合同じ Tree なので return する。
+もし p,q のどちらかの値が違う場合、その Tree は同じではないので、 False を return する。 また、どちらかの値が Null の場合同じ Tree ではないので、この場合も False を　return する。
+Time complexity: O(n) Mem complexity: O(n)
+# Definition for a binary tree node. # class TreeNode(object): # def __init__(self, val=0, left=None, right=None): # self.val = val # self.left = left # self.right = right class Solution(object): def isSameTree(self, p, q): &amp;#34;&amp;#34;&amp;#34; :type p: TreeNode :type q: TreeNode :rtype: bool &amp;#34;&amp;#34;&amp;#34; if not p and not q: return True if not p or not q or p.</description>
+    </item>
+    
+    <item>
+      <title>Maximum Depth of Binary Tree</title>
+      <link>https://hirotoshimizu.github.io/posts/maximum-depth-of-binary-tree/</link>
+      <pubDate>Thu, 30 Sep 2021 15:53:30 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/maximum-depth-of-binary-tree/</guid>
+      <description>回答のアプローチは Recursive DFS BFS Iterative DFS
+Base case root が empty children が Null
+Recursive DFS
+Time complexity: O(n) Mem complexity: O(n)
+class Solution(object): def maxDepth(self, root): &amp;#34;&amp;#34;&amp;#34; :type root: TreeNode :rtype: int &amp;#34;&amp;#34;&amp;#34; if not root: return 0 return 1 + max(self.maxDepth(root.left), self.maxDepth(root.right)) BFS
+BFS を使う場合は Queue を使う。
+ 3  ／　＼ 9 20 ／＼ 15 7
+ | 3 | 9 | 20 | 15 | 7 | 1 2 2 3 3 ← Level</description>
+    </item>
+    
+    <item>
+      <title>Lowest Common Ancestor of a Binary Search Tree</title>
+      <link>https://hirotoshimizu.github.io/posts/lowest-common-ancestor-of-a-binary-search-tree/</link>
+      <pubDate>Thu, 30 Sep 2021 11:08:27 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/lowest-common-ancestor-of-a-binary-search-tree/</guid>
+      <description>https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
+この問題の回答方法としては Recursive と Iterative なアプローチがある。
+Recursive Approach
+アルゴリズム
+ ルートの Node から始める。 p と q が右の subtree にある場合、1から右のsubtreeを探すようにする。 p と q が左の subtree にある場合、1から左のsubtreeを探すようにする。 もし 2 と 3 のステップが not true の場合、p と q の共通の Node を見つけたこととなる。  Time complexity: O(n)
+Mem complexity: O(n)
+# Definition for a binary tree node. # class TreeNode(object): # def __init__(self, x): # self.val = x # self.left = None # self.right = None class Solution(object): def lowestCommonAncestor(self, root, p, q): &amp;#34;&amp;#34;&amp;#34; :type root: TreeNode :type p: TreeNode :type q: TreeNode :rtype: TreeNode &amp;#34;&amp;#34;&amp;#34; parent_val = root.</description>
+    </item>
+    
+    <item>
+      <title>Climbing Stairs</title>
+      <link>https://hirotoshimizu.github.io/posts/climbing-stairs/</link>
+      <pubDate>Sun, 26 Sep 2021 12:04:50 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/climbing-stairs/</guid>
+      <description>https://leetcode.com/problems/climbing-stairs/
+n = 5
+ 0 ／　＼ 1 2 ／＼ ／＼ 2 3 3 4 ／＼ ／＼ ／＼ ／＼ 3 4 4 5 4 5 5 6  ／＼ ／＼ ／＼　／＼ 4 5 5 6 5 6　5 6 ／＼ 5 6
+n が 5 steps の場合、 8通りの選択が出来る。
+DFS でも出来るかが 2^n となる。
+そのため Dynamic Programming を使う。
+同じ計算をする値は memoize する
+ | 8 | 5 | 3 | 2 | 1 | 1 | n に辿り着くまでの数 0 1 2 3 4 5(step) one two</description>
+    </item>
+    
+    <item>
+      <title>Meeting Rooms</title>
+      <link>https://hirotoshimizu.github.io/posts/meeting-rooms/</link>
+      <pubDate>Sat, 25 Sep 2021 15:04:07 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/meeting-rooms/</guid>
+      <description>https://leetcode.com/problems/meeting-rooms/
+先ず始めに intervals のスタート時間でソートする。
+intervals の時間がソートされたため、 ループで最初の会議の終わりの時間と次の会議の始まりの時間を比較し、 最初の会議の終わりの時間 が 次の会議の始まりの時間より大きい場合、 会議の時間が重なっているので、False を返す。
+次の会議の開始時間 が 前の会議の終わり時間より小さい場合ループを続ける。
+ループする際、次のリストと比較するため for の range で -1 をする。
+ソートをするので Time complexity は O(n log n) となる。
+Time complexity: O(n log n) Mem complexity: O(1)
+class Solution(object): def canAttendMeetings(self, intervals): &amp;#34;&amp;#34;&amp;#34; :type intervals: List[List[int]] :rtype: bool &amp;#34;&amp;#34;&amp;#34; intervals.sort() for i in range(len(intervals) -1): if intervals[i][1] &amp;gt; intervals[i + 1][0]: return False return True </description>
+    </item>
+    
+    <item>
+      <title>Merge Two Sorted Lists</title>
+      <link>https://hirotoshimizu.github.io/posts/merge-two-sorted-lists/</link>
+      <pubDate>Fri, 24 Sep 2021 22:39:14 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/merge-two-sorted-lists/</guid>
+      <description>https://leetcode.com/problems/merge-two-sorted-lists/
+ダミー Node を作って edge case の 空の Linked List が挿入されても大丈夫なようにする。
+その後はループで l1 と l2 の val を比べ、 小さい値を tail.next に入れる。 その後、 next をずらす。
+ループ後 l1, l2 のどちらかのリストが empty の場合、 Linked List に追加する必要があるので、 リストが empty か確認し、値があれば Linked List に追加する。
+# Definition for singly-linked list. # class ListNode(object): # def __init__(self, val=0, next=None): # self.val = val # self.next = next class Solution(object): def mergeTwoLists(self, l1, l2): &amp;#34;&amp;#34;&amp;#34; :type l1: ListNode :type l2: ListNode :rtype: ListNode &amp;#34;&amp;#34;&amp;#34; dummy = ListNode() tail = dummy while l1 and l2: if l1.</description>
+    </item>
+    
+    <item>
+      <title>Linked List Cycle</title>
+      <link>https://hirotoshimizu.github.io/posts/linked-list-cycle/</link>
+      <pubDate>Fri, 24 Sep 2021 21:04:07 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/linked-list-cycle/</guid>
+      <description>https://leetcode.com/problems/linked-list-cycle/
+Linked List が Cycle なのかを確認する。
+Linked List が Cycle な場合、 2つのポインターを使う。 (1つめのポインターは 1つずつ進み、 2つめのポインターは 2つずつ進む。) Cycle な場合どこかの時点で2つ進むポインター が1つしか進まないポインターに追いつくので Cycle だとわかる。
+Cycle ではない場合 いずれかの時点で ポインターが Null になる。
+Time complexity: O(n) Mem complexity: O(1)
+# Definition for singly-linked list. # class ListNode(object): # def __init__(self, x): # self.val = x # self.next = None class Solution(object): def hasCycle(self, head): &amp;#34;&amp;#34;&amp;#34; :type head: ListNode :rtype: bool &amp;#34;&amp;#34;&amp;#34; slow, fast = head, head while fast and fast.</description>
+    </item>
+    
+    <item>
+      <title>Reverse Linked List</title>
+      <link>https://hirotoshimizu.github.io/posts/reverse-linked-list/</link>
+      <pubDate>Fri, 24 Sep 2021 11:13:49 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/reverse-linked-list/</guid>
+      <description>https://leetcode.com/problems/reverse-linked-list/
+考え方としては、
+1 → 2 → 3 → 4 → 5
+1 ← 2 ← 3 ← 4 ← 5
+とするように考える。
+回答方法は iterative なやり方と recursive なやり方がある。 iterative なやり方は 2つの pointer を使う。
+prev と curr
+まず prev に　None を設定する。 curr は head にする
+Null → 1 → 2 → 3 → 4 → 5 ↑ ↑ prev curr
+ループしている間 Linked List の 矢印の向き (curr.next) をずらしつつ、prev と next の pointer もずらしていく。</description>
+    </item>
+    
+    <item>
+      <title>Valid Parentheses</title>
+      <link>https://hirotoshimizu.github.io/posts/valid-parentheses/</link>
+      <pubDate>Wed, 22 Sep 2021 20:06:14 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/valid-parentheses/</guid>
+      <description>https://leetcode.com/problems/valid-parentheses/
+Prerequisite Hash Map Stack
+最初にどのカッコがどの 括弧閉じ にマッチしているかわかるために HashMap を作る必要がある。 この際、括弧閉じ をキーにする。
+for 文で list の中を確認し、 括弧開きは stack に入れる。
+stack は 最後に入れたものから出すので、 括弧開き と 括弧閉じ がマッチしていれば、 stack から pop できる。
+最後に stack に何も残らなければ、 全てがマッチして True を return する。
+Time complexity: O(n) Mem complexity: O(n)
+class Solution(object): def isValid(self, s): &amp;#34;&amp;#34;&amp;#34; :type s: str :rtype: bool &amp;#34;&amp;#34;&amp;#34; stack = [] closeToOpen = { &amp;#39;)&amp;#39; : &amp;#39;(&amp;#39;, &amp;#39;]&amp;#39; : &amp;#39;[&amp;#39;, &amp;#39;}&amp;#39; : &amp;#39;{&amp;#39; } for c in s: if c in closeToOpen: if stack and stack[-1] == closeToOpen[c]: stack.</description>
+    </item>
+    
+    <item>
+      <title>Missing Number</title>
+      <link>https://hirotoshimizu.github.io/posts/missing-number/</link>
+      <pubDate>Tue, 21 Sep 2021 20:12:52 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/missing-number/</guid>
+      <description>https://leetcode.com/problems/missing-number/
+sum([0,1,2,3]) - sum([3,0,1]) = 2 2がない数字なので、2が残る。
+最初に result に len(nums) を代入する。 nums が [3,0,1] の場合、 result に 3 が代入される。
+これは for で回す時に range(len(nums)) だと 0, 1, 2 としかならないため。 result に len(nums) の代入が必要。
+result += (i - nums[i]) をすることで、2 が return 出来る。
+Time complexity: O(n) Mem complexity: O(1)
+class Solution(object): def missingNumber(self, nums): &amp;#34;&amp;#34;&amp;#34; :type nums: List[int] :rtype: int &amp;#34;&amp;#34;&amp;#34; result = len(nums) for i in range(len(nums)): result += (i - nums[i]) return result </description>
+    </item>
+    
+    <item>
+      <title>Maximum Subarray</title>
+      <link>https://hirotoshimizu.github.io/posts/maximum-subarray/</link>
+      <pubDate>Tue, 21 Sep 2021 13:23:28 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/maximum-subarray/</guid>
+      <description>https://leetcode.com/problems/maximum-subarray/
+ | -2 | 1 | -3 | 4 | -1 | 2 | 1 | -5 | 4 | 最初の3つの合計(-2 + 1 -3)はマイナスになるので、 そのため subarray のスタートは 4 もしくは 4以降の数字になる。
+合計が正の数になる場合は保持しておく。 変数に0 を代入して、 iterate しながら数字を追加していく。 合計がマイナスになる場合は保持する必要がないので、0 にする。
+Time complexity: O(n) Mem complexity: O(1)
+class Solution(object): def maxSubArray(self, nums): &amp;#34;&amp;#34;&amp;#34; :type nums: List[int] :rtype: int &amp;#34;&amp;#34;&amp;#34; max_subarray = nums[0] current_subarray = 0 for n in nums: if current_subarray &amp;lt; 0: current_subarray = 0 current_subarray += n max_subarray = max(max_subarray, current_subarray) return max_subarray </description>
+    </item>
+    
+    <item>
+      <title>Best Time to Buy and Sell Stock</title>
+      <link>https://hirotoshimizu.github.io/posts/best-time-to-buy-and-sell-stock/</link>
+      <pubDate>Tue, 21 Sep 2021 10:49:58 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/best-time-to-buy-and-sell-stock/</guid>
+      <description>https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+pointer を2つ使う。 left が right より低い時点で売る可能性あり。 max_profit に最大の profit を格納。
+right の pointer は右に移動し続け
+left の　pointer は prices[l] が prices[r] より大きい際に、 left の pointer を right の pointer の位置に移動する。
+Time complexity: O(n)
+Mem complexity: O(1)
+class Solution(object): def maxProfit(self, prices): &amp;#34;&amp;#34;&amp;#34; :type prices: List[int] :rtype: int &amp;#34;&amp;#34;&amp;#34; l, r = 0, 1 max_profit = 0 while r &amp;lt; len(prices): if prices[l] &amp;lt; prices[r]: profit = prices[r] - prices[l] max_profit = max(max_profit, profit) else: l = r r += 1 return max_profit </description>
+    </item>
+    
+    <item>
+      <title>Two Sum</title>
+      <link>https://hirotoshimizu.github.io/posts/two-sum/</link>
+      <pubDate>Tue, 21 Sep 2021 10:05:05 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/two-sum/</guid>
+      <description>https://leetcode.com/problems/two-sum/
+ | 2 | 7 | 11 | 15 | 　↑　↑ 全てのコンビネーションを確認しようと Brute Force で問題を解こうとすると ループの中でループをするのでo(n^2)となる。
+ | 2 | 7 | 11 | 15 | そのため HashMapを使う必要がある。 ループして array の中を確認する際に、 HashMap に val と key を持たせる。 ループ時に target - val の値が HashMap にあれば、 合計の値を持つ index が return できる。
+ | 2 | 7 | 11 | 15 |  ↑   | HashMap | | val : index | | 2 : 1 |  | HashMap | | val : index | | 2 : 1 | | 7 : 2 |← | 11 : 3 | | 15 : 4 | target は 9 なので val 7 を確認時に HashMap にすでに 2 が入っているので この時点で return できる。</description>
+    </item>
+    
+    <item>
+      <title>2021 07 29</title>
+      <link>https://hirotoshimizu.github.io/posts/2021-07-29/</link>
+      <pubDate>Wed, 28 Jul 2021 19:59:35 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/2021-07-29/</guid>
+      <description>Responses HttpResponse オブジェクトと違い、レンダリングされたコンテンツでResponseオブジェクトをインスタンス化する必要がない。 その代わりにレンダリングされていないデータをパスする必要がある。
+Responseクラスで使用されるレンダラーは、Djangoモデルインスタンスなどの複雑なデータ型をネイティブに処理できないため、Responseオブジェクトを作成する前に、データをプリミティブデータ型にシリアル化する必要があります。
+REST frameworkのSerializerクラスを使ってこのデータをシリアライズするか、カスタムシリアライザーを使用する。
+引数
+ data : レスポンス用のシリアライズされたデータ status : レスポンス用のステータスコード　デフォルトでは 200 template_name : HTMLRenderer が選択されているならテンプレート名 header : レスポンス用の辞書型 HTTP ヘッダー content_type : レスポンス用のコンテンツタイプ。一般的にコンテンツネゴシエーションのrenderer によって自動的に設定される。しかし、場合によっては明示的にコンテンツタイプを特定する必要もある。  プロジェクトが既にある場合 ユーザーモデルは拡張する。
+最初から作成する場合は モデルをオーバーライドして独自のカスタムモデルを作成
+カスタムユーザーモデルは</description>
+    </item>
+    
+    <item>
+      <title>2021 07 28</title>
+      <link>https://hirotoshimizu.github.io/posts/2021-07-28/</link>
+      <pubDate>Tue, 27 Jul 2021 21:51:50 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/2021-07-28/</guid>
+      <description>APIView REST frameworkは Djangoの View class のサブクラスである、 APIViewclassを提供する。
+APIViewclass は下記のようにView classとは異なる。
+  handler methods を通ったRequests は REST frameworkの Request インスタンスになり。 Django の HttpRequestインスタンスではない。
+  handler methods の return は REST frameworkの Responseとなり、 その view は content negotiation と response に一致した renderer を返す。
+  どの APIException のエクセプションは正しいレスポンスに仲介される。
+  来るリクエストは認証され、handler methodsに送る前に、 適切な権限やスロットルチェックが行われる。
+  DRF ドキュメント
+ViewSet viewSet classは APIViewを継承している。 viewsetで API policy をコントロールするにあたり、 スタンダードの属性であるpermission_classes,authentication_classesが使える。
+viewSet classはどのアクションも含んでいないので、 クラスをオーバーライドして明示的に定義する必要がある。</description>
+    </item>
+    
+    <item>
+      <title>Djnagoの管理画面からCSVファイルをアップしてデータ登録</title>
+      <link>https://hirotoshimizu.github.io/posts/2021-07-19/</link>
+      <pubDate>Mon, 19 Jul 2021 11:56:10 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/2021-07-19/</guid>
+      <description>今回は restaurants というアプリを作成し進めていきます。
+CSVのファイルは管理画面のレストランの一覧画面 http://127.0.0.1:8000/admin/restaurants/restaurant/ からアップ。
+アプリの作成
+python manage.py startapp restaurants モデルは restaurant で作成。
+Admin テンプレートの Override templatesフォルダは manage.py と同じ階層に作成。
+templates/admin/restaurants/restaurant/change_list.html を作成
+{% extends &amp;#39;admin/change_list.html&amp;#39; %} {% load static %} {% block content %} &amp;lt;a href=&amp;#34;upload-csv/&amp;#34;&amp;gt;Upload a csv file&amp;lt;/a&amp;gt; {{ block.super }} {% endblock %} {{ block.super }} は親のテンプレートコンテンツ。
+Django change_list.html
+Custom Admin Page の作成 上記で作成したリンク先の upload-csv/ の URL を設定
+restaurants/admin.py の RestaurantAdmin で get_urls()を設定。
+def get_urls(self): urls = super().get_urls() new_urls = [ path(&amp;#39;upload-csv/&amp;#39;, self.</description>
+    </item>
+    
     <item>
       <title>2021 07 13</title>
       <link>https://hirotoshimizu.github.io/posts/2021-07-14/</link>

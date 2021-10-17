@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Maximum Depth of Binary Tree | Shiglass</title>
+<meta name="keywords" content="Tree" />
+<meta name="description" content="回答のアプローチは Recursive DFS BFS Iterative DFS
+Base case root が empty children が Null
+Recursive DFS
+Time complexity: O(n) Mem complexity: O(n)
+class Solution(object): def maxDepth(self, root): &#34;&#34;&#34; :type root: TreeNode :rtype: int &#34;&#34;&#34; if not root: return 0 return 1 &#43; max(self.maxDepth(root.left), self.maxDepth(root.right)) BFS
+BFS を使う場合は Queue を使う。
+ 3  ／　＼ 9 20 ／＼ 15 7
+ | 3 | 9 | 20 | 15 | 7 | 1 2 2 3 3 ← Level">
+<meta name="author" content="">
+<link rel="canonical" href="https://hirotoshimizu.github.io/posts/maximum-depth-of-binary-tree/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.d9015f4cb657fd3539b79b29ffbd11de4175ccd105ad7591beffaadfafb48488.css" integrity="sha256-2QFfTLZX/TU5t5sp/70R3kF1zNEFrXWRvv&#43;q36&#43;0hIg=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.27cd435cc9ed6abb4b496581b151804f79f366c412620272bb94e2f5f598ebcc.js" integrity="sha256-J81DXMntartLSWWBsVGAT3nzZsQSYgJyu5Ti9fWY68w="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://hirotoshimizu.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://hirotoshimizu.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://hirotoshimizu.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://hirotoshimizu.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://hirotoshimizu.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.68.3" />
+<meta property="og:title" content="Maximum Depth of Binary Tree" />
+<meta property="og:description" content="回答のアプローチは Recursive DFS BFS Iterative DFS
+Base case root が empty children が Null
+Recursive DFS
+Time complexity: O(n) Mem complexity: O(n)
+class Solution(object): def maxDepth(self, root): &#34;&#34;&#34; :type root: TreeNode :rtype: int &#34;&#34;&#34; if not root: return 0 return 1 &#43; max(self.maxDepth(root.left), self.maxDepth(root.right)) BFS
+BFS を使う場合は Queue を使う。
+ 3  ／　＼ 9 20 ／＼ 15 7
+ | 3 | 9 | 20 | 15 | 7 | 1 2 2 3 3 ← Level" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hirotoshimizu.github.io/posts/maximum-depth-of-binary-tree/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-09-30T15:53:30&#43;09:00" />
+<meta property="article:modified_time" content="2021-09-30T15:53:30&#43;09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Maximum Depth of Binary Tree"/>
+<meta name="twitter:description" content="回答のアプローチは Recursive DFS BFS Iterative DFS
+Base case root が empty children が Null
+Recursive DFS
+Time complexity: O(n) Mem complexity: O(n)
+class Solution(object): def maxDepth(self, root): &#34;&#34;&#34; :type root: TreeNode :rtype: int &#34;&#34;&#34; if not root: return 0 return 1 &#43; max(self.maxDepth(root.left), self.maxDepth(root.right)) BFS
+BFS を使う場合は Queue を使う。
+ 3  ／　＼ 9 20 ／＼ 15 7
+ | 3 | 9 | 20 | 15 | 7 | 1 2 2 3 3 ← Level"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "Maximum Depth of Binary Tree",
+      "item": "https://hirotoshimizu.github.io/posts/maximum-depth-of-binary-tree/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Maximum Depth of Binary Tree",
+  "name": "Maximum Depth of Binary Tree",
+  "description": "回答のアプローチは Recursive DFS BFS Iterative DFS\nBase case root が empty children が Null\nRecursive DFS\nTime complexity: O(n) Mem complexity: O(n)\nclass Solution(object): def maxDepth(self, root): \u0026#34;\u0026#34;\u0026#34; :type root: TreeNode :rtype: int \u0026#34;\u0026#34;\u0026#34; if not root: return 0 return 1 + max(self.maxDepth(root.left), self.maxDepth(root.right)) BFS\nBFS を使う場合は Queue を使う。\n 3  ／　＼ 9 20 ／＼ 15 7\n | 3 | 9 | 20 | 15 | 7 | 1 2 2 3 3 ← Level",
+  "keywords": [
+    "Tree"
+  ],
+  "articleBody": "回答のアプローチは Recursive DFS BFS Iterative DFS\nBase case root が empty children が Null\nRecursive DFS\nTime complexity: O(n) Mem complexity: O(n)\nclass Solution(object): def maxDepth(self, root): \"\"\" :type root: TreeNode :rtype: int \"\"\" if not root: return 0 return 1 + max(self.maxDepth(root.left), self.maxDepth(root.right)) BFS\nBFS を使う場合は Queue を使う。\n 3  ／　＼ 9 20 ／＼ 15 7\n | 3 | 9 | 20 | 15 | 7 | 1 2 2 3 3 ← Level\n | 3 | 1\nQueue を deque していくと 最終的に Queue の値がなくなるので、 その時に level を返す。\nif not root: retunr 0 level = 0 q = deque([root]) while q: for i in range(len(q)): node = q.popleft() if node.left: q.append(node.left) if node.right: q.append(node.right) level += 1 return level Iterative DFS\nPre-order DFS\nstack\n | node depth | | 3 1 | pop して\n | node depth | | 20 2 | | 9 2 | pop して\n | node depth | | 20 2 | 20 には子がいるので、stack に追加\n | node depth | | 7 3 | | 15 3 | stack = [[root, 1]] res = 0 while stack: node, depth = stack.pop() if node: res = max(res, depth) stack.append([node.left, depth + 1]) stack.append([node.right, depth + 1]) return res ",
+  "wordCount" : "201",
+  "inLanguage": "en",
+  "datePublished": "2021-09-30T15:53:30+09:00",
+  "dateModified": "2021-09-30T15:53:30+09:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hirotoshimizu.github.io/posts/maximum-depth-of-binary-tree/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Shiglass",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hirotoshimizu.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<noscript>
+    <style type="text/css">
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: #1d1e20;
+                --entry: #2e2e33;
+                --primary: rgba(255, 255, 255, 0.84);
+                --secondary: rgba(255, 255, 255, 0.56);
+                --tertiary: rgba(255, 255, 255, 0.16);
+                --content: rgba(255, 255, 255, 0.74);
+                --hljs-bg: #2e2e33;
+                --code-bg: #37383e;
+                --border: #333;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://hirotoshimizu.github.io" accesskey="h" title="Shiglass (Alt + H)">Shiglass</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://hirotoshimizu.github.io/about/" title="about">
+                    <span>about</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hirotoshimizu.github.io/archives/" title="archives">
+                    <span>archives</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hirotoshimizu.github.io/categories/" title="categories">
+                    <span>categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hirotoshimizu.github.io/tags/" title="tags">
+                    <span>tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title">
+      Maximum Depth of Binary Tree
+    </h1>
+    <div class="post-meta">September 30, 2021
+</div>
+  </header> 
+  <div class="post-content"><p>回答のアプローチは
+Recursive DFS
+BFS
+Iterative DFS</p>
+<p>Base case
+root が empty
+children が Null</p>
+<p>Recursive DFS</p>
+<p>Time complexity: O(n)
+Mem complexity: O(n)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>(object):
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">maxDepth</span>(self, root):
+        <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">        :type root: TreeNode
+</span><span style="color:#e6db74">        :rtype: int
+</span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> root:
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> max(self<span style="color:#f92672">.</span>maxDepth(root<span style="color:#f92672">.</span>left), self<span style="color:#f92672">.</span>maxDepth(root<span style="color:#f92672">.</span>right))
+</code></pre></div><p>BFS</p>
+<p>BFS を使う場合は Queue を使う。</p>
+<pre><code>  3
+</code></pre>
+<p>／　 ＼
+9     20
+／＼
+15  7</p>
+<hr>
+<h2 id="-3--9--20--15--7-">| 3 | 9 | 20 | 15 | 7 |<a hidden class="anchor" aria-hidden="true" href="#-3--9--20--15--7-">#</a></h2>
+<p>1   2   2    3    3   ← Level</p>
+<hr>
+<h2 id="-3-">| 3 |<a hidden class="anchor" aria-hidden="true" href="#-3-">#</a></h2>
+<p>1</p>
+<p>Queue を deque していくと
+最終的に Queue の値がなくなるので、
+その時に level を返す。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> root:
+    retunr <span style="color:#ae81ff">0</span>
+
+level <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+q <span style="color:#f92672">=</span> deque([root])
+<span style="color:#66d9ef">while</span> q:
+    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(q)):
+        node <span style="color:#f92672">=</span> q<span style="color:#f92672">.</span>popleft()
+        <span style="color:#66d9ef">if</span> node<span style="color:#f92672">.</span>left:
+            q<span style="color:#f92672">.</span>append(node<span style="color:#f92672">.</span>left)
+        <span style="color:#66d9ef">if</span> node<span style="color:#f92672">.</span>right:
+            q<span style="color:#f92672">.</span>append(node<span style="color:#f92672">.</span>right)
+    level <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+<span style="color:#66d9ef">return</span> level
+</code></pre></div><p>Iterative DFS</p>
+<p>Pre-order DFS</p>
+<p>stack</p>
+<hr>
+<h2 id="-node--depth-">| node  depth |<a hidden class="anchor" aria-hidden="true" href="#-node--depth-">#</a></h2>
+<h2 id="---3-----1---">|   3     1   |<a hidden class="anchor" aria-hidden="true" href="#---3-----1---">#</a></h2>
+<p>pop して</p>
+<hr>
+<h2 id="-node--depth--1">| node  depth |<a hidden class="anchor" aria-hidden="true" href="#-node--depth--1">#</a></h2>
+<h2 id="--20-----2---">|  20     2   |<a hidden class="anchor" aria-hidden="true" href="#--20-----2---">#</a></h2>
+<h2 id="--9------2---">|  9      2   |<a hidden class="anchor" aria-hidden="true" href="#--9------2---">#</a></h2>
+<p>pop して</p>
+<hr>
+<h2 id="-node--depth--2">| node  depth |<a hidden class="anchor" aria-hidden="true" href="#-node--depth--2">#</a></h2>
+<h2 id="--20-----2----1">|  20     2   |<a hidden class="anchor" aria-hidden="true" href="#--20-----2----1">#</a></h2>
+<p>20 には子がいるので、stack に追加</p>
+<hr>
+<h2 id="-node--depth--3">| node  depth |<a hidden class="anchor" aria-hidden="true" href="#-node--depth--3">#</a></h2>
+<h2 id="--7------3---">|  7      3   |<a hidden class="anchor" aria-hidden="true" href="#--7------3---">#</a></h2>
+<h2 id="--15-----3---">|  15     3   |<a hidden class="anchor" aria-hidden="true" href="#--15-----3---">#</a></h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">stack <span style="color:#f92672">=</span> [[root, <span style="color:#ae81ff">1</span>]]
+res <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+
+<span style="color:#66d9ef">while</span> stack:
+    node, depth <span style="color:#f92672">=</span> stack<span style="color:#f92672">.</span>pop()
+
+    <span style="color:#66d9ef">if</span> node:
+        res <span style="color:#f92672">=</span> max(res, depth)
+        stack<span style="color:#f92672">.</span>append([node<span style="color:#f92672">.</span>left, depth <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>])
+        stack<span style="color:#f92672">.</span>append([node<span style="color:#f92672">.</span>right, depth <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>])
+<span style="color:#66d9ef">return</span> res
+</code></pre></div>
+
+  </div>
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://hirotoshimizu.github.io/tags/tree/">Tree</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    <footer class="footer">
+    <span>&copy; 2021 <a href="https://hirotoshimizu.github.io">Shiglass</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
+    <button class="top-link" id="top-link" type="button" accesskey="g">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z" />
+        </svg>
+    </button>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+    menu.onscroll = function () {
+        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

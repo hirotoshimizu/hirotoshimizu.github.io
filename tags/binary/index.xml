@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Binary on Shiglass</title>
+    <link>https://hirotoshimizu.github.io/tags/binary/</link>
+    <description>Recent content in Binary on Shiglass</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 21 Sep 2021 20:12:52 +0900</lastBuildDate><atom:link href="https://hirotoshimizu.github.io/tags/binary/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Missing Number</title>
+      <link>https://hirotoshimizu.github.io/posts/missing-number/</link>
+      <pubDate>Tue, 21 Sep 2021 20:12:52 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/missing-number/</guid>
+      <description>https://leetcode.com/problems/missing-number/
+sum([0,1,2,3]) - sum([3,0,1]) = 2 2がない数字なので、2が残る。
+最初に result に len(nums) を代入する。 nums が [3,0,1] の場合、 result に 3 が代入される。
+これは for で回す時に range(len(nums)) だと 0, 1, 2 としかならないため。 result に len(nums) の代入が必要。
+result += (i - nums[i]) をすることで、2 が return 出来る。
+Time complexity: O(n) Mem complexity: O(1)
+class Solution(object): def missingNumber(self, nums): &amp;#34;&amp;#34;&amp;#34; :type nums: List[int] :rtype: int &amp;#34;&amp;#34;&amp;#34; result = len(nums) for i in range(len(nums)): result += (i - nums[i]) return result </description>
+    </item>
+    
+  </channel>
+</rss>

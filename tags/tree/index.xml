@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Tree on Shiglass</title>
+    <link>https://hirotoshimizu.github.io/tags/tree/</link>
+    <description>Recent content in Tree on Shiglass</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 01 Oct 2021 11:25:38 +0900</lastBuildDate><atom:link href="https://hirotoshimizu.github.io/tags/tree/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Invert Binary Tree</title>
+      <link>https://hirotoshimizu.github.io/posts/invert-binary-tree/</link>
+      <pubDate>Fri, 01 Oct 2021 11:25:38 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/invert-binary-tree/</guid>
+      <description>DFS
+Base Case root が Null は None を返す。
+Tree を反転して値が同じなら True を返すので、
+children node の値を swap して同じか確かめる。
+Time complexity: O(n)
+Mem complexity: O(n)
+# Definition for a binary tree node. # class TreeNode(object): # def __init__(self, val=0, left=None, right=None): # self.val = val # self.left = left # self.right = right class Solution(object): def invertTree(self, root): &amp;#34;&amp;#34;&amp;#34; :type root: TreeNode :rtype: TreeNode &amp;#34;&amp;#34;&amp;#34; if not root: return None tmp = root.</description>
+    </item>
+    
+    <item>
+      <title>Same Tree</title>
+      <link>https://hirotoshimizu.github.io/posts/same-tree/</link>
+      <pubDate>Fri, 01 Oct 2021 11:00:05 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/same-tree/</guid>
+      <description>DFS recursive
+Base Case は p,q が Null の場合同じ Tree なので return する。
+もし p,q のどちらかの値が違う場合、その Tree は同じではないので、 False を return する。 また、どちらかの値が Null の場合同じ Tree ではないので、この場合も False を　return する。
+Time complexity: O(n) Mem complexity: O(n)
+# Definition for a binary tree node. # class TreeNode(object): # def __init__(self, val=0, left=None, right=None): # self.val = val # self.left = left # self.right = right class Solution(object): def isSameTree(self, p, q): &amp;#34;&amp;#34;&amp;#34; :type p: TreeNode :type q: TreeNode :rtype: bool &amp;#34;&amp;#34;&amp;#34; if not p and not q: return True if not p or not q or p.</description>
+    </item>
+    
+    <item>
+      <title>Maximum Depth of Binary Tree</title>
+      <link>https://hirotoshimizu.github.io/posts/maximum-depth-of-binary-tree/</link>
+      <pubDate>Thu, 30 Sep 2021 15:53:30 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/maximum-depth-of-binary-tree/</guid>
+      <description>回答のアプローチは Recursive DFS BFS Iterative DFS
+Base case root が empty children が Null
+Recursive DFS
+Time complexity: O(n) Mem complexity: O(n)
+class Solution(object): def maxDepth(self, root): &amp;#34;&amp;#34;&amp;#34; :type root: TreeNode :rtype: int &amp;#34;&amp;#34;&amp;#34; if not root: return 0 return 1 + max(self.maxDepth(root.left), self.maxDepth(root.right)) BFS
+BFS を使う場合は Queue を使う。
+ 3  ／　＼ 9 20 ／＼ 15 7
+ | 3 | 9 | 20 | 15 | 7 | 1 2 2 3 3 ← Level</description>
+    </item>
+    
+    <item>
+      <title>Lowest Common Ancestor of a Binary Search Tree</title>
+      <link>https://hirotoshimizu.github.io/posts/lowest-common-ancestor-of-a-binary-search-tree/</link>
+      <pubDate>Thu, 30 Sep 2021 11:08:27 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/lowest-common-ancestor-of-a-binary-search-tree/</guid>
+      <description>https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
+この問題の回答方法としては Recursive と Iterative なアプローチがある。
+Recursive Approach
+アルゴリズム
+ ルートの Node から始める。 p と q が右の subtree にある場合、1から右のsubtreeを探すようにする。 p と q が左の subtree にある場合、1から左のsubtreeを探すようにする。 もし 2 と 3 のステップが not true の場合、p と q の共通の Node を見つけたこととなる。  Time complexity: O(n)
+Mem complexity: O(n)
+# Definition for a binary tree node. # class TreeNode(object): # def __init__(self, x): # self.val = x # self.left = None # self.right = None class Solution(object): def lowestCommonAncestor(self, root, p, q): &amp;#34;&amp;#34;&amp;#34; :type root: TreeNode :type p: TreeNode :type q: TreeNode :rtype: TreeNode &amp;#34;&amp;#34;&amp;#34; parent_val = root.</description>
+    </item>
+    
+  </channel>
+</rss>

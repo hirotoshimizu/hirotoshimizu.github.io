@@ -153,62 +153,94 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Django Rest Framework</h2>
+    <h2>Climbing Stairs</h2>
   </header>
   <section class="entry-content">
-    <p>APIClient APIClientは Djang の Clientクラスを拡張したもの .get()、.post()、.put()、.pathch()、.delete()、.head()、.options()が利用可能。
-例
-from rest_framework.test import APIClient client = APIClient() client.post(&#39;/notes/&#39;, {&#39;title&#39;: &#39;new idea&#39;}, format=&#39;json&#39;) status from rest_framework import status 人間が読むことができるステータスコードを含む。 テストの際に理解が簡単 github
-refresh_from_db() モデルのバリューをリフレッシュ使うのに使用。 このメソッドが引数なしで呼ばれると
- モデル上の遅延評価されない全てのフィールドはその時点でデータベース上に存在する値に更新されます。 キャッシュされたリレーションはリロードされたインスタンスに削除される。 Django ドキュメント  force_authenticate() テストする際に強制的に認証をリクエストする
-force_authenticate(request, user=None, token=None)が呼ばれる時 user か token のいずれか、または両方を設定できる。
-GenericViewSet GenericViewSet クラスは GenericAPIView の継承し、get_object、get_queryset を提供し、デフォルトでは
-GenericViewSetクラスを使用するには、クラスをオーバーライドして、必要なmixinクラスをミックスインするか、アクションの実装を明示的に定義します。
-DRF ドキュメント
-ModelSerializer ModelSerializerクラスはSerializer  class とモデルの一致するフィールドを自動で作成する
-ModelSerializer クラスは Serializer と同じだが、 *モデルを基にフィールドを自動で作成する *unique_together のようなserializerのためのvalidatorを自動で作成する *デフォルトで .create() .update() 含む。...</p>
+    <p>https://leetcode.com/problems/climbing-stairs/
+n = 5
+ 0 ／　＼ 1 2 ／＼ ／＼ 2 3 3 4 ／＼ ／＼ ／＼ ／＼ 3 4 4 5 4 5 5 6  ／＼ ／＼ ／＼　／＼ 4 5 5 6 5 6　5 6 ／＼ 5 6
+n が 5 steps の場合、 8通りの選択が出来る。
+DFS でも出来るかが 2^n となる。
+そのため Dynamic Programming を使う。
+同じ計算をする値は memoize する
+ | 8 | 5 | 3 | 2 | 1 | 1 | n に辿り着くまでの数 0 1 2 3 4 5(step) one two...</p>
   </section>
-  <footer class="entry-footer">July 7, 2021</footer>
-  <a class="entry-link" aria-label="post link to Django Rest Framework" href="https://hirotoshimizu.github.io/posts/django-rest-framework/"></a>
+  <footer class="entry-footer">September 26, 2021</footer>
+  <a class="entry-link" aria-label="post link to Climbing Stairs" href="https://hirotoshimizu.github.io/posts/climbing-stairs/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>GitHub Pages で静的サイトの公開方法</h2>
+    <h2>Meeting Rooms</h2>
   </header>
   <section class="entry-content">
-    <p>公開したいページのあるリポジトリの Settings をクリック。
-サイドナビの　Pages をクリック。
-公開したいブランチを選択
-事前にCNAMEでドメインを設定しておいて
-設定したドメインを適用</p>
+    <p>https://leetcode.com/problems/meeting-rooms/
+先ず始めに intervals のスタート時間でソートする。
+intervals の時間がソートされたため、 ループで最初の会議の終わりの時間と次の会議の始まりの時間を比較し、 最初の会議の終わりの時間 が 次の会議の始まりの時間より大きい場合、 会議の時間が重なっているので、False を返す。
+次の会議の開始時間 が 前の会議の終わり時間より小さい場合ループを続ける。
+ループする際、次のリストと比較するため for の range で -1 をする。
+ソートをするので Time complexity は O(n log n) となる。
+Time complexity: O(n log n) Mem complexity: O(1)
+class Solution(object): def canAttendMeetings(self, intervals): &#34;&#34;&#34; :type intervals: List[List[int]] :rtype: bool &#34;&#34;&#34; intervals.sort() for i in range(len(intervals) -1): if intervals[i][1] &gt; intervals[i &#43; 1][0]: return False return True </p>
   </section>
-  <footer class="entry-footer">July 6, 2021</footer>
-  <a class="entry-link" aria-label="post link to GitHub Pages で静的サイトの公開方法" href="https://hirotoshimizu.github.io/posts/host-a-website-on-github/"></a>
+  <footer class="entry-footer">September 25, 2021</footer>
+  <a class="entry-link" aria-label="post link to Meeting Rooms" href="https://hirotoshimizu.github.io/posts/meeting-rooms/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Hugo の始め方</h2>
+    <h2>Merge Two Sorted Lists</h2>
   </header>
   <section class="entry-content">
-    <p>日々学んだ事を記録に残そうと始めました。
-Word Press や Django でブログを作成しようと思いましたが、
-速度やメンテナンスを楽にしたかったので、Hugoで作成。
-設定環境
- Win 10 WSL2 Ubuntu 20.04  1. Hugoのインストール Ubuntuでのインストール
-sudo apt-get install hugo 2. サイトの作成 hugo new site sitename sitename は自分の好きな名前に置き換えてください。
-3. テーマの追加 Hugo のテーマ から好きなテンプレートを選択。
-PaperMod を選択したので、 インストラクションに沿ってgit clone
-git clone https://github.com/adityatelange/hugo-PaperMod themes/PaperMod --depth=1 4. コンテンツの追加 hugo new posts/my-first-post.md --- title: &#34;My First Post&#34; date: 2019-03-26T08:47:11&#43;01:00 draft: true --- ※draft: false に変更で公開
-5. Hugo server を起動 hugo server </p>
+    <p>https://leetcode.com/problems/merge-two-sorted-lists/
+ダミー Node を作って edge case の 空の Linked List が挿入されても大丈夫なようにする。
+その後はループで l1 と l2 の val を比べ、 小さい値を tail.next に入れる。 その後、 next をずらす。
+ループ後 l1, l2 のどちらかのリストが empty の場合、 Linked List に追加する必要があるので、 リストが empty か確認し、値があれば Linked List に追加する。
+# Definition for singly-linked list. # class ListNode(object): # def __init__(self, val=0, next=None): # self.val = val # self.next = next class Solution(object): def mergeTwoLists(self, l1, l2): &#34;&#34;&#34; :type l1: ListNode :type l2: ListNode :rtype: ListNode &#34;&#34;&#34; dummy = ListNode() tail = dummy while l1 and l2: if l1....</p>
   </section>
-  <footer class="entry-footer">July 5, 2021</footer>
-  <a class="entry-link" aria-label="post link to Hugo の始め方" href="https://hirotoshimizu.github.io/posts/how-to-start-hugo/"></a>
+  <footer class="entry-footer">September 24, 2021</footer>
+  <a class="entry-link" aria-label="post link to Merge Two Sorted Lists" href="https://hirotoshimizu.github.io/posts/merge-two-sorted-lists/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Linked List Cycle</h2>
+  </header>
+  <section class="entry-content">
+    <p>https://leetcode.com/problems/linked-list-cycle/
+Linked List が Cycle なのかを確認する。
+Linked List が Cycle な場合、 2つのポインターを使う。 (1つめのポインターは 1つずつ進み、 2つめのポインターは 2つずつ進む。) Cycle な場合どこかの時点で2つ進むポインター が1つしか進まないポインターに追いつくので Cycle だとわかる。
+Cycle ではない場合 いずれかの時点で ポインターが Null になる。
+Time complexity: O(n) Mem complexity: O(1)
+# Definition for singly-linked list. # class ListNode(object): # def __init__(self, x): # self.val = x # self.next = None class Solution(object): def hasCycle(self, head): &#34;&#34;&#34; :type head: ListNode :rtype: bool &#34;&#34;&#34; slow, fast = head, head while fast and fast....</p>
+  </section>
+  <footer class="entry-footer">September 24, 2021</footer>
+  <a class="entry-link" aria-label="post link to Linked List Cycle" href="https://hirotoshimizu.github.io/posts/linked-list-cycle/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Reverse Linked List</h2>
+  </header>
+  <section class="entry-content">
+    <p>https://leetcode.com/problems/reverse-linked-list/
+考え方としては、
+1 → 2 → 3 → 4 → 5
+1 ← 2 ← 3 ← 4 ← 5
+とするように考える。
+回答方法は iterative なやり方と recursive なやり方がある。 iterative なやり方は 2つの pointer を使う。
+prev と curr
+まず prev に　None を設定する。 curr は head にする
+Null → 1 → 2 → 3 → 4 → 5 ↑ ↑ prev curr
+ループしている間 Linked List の 矢印の向き (curr.next) をずらしつつ、prev と next の pointer もずらしていく。...</p>
+  </section>
+  <footer class="entry-footer">September 24, 2021</footer>
+  <a class="entry-link" aria-label="post link to Reverse Linked List" href="https://hirotoshimizu.github.io/posts/reverse-linked-list/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
     <a class="prev" href="https://hirotoshimizu.github.io/posts/">« Prev Page</a>
+    <a class="next" href="https://hirotoshimizu.github.io/posts/page/3/">Next Page »</a>
   </nav>
 </footer>
     </main>

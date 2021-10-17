@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Djnagoの管理画面からCSVファイルをアップしてデータ登録 | Shiglass</title>
+<meta name="keywords" content="" />
+<meta name="description" content="今回は restaurants というアプリを作成し進めていきます。
+CSVのファイルは管理画面のレストランの一覧画面 http://127.0.0.1:8000/admin/restaurants/restaurant/ からアップ。
+アプリの作成
+python manage.py startapp restaurants モデルは restaurant で作成。
+Admin テンプレートの Override templatesフォルダは manage.py と同じ階層に作成。
+templates/admin/restaurants/restaurant/change_list.html を作成
+{% extends &#39;admin/change_list.html&#39; %} {% load static %} {% block content %} &lt;a href=&#34;upload-csv/&#34;&gt;Upload a csv file&lt;/a&gt; {{ block.super }} {% endblock %} {{ block.super }} は親のテンプレートコンテンツ。
+Django change_list.html
+Custom Admin Page の作成 上記で作成したリンク先の upload-csv/ の URL を設定
+restaurants/admin.py の RestaurantAdmin で get_urls()を設定。
+def get_urls(self): urls = super().get_urls() new_urls = [ path(&#39;upload-csv/&#39;, self.">
+<meta name="author" content="">
+<link rel="canonical" href="https://hirotoshimizu.github.io/posts/2021-07-19/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.d9015f4cb657fd3539b79b29ffbd11de4175ccd105ad7591beffaadfafb48488.css" integrity="sha256-2QFfTLZX/TU5t5sp/70R3kF1zNEFrXWRvv&#43;q36&#43;0hIg=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.27cd435cc9ed6abb4b496581b151804f79f366c412620272bb94e2f5f598ebcc.js" integrity="sha256-J81DXMntartLSWWBsVGAT3nzZsQSYgJyu5Ti9fWY68w="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://hirotoshimizu.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://hirotoshimizu.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://hirotoshimizu.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://hirotoshimizu.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://hirotoshimizu.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.68.3" />
+<meta property="og:title" content="Djnagoの管理画面からCSVファイルをアップしてデータ登録" />
+<meta property="og:description" content="今回は restaurants というアプリを作成し進めていきます。
+CSVのファイルは管理画面のレストランの一覧画面 http://127.0.0.1:8000/admin/restaurants/restaurant/ からアップ。
+アプリの作成
+python manage.py startapp restaurants モデルは restaurant で作成。
+Admin テンプレートの Override templatesフォルダは manage.py と同じ階層に作成。
+templates/admin/restaurants/restaurant/change_list.html を作成
+{% extends &#39;admin/change_list.html&#39; %} {% load static %} {% block content %} &lt;a href=&#34;upload-csv/&#34;&gt;Upload a csv file&lt;/a&gt; {{ block.super }} {% endblock %} {{ block.super }} は親のテンプレートコンテンツ。
+Django change_list.html
+Custom Admin Page の作成 上記で作成したリンク先の upload-csv/ の URL を設定
+restaurants/admin.py の RestaurantAdmin で get_urls()を設定。
+def get_urls(self): urls = super().get_urls() new_urls = [ path(&#39;upload-csv/&#39;, self." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hirotoshimizu.github.io/posts/2021-07-19/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-07-19T11:56:10&#43;09:00" />
+<meta property="article:modified_time" content="2021-07-19T11:56:10&#43;09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Djnagoの管理画面からCSVファイルをアップしてデータ登録"/>
+<meta name="twitter:description" content="今回は restaurants というアプリを作成し進めていきます。
+CSVのファイルは管理画面のレストランの一覧画面 http://127.0.0.1:8000/admin/restaurants/restaurant/ からアップ。
+アプリの作成
+python manage.py startapp restaurants モデルは restaurant で作成。
+Admin テンプレートの Override templatesフォルダは manage.py と同じ階層に作成。
+templates/admin/restaurants/restaurant/change_list.html を作成
+{% extends &#39;admin/change_list.html&#39; %} {% load static %} {% block content %} &lt;a href=&#34;upload-csv/&#34;&gt;Upload a csv file&lt;/a&gt; {{ block.super }} {% endblock %} {{ block.super }} は親のテンプレートコンテンツ。
+Django change_list.html
+Custom Admin Page の作成 上記で作成したリンク先の upload-csv/ の URL を設定
+restaurants/admin.py の RestaurantAdmin で get_urls()を設定。
+def get_urls(self): urls = super().get_urls() new_urls = [ path(&#39;upload-csv/&#39;, self."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "Djnagoの管理画面からCSVファイルをアップしてデータ登録",
+      "item": "https://hirotoshimizu.github.io/posts/2021-07-19/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Djnagoの管理画面からCSVファイルをアップしてデータ登録",
+  "name": "Djnagoの管理画面からCSVファイルをアップしてデータ登録",
+  "description": "今回は restaurants というアプリを作成し進めていきます。\nCSVのファイルは管理画面のレストランの一覧画面 http://127.0.0.1:8000/admin/restaurants/restaurant/ からアップ。\nアプリの作成\npython manage.py startapp restaurants モデルは restaurant で作成。\nAdmin テンプレートの Override templatesフォルダは manage.py と同じ階層に作成。\ntemplates/admin/restaurants/restaurant/change_list.html を作成\n{% extends \u0026#39;admin/change_list.html\u0026#39; %} {% load static %} {% block content %} \u0026lt;a href=\u0026#34;upload-csv/\u0026#34;\u0026gt;Upload a csv file\u0026lt;/a\u0026gt; {{ block.super }} {% endblock %} {{ block.super }} は親のテンプレートコンテンツ。\nDjango change_list.html\nCustom Admin Page の作成 上記で作成したリンク先の upload-csv/ の URL を設定\nrestaurants/admin.py の RestaurantAdmin で get_urls()を設定。\ndef get_urls(self): urls = super().get_urls() new_urls = [ path(\u0026#39;upload-csv/\u0026#39;, self.",
+  "keywords": [
+    
+  ],
+  "articleBody": "今回は restaurants というアプリを作成し進めていきます。\nCSVのファイルは管理画面のレストランの一覧画面 http://127.0.0.1:8000/admin/restaurants/restaurant/ からアップ。\nアプリの作成\npython manage.py startapp restaurants モデルは restaurant で作成。\nAdmin テンプレートの Override templatesフォルダは manage.py と同じ階層に作成。\ntemplates/admin/restaurants/restaurant/change_list.html を作成\n{% extends 'admin/change_list.html' %} {% load static %} {% block content %} a href=\"upload-csv/\"Upload a csv filea {{ block.super }} {% endblock %} {{ block.super }} は親のテンプレートコンテンツ。\nDjango change_list.html\nCustom Admin Page の作成 上記で作成したリンク先の upload-csv/ の URL を設定\nrestaurants/admin.py の RestaurantAdmin で get_urls()を設定。\ndef get_urls(self): urls = super().get_urls() new_urls = [ path('upload-csv/', self.upload_csv), ] return new_urls + urls Django ドキュメント\ntemplates/admin/csv_upload.htmlを作成\n{% extends 'admin/base.html' %} {% block content %}  {{ form.as_p }} {% csrf_token %} Upload File   {% endblock %} csvファイルからのテーブル作成 RestaurantAdmin の get_urlsに記載した upload_csv の処理を追加。\ndef upload_csv(self, request): if request.method == 'POST': csv_file = request.FILES['csv_upload'] file_data = csv_file.read().decode('utf-8') restaurants_data = file_data.split('\\n') for i in restaurants_data: fields = i.split(\",\") restaurant.objects.update_or_create( name=fields[0], address=fields[1], ) form = CsvImportForm() data = {'form': form} return render(request, 'admin/csv_upload.html', data) update_or_create() を使用するので、 同じオブジェクトがあればアップデートされ、なければ作成される。\nフォームも必要なので、restaurants/admin.py　にフォームも用意。 class CsvImportForm(forms.Form): csv_upload = forms.FileField()\nこれで最低限のCSVからデータをアップロードできるかと思います。\n",
+  "wordCount" : "165",
+  "inLanguage": "en",
+  "datePublished": "2021-07-19T11:56:10+09:00",
+  "dateModified": "2021-07-19T11:56:10+09:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hirotoshimizu.github.io/posts/2021-07-19/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Shiglass",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hirotoshimizu.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<noscript>
+    <style type="text/css">
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: #1d1e20;
+                --entry: #2e2e33;
+                --primary: rgba(255, 255, 255, 0.84);
+                --secondary: rgba(255, 255, 255, 0.56);
+                --tertiary: rgba(255, 255, 255, 0.16);
+                --content: rgba(255, 255, 255, 0.74);
+                --hljs-bg: #2e2e33;
+                --code-bg: #37383e;
+                --border: #333;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://hirotoshimizu.github.io" accesskey="h" title="Shiglass (Alt + H)">Shiglass</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://hirotoshimizu.github.io/about/" title="about">
+                    <span>about</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hirotoshimizu.github.io/archives/" title="archives">
+                    <span>archives</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hirotoshimizu.github.io/categories/" title="categories">
+                    <span>categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hirotoshimizu.github.io/tags/" title="tags">
+                    <span>tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title">
+      Djnagoの管理画面からCSVファイルをアップしてデータ登録
+    </h1>
+    <div class="post-meta">July 19, 2021
+</div>
+  </header> 
+  <div class="post-content"><p>今回は restaurants というアプリを作成し進めていきます。</p>
+<p>CSVのファイルは管理画面のレストランの一覧画面
+http://127.0.0.1:8000/admin/restaurants/restaurant/
+からアップ。</p>
+<p>アプリの作成</p>
+<pre><code>python manage.py startapp restaurants
+</code></pre><p>モデルは restaurant で作成。</p>
+<h4 id="admin-テンプレートの-override">Admin テンプレートの Override<a hidden class="anchor" aria-hidden="true" href="#admin-テンプレートの-override">#</a></h4>
+<p>templatesフォルダは manage.py と同じ階層に作成。</p>
+<p>templates/admin/restaurants/restaurant/change_list.html
+を作成</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">{<span style="color:#f92672">%</span> extends <span style="color:#e6db74">&#39;admin/change_list.html&#39;</span> <span style="color:#f92672">%</span>}
+{<span style="color:#f92672">%</span> load static <span style="color:#f92672">%</span>}
+{<span style="color:#f92672">%</span> block content <span style="color:#f92672">%</span>}
+
+<span style="color:#f92672">&lt;</span>a href<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;upload-csv/&#34;</span><span style="color:#f92672">&gt;</span>Upload a csv file<span style="color:#f92672">&lt;/</span>a<span style="color:#f92672">&gt;</span>
+
+{{ block<span style="color:#f92672">.</span>super }}
+{<span style="color:#f92672">%</span> endblock <span style="color:#f92672">%</span>}
+</code></pre></div><p><code>{{ block.super }}</code> は親のテンプレートコンテンツ。</p>
+<p><a href="https://github.com/django/django/blob/main/django/contrib/admin/templates/admin/change_list.html">Django change_list.html</a></p>
+<h4 id="custom-admin-page-の作成">Custom Admin Page の作成<a hidden class="anchor" aria-hidden="true" href="#custom-admin-page-の作成">#</a></h4>
+<p>上記で作成したリンク先の <code>upload-csv/</code> の URL を設定</p>
+<p>restaurants/admin.py の
+RestaurantAdmin で get_urls()を設定。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_urls</span>(self):
+    urls <span style="color:#f92672">=</span> super()<span style="color:#f92672">.</span>get_urls()
+    new_urls <span style="color:#f92672">=</span> [
+        path(<span style="color:#e6db74">&#39;upload-csv/&#39;</span>, self<span style="color:#f92672">.</span>upload_csv),
+    ]
+    <span style="color:#66d9ef">return</span> new_urls <span style="color:#f92672">+</span> urls
+</code></pre></div><p><a href="https://docs.djangoproject.com/en/3.2/ref/contrib/admin/#django.contrib.admin.ModelAdmin.get_urls">Django ドキュメント</a></p>
+<p>templates/admin/csv_upload.htmlを作成</p>
+<pre><code>{% extends 'admin/base.html' %}
+{% block content %}
+&lt;div&gt;
+    &lt;form action=&quot;.&quot; method=&quot;POST&quot; enctype=&quot;multipart/form-data&quot;&gt;
+    {{ form.as_p }}
+    {% csrf_token %}
+    &lt;button type=&quot;submit&quot;&gt;Upload File&lt;/button&gt;
+    &lt;/form&gt;
+&lt;/div&gt;
+{% endblock %}
+</code></pre><h4 id="csvファイルからのテーブル作成">csvファイルからのテーブル作成<a hidden class="anchor" aria-hidden="true" href="#csvファイルからのテーブル作成">#</a></h4>
+<p>RestaurantAdmin の get_urlsに記載した
+<code>upload_csv</code> の処理を追加。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">upload_csv</span>(self, request):
+
+    <span style="color:#66d9ef">if</span> request<span style="color:#f92672">.</span>method <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;POST&#39;</span>:
+        csv_file <span style="color:#f92672">=</span> request<span style="color:#f92672">.</span>FILES[<span style="color:#e6db74">&#39;csv_upload&#39;</span>]
+
+        file_data <span style="color:#f92672">=</span> csv_file<span style="color:#f92672">.</span>read()<span style="color:#f92672">.</span>decode(<span style="color:#e6db74">&#39;utf-8&#39;</span>)
+        restaurants_data <span style="color:#f92672">=</span> file_data<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
+
+        <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> restaurants_data:
+            fields <span style="color:#f92672">=</span> i<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;,&#34;</span>)
+            restaurant<span style="color:#f92672">.</span>objects<span style="color:#f92672">.</span>update_or_create(
+                name<span style="color:#f92672">=</span>fields[<span style="color:#ae81ff">0</span>],
+                address<span style="color:#f92672">=</span>fields[<span style="color:#ae81ff">1</span>],
+                )
+                
+    form <span style="color:#f92672">=</span> CsvImportForm()
+    data <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;form&#39;</span>: form}
+    <span style="color:#66d9ef">return</span> render(request, <span style="color:#e6db74">&#39;admin/csv_upload.html&#39;</span>, data)
+</code></pre></div><p><code>update_or_create()</code> を使用するので、
+同じオブジェクトがあればアップデートされ、なければ作成される。</p>
+<p>フォームも必要なので、restaurants/admin.py　にフォームも用意。
+class CsvImportForm(forms.Form):
+csv_upload = forms.FileField()</p>
+<p>これで最低限のCSVからデータをアップロードできるかと思います。</p>
+
+
+  </div>
+  <footer class="post-footer">
+  </footer>
+</article>
+    </main>
+    <footer class="footer">
+    <span>&copy; 2021 <a href="https://hirotoshimizu.github.io">Shiglass</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
+    <button class="top-link" id="top-link" type="button" accesskey="g">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z" />
+        </svg>
+    </button>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+    menu.onscroll = function () {
+        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
