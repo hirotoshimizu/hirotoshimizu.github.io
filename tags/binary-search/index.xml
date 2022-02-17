@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Binary Search on Shiglass</title>
+    <link>https://hirotoshimizu.github.io/tags/binary-search/</link>
+    <description>Recent content in Binary Search on Shiglass</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 21 Oct 2021 23:03:19 +0900</lastBuildDate><atom:link href="https://hirotoshimizu.github.io/tags/binary-search/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Search Insert Position</title>
+      <link>https://hirotoshimizu.github.io/posts/search-insert-position/</link>
+      <pubDate>Thu, 21 Oct 2021 23:03:19 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/search-insert-position/</guid>
+      <description>https://leetcode.com/problems/search-insert-position/
+algorithm の runtime は O(log n) である必要があるため、 binary search で target の数の位置を調べる。
+変数 left に 0、 right に len(nums) - 1 を設定する。
+(left + right) // 2 で真ん中の値が取得出来るので、 真ん中の位置を mid とする。
+nums の mid の値が target なら、mid の index の値を返す。 もし、target の値が mid より大きい場合、 left を mid + 1 にする。 target の値が mid より小さい場合、 right を mid - 1 にする。
+[1, 3, 5, 6] で target = 2 の場合、</description>
+    </item>
+    
+  </channel>
+</rss>

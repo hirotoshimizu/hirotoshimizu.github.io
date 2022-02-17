@@ -5,7 +5,39 @@
     <link>https://hirotoshimizu.github.io/tags/linked-list/</link>
     <description>Recent content in Linked List on Shiglass</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 24 Sep 2021 22:39:14 +0900</lastBuildDate><atom:link href="https://hirotoshimizu.github.io/tags/linked-list/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 21 Oct 2021 09:51:02 +0900</lastBuildDate><atom:link href="https://hirotoshimizu.github.io/tags/linked-list/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Remove Linked List Elements</title>
+      <link>https://hirotoshimizu.github.io/posts/remove-linked-list-elements/</link>
+      <pubDate>Thu, 21 Oct 2021 09:51:02 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/remove-linked-list-elements/</guid>
+      <description>sentinel ノードは Linked List を空にせず、ヘッドレスにしないようにする。
+アルゴリズムは
+sentinel ノードをセットする。
+curr と prev のポインターを設定する。
+curr が null でない場合、ループする。
+curr.val が 削除する値の場合、
+class Solution: def removeElements(self, head: Optional[ListNode], val: int) -&amp;gt; Optional[ListNode]: sentinel = ListNode(next=head) prev, curr = sentinel, head while curr: if curr.val == val: prev.next = curr.next else: prev = curr curr = curr.next return sentinel.next </description>
+    </item>
+    
+    <item>
+      <title>Palindrome Linked List</title>
+      <link>https://hirotoshimizu.github.io/posts/palindrome-linked-list/</link>
+      <pubDate>Mon, 18 Oct 2021 16:55:29 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/palindrome-linked-list/</guid>
+      <description>この問題の解き方は pointer を2つ使う。
+  真ん中を探す Pointer を2つ使い、fast pointer と fast.next が null になるまで Pinter を進める。 その際 slow pointer が真ん中に位置する。
+  後ろ半分を反転させる slow pointer が真ん中に位置しているので、 slow が null になるまでループさせる。
+step.1 1 → 2 → 3 → null
+prev と curr を憶えておく必要がある。
+prev = null curr = 1
+curr の next node を temp に入れておく。 temp = 2
+null ← 1 2 → 3 → null
+step.2 prev = 1 curr = 2 temp = 3</description>
+    </item>
+    
     <item>
       <title>Merge Two Sorted Lists</title>
       <link>https://hirotoshimizu.github.io/posts/merge-two-sorted-lists/</link>

@@ -138,6 +138,36 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
+    <h2>Isomorphic Strings</h2>
+  </header>
+  <section class="entry-content">
+    <p>https://leetcode.com/problems/isomorphic-strings/
+s と t をマッピングして考える。 この際、同じ文字なのに違う文字がマッピングされる場合
+isomorphic にならない。
+ex. foo bar
+ | f → b | | o → a | | o → r |  | b → f | | a → o | | r → o | o が a と r にマッピングされているので、 isomorphic にならず、false になる。
+class Solution: def isIsomorphic(self, s: str, t: str) -&gt; bool: mapST, mapTS = {}, {} for c1, c2 in zip(s, t): if((c1 in mapST and mapST[c1] !...</p>
+  </section>
+  <footer class="entry-footer">October 21, 2021</footer>
+  <a class="entry-link" aria-label="post link to Isomorphic Strings" href="https://hirotoshimizu.github.io/posts/isomorphic-strings/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>Valid Anagram</h2>
+  </header>
+  <section class="entry-content">
+    <p>anagram かどうかを調べるには s, t の出現する文字のカウントが同じなら anagram と言える。
+回答方法は
+ 文字数をカウントし、s と t を比較する 文字数をカウントし、s と t を比較する(Counter を使う) sorted を使う  Input: s = “anagram”, t = “nagaram”
+ 文字数をカウントし、s と t を比較する  class Solution: def isAnagram(self, s: str, t: str) -&gt; bool: if len(s)!= len(t): return False count_s, count_t = {}, {} for i in range(len(s)): count_s[s[i]] = 1 &#43; count_s.get(s[i], 0) count_t[t[i]] = 1 &#43; count_t.get(t[i], 0) for c in count_s: if count_s[c] !...</p>
+  </section>
+  <footer class="entry-footer">October 20, 2021</footer>
+  <a class="entry-link" aria-label="post link to Valid Anagram" href="https://hirotoshimizu.github.io/posts/valid-anagram/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
     <h2>Valid Parentheses</h2>
   </header>
   <section class="entry-content">
@@ -155,7 +185,7 @@ class Solution(object): def isValid(self, s): &#34;&#34;&#34; :type s: str :rtyp
 </article>
     </main>
     <footer class="footer">
-    <span>&copy; 2021 <a href="https://hirotoshimizu.github.io">Shiglass</a></span>
+    <span>&copy; 2022 <a href="https://hirotoshimizu.github.io">Shiglass</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &

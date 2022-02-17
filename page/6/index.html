@@ -149,31 +149,98 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Hugo の始め方</h2>
+    <h2>Merge Two Sorted Lists</h2>
   </header>
   <section class="entry-content">
-    <p>日々学んだ事を記録に残そうと始めました。
-Word Press や Django でブログを作成しようと思いましたが、
-速度やメンテナンスを楽にしたかったので、Hugoで作成。
-設定環境
- Win 10 WSL2 Ubuntu 20.04  1. Hugoのインストール Ubuntuでのインストール
-sudo apt-get install hugo 2. サイトの作成 hugo new site sitename sitename は自分の好きな名前に置き換えてください。
-3. テーマの追加 Hugo のテーマ から好きなテンプレートを選択。
-PaperMod を選択したので、 インストラクションに沿ってgit clone
-git clone https://github.com/adityatelange/hugo-PaperMod themes/PaperMod --depth=1 4. コンテンツの追加 hugo new posts/my-first-post.md --- title: &#34;My First Post&#34; date: 2019-03-26T08:47:11&#43;01:00 draft: true --- ※draft: false に変更で公開
-5. Hugo server を起動 hugo server </p>
+    <p>https://leetcode.com/problems/merge-two-sorted-lists/
+ダミー Node を作って edge case の 空の Linked List が挿入されても大丈夫なようにする。
+その後はループで l1 と l2 の val を比べ、 小さい値を tail.next に入れる。 その後、 next をずらす。
+ループ後 l1, l2 のどちらかのリストが empty の場合、 Linked List に追加する必要があるので、 リストが empty か確認し、値があれば Linked List に追加する。
+# Definition for singly-linked list. # class ListNode(object): # def __init__(self, val=0, next=None): # self.val = val # self.next = next class Solution(object): def mergeTwoLists(self, l1, l2): &#34;&#34;&#34; :type l1: ListNode :type l2: ListNode :rtype: ListNode &#34;&#34;&#34; dummy = ListNode() tail = dummy while l1 and l2: if l1....</p>
   </section>
-  <footer class="entry-footer">July 5, 2021</footer>
-  <a class="entry-link" aria-label="post link to Hugo の始め方" href="https://hirotoshimizu.github.io/posts/how-to-start-hugo/"></a>
+  <footer class="entry-footer">September 24, 2021</footer>
+  <a class="entry-link" aria-label="post link to Merge Two Sorted Lists" href="https://hirotoshimizu.github.io/posts/merge-two-sorted-lists/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Linked List Cycle</h2>
+  </header>
+  <section class="entry-content">
+    <p>https://leetcode.com/problems/linked-list-cycle/
+Linked List が Cycle なのかを確認する。
+Linked List が Cycle な場合、 2つのポインターを使う。 (1つめのポインターは 1つずつ進み、 2つめのポインターは 2つずつ進む。) Cycle な場合どこかの時点で2つ進むポインター が1つしか進まないポインターに追いつくので Cycle だとわかる。
+Cycle ではない場合 いずれかの時点で ポインターが Null になる。
+Time complexity: O(n) Mem complexity: O(1)
+# Definition for singly-linked list. # class ListNode(object): # def __init__(self, x): # self.val = x # self.next = None class Solution(object): def hasCycle(self, head): &#34;&#34;&#34; :type head: ListNode :rtype: bool &#34;&#34;&#34; slow, fast = head, head while fast and fast....</p>
+  </section>
+  <footer class="entry-footer">September 24, 2021</footer>
+  <a class="entry-link" aria-label="post link to Linked List Cycle" href="https://hirotoshimizu.github.io/posts/linked-list-cycle/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Reverse Linked List</h2>
+  </header>
+  <section class="entry-content">
+    <p>https://leetcode.com/problems/reverse-linked-list/
+考え方としては、
+1 → 2 → 3 → 4 → 5
+1 ← 2 ← 3 ← 4 ← 5
+とするように考える。
+回答方法は iterative なやり方と recursive なやり方がある。 iterative なやり方は 2つの pointer を使う。
+prev と curr
+まず prev に　None を設定する。 curr は head にする
+Null → 1 → 2 → 3 → 4 → 5 ↑ ↑ prev curr
+ループしている間 Linked List の 矢印の向き (curr.next) をずらしつつ、prev と next の pointer もずらしていく。...</p>
+  </section>
+  <footer class="entry-footer">September 24, 2021</footer>
+  <a class="entry-link" aria-label="post link to Reverse Linked List" href="https://hirotoshimizu.github.io/posts/reverse-linked-list/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Valid Parentheses</h2>
+  </header>
+  <section class="entry-content">
+    <p>https://leetcode.com/problems/valid-parentheses/
+Prerequisite Hash Map Stack
+最初にどのカッコがどの 括弧閉じ にマッチしているかわかるために HashMap を作る必要がある。 この際、括弧閉じ をキーにする。
+for 文で list の中を確認し、 括弧開きは stack に入れる。
+stack は 最後に入れたものから出すので、 括弧開き と 括弧閉じ がマッチしていれば、 stack から pop できる。
+最後に stack に何も残らなければ、 全てがマッチして True を return する。
+Time complexity: O(n) Mem complexity: O(n)
+class Solution(object): def isValid(self, s): &#34;&#34;&#34; :type s: str :rtype: bool &#34;&#34;&#34; stack = [] closeToOpen = { &#39;)&#39; : &#39;(&#39;, &#39;]&#39; : &#39;[&#39;, &#39;}&#39; : &#39;{&#39; } for c in s: if c in closeToOpen: if stack and stack[-1] == closeToOpen[c]: stack....</p>
+  </section>
+  <footer class="entry-footer">September 22, 2021</footer>
+  <a class="entry-link" aria-label="post link to Valid Parentheses" href="https://hirotoshimizu.github.io/posts/valid-parentheses/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Missing Number</h2>
+  </header>
+  <section class="entry-content">
+    <p>https://leetcode.com/problems/missing-number/
+sum([0,1,2,3]) - sum([3,0,1]) = 2 2がない数字なので、2が残る。
+最初に result に len(nums) を代入する。 nums が [3,0,1] の場合、 result に 3 が代入される。
+これは for で回す時に range(len(nums)) だと 0, 1, 2 としかならないため。 result に len(nums) の代入が必要。
+result &#43;= (i - nums[i]) をすることで、2 が return 出来る。
+Time complexity: O(n) Mem complexity: O(1)
+class Solution(object): def missingNumber(self, nums): &#34;&#34;&#34; :type nums: List[int] :rtype: int &#34;&#34;&#34; result = len(nums) for i in range(len(nums)): result &#43;= (i - nums[i]) return result </p>
+  </section>
+  <footer class="entry-footer">September 21, 2021</footer>
+  <a class="entry-link" aria-label="post link to Missing Number" href="https://hirotoshimizu.github.io/posts/missing-number/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
     <a class="prev" href="https://hirotoshimizu.github.io/page/5/">« Prev Page</a>
+    <a class="next" href="https://hirotoshimizu.github.io/page/7/">Next Page »</a>
   </nav>
 </footer>
     </main>
     <footer class="footer">
-    <span>&copy; 2021 <a href="https://hirotoshimizu.github.io">Shiglass</a></span>
+    <span>&copy; 2022 <a href="https://hirotoshimizu.github.io">Shiglass</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &

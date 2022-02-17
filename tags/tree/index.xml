@@ -5,7 +5,33 @@
     <link>https://hirotoshimizu.github.io/tags/tree/</link>
     <description>Recent content in Tree on Shiglass</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 01 Oct 2021 11:25:38 +0900</lastBuildDate><atom:link href="https://hirotoshimizu.github.io/tags/tree/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 22 Oct 2021 03:47:59 +0900</lastBuildDate><atom:link href="https://hirotoshimizu.github.io/tags/tree/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Traverse a Tree</title>
+      <link>https://hirotoshimizu.github.io/posts/traverse-a-tree/</link>
+      <pubDate>Fri, 22 Oct 2021 03:47:59 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/traverse-a-tree/</guid>
+      <description>F / \ B G / \ \ A D I / \ / C E H  Pre-order Traversal root left subtree right subtree
+F B A D C E G I H
+https://leetcode.com/problems/binary-tree-preorder-traversal/
+Iterative approach
+class Solution(object): def preorderTraversal(self, root: Optional[TreeNode]) -&amp;gt; List[int]: &amp;#34;&amp;#34;&amp;#34; :type root: TreeNode :rtype: List[int] &amp;#34;&amp;#34;&amp;#34; res, stack = [], [(root, False)] while stack: node, visited = stack.pop() if node: if visited: res.append(node.val) else: stack.</description>
+    </item>
+    
+    <item>
+      <title>Path Sum</title>
+      <link>https://hirotoshimizu.github.io/posts/path-sum/</link>
+      <pubDate>Thu, 21 Oct 2021 08:21:08 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/path-sum/</guid>
+      <description>https://leetcode.com/problems/path-sum/solution/
+ノードがリーフでない場合は、子に対してhasPathSumメソッドを再帰的に呼び出し、合計を現在のノードの値だけ減らす。
+ノードがリーフの場合、現在の合計がゼロであるかどうか、つまり最初の合計が検出されたかどうかを確認します。
+Base case は、root が none ということはリーフの下の node を確認してるので、sum が 0 になっていないので False を返す。
+class Solution: def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -&amp;gt; bool: if not root: return False targetSum -= root.val if not root.left and not root.right: # if reach a leaf return targetSum == 0 return self.hasPathSum(root.left, targetSum) or self.hasPathSum(root.right, targetSum) </description>
+    </item>
+    
     <item>
       <title>Invert Binary Tree</title>
       <link>https://hirotoshimizu.github.io/posts/invert-binary-tree/</link>

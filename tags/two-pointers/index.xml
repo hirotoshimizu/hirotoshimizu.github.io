@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Two Pointers on Shiglass</title>
+    <link>https://hirotoshimizu.github.io/tags/two-pointers/</link>
+    <description>Recent content in Two Pointers on Shiglass</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 21 Oct 2021 12:17:05 +0900</lastBuildDate><atom:link href="https://hirotoshimizu.github.io/tags/two-pointers/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Remove Duplicates From Sorted Array</title>
+      <link>https://hirotoshimizu.github.io/posts/remove-duplicates-from-sorted-array/</link>
+      <pubDate>Thu, 21 Oct 2021 12:17:05 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/remove-duplicates-from-sorted-array/</guid>
+      <description>nums = [0,0,1,1,1,2,2,3,3,4] の重複をなくすようにするので、下記のようになる。
+nums = [0,1,2,3,4,,,,,_]
+pointer を 2つ使う。
+最初の数字は必ずユニークになるので、 left = 1　とする。
+right は for でループさせながら icrement していく。
+non-decreasing order なので、 right の値と right - 1　を比較して、 違う値なら一番初めに現れるユニークの数字だとわかる。
+そのためその数字を left pointer がある位置に入れる。 その後、 left pointer をicrementする。
+最終的に left pointer の位置がユニークな数の出現回数となるので、 その値を return する。
+class Solution: def removeDuplicates(self, nums: List[int]) -&amp;gt; int: left = 1 for right in range(1, len(nums)): if nums[right] != nums[right - 1]: nums[left] = nums[right] left += 1 return left </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -5,7 +5,33 @@
     <link>https://hirotoshimizu.github.io/tags/string/</link>
     <description>Recent content in String on Shiglass</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 22 Sep 2021 20:06:14 +0900</lastBuildDate><atom:link href="https://hirotoshimizu.github.io/tags/string/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 21 Oct 2021 05:16:53 +0900</lastBuildDate><atom:link href="https://hirotoshimizu.github.io/tags/string/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Isomorphic Strings</title>
+      <link>https://hirotoshimizu.github.io/posts/isomorphic-strings/</link>
+      <pubDate>Thu, 21 Oct 2021 05:16:53 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/isomorphic-strings/</guid>
+      <description>https://leetcode.com/problems/isomorphic-strings/
+s と t をマッピングして考える。 この際、同じ文字なのに違う文字がマッピングされる場合
+isomorphic にならない。
+ex. foo bar
+ | f → b | | o → a | | o → r |  | b → f | | a → o | | r → o | o が a と r にマッピングされているので、 isomorphic にならず、false になる。
+class Solution: def isIsomorphic(self, s: str, t: str) -&amp;gt; bool: mapST, mapTS = {}, {} for c1, c2 in zip(s, t): if((c1 in mapST and mapST[c1] !</description>
+    </item>
+    
+    <item>
+      <title>Valid Anagram</title>
+      <link>https://hirotoshimizu.github.io/posts/valid-anagram/</link>
+      <pubDate>Wed, 20 Oct 2021 13:01:44 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/valid-anagram/</guid>
+      <description>anagram かどうかを調べるには s, t の出現する文字のカウントが同じなら anagram と言える。
+回答方法は
+ 文字数をカウントし、s と t を比較する 文字数をカウントし、s と t を比較する(Counter を使う) sorted を使う  Input: s = &amp;ldquo;anagram&amp;rdquo;, t = &amp;ldquo;nagaram&amp;rdquo;
+ 文字数をカウントし、s と t を比較する  class Solution: def isAnagram(self, s: str, t: str) -&amp;gt; bool: if len(s)!= len(t): return False count_s, count_t = {}, {} for i in range(len(s)): count_s[s[i]] = 1 + count_s.get(s[i], 0) count_t[t[i]] = 1 + count_t.get(t[i], 0) for c in count_s: if count_s[c] !</description>
+    </item>
+    
     <item>
       <title>Valid Parentheses</title>
       <link>https://hirotoshimizu.github.io/posts/valid-parentheses/</link>

@@ -5,7 +5,257 @@
     <link>https://hirotoshimizu.github.io/</link>
     <description>Recent content on Shiglass</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 17 Oct 2021 19:23:52 +0900</lastBuildDate><atom:link href="https://hirotoshimizu.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 17 Feb 2022 15:14:16 +0900</lastBuildDate><atom:link href="https://hirotoshimizu.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Code Smells</title>
+      <link>https://hirotoshimizu.github.io/posts/code-smells/</link>
+      <pubDate>Thu, 17 Feb 2022 15:14:16 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/code-smells/</guid>
+      <description>code smell 〇Bloaters ・長い関数(Long Method) オブジェクトそのものの受け渡し、関数の抽出、コマンドによる関数の置き換え、問い合わせによる一時変数の置き換え、 条件記述の分解、パラメータオブジェクトの導入、ポリモーフィズムによる条件記述の置き換え、ループの分離 ・巨大なクラス(Large Class) クラスの抽出、サブクスによるタイプコードの置き換え、スーパークラスの抽出 ・データの群れ(Data Clumps) オブジェクトそのものの受け渡し、クラスの抽出、パラメータオブジェクトの導入 ・長いパラメータリスト(Long Parameter List) オブジェクトそのものの受け渡し、関数群のクラスへの集約、問い合わせによるパラメータの置き換え、 パラメータオブジェクトの導入、フラグパラメータの削除 ・基本データ型への執着(Primitive Obsession) オブジェクトによるプリミティブの置き換え、クラスの抽出、サブクラスによるタイプコードの置き換え、 パラメータオブジェクトの導入、ポリモーフィズムによる条件記述の置き換え
+〇Tool Abusers ・Switch Statements ・相続拒否(Refused Bequest) 委譲によるサブクラスの置き換え、委譲によるスーパークラスの置き換え、フィールドの押し下げ、メソッドの押し下げ ・クラスのインターフェース不一致(Alternative Classes w/ Different Interfaces) 関数宣言の変更、関数の移動、スーパークラスの抽出 ・一時的属性(Temporary Field) 関数の移動、クラスの抽出、特殊ケースの導入
+〇Change Preventers ・Divergent Change ・変更の分散(Shotgun Surgery) 関数群のクラスへの集約、関数群の変換への集約、関数の移動、関数のインライン化、クラスのインライン化、フィールドの移動、フェーズの分離 ・Parallel Inheritance Hierarchies
+〇Dispensables ・Lazy Class ・疑わしき一般化(Speculative Generality) 関数宣言の変更、関数のインライン化、クラス階層の平坦化、クラスのインライン化、デッドコードの削除 ・データクラス(Data Class) ・重複したコード(Duplicated Code) 関数の抽出、ステートメントのスライド、メソッドの引き上げ
+〇Couplers ・特性の横恋慕(Feature Envy) 関数の移動、関数の抽出 ・Inappropriate Intimacy ・メッセージの連鎖(Message Chains) 委譲の隠蔽、関数の移動、関数の抽出 ・仲介人(Middle Man) 関数のインライン化、仲介人の除去</description>
+    </item>
+    
+    <item>
+      <title>Longest Palindromic Substring</title>
+      <link>https://hirotoshimizu.github.io/posts/longest-palindromic-substring/</link>
+      <pubDate>Sun, 12 Dec 2021 05:16:29 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/longest-palindromic-substring/</guid>
+      <description>https://leetcode.com/problems/longest-palindromic-substring/
+class Solution: def longestPalindrome(self, s: str) -&amp;gt; str: res = &amp;#39;&amp;#39; for i in range(len(s)): # odd case tmp = self.helper(s, i, i) if len(tmp) &amp;gt; len(res): res = tmp # even tmp = self.helper(s, i, i+1) if len(tmp) &amp;gt; len(res): res = tmp return res def helper(self, s, l, r): while l &amp;gt;= 0 and r &amp;lt; len(s) and s[l] == s[r]: l -= 1 r += 1 return s[l+1:r] </description>
+    </item>
+    
+    <item>
+      <title>Longest Increasing Subsequence</title>
+      <link>https://hirotoshimizu.github.io/posts/longest-increasing-subsequence/</link>
+      <pubDate>Sun, 12 Dec 2021 04:07:10 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/longest-increasing-subsequence/</guid>
+      <description>https://leetcode.com/problems/longest-increasing-subsequence/
+LIS はどんな場合でも最低1になるので、 1を入れた、list を作る。
+reverse order でループし、 ネストしたループで最初にループしている i 以降の数と比較する。
+nums[i] と nums[j] で nums[i] が小さい場合、 subsequence となるので、 LIS[i] に max(LIS[i], 1 + LIS[j]) を入れる。 j は i 以降の数字を見ているので、max()を使わないと LISの最後の 1 で置き換えて 2 となってしまうので注意。
+class Solution: def lengthOfLIS(self, nums: List[int]) -&amp;gt; int: LIS = [1] * len(nums) for i in range(len(nums) - 1, -1, -1): for j in range(i + 1, len(nums)): if nums[i] &amp;lt; nums[j]: LIS[i] = max(LIS[i], 1 + LIS[j]) return max(LIS) </description>
+    </item>
+    
+    <item>
+      <title>Longest Common Subsequence</title>
+      <link>https://hirotoshimizu.github.io/posts/longest-common-subsequence/</link>
+      <pubDate>Sat, 11 Dec 2021 20:20:50 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/longest-common-subsequence/</guid>
+      <description>https://leetcode.com/problems/longest-common-subsequence/
+2d grid を作る。 row, col にそれぞれ、1行、1列追加して 0 を入れる。
+grid の右下からループし、 縦横が同じ文字でマッチしたら、斜め左上に進む。 その際に1を足す。
+マッチしなかったら、右横か下のどちらか大きい数字を入れる。
+ループが終わりgrid[0][0] の箇所に 1番長い subsequence の数が入る。
+class Solution: def longestCommonSubsequence(self, text1: str, text2: str) -&amp;gt; int: dp = [[0 for j in range(len(text2) + 1)] for i in range(len(text1) + 1)] for i in range(len(text1) - 1, -1, -1): for j in range(len(text2) - 1, -1, -1): if text1[i] == text2[j]: dp[i][j] = 1 + dp[i + 1][j + 1] else: dp[i][j] = max(dp[i + 1][j], dp[i][j + 1]) return dp[0][0] </description>
+    </item>
+    
+    <item>
+      <title>Traverse a Tree</title>
+      <link>https://hirotoshimizu.github.io/posts/traverse-a-tree/</link>
+      <pubDate>Fri, 22 Oct 2021 03:47:59 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/traverse-a-tree/</guid>
+      <description>F / \ B G / \ \ A D I / \ / C E H  Pre-order Traversal root left subtree right subtree
+F B A D C E G I H
+https://leetcode.com/problems/binary-tree-preorder-traversal/
+Iterative approach
+class Solution(object): def preorderTraversal(self, root: Optional[TreeNode]) -&amp;gt; List[int]: &amp;#34;&amp;#34;&amp;#34; :type root: TreeNode :rtype: List[int] &amp;#34;&amp;#34;&amp;#34; res, stack = [], [(root, False)] while stack: node, visited = stack.pop() if node: if visited: res.append(node.val) else: stack.</description>
+    </item>
+    
+    <item>
+      <title>Search Insert Position</title>
+      <link>https://hirotoshimizu.github.io/posts/search-insert-position/</link>
+      <pubDate>Thu, 21 Oct 2021 23:03:19 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/search-insert-position/</guid>
+      <description>https://leetcode.com/problems/search-insert-position/
+algorithm の runtime は O(log n) である必要があるため、 binary search で target の数の位置を調べる。
+変数 left に 0、 right に len(nums) - 1 を設定する。
+(left + right) // 2 で真ん中の値が取得出来るので、 真ん中の位置を mid とする。
+nums の mid の値が target なら、mid の index の値を返す。 もし、target の値が mid より大きい場合、 left を mid + 1 にする。 target の値が mid より小さい場合、 right を mid - 1 にする。
+[1, 3, 5, 6] で target = 2 の場合、</description>
+    </item>
+    
+    <item>
+      <title>Remove Duplicates From Sorted Array</title>
+      <link>https://hirotoshimizu.github.io/posts/remove-duplicates-from-sorted-array/</link>
+      <pubDate>Thu, 21 Oct 2021 12:17:05 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/remove-duplicates-from-sorted-array/</guid>
+      <description>nums = [0,0,1,1,1,2,2,3,3,4] の重複をなくすようにするので、下記のようになる。
+nums = [0,1,2,3,4,,,,,_]
+pointer を 2つ使う。
+最初の数字は必ずユニークになるので、 left = 1　とする。
+right は for でループさせながら icrement していく。
+non-decreasing order なので、 right の値と right - 1　を比較して、 違う値なら一番初めに現れるユニークの数字だとわかる。
+そのためその数字を left pointer がある位置に入れる。 その後、 left pointer をicrementする。
+最終的に left pointer の位置がユニークな数の出現回数となるので、 その値を return する。
+class Solution: def removeDuplicates(self, nums: List[int]) -&amp;gt; int: left = 1 for right in range(1, len(nums)): if nums[right] != nums[right - 1]: nums[left] = nums[right] left += 1 return left </description>
+    </item>
+    
+    <item>
+      <title>Remove Linked List Elements</title>
+      <link>https://hirotoshimizu.github.io/posts/remove-linked-list-elements/</link>
+      <pubDate>Thu, 21 Oct 2021 09:51:02 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/remove-linked-list-elements/</guid>
+      <description>sentinel ノードは Linked List を空にせず、ヘッドレスにしないようにする。
+アルゴリズムは
+sentinel ノードをセットする。
+curr と prev のポインターを設定する。
+curr が null でない場合、ループする。
+curr.val が 削除する値の場合、
+class Solution: def removeElements(self, head: Optional[ListNode], val: int) -&amp;gt; Optional[ListNode]: sentinel = ListNode(next=head) prev, curr = sentinel, head while curr: if curr.val == val: prev.next = curr.next else: prev = curr curr = curr.next return sentinel.next </description>
+    </item>
+    
+    <item>
+      <title>Path Sum</title>
+      <link>https://hirotoshimizu.github.io/posts/path-sum/</link>
+      <pubDate>Thu, 21 Oct 2021 08:21:08 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/path-sum/</guid>
+      <description>https://leetcode.com/problems/path-sum/solution/
+ノードがリーフでない場合は、子に対してhasPathSumメソッドを再帰的に呼び出し、合計を現在のノードの値だけ減らす。
+ノードがリーフの場合、現在の合計がゼロであるかどうか、つまり最初の合計が検出されたかどうかを確認します。
+Base case は、root が none ということはリーフの下の node を確認してるので、sum が 0 になっていないので False を返す。
+class Solution: def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -&amp;gt; bool: if not root: return False targetSum -= root.val if not root.left and not root.right: # if reach a leaf return targetSum == 0 return self.hasPathSum(root.left, targetSum) or self.hasPathSum(root.right, targetSum) </description>
+    </item>
+    
+    <item>
+      <title>Isomorphic Strings</title>
+      <link>https://hirotoshimizu.github.io/posts/isomorphic-strings/</link>
+      <pubDate>Thu, 21 Oct 2021 05:16:53 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/isomorphic-strings/</guid>
+      <description>https://leetcode.com/problems/isomorphic-strings/
+s と t をマッピングして考える。 この際、同じ文字なのに違う文字がマッピングされる場合
+isomorphic にならない。
+ex. foo bar
+ | f → b | | o → a | | o → r |  | b → f | | a → o | | r → o | o が a と r にマッピングされているので、 isomorphic にならず、false になる。
+class Solution: def isIsomorphic(self, s: str, t: str) -&amp;gt; bool: mapST, mapTS = {}, {} for c1, c2 in zip(s, t): if((c1 in mapST and mapST[c1] !</description>
+    </item>
+    
+    <item>
+      <title>Min Stack</title>
+      <link>https://hirotoshimizu.github.io/posts/min-stack/</link>
+      <pubDate>Wed, 20 Oct 2021 14:48:04 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/min-stack/</guid>
+      <description>https://leetcode.com/problems/min-stack/solution/
+2つの stack を使う。 1つ目の stack は普通のstackを使うように扱う。(Stack) 2つ目の stack は現在の minimum をトラックするのに使う。(MinStack)
+MinStack の pushメソッドは現在の値が stack の top より小さい場合、 push される。
+popメソッドは Stack のみからpopすると MinStack と合わなくなるので、 If top of main_stack == top of min_tracker_stack: min_tracker_stack.pop() の処理が必要になる。
+class MinStack: def __init__(self): self.stack = [] self.min_stack = [] def push(self, x: int) -&amp;gt; None: self.stack.append(x) if not self.min_stack or x &amp;lt;= self.min_stack[-1]: self.min_stack.append(x) def pop(self) -&amp;gt; None: if self.min_stack[-1] == self.stack[-1]: self.min_stack.pop() self.</description>
+    </item>
+    
+    <item>
+      <title>Valid Anagram</title>
+      <link>https://hirotoshimizu.github.io/posts/valid-anagram/</link>
+      <pubDate>Wed, 20 Oct 2021 13:01:44 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/valid-anagram/</guid>
+      <description>anagram かどうかを調べるには s, t の出現する文字のカウントが同じなら anagram と言える。
+回答方法は
+ 文字数をカウントし、s と t を比較する 文字数をカウントし、s と t を比較する(Counter を使う) sorted を使う  Input: s = &amp;ldquo;anagram&amp;rdquo;, t = &amp;ldquo;nagaram&amp;rdquo;
+ 文字数をカウントし、s と t を比較する  class Solution: def isAnagram(self, s: str, t: str) -&amp;gt; bool: if len(s)!= len(t): return False count_s, count_t = {}, {} for i in range(len(s)): count_s[s[i]] = 1 + count_s.get(s[i], 0) count_t[t[i]] = 1 + count_t.get(t[i], 0) for c in count_s: if count_s[c] !</description>
+    </item>
+    
+    <item>
+      <title>Happy Number</title>
+      <link>https://hirotoshimizu.github.io/posts/happy-number/</link>
+      <pubDate>Wed, 20 Oct 2021 11:27:43 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/happy-number/</guid>
+      <description>パターン1 7 → 49 → 97 → 130 → 10 → 1
+パターン2 2 → 4 → 16 → 37 → 30 → 9 → 81 → 65 → 61 → 37
+Algorithm
+  number n の次の数が何かを調べる
+  cycle に入ったかを調べる。
+  の調べ方 19 → 1^2 + 9^2 = 82
+  変数 output に 0 を代入し、 while で n がある間
+n = 19 の場合、
+1の位を取得 19 % 10 = 9</description>
+    </item>
+    
+    <item>
+      <title>Replace Elements With Greatest Element on Right Side</title>
+      <link>https://hirotoshimizu.github.io/posts/replace-elements-with-greatest-element-on-right-side/</link>
+      <pubDate>Mon, 18 Oct 2021 20:06:14 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/replace-elements-with-greatest-element-on-right-side/</guid>
+      <description>https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/
+一番最後が -1 になるので、 変数 right_max に -1 を入れる。
+後ろからループしていき、 現在の値 と right_max の大きい値を new_max に入れる。 現在の値に right_max を代入し、 right_max の値に nex_max を代入しループを続ける。
+ | 17 | 18 | 5 | 4 | 6 | 1 | -1 18 6 6 6 1 -1
+class Solution: def replaceElements(self, arr: List[int]) -&amp;gt; List[int]: right_max = -1 for i in range(len(arr) -1, -1, -1): new_max = max(right_max, arr[i]) arr[i] = right_max right_max = new_max </description>
+    </item>
+    
+    <item>
+      <title>Palindrome Linked List</title>
+      <link>https://hirotoshimizu.github.io/posts/palindrome-linked-list/</link>
+      <pubDate>Mon, 18 Oct 2021 16:55:29 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/palindrome-linked-list/</guid>
+      <description>この問題の解き方は pointer を2つ使う。
+  真ん中を探す Pointer を2つ使い、fast pointer と fast.next が null になるまで Pinter を進める。 その際 slow pointer が真ん中に位置する。
+  後ろ半分を反転させる slow pointer が真ん中に位置しているので、 slow が null になるまでループさせる。
+step.1 1 → 2 → 3 → null
+prev と curr を憶えておく必要がある。
+prev = null curr = 1
+curr の next node を temp に入れておく。 temp = 2
+null ← 1 2 → 3 → null
+step.2 prev = 1 curr = 2 temp = 3</description>
+    </item>
+    
+    <item>
+      <title>Merge Sorted Array</title>
+      <link>https://hirotoshimizu.github.io/posts/merge-sorted-array/</link>
+      <pubDate>Mon, 18 Oct 2021 14:52:25 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/merge-sorted-array/</guid>
+      <description>https://leetcode.com/problems/merge-sorted-array/
+この問題は pointer を 3つ使う。 1つ目は、nums1 の最後に pointer を設定。 2つ目は、nums1 の m に pointer を設定。 3つ目は、nums2 の 最後に pointer を設定。
+ | 1 | 2 | 3 | 0 | 0 | 0 |  ↑ ↑   | 2 | 5 | 6 |  ↑  nums1[m - 1] と nums2[n - 1] の値を比べて、 nums2[n - 1] の値が大きいので、 nums1[last] = nums2[n - 1] を設定する。 そして nums2 の n の pointer を -1 してずらす。 また nums1 の last の pointer も -1 する。</description>
+    </item>
+    
+    <item>
+      <title>House Robber</title>
+      <link>https://hirotoshimizu.github.io/posts/house-robber/</link>
+      <pubDate>Mon, 18 Oct 2021 14:04:56 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/house-robber/</guid>
+      <description>https://leetcode.com/problems/house-robber/
+隣り合った家は訪れることが出来ないので、 変数 rob1 と rob2 を用意する。
+for で全ての家を訪れ、 pointer のある位置＋rob1 と rob2 の大きい値を temp に入れる。
+rob1 pointerのある位置の前の前の家 rob2 pointerのある位置のは前の家
+rob2 が nums の最後の位置まで行くとループが終わるので return で rob2 を返す。
+class Solution: def rob(self, num: List[int])-&amp;gt; int: rob1, rob2 = 0, 0 for n in num: temp = max(rob1 + n, rob2) rob1 = rob2 rob2 = temp return rob2 </description>
+    </item>
+    
+    <item>
+      <title>Two Sum Ii Input Array Is Sorted</title>
+      <link>https://hirotoshimizu.github.io/posts/two-sum-ii-input-array-is-sorted/</link>
+      <pubDate>Mon, 18 Oct 2021 13:31:53 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/two-sum-ii-input-array-is-sorted/</guid>
+      <description>https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
+この問題は pointer を2つ使い target になる数を探していく。
+pointer を left と right に置き、 left と right の合計が target の値と同じかを計算する。
+合計が大きい場合は right の pointer を左にずらし、 合計が小さい場合は left の pointer を右にずらしていく。
+合計がtarget の値になるまでループして index の位置を返す。
+target = 9
+ | 1 | 3 | 4 | 5 | 7 | 11 | 　↑　↑
+1 + 11 = 12 &amp;gt; 9
+ | 1 | 3 | 4 | 5 | 7 | 11 | 　↑　↑</description>
+    </item>
+    
     <item>
       <title>Find the Town Judge</title>
       <link>https://hirotoshimizu.github.io/posts/find-the-town-judge/</link>

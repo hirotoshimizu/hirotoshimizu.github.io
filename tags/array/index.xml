@@ -5,7 +5,65 @@
     <link>https://hirotoshimizu.github.io/tags/array/</link>
     <description>Recent content in Array on Shiglass</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 21 Sep 2021 13:23:28 +0900</lastBuildDate><atom:link href="https://hirotoshimizu.github.io/tags/array/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 20 Oct 2021 11:27:43 +0900</lastBuildDate><atom:link href="https://hirotoshimizu.github.io/tags/array/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Happy Number</title>
+      <link>https://hirotoshimizu.github.io/posts/happy-number/</link>
+      <pubDate>Wed, 20 Oct 2021 11:27:43 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/happy-number/</guid>
+      <description>パターン1 7 → 49 → 97 → 130 → 10 → 1
+パターン2 2 → 4 → 16 → 37 → 30 → 9 → 81 → 65 → 61 → 37
+Algorithm
+  number n の次の数が何かを調べる
+  cycle に入ったかを調べる。
+  の調べ方 19 → 1^2 + 9^2 = 82
+  変数 output に 0 を代入し、 while で n がある間
+n = 19 の場合、
+1の位を取得 19 % 10 = 9</description>
+    </item>
+    
+    <item>
+      <title>Replace Elements With Greatest Element on Right Side</title>
+      <link>https://hirotoshimizu.github.io/posts/replace-elements-with-greatest-element-on-right-side/</link>
+      <pubDate>Mon, 18 Oct 2021 20:06:14 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/replace-elements-with-greatest-element-on-right-side/</guid>
+      <description>https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/
+一番最後が -1 になるので、 変数 right_max に -1 を入れる。
+後ろからループしていき、 現在の値 と right_max の大きい値を new_max に入れる。 現在の値に right_max を代入し、 right_max の値に nex_max を代入しループを続ける。
+ | 17 | 18 | 5 | 4 | 6 | 1 | -1 18 6 6 6 1 -1
+class Solution: def replaceElements(self, arr: List[int]) -&amp;gt; List[int]: right_max = -1 for i in range(len(arr) -1, -1, -1): new_max = max(right_max, arr[i]) arr[i] = right_max right_max = new_max </description>
+    </item>
+    
+    <item>
+      <title>Merge Sorted Array</title>
+      <link>https://hirotoshimizu.github.io/posts/merge-sorted-array/</link>
+      <pubDate>Mon, 18 Oct 2021 14:52:25 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/merge-sorted-array/</guid>
+      <description>https://leetcode.com/problems/merge-sorted-array/
+この問題は pointer を 3つ使う。 1つ目は、nums1 の最後に pointer を設定。 2つ目は、nums1 の m に pointer を設定。 3つ目は、nums2 の 最後に pointer を設定。
+ | 1 | 2 | 3 | 0 | 0 | 0 |  ↑ ↑   | 2 | 5 | 6 |  ↑  nums1[m - 1] と nums2[n - 1] の値を比べて、 nums2[n - 1] の値が大きいので、 nums1[last] = nums2[n - 1] を設定する。 そして nums2 の n の pointer を -1 してずらす。 また nums1 の last の pointer も -1 する。</description>
+    </item>
+    
+    <item>
+      <title>Two Sum Ii Input Array Is Sorted</title>
+      <link>https://hirotoshimizu.github.io/posts/two-sum-ii-input-array-is-sorted/</link>
+      <pubDate>Mon, 18 Oct 2021 13:31:53 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/two-sum-ii-input-array-is-sorted/</guid>
+      <description>https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
+この問題は pointer を2つ使い target になる数を探していく。
+pointer を left と right に置き、 left と right の合計が target の値と同じかを計算する。
+合計が大きい場合は right の pointer を左にずらし、 合計が小さい場合は left の pointer を右にずらしていく。
+合計がtarget の値になるまでループして index の位置を返す。
+target = 9
+ | 1 | 3 | 4 | 5 | 7 | 11 | 　↑　↑
+1 + 11 = 12 &amp;gt; 9
+ | 1 | 3 | 4 | 5 | 7 | 11 | 　↑　↑</description>
+    </item>
+    
     <item>
       <title>Maximum Subarray</title>
       <link>https://hirotoshimizu.github.io/posts/maximum-subarray/</link>

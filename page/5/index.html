@@ -149,84 +149,88 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>2021 07 11</h2>
+    <h2>Same Tree</h2>
   </header>
   <section class="entry-content">
-    <p>python での JSON の扱いについてわすれるのでメモ。
-json.dumps json.dumps()に入れた変数を JSON string に変換する。
-&gt;&gt;&gt; import json &gt;&gt;&gt; data = {&#39;abc&#39;: 123} &gt;&gt;&gt; type(data_json) &lt;class &#39;str&#39;&gt; &gt;&gt;&gt; data_json = json.dumps(data) &gt;&gt;&gt; data_json &#39;{&#34;abc&#34;: 123}&#39; json.loads json.loads(JSON string) で python dictionary に型を変換する。
-&gt;&gt;&gt; import json &gt;&gt;&gt; data = {&#39;abc&#39;: 123} &gt;&gt;&gt; type(data_json) &lt;class &#39;str&#39;&gt; &gt;&gt;&gt; data_json = json.dumps(data) &gt;&gt;&gt; data_json &#39;{&#34;abc&#34;: 123}&#39; &gt;&gt;&gt; load_json = json.loads(data_json) &gt;&gt;&gt; load_json {&#39;abc&#39;: 123} &gt;&gt;&gt; type(load_json) &lt;class &#39;dict&#39;&gt; &gt;&gt;&gt; load_json[&#39;abc&#39;] 123 Django Rest Framework...</p>
+    <p>DFS recursive
+Base Case は p,q が Null の場合同じ Tree なので return する。
+もし p,q のどちらかの値が違う場合、その Tree は同じではないので、 False を return する。 また、どちらかの値が Null の場合同じ Tree ではないので、この場合も False を　return する。
+Time complexity: O(n) Mem complexity: O(n)
+# Definition for a binary tree node. # class TreeNode(object): # def __init__(self, val=0, left=None, right=None): # self.val = val # self.left = left # self.right = right class Solution(object): def isSameTree(self, p, q): &#34;&#34;&#34; :type p: TreeNode :type q: TreeNode :rtype: bool &#34;&#34;&#34; if not p and not q: return True if not p or not q or p....</p>
   </section>
-  <footer class="entry-footer">July 9, 2021</footer>
-  <a class="entry-link" aria-label="post link to 2021 07 11" href="https://hirotoshimizu.github.io/posts/2021-07-11/"></a>
+  <footer class="entry-footer">October 1, 2021</footer>
+  <a class="entry-link" aria-label="post link to Same Tree" href="https://hirotoshimizu.github.io/posts/same-tree/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>APIの設計</h2>
+    <h2>Maximum Depth of Binary Tree</h2>
   </header>
   <section class="entry-content">
-    <p>Web API the good parts
-エンドポイントの基本的な設計 覚えやすく、どんな機能を持つURIなのかがひと目でわかる  短くて入力しやすいURI 人間が読んで理解できるURL 大文字小文字が混在していないURI 改造しやすい（Hackableな）URI サーバー側のアーキテクチャが反映されていないURI  どんなソフトウェア、言語を利用しているのか。 ディレクトリやシステム構成がどうなっているのか。   ルールが統一されたURI  リソースにアクセスするための設計の注意点  複数形の名詞を利用する 利用する単語に気をつける スペースやエンコードを必要とする文字を使わない 単語をつなげる必要がある場合はハイフンを利用する  リソースの一覧取得のエンドポイントが検索を兼ねる。 絞り込み検索はパラメーターを設定する。
-検索に相対位置を利用する問題点 データ数が膨大になるとpageやoffsetを指定されていると「先頭から何件目か」を調べるために先頭から数を数える処理が行われるため遅くなる。 また、更新頻度が高いデータの場合データに不整合が生じる。
-絶対位置でデータを問題点 絶対位置指定とは、オフセットで相対位置を指定する代わりに、これまで取得した最後のデータのIDや時間を記録しておいて、「このIDより前のもの」や「この時刻より古いもの」と言った指定を行う方法。　配列とフォーマット オブジェクトで配列を包むメリット  レスポンスデータが何をしていものかがわかりやすくなる レスポンスデータをオブジェクトに統一することができる。 セキュリティ上のリスクを避けることができる  トップれべるが配列であるJSONは、JSONインジェクションに対するリスクが大きくなる。
-続きがある場合どうデータを返すべきか 例えば20件データを返すためには最大21件の取得を行ってみて、実際に21件取得できれば、 「hasNext」といった名前で結果を含めてあげれば良い。</p>
+    <p>回答のアプローチは Recursive DFS BFS Iterative DFS
+Base case root が empty children が Null
+Recursive DFS
+Time complexity: O(n) Mem complexity: O(n)
+class Solution(object): def maxDepth(self, root): &#34;&#34;&#34; :type root: TreeNode :rtype: int &#34;&#34;&#34; if not root: return 0 return 1 &#43; max(self.maxDepth(root.left), self.maxDepth(root.right)) BFS
+BFS を使う場合は Queue を使う。
+ 3  ／　＼ 9 20 ／＼ 15 7
+ | 3 | 9 | 20 | 15 | 7 | 1 2 2 3 3 ← Level...</p>
   </section>
-  <footer class="entry-footer">July 9, 2021</footer>
-  <a class="entry-link" aria-label="post link to APIの設計" href="https://hirotoshimizu.github.io/posts/2021-07-09/"></a>
+  <footer class="entry-footer">September 30, 2021</footer>
+  <a class="entry-link" aria-label="post link to Maximum Depth of Binary Tree" href="https://hirotoshimizu.github.io/posts/maximum-depth-of-binary-tree/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>2021 07 08</h2>
+    <h2>Lowest Common Ancestor of a Binary Search Tree</h2>
   </header>
   <section class="entry-content">
-    <p>DRFでオブジェクトを作成したとき、 デフォルトで、 作成したオブジェクトを含むディクショナリー型でデータを返す。
-keys() Pythonの組み込み関数。
-keys() dict = {&#34;A&#34;: &#34;Abalone&#34;, &#34;B&#34;: &#34;bluefin tuna&#34;, &#34;C&#34;: &#34;cod&#34;} print(dict.keys()) &gt;&gt;&gt;dict_keys([&#39;A&#39;, &#39;B&#39;, &#39;C&#39;]) dict = {&#34;A&#34;: &#34;Abalone&#34;, &#34;B&#34;: &#34;bluefin tuna&#34;, &#34;C&#34;: &#34;cod&#34;} for key in dict.keys(): print(key) &gt;&gt;&gt;A &gt;&gt;&gt;B &gt;&gt;&gt;C getattr Pythonの組み込み関数。
-getattr(object, name[,default]) 第一引数に指定された object の値を返す。 第二引数の name は文字列である必要があり、文字列が object の属性の一つの名前であった場合、戻り値はその属性の値になる。
-query_params request.GETと同義語。
-DRF では query_params を使用することを推奨。
-DRF ドキュメント</p>
+    <p>https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
+この問題の回答方法としては Recursive と Iterative なアプローチがある。
+Recursive Approach
+アルゴリズム
+ ルートの Node から始める。 p と q が右の subtree にある場合、1から右のsubtreeを探すようにする。 p と q が左の subtree にある場合、1から左のsubtreeを探すようにする。 もし 2 と 3 のステップが not true の場合、p と q の共通の Node を見つけたこととなる。  Time complexity: O(n)
+Mem complexity: O(n)
+# Definition for a binary tree node. # class TreeNode(object): # def __init__(self, x): # self.val = x # self.left = None # self.right = None class Solution(object): def lowestCommonAncestor(self, root, p, q): &#34;&#34;&#34; :type root: TreeNode :type p: TreeNode :type q: TreeNode :rtype: TreeNode &#34;&#34;&#34; parent_val = root....</p>
   </section>
-  <footer class="entry-footer">July 8, 2021</footer>
-  <a class="entry-link" aria-label="post link to 2021 07 08" href="https://hirotoshimizu.github.io/posts/2021-07-08/"></a>
+  <footer class="entry-footer">September 30, 2021</footer>
+  <a class="entry-link" aria-label="post link to Lowest Common Ancestor of a Binary Search Tree" href="https://hirotoshimizu.github.io/posts/lowest-common-ancestor-of-a-binary-search-tree/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Django Rest Framework</h2>
+    <h2>Climbing Stairs</h2>
   </header>
   <section class="entry-content">
-    <p>APIClient APIClientは Djang の Clientクラスを拡張したもの .get()、.post()、.put()、.pathch()、.delete()、.head()、.options()が利用可能。
-例
-from rest_framework.test import APIClient client = APIClient() client.post(&#39;/notes/&#39;, {&#39;title&#39;: &#39;new idea&#39;}, format=&#39;json&#39;) status from rest_framework import status 人間が読むことができるステータスコードを含む。 テストの際に理解が簡単 github
-refresh_from_db() モデルのバリューをリフレッシュ使うのに使用。 このメソッドが引数なしで呼ばれると
- モデル上の遅延評価されない全てのフィールドはその時点でデータベース上に存在する値に更新されます。 キャッシュされたリレーションはリロードされたインスタンスに削除される。 Django ドキュメント  force_authenticate() テストする際に強制的に認証をリクエストする
-force_authenticate(request, user=None, token=None)が呼ばれる時 user か token のいずれか、または両方を設定できる。
-GenericViewSet GenericViewSet クラスは GenericAPIView の継承し、get_object、get_queryset を提供し、デフォルトでは
-GenericViewSetクラスを使用するには、クラスをオーバーライドして、必要なmixinクラスをミックスインするか、アクションの実装を明示的に定義します。
-DRF ドキュメント
-ModelSerializer ModelSerializerクラスはSerializer  class とモデルの一致するフィールドを自動で作成する
-ModelSerializer クラスは Serializer と同じだが、 *モデルを基にフィールドを自動で作成する *unique_together のようなserializerのためのvalidatorを自動で作成する *デフォルトで .create() .update() 含む。...</p>
+    <p>https://leetcode.com/problems/climbing-stairs/
+n = 5
+ 0 ／　＼ 1 2 ／＼ ／＼ 2 3 3 4 ／＼ ／＼ ／＼ ／＼ 3 4 4 5 4 5 5 6  ／＼ ／＼ ／＼　／＼ 4 5 5 6 5 6　5 6 ／＼ 5 6
+n が 5 steps の場合、 8通りの選択が出来る。
+DFS でも出来るかが 2^n となる。
+そのため Dynamic Programming を使う。
+同じ計算をする値は memoize する
+ | 8 | 5 | 3 | 2 | 1 | 1 | n に辿り着くまでの数 0 1 2 3 4 5(step) one two...</p>
   </section>
-  <footer class="entry-footer">July 7, 2021</footer>
-  <a class="entry-link" aria-label="post link to Django Rest Framework" href="https://hirotoshimizu.github.io/posts/django-rest-framework/"></a>
+  <footer class="entry-footer">September 26, 2021</footer>
+  <a class="entry-link" aria-label="post link to Climbing Stairs" href="https://hirotoshimizu.github.io/posts/climbing-stairs/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>GitHub Pages で静的サイトの公開方法</h2>
+    <h2>Meeting Rooms</h2>
   </header>
   <section class="entry-content">
-    <p>公開したいページのあるリポジトリの Settings をクリック。
-サイドナビの　Pages をクリック。
-公開したいブランチを選択
-事前にCNAMEでドメインを設定しておいて
-設定したドメインを適用</p>
+    <p>https://leetcode.com/problems/meeting-rooms/
+先ず始めに intervals のスタート時間でソートする。
+intervals の時間がソートされたため、 ループで最初の会議の終わりの時間と次の会議の始まりの時間を比較し、 最初の会議の終わりの時間 が 次の会議の始まりの時間より大きい場合、 会議の時間が重なっているので、False を返す。
+次の会議の開始時間 が 前の会議の終わり時間より小さい場合ループを続ける。
+ループする際、次のリストと比較するため for の range で -1 をする。
+ソートをするので Time complexity は O(n log n) となる。
+Time complexity: O(n log n) Mem complexity: O(1)
+class Solution(object): def canAttendMeetings(self, intervals): &#34;&#34;&#34; :type intervals: List[List[int]] :rtype: bool &#34;&#34;&#34; intervals.sort() for i in range(len(intervals) -1): if intervals[i][1] &gt; intervals[i &#43; 1][0]: return False return True </p>
   </section>
-  <footer class="entry-footer">July 6, 2021</footer>
-  <a class="entry-link" aria-label="post link to GitHub Pages で静的サイトの公開方法" href="https://hirotoshimizu.github.io/posts/host-a-website-on-github/"></a>
+  <footer class="entry-footer">September 25, 2021</footer>
+  <a class="entry-link" aria-label="post link to Meeting Rooms" href="https://hirotoshimizu.github.io/posts/meeting-rooms/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
@@ -236,7 +240,7 @@ ModelSerializer クラスは Serializer と同じだが、 *モデルを基に�
 </footer>
     </main>
     <footer class="footer">
-    <span>&copy; 2021 <a href="https://hirotoshimizu.github.io">Shiglass</a></span>
+    <span>&copy; 2022 <a href="https://hirotoshimizu.github.io">Shiglass</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &

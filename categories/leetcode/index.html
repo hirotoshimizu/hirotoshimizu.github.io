@@ -138,89 +138,76 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
-    <h2>Find the Town Judge</h2>
+    <h2>Longest Palindromic Substring</h2>
   </header>
   <section class="entry-content">
-    <p>https://leetcode.com/problems/find-the-town-judge/
-graphの問題で、trust のペア, [a, b] は a から b に向かう directed edge である。
-例えば、 N = 5 で trust trust = [[1,3],[2,3],[4,3],[4,1],[5,3],[5,1],[5,4]] の場合下記のような graph になる。
-3 は 1,2,4,5 から信頼されていて、 誰も信頼していない。 そのため、judge は 3 になる。
-この graph theory の、 outdegree の辺は、 その人が他の人を信頼している数になる。
-indegree の辺は他の人から信頼されている数になる。
-そのため indegree と outdegree によって誰が judge か判断できる。
-judge は outdegree が 0 で indegree が N - 1 となる。
-trust をループして全員の indegree, outdegree の数を調査できる。
-indegree = [0] * (N &#43; 1) outdegree = [0] * (N &#43; 1) for a, b in trust: outdegree[a] &#43;= 1 indegree[b] &#43;= 1 そして、1 ～ N 人全員をループして、チェックすれば、 judge がわかる。...</p>
+    <p>https://leetcode.com/problems/longest-palindromic-substring/
+class Solution: def longestPalindrome(self, s: str) -&gt; str: res = &#39;&#39; for i in range(len(s)): # odd case tmp = self.helper(s, i, i) if len(tmp) &gt; len(res): res = tmp # even tmp = self.helper(s, i, i&#43;1) if len(tmp) &gt; len(res): res = tmp return res def helper(self, s, l, r): while l &gt;= 0 and r &lt; len(s) and s[l] == s[r]: l -= 1 r &#43;= 1 return s[l&#43;1:r] </p>
   </section>
-  <footer class="entry-footer">October 17, 2021</footer>
-  <a class="entry-link" aria-label="post link to Find the Town Judge" href="https://hirotoshimizu.github.io/posts/find-the-town-judge/"></a>
+  <footer class="entry-footer">December 12, 2021</footer>
+  <a class="entry-link" aria-label="post link to Longest Palindromic Substring" href="https://hirotoshimizu.github.io/posts/longest-palindromic-substring/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
-    <h2>Invert Binary Tree</h2>
+    <h2>Longest Increasing Subsequence</h2>
   </header>
   <section class="entry-content">
-    <p>DFS
-Base Case root が Null は None を返す。
-Tree を反転して値が同じなら True を返すので、
-children node の値を swap して同じか確かめる。
-Time complexity: O(n)
-Mem complexity: O(n)
-# Definition for a binary tree node. # class TreeNode(object): # def __init__(self, val=0, left=None, right=None): # self.val = val # self.left = left # self.right = right class Solution(object): def invertTree(self, root): &#34;&#34;&#34; :type root: TreeNode :rtype: TreeNode &#34;&#34;&#34; if not root: return None tmp = root....</p>
+    <p>https://leetcode.com/problems/longest-increasing-subsequence/
+LIS はどんな場合でも最低1になるので、 1を入れた、list を作る。
+reverse order でループし、 ネストしたループで最初にループしている i 以降の数と比較する。
+nums[i] と nums[j] で nums[i] が小さい場合、 subsequence となるので、 LIS[i] に max(LIS[i], 1 &#43; LIS[j]) を入れる。 j は i 以降の数字を見ているので、max()を使わないと LISの最後の 1 で置き換えて 2 となってしまうので注意。
+class Solution: def lengthOfLIS(self, nums: List[int]) -&gt; int: LIS = [1] * len(nums) for i in range(len(nums) - 1, -1, -1): for j in range(i &#43; 1, len(nums)): if nums[i] &lt; nums[j]: LIS[i] = max(LIS[i], 1 &#43; LIS[j]) return max(LIS) </p>
   </section>
-  <footer class="entry-footer">October 1, 2021</footer>
-  <a class="entry-link" aria-label="post link to Invert Binary Tree" href="https://hirotoshimizu.github.io/posts/invert-binary-tree/"></a>
+  <footer class="entry-footer">December 12, 2021</footer>
+  <a class="entry-link" aria-label="post link to Longest Increasing Subsequence" href="https://hirotoshimizu.github.io/posts/longest-increasing-subsequence/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
-    <h2>Same Tree</h2>
+    <h2>Longest Common Subsequence</h2>
   </header>
   <section class="entry-content">
-    <p>DFS recursive
-Base Case は p,q が Null の場合同じ Tree なので return する。
-もし p,q のどちらかの値が違う場合、その Tree は同じではないので、 False を return する。 また、どちらかの値が Null の場合同じ Tree ではないので、この場合も False を　return する。
-Time complexity: O(n) Mem complexity: O(n)
-# Definition for a binary tree node. # class TreeNode(object): # def __init__(self, val=0, left=None, right=None): # self.val = val # self.left = left # self.right = right class Solution(object): def isSameTree(self, p, q): &#34;&#34;&#34; :type p: TreeNode :type q: TreeNode :rtype: bool &#34;&#34;&#34; if not p and not q: return True if not p or not q or p....</p>
+    <p>https://leetcode.com/problems/longest-common-subsequence/
+2d grid を作る。 row, col にそれぞれ、1行、1列追加して 0 を入れる。
+grid の右下からループし、 縦横が同じ文字でマッチしたら、斜め左上に進む。 その際に1を足す。
+マッチしなかったら、右横か下のどちらか大きい数字を入れる。
+ループが終わりgrid[0][0] の箇所に 1番長い subsequence の数が入る。
+class Solution: def longestCommonSubsequence(self, text1: str, text2: str) -&gt; int: dp = [[0 for j in range(len(text2) &#43; 1)] for i in range(len(text1) &#43; 1)] for i in range(len(text1) - 1, -1, -1): for j in range(len(text2) - 1, -1, -1): if text1[i] == text2[j]: dp[i][j] = 1 &#43; dp[i &#43; 1][j &#43; 1] else: dp[i][j] = max(dp[i &#43; 1][j], dp[i][j &#43; 1]) return dp[0][0] </p>
   </section>
-  <footer class="entry-footer">October 1, 2021</footer>
-  <a class="entry-link" aria-label="post link to Same Tree" href="https://hirotoshimizu.github.io/posts/same-tree/"></a>
+  <footer class="entry-footer">December 11, 2021</footer>
+  <a class="entry-link" aria-label="post link to Longest Common Subsequence" href="https://hirotoshimizu.github.io/posts/longest-common-subsequence/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
-    <h2>Maximum Depth of Binary Tree</h2>
+    <h2>Traverse a Tree</h2>
   </header>
   <section class="entry-content">
-    <p>回答のアプローチは Recursive DFS BFS Iterative DFS
-Base case root が empty children が Null
-Recursive DFS
-Time complexity: O(n) Mem complexity: O(n)
-class Solution(object): def maxDepth(self, root): &#34;&#34;&#34; :type root: TreeNode :rtype: int &#34;&#34;&#34; if not root: return 0 return 1 &#43; max(self.maxDepth(root.left), self.maxDepth(root.right)) BFS
-BFS を使う場合は Queue を使う。
- 3  ／　＼ 9 20 ／＼ 15 7
- | 3 | 9 | 20 | 15 | 7 | 1 2 2 3 3 ← Level...</p>
+    <p>F / \ B G / \ \ A D I / \ / C E H  Pre-order Traversal root left subtree right subtree
+F B A D C E G I H
+https://leetcode.com/problems/binary-tree-preorder-traversal/
+Iterative approach
+class Solution(object): def preorderTraversal(self, root: Optional[TreeNode]) -&gt; List[int]: &#34;&#34;&#34; :type root: TreeNode :rtype: List[int] &#34;&#34;&#34; res, stack = [], [(root, False)] while stack: node, visited = stack.pop() if node: if visited: res.append(node.val) else: stack....</p>
   </section>
-  <footer class="entry-footer">September 30, 2021</footer>
-  <a class="entry-link" aria-label="post link to Maximum Depth of Binary Tree" href="https://hirotoshimizu.github.io/posts/maximum-depth-of-binary-tree/"></a>
+  <footer class="entry-footer">October 22, 2021</footer>
+  <a class="entry-link" aria-label="post link to Traverse a Tree" href="https://hirotoshimizu.github.io/posts/traverse-a-tree/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
-    <h2>Lowest Common Ancestor of a Binary Search Tree</h2>
+    <h2>Search Insert Position</h2>
   </header>
   <section class="entry-content">
-    <p>https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
-この問題の回答方法としては Recursive と Iterative なアプローチがある。
-Recursive Approach
-アルゴリズム
- ルートの Node から始める。 p と q が右の subtree にある場合、1から右のsubtreeを探すようにする。 p と q が左の subtree にある場合、1から左のsubtreeを探すようにする。 もし 2 と 3 のステップが not true の場合、p と q の共通の Node を見つけたこととなる。  Time complexity: O(n)
-Mem complexity: O(n)
-# Definition for a binary tree node. # class TreeNode(object): # def __init__(self, x): # self.val = x # self.left = None # self.right = None class Solution(object): def lowestCommonAncestor(self, root, p, q): &#34;&#34;&#34; :type root: TreeNode :type p: TreeNode :type q: TreeNode :rtype: TreeNode &#34;&#34;&#34; parent_val = root....</p>
+    <p>https://leetcode.com/problems/search-insert-position/
+algorithm の runtime は O(log n) である必要があるため、 binary search で target の数の位置を調べる。
+変数 left に 0、 right に len(nums) - 1 を設定する。
+(left &#43; right) // 2 で真ん中の値が取得出来るので、 真ん中の位置を mid とする。
+nums の mid の値が target なら、mid の index の値を返す。 もし、target の値が mid より大きい場合、 left を mid &#43; 1 にする。 target の値が mid より小さい場合、 right を mid - 1 にする。
+[1, 3, 5, 6] で target = 2 の場合、...</p>
   </section>
-  <footer class="entry-footer">September 30, 2021</footer>
-  <a class="entry-link" aria-label="post link to Lowest Common Ancestor of a Binary Search Tree" href="https://hirotoshimizu.github.io/posts/lowest-common-ancestor-of-a-binary-search-tree/"></a>
+  <footer class="entry-footer">October 21, 2021</footer>
+  <a class="entry-link" aria-label="post link to Search Insert Position" href="https://hirotoshimizu.github.io/posts/search-insert-position/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
@@ -229,7 +216,7 @@ Mem complexity: O(n)
 </footer>
     </main>
     <footer class="footer">
-    <span>&copy; 2021 <a href="https://hirotoshimizu.github.io">Shiglass</a></span>
+    <span>&copy; 2022 <a href="https://hirotoshimizu.github.io">Shiglass</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &

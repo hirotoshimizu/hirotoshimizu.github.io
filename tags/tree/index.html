@@ -138,6 +138,36 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
+    <h2>Traverse a Tree</h2>
+  </header>
+  <section class="entry-content">
+    <p>F / \ B G / \ \ A D I / \ / C E H  Pre-order Traversal root left subtree right subtree
+F B A D C E G I H
+https://leetcode.com/problems/binary-tree-preorder-traversal/
+Iterative approach
+class Solution(object): def preorderTraversal(self, root: Optional[TreeNode]) -&gt; List[int]: &#34;&#34;&#34; :type root: TreeNode :rtype: List[int] &#34;&#34;&#34; res, stack = [], [(root, False)] while stack: node, visited = stack.pop() if node: if visited: res.append(node.val) else: stack....</p>
+  </section>
+  <footer class="entry-footer">October 22, 2021</footer>
+  <a class="entry-link" aria-label="post link to Traverse a Tree" href="https://hirotoshimizu.github.io/posts/traverse-a-tree/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>Path Sum</h2>
+  </header>
+  <section class="entry-content">
+    <p>https://leetcode.com/problems/path-sum/solution/
+ノードがリーフでない場合は、子に対してhasPathSumメソッドを再帰的に呼び出し、合計を現在のノードの値だけ減らす。
+ノードがリーフの場合、現在の合計がゼロであるかどうか、つまり最初の合計が検出されたかどうかを確認します。
+Base case は、root が none ということはリーフの下の node を確認してるので、sum が 0 になっていないので False を返す。
+class Solution: def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -&gt; bool: if not root: return False targetSum -= root.val if not root.left and not root.right: # if reach a leaf return targetSum == 0 return self.hasPathSum(root.left, targetSum) or self.hasPathSum(root.right, targetSum) </p>
+  </section>
+  <footer class="entry-footer">October 21, 2021</footer>
+  <a class="entry-link" aria-label="post link to Path Sum" href="https://hirotoshimizu.github.io/posts/path-sum/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
     <h2>Invert Binary Tree</h2>
   </header>
   <section class="entry-content">
@@ -185,26 +215,14 @@ BFS を使う場合は Queue を使う。
   <footer class="entry-footer">September 30, 2021</footer>
   <a class="entry-link" aria-label="post link to Maximum Depth of Binary Tree" href="https://hirotoshimizu.github.io/posts/maximum-depth-of-binary-tree/"></a>
 </article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2>Lowest Common Ancestor of a Binary Search Tree</h2>
-  </header>
-  <section class="entry-content">
-    <p>https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
-この問題の回答方法としては Recursive と Iterative なアプローチがある。
-Recursive Approach
-アルゴリズム
- ルートの Node から始める。 p と q が右の subtree にある場合、1から右のsubtreeを探すようにする。 p と q が左の subtree にある場合、1から左のsubtreeを探すようにする。 もし 2 と 3 のステップが not true の場合、p と q の共通の Node を見つけたこととなる。  Time complexity: O(n)
-Mem complexity: O(n)
-# Definition for a binary tree node. # class TreeNode(object): # def __init__(self, x): # self.val = x # self.left = None # self.right = None class Solution(object): def lowestCommonAncestor(self, root, p, q): &#34;&#34;&#34; :type root: TreeNode :type p: TreeNode :type q: TreeNode :rtype: TreeNode &#34;&#34;&#34; parent_val = root....</p>
-  </section>
-  <footer class="entry-footer">September 30, 2021</footer>
-  <a class="entry-link" aria-label="post link to Lowest Common Ancestor of a Binary Search Tree" href="https://hirotoshimizu.github.io/posts/lowest-common-ancestor-of-a-binary-search-tree/"></a>
-</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="next" href="https://hirotoshimizu.github.io/tags/tree/page/2/">Next Page »</a>
+  </nav>
+</footer>
     </main>
     <footer class="footer">
-    <span>&copy; 2021 <a href="https://hirotoshimizu.github.io">Shiglass</a></span>
+    <span>&copy; 2022 <a href="https://hirotoshimizu.github.io">Shiglass</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &

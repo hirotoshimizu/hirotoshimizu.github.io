@@ -149,87 +149,87 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>2021 07 29</h2>
+    <h2>Merge Sorted Array</h2>
   </header>
   <section class="entry-content">
-    <p>Responses HttpResponse オブジェクトと違い、レンダリングされたコンテンツでResponseオブジェクトをインスタンス化する必要がない。 その代わりにレンダリングされていないデータをパスする必要がある。
-Responseクラスで使用されるレンダラーは、Djangoモデルインスタンスなどの複雑なデータ型をネイティブに処理できないため、Responseオブジェクトを作成する前に、データをプリミティブデータ型にシリアル化する必要があります。
-REST frameworkのSerializerクラスを使ってこのデータをシリアライズするか、カスタムシリアライザーを使用する。
-引数
- data : レスポンス用のシリアライズされたデータ status : レスポンス用のステータスコード　デフォルトでは 200 template_name : HTMLRenderer が選択されているならテンプレート名 header : レスポンス用の辞書型 HTTP ヘッダー content_type : レスポンス用のコンテンツタイプ。一般的にコンテンツネゴシエーションのrenderer によって自動的に設定される。しかし、場合によっては明示的にコンテンツタイプを特定する必要もある。  プロジェクトが既にある場合 ユーザーモデルは拡張する。
-最初から作成する場合は モデルをオーバーライドして独自のカスタムモデルを作成
-カスタムユーザーモデルは</p>
+    <p>https://leetcode.com/problems/merge-sorted-array/
+この問題は pointer を 3つ使う。 1つ目は、nums1 の最後に pointer を設定。 2つ目は、nums1 の m に pointer を設定。 3つ目は、nums2 の 最後に pointer を設定。
+ | 1 | 2 | 3 | 0 | 0 | 0 |  ↑ ↑   | 2 | 5 | 6 |  ↑  nums1[m - 1] と nums2[n - 1] の値を比べて、 nums2[n - 1] の値が大きいので、 nums1[last] = nums2[n - 1] を設定する。 そして nums2 の n の pointer を -1 してずらす。 また nums1 の last の pointer も -1 する。...</p>
   </section>
-  <footer class="entry-footer">July 28, 2021</footer>
-  <a class="entry-link" aria-label="post link to 2021 07 29" href="https://hirotoshimizu.github.io/posts/2021-07-29/"></a>
+  <footer class="entry-footer">October 18, 2021</footer>
+  <a class="entry-link" aria-label="post link to Merge Sorted Array" href="https://hirotoshimizu.github.io/posts/merge-sorted-array/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>2021 07 28</h2>
+    <h2>House Robber</h2>
   </header>
   <section class="entry-content">
-    <p>APIView REST frameworkは Djangoの View class のサブクラスである、 APIViewclassを提供する。
-APIViewclass は下記のようにView classとは異なる。
-  handler methods を通ったRequests は REST frameworkの Request インスタンスになり。 Django の HttpRequestインスタンスではない。
-  handler methods の return は REST frameworkの Responseとなり、 その view は content negotiation と response に一致した renderer を返す。
-  どの APIException のエクセプションは正しいレスポンスに仲介される。
-  来るリクエストは認証され、handler methodsに送る前に、 適切な権限やスロットルチェックが行われる。
-  DRF ドキュメント
-ViewSet viewSet classは APIViewを継承している。 viewsetで API policy をコントロールするにあたり、 スタンダードの属性であるpermission_classes,authentication_classesが使える。
-viewSet classはどのアクションも含んでいないので、 クラスをオーバーライドして明示的に定義する必要がある。...</p>
+    <p>https://leetcode.com/problems/house-robber/
+隣り合った家は訪れることが出来ないので、 変数 rob1 と rob2 を用意する。
+for で全ての家を訪れ、 pointer のある位置＋rob1 と rob2 の大きい値を temp に入れる。
+rob1 pointerのある位置の前の前の家 rob2 pointerのある位置のは前の家
+rob2 が nums の最後の位置まで行くとループが終わるので return で rob2 を返す。
+class Solution: def rob(self, num: List[int])-&gt; int: rob1, rob2 = 0, 0 for n in num: temp = max(rob1 &#43; n, rob2) rob1 = rob2 rob2 = temp return rob2 </p>
   </section>
-  <footer class="entry-footer">July 27, 2021</footer>
-  <a class="entry-link" aria-label="post link to 2021 07 28" href="https://hirotoshimizu.github.io/posts/2021-07-28/"></a>
+  <footer class="entry-footer">October 18, 2021</footer>
+  <a class="entry-link" aria-label="post link to House Robber" href="https://hirotoshimizu.github.io/posts/house-robber/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Djnagoの管理画面からCSVファイルをアップしてデータ登録</h2>
+    <h2>Two Sum Ii Input Array Is Sorted</h2>
   </header>
   <section class="entry-content">
-    <p>今回は restaurants というアプリを作成し進めていきます。
-CSVのファイルは管理画面のレストランの一覧画面 http://127.0.0.1:8000/admin/restaurants/restaurant/ からアップ。
-アプリの作成
-python manage.py startapp restaurants モデルは restaurant で作成。
-Admin テンプレートの Override templatesフォルダは manage.py と同じ階層に作成。
-templates/admin/restaurants/restaurant/change_list.html を作成
-{% extends &#39;admin/change_list.html&#39; %} {% load static %} {% block content %} &lt;a href=&#34;upload-csv/&#34;&gt;Upload a csv file&lt;/a&gt; {{ block.super }} {% endblock %} {{ block.super }} は親のテンプレートコンテンツ。
-Django change_list.html
-Custom Admin Page の作成 上記で作成したリンク先の upload-csv/ の URL を設定
-restaurants/admin.py の RestaurantAdmin で get_urls()を設定。
-def get_urls(self): urls = super().get_urls() new_urls = [ path(&#39;upload-csv/&#39;, self....</p>
+    <p>https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
+この問題は pointer を2つ使い target になる数を探していく。
+pointer を left と right に置き、 left と right の合計が target の値と同じかを計算する。
+合計が大きい場合は right の pointer を左にずらし、 合計が小さい場合は left の pointer を右にずらしていく。
+合計がtarget の値になるまでループして index の位置を返す。
+target = 9
+ | 1 | 3 | 4 | 5 | 7 | 11 | 　↑　↑
+1 &#43; 11 = 12 &gt; 9
+ | 1 | 3 | 4 | 5 | 7 | 11 | 　↑　↑...</p>
   </section>
-  <footer class="entry-footer">July 19, 2021</footer>
-  <a class="entry-link" aria-label="post link to Djnagoの管理画面からCSVファイルをアップしてデータ登録" href="https://hirotoshimizu.github.io/posts/2021-07-19/"></a>
+  <footer class="entry-footer">October 18, 2021</footer>
+  <a class="entry-link" aria-label="post link to Two Sum Ii Input Array Is Sorted" href="https://hirotoshimizu.github.io/posts/two-sum-ii-input-array-is-sorted/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>2021 07 13</h2>
+    <h2>Find the Town Judge</h2>
   </header>
   <section class="entry-content">
-    <p>PrimaryKeyRelatedField PrimaryKeyRelatedField を使用することでリレーションのあるテーブルのプライマリーキーを取得することが出来る。
-class StatusSerializer(serializers.ModelSerializer): uri = serializers.SerializerMethodField(read_only=True) user = UserPublicSerializer(read_only=True) user_id = serializers.PrimaryKeyRelatedField(source=&#39;user&#39;, read_only=True) class Meta: model = Status fields = [ &#39;uri&#39;, &#39;user_id&#39;, &#39;id&#39;, &#39;user&#39;, &#39;content&#39;, &#39;image&#39; ] read_only_fields = [&#39;user&#39;]  &#34;results&#34;: [ { &#34;uri&#34;: &#34;http://127.0.0.1:8000/api/status/1/&#34;, &#34;id&#34;: 7, &#34;user_id&#34;: 1, &#34;user&#34;: { &#34;id&#34;: 1, &#34;username&#34;: &#34;test&#34;, &#34;uri&#34;: &#34;http://127.0.0.1:8000/api/user/test/&#34; }, &#34;content&#34;: &#34;do some stuff here&#34;, &#34;image&#34;: &#34;http://127.0.0.1:8000/media/status/test/images.png&#34; }, DRF ドキュメント
-HyperlinkedRelatedField PrimaryKeyRelatedField を使用することでリレーションのあるテーブルのターゲットのハイパーリンクを取得することが出来る。
-class StatusSerializer(serializers.ModelSerializer): uri = serializers.SerializerMethodField(read_only=True) user = UserPublicSerializer(read_only=True) user_id = serializers....</p>
+    <p>https://leetcode.com/problems/find-the-town-judge/
+graphの問題で、trust のペア, [a, b] は a から b に向かう directed edge である。
+例えば、 N = 5 で trust trust = [[1,3],[2,3],[4,3],[4,1],[5,3],[5,1],[5,4]] の場合下記のような graph になる。
+3 は 1,2,4,5 から信頼されていて、 誰も信頼していない。 そのため、judge は 3 になる。
+この graph theory の、 outdegree の辺は、 その人が他の人を信頼している数になる。
+indegree の辺は他の人から信頼されている数になる。
+そのため indegree と outdegree によって誰が judge か判断できる。
+judge は outdegree が 0 で indegree が N - 1 となる。
+trust をループして全員の indegree, outdegree の数を調査できる。
+indegree = [0] * (N &#43; 1) outdegree = [0] * (N &#43; 1) for a, b in trust: outdegree[a] &#43;= 1 indegree[b] &#43;= 1 そして、1 ～ N 人全員をループして、チェックすれば、 judge がわかる。...</p>
   </section>
-  <footer class="entry-footer">July 13, 2021</footer>
-  <a class="entry-link" aria-label="post link to 2021 07 13" href="https://hirotoshimizu.github.io/posts/2021-07-14/"></a>
+  <footer class="entry-footer">October 17, 2021</footer>
+  <a class="entry-link" aria-label="post link to Find the Town Judge" href="https://hirotoshimizu.github.io/posts/find-the-town-judge/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>2021 07 12</h2>
+    <h2>Invert Binary Tree</h2>
   </header>
   <section class="entry-content">
-    <p>Authenticating users authenticate(request=None, **credentials)
-authenticate() は認証の承認のために使用する関数。 デフォルトでは keyword arguments で username と password で認証し、 User オブジェクトを返す。
-set_password(raw_password)
-パスワードをハッシュ化するのに使う。</p>
+    <p>DFS
+Base Case root が Null は None を返す。
+Tree を反転して値が同じなら True を返すので、
+children node の値を swap して同じか確かめる。
+Time complexity: O(n)
+Mem complexity: O(n)
+# Definition for a binary tree node. # class TreeNode(object): # def __init__(self, val=0, left=None, right=None): # self.val = val # self.left = left # self.right = right class Solution(object): def invertTree(self, root): &#34;&#34;&#34; :type root: TreeNode :rtype: TreeNode &#34;&#34;&#34; if not root: return None tmp = root....</p>
   </section>
-  <footer class="entry-footer">July 11, 2021</footer>
-  <a class="entry-link" aria-label="post link to 2021 07 12" href="https://hirotoshimizu.github.io/posts/2021-07-12/"></a>
+  <footer class="entry-footer">October 1, 2021</footer>
+  <a class="entry-link" aria-label="post link to Invert Binary Tree" href="https://hirotoshimizu.github.io/posts/invert-binary-tree/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
@@ -239,7 +239,7 @@ set_password(raw_password)
 </footer>
     </main>
     <footer class="footer">
-    <span>&copy; 2021 <a href="https://hirotoshimizu.github.io">Shiglass</a></span>
+    <span>&copy; 2022 <a href="https://hirotoshimizu.github.io">Shiglass</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &

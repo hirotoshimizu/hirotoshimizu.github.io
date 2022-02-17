@@ -149,89 +149,85 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Climbing Stairs</h2>
+    <h2>Search Insert Position</h2>
   </header>
   <section class="entry-content">
-    <p>https://leetcode.com/problems/climbing-stairs/
-n = 5
- 0 ／　＼ 1 2 ／＼ ／＼ 2 3 3 4 ／＼ ／＼ ／＼ ／＼ 3 4 4 5 4 5 5 6  ／＼ ／＼ ／＼　／＼ 4 5 5 6 5 6　5 6 ／＼ 5 6
-n が 5 steps の場合、 8通りの選択が出来る。
-DFS でも出来るかが 2^n となる。
-そのため Dynamic Programming を使う。
-同じ計算をする値は memoize する
- | 8 | 5 | 3 | 2 | 1 | 1 | n に辿り着くまでの数 0 1 2 3 4 5(step) one two...</p>
+    <p>https://leetcode.com/problems/search-insert-position/
+algorithm の runtime は O(log n) である必要があるため、 binary search で target の数の位置を調べる。
+変数 left に 0、 right に len(nums) - 1 を設定する。
+(left &#43; right) // 2 で真ん中の値が取得出来るので、 真ん中の位置を mid とする。
+nums の mid の値が target なら、mid の index の値を返す。 もし、target の値が mid より大きい場合、 left を mid &#43; 1 にする。 target の値が mid より小さい場合、 right を mid - 1 にする。
+[1, 3, 5, 6] で target = 2 の場合、...</p>
   </section>
-  <footer class="entry-footer">September 26, 2021</footer>
-  <a class="entry-link" aria-label="post link to Climbing Stairs" href="https://hirotoshimizu.github.io/posts/climbing-stairs/"></a>
+  <footer class="entry-footer">October 21, 2021</footer>
+  <a class="entry-link" aria-label="post link to Search Insert Position" href="https://hirotoshimizu.github.io/posts/search-insert-position/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Meeting Rooms</h2>
+    <h2>Remove Duplicates From Sorted Array</h2>
   </header>
   <section class="entry-content">
-    <p>https://leetcode.com/problems/meeting-rooms/
-先ず始めに intervals のスタート時間でソートする。
-intervals の時間がソートされたため、 ループで最初の会議の終わりの時間と次の会議の始まりの時間を比較し、 最初の会議の終わりの時間 が 次の会議の始まりの時間より大きい場合、 会議の時間が重なっているので、False を返す。
-次の会議の開始時間 が 前の会議の終わり時間より小さい場合ループを続ける。
-ループする際、次のリストと比較するため for の range で -1 をする。
-ソートをするので Time complexity は O(n log n) となる。
-Time complexity: O(n log n) Mem complexity: O(1)
-class Solution(object): def canAttendMeetings(self, intervals): &#34;&#34;&#34; :type intervals: List[List[int]] :rtype: bool &#34;&#34;&#34; intervals.sort() for i in range(len(intervals) -1): if intervals[i][1] &gt; intervals[i &#43; 1][0]: return False return True </p>
+    <p>nums = [0,0,1,1,1,2,2,3,3,4] の重複をなくすようにするので、下記のようになる。
+nums = [0,1,2,3,4,,,,,_]
+pointer を 2つ使う。
+最初の数字は必ずユニークになるので、 left = 1　とする。
+right は for でループさせながら icrement していく。
+non-decreasing order なので、 right の値と right - 1　を比較して、 違う値なら一番初めに現れるユニークの数字だとわかる。
+そのためその数字を left pointer がある位置に入れる。 その後、 left pointer をicrementする。
+最終的に left pointer の位置がユニークな数の出現回数となるので、 その値を return する。
+class Solution: def removeDuplicates(self, nums: List[int]) -&gt; int: left = 1 for right in range(1, len(nums)): if nums[right] != nums[right - 1]: nums[left] = nums[right] left &#43;= 1 return left </p>
   </section>
-  <footer class="entry-footer">September 25, 2021</footer>
-  <a class="entry-link" aria-label="post link to Meeting Rooms" href="https://hirotoshimizu.github.io/posts/meeting-rooms/"></a>
+  <footer class="entry-footer">October 21, 2021</footer>
+  <a class="entry-link" aria-label="post link to Remove Duplicates From Sorted Array" href="https://hirotoshimizu.github.io/posts/remove-duplicates-from-sorted-array/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Merge Two Sorted Lists</h2>
+    <h2>Remove Linked List Elements</h2>
   </header>
   <section class="entry-content">
-    <p>https://leetcode.com/problems/merge-two-sorted-lists/
-ダミー Node を作って edge case の 空の Linked List が挿入されても大丈夫なようにする。
-その後はループで l1 と l2 の val を比べ、 小さい値を tail.next に入れる。 その後、 next をずらす。
-ループ後 l1, l2 のどちらかのリストが empty の場合、 Linked List に追加する必要があるので、 リストが empty か確認し、値があれば Linked List に追加する。
-# Definition for singly-linked list. # class ListNode(object): # def __init__(self, val=0, next=None): # self.val = val # self.next = next class Solution(object): def mergeTwoLists(self, l1, l2): &#34;&#34;&#34; :type l1: ListNode :type l2: ListNode :rtype: ListNode &#34;&#34;&#34; dummy = ListNode() tail = dummy while l1 and l2: if l1....</p>
+    <p>sentinel ノードは Linked List を空にせず、ヘッドレスにしないようにする。
+アルゴリズムは
+sentinel ノードをセットする。
+curr と prev のポインターを設定する。
+curr が null でない場合、ループする。
+curr.val が 削除する値の場合、
+class Solution: def removeElements(self, head: Optional[ListNode], val: int) -&gt; Optional[ListNode]: sentinel = ListNode(next=head) prev, curr = sentinel, head while curr: if curr.val == val: prev.next = curr.next else: prev = curr curr = curr.next return sentinel.next </p>
   </section>
-  <footer class="entry-footer">September 24, 2021</footer>
-  <a class="entry-link" aria-label="post link to Merge Two Sorted Lists" href="https://hirotoshimizu.github.io/posts/merge-two-sorted-lists/"></a>
+  <footer class="entry-footer">October 21, 2021</footer>
+  <a class="entry-link" aria-label="post link to Remove Linked List Elements" href="https://hirotoshimizu.github.io/posts/remove-linked-list-elements/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Linked List Cycle</h2>
+    <h2>Path Sum</h2>
   </header>
   <section class="entry-content">
-    <p>https://leetcode.com/problems/linked-list-cycle/
-Linked List が Cycle なのかを確認する。
-Linked List が Cycle な場合、 2つのポインターを使う。 (1つめのポインターは 1つずつ進み、 2つめのポインターは 2つずつ進む。) Cycle な場合どこかの時点で2つ進むポインター が1つしか進まないポインターに追いつくので Cycle だとわかる。
-Cycle ではない場合 いずれかの時点で ポインターが Null になる。
-Time complexity: O(n) Mem complexity: O(1)
-# Definition for singly-linked list. # class ListNode(object): # def __init__(self, x): # self.val = x # self.next = None class Solution(object): def hasCycle(self, head): &#34;&#34;&#34; :type head: ListNode :rtype: bool &#34;&#34;&#34; slow, fast = head, head while fast and fast....</p>
+    <p>https://leetcode.com/problems/path-sum/solution/
+ノードがリーフでない場合は、子に対してhasPathSumメソッドを再帰的に呼び出し、合計を現在のノードの値だけ減らす。
+ノードがリーフの場合、現在の合計がゼロであるかどうか、つまり最初の合計が検出されたかどうかを確認します。
+Base case は、root が none ということはリーフの下の node を確認してるので、sum が 0 になっていないので False を返す。
+class Solution: def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -&gt; bool: if not root: return False targetSum -= root.val if not root.left and not root.right: # if reach a leaf return targetSum == 0 return self.hasPathSum(root.left, targetSum) or self.hasPathSum(root.right, targetSum) </p>
   </section>
-  <footer class="entry-footer">September 24, 2021</footer>
-  <a class="entry-link" aria-label="post link to Linked List Cycle" href="https://hirotoshimizu.github.io/posts/linked-list-cycle/"></a>
+  <footer class="entry-footer">October 21, 2021</footer>
+  <a class="entry-link" aria-label="post link to Path Sum" href="https://hirotoshimizu.github.io/posts/path-sum/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Reverse Linked List</h2>
+    <h2>Isomorphic Strings</h2>
   </header>
   <section class="entry-content">
-    <p>https://leetcode.com/problems/reverse-linked-list/
-考え方としては、
-1 → 2 → 3 → 4 → 5
-1 ← 2 ← 3 ← 4 ← 5
-とするように考える。
-回答方法は iterative なやり方と recursive なやり方がある。 iterative なやり方は 2つの pointer を使う。
-prev と curr
-まず prev に　None を設定する。 curr は head にする
-Null → 1 → 2 → 3 → 4 → 5 ↑ ↑ prev curr
-ループしている間 Linked List の 矢印の向き (curr.next) をずらしつつ、prev と next の pointer もずらしていく。...</p>
+    <p>https://leetcode.com/problems/isomorphic-strings/
+s と t をマッピングして考える。 この際、同じ文字なのに違う文字がマッピングされる場合
+isomorphic にならない。
+ex. foo bar
+ | f → b | | o → a | | o → r |  | b → f | | a → o | | r → o | o が a と r にマッピングされているので、 isomorphic にならず、false になる。
+class Solution: def isIsomorphic(self, s: str, t: str) -&gt; bool: mapST, mapTS = {}, {} for c1, c2 in zip(s, t): if((c1 in mapST and mapST[c1] !...</p>
   </section>
-  <footer class="entry-footer">September 24, 2021</footer>
-  <a class="entry-link" aria-label="post link to Reverse Linked List" href="https://hirotoshimizu.github.io/posts/reverse-linked-list/"></a>
+  <footer class="entry-footer">October 21, 2021</footer>
+  <a class="entry-link" aria-label="post link to Isomorphic Strings" href="https://hirotoshimizu.github.io/posts/isomorphic-strings/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
@@ -241,7 +237,7 @@ Null → 1 → 2 → 3 → 4 → 5 ↑ ↑ prev curr
 </footer>
     </main>
     <footer class="footer">
-    <span>&copy; 2021 <a href="https://hirotoshimizu.github.io">Shiglass</a></span>
+    <span>&copy; 2022 <a href="https://hirotoshimizu.github.io">Shiglass</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &

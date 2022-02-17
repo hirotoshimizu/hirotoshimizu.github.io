@@ -138,6 +138,65 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
+    <h2>Longest Palindromic Substring</h2>
+  </header>
+  <section class="entry-content">
+    <p>https://leetcode.com/problems/longest-palindromic-substring/
+class Solution: def longestPalindrome(self, s: str) -&gt; str: res = &#39;&#39; for i in range(len(s)): # odd case tmp = self.helper(s, i, i) if len(tmp) &gt; len(res): res = tmp # even tmp = self.helper(s, i, i&#43;1) if len(tmp) &gt; len(res): res = tmp return res def helper(self, s, l, r): while l &gt;= 0 and r &lt; len(s) and s[l] == s[r]: l -= 1 r &#43;= 1 return s[l&#43;1:r] </p>
+  </section>
+  <footer class="entry-footer">December 12, 2021</footer>
+  <a class="entry-link" aria-label="post link to Longest Palindromic Substring" href="https://hirotoshimizu.github.io/posts/longest-palindromic-substring/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>Longest Increasing Subsequence</h2>
+  </header>
+  <section class="entry-content">
+    <p>https://leetcode.com/problems/longest-increasing-subsequence/
+LIS はどんな場合でも最低1になるので、 1を入れた、list を作る。
+reverse order でループし、 ネストしたループで最初にループしている i 以降の数と比較する。
+nums[i] と nums[j] で nums[i] が小さい場合、 subsequence となるので、 LIS[i] に max(LIS[i], 1 &#43; LIS[j]) を入れる。 j は i 以降の数字を見ているので、max()を使わないと LISの最後の 1 で置き換えて 2 となってしまうので注意。
+class Solution: def lengthOfLIS(self, nums: List[int]) -&gt; int: LIS = [1] * len(nums) for i in range(len(nums) - 1, -1, -1): for j in range(i &#43; 1, len(nums)): if nums[i] &lt; nums[j]: LIS[i] = max(LIS[i], 1 &#43; LIS[j]) return max(LIS) </p>
+  </section>
+  <footer class="entry-footer">December 12, 2021</footer>
+  <a class="entry-link" aria-label="post link to Longest Increasing Subsequence" href="https://hirotoshimizu.github.io/posts/longest-increasing-subsequence/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>Longest Common Subsequence</h2>
+  </header>
+  <section class="entry-content">
+    <p>https://leetcode.com/problems/longest-common-subsequence/
+2d grid を作る。 row, col にそれぞれ、1行、1列追加して 0 を入れる。
+grid の右下からループし、 縦横が同じ文字でマッチしたら、斜め左上に進む。 その際に1を足す。
+マッチしなかったら、右横か下のどちらか大きい数字を入れる。
+ループが終わりgrid[0][0] の箇所に 1番長い subsequence の数が入る。
+class Solution: def longestCommonSubsequence(self, text1: str, text2: str) -&gt; int: dp = [[0 for j in range(len(text2) &#43; 1)] for i in range(len(text1) &#43; 1)] for i in range(len(text1) - 1, -1, -1): for j in range(len(text2) - 1, -1, -1): if text1[i] == text2[j]: dp[i][j] = 1 &#43; dp[i &#43; 1][j &#43; 1] else: dp[i][j] = max(dp[i &#43; 1][j], dp[i][j &#43; 1]) return dp[0][0] </p>
+  </section>
+  <footer class="entry-footer">December 11, 2021</footer>
+  <a class="entry-link" aria-label="post link to Longest Common Subsequence" href="https://hirotoshimizu.github.io/posts/longest-common-subsequence/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>House Robber</h2>
+  </header>
+  <section class="entry-content">
+    <p>https://leetcode.com/problems/house-robber/
+隣り合った家は訪れることが出来ないので、 変数 rob1 と rob2 を用意する。
+for で全ての家を訪れ、 pointer のある位置＋rob1 と rob2 の大きい値を temp に入れる。
+rob1 pointerのある位置の前の前の家 rob2 pointerのある位置のは前の家
+rob2 が nums の最後の位置まで行くとループが終わるので return で rob2 を返す。
+class Solution: def rob(self, num: List[int])-&gt; int: rob1, rob2 = 0, 0 for n in num: temp = max(rob1 &#43; n, rob2) rob1 = rob2 rob2 = temp return rob2 </p>
+  </section>
+  <footer class="entry-footer">October 18, 2021</footer>
+  <a class="entry-link" aria-label="post link to House Robber" href="https://hirotoshimizu.github.io/posts/house-robber/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
     <h2>Climbing Stairs</h2>
   </header>
   <section class="entry-content">
@@ -155,7 +214,7 @@ DFS でも出来るかが 2^n となる。
 </article>
     </main>
     <footer class="footer">
-    <span>&copy; 2021 <a href="https://hirotoshimizu.github.io">Shiglass</a></span>
+    <span>&copy; 2022 <a href="https://hirotoshimizu.github.io">Shiglass</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &

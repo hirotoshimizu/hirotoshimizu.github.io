@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Stack on Shiglass</title>
+    <link>https://hirotoshimizu.github.io/tags/stack/</link>
+    <description>Recent content in Stack on Shiglass</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 20 Oct 2021 14:48:04 +0900</lastBuildDate><atom:link href="https://hirotoshimizu.github.io/tags/stack/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Min Stack</title>
+      <link>https://hirotoshimizu.github.io/posts/min-stack/</link>
+      <pubDate>Wed, 20 Oct 2021 14:48:04 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/min-stack/</guid>
+      <description>https://leetcode.com/problems/min-stack/solution/
+2つの stack を使う。 1つ目の stack は普通のstackを使うように扱う。(Stack) 2つ目の stack は現在の minimum をトラックするのに使う。(MinStack)
+MinStack の pushメソッドは現在の値が stack の top より小さい場合、 push される。
+popメソッドは Stack のみからpopすると MinStack と合わなくなるので、 If top of main_stack == top of min_tracker_stack: min_tracker_stack.pop() の処理が必要になる。
+class MinStack: def __init__(self): self.stack = [] self.min_stack = [] def push(self, x: int) -&amp;gt; None: self.stack.append(x) if not self.min_stack or x &amp;lt;= self.min_stack[-1]: self.min_stack.append(x) def pop(self) -&amp;gt; None: if self.min_stack[-1] == self.stack[-1]: self.min_stack.pop() self.</description>
+    </item>
+    
+  </channel>
+</rss>
