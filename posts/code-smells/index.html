@@ -7,38 +7,18 @@
 <meta name="robots" content="index, follow">
 <title>Code Smells | Shiglass</title>
 <meta name="keywords" content="Refactoring" />
-<meta name="description" content="#code smell
-###〇Bloaters
-・長い関数(Long Method)
-オブジェクトそのものの受け渡し、関数の抽出、コマンドによる関数の置き換え、問い合わせによる一時変数の置き換え、 条件記述の分解、パラメータオブジェクトの導入、ポリモーフィズムによる条件記述の置き換え、ループの分離 ・巨大なクラス(Large Class)
-クラスの抽出、サブクスによるタイプコードの置き換え、スーパークラスの抽出 ・データの群れ(Data Clumps)
-オブジェクトそのものの受け渡し、クラスの抽出、パラメータオブジェクトの導入 ・長いパラメータリスト(Long Parameter List)
-オブジェクトそのものの受け渡し、関数群のクラスへの集約、問い合わせによるパラメータの置き換え、 パラメータオブジェクトの導入、フラグパラメータの削除 ・基本データ型への執着(Primitive Obsession)
-オブジェクトによるプリミティブの置き換え、クラスの抽出、サブクラスによるタイプコードの置き換え、 パラメータオブジェクトの導入、ポリモーフィズムによる条件記述の置き換え
-###〇Tool Abusers
-・Switch Statements
-・相続拒否(Refused Bequest)
-委譲によるサブクラスの置き換え、委譲によるスーパークラスの置き換え、フィールドの押し下げ、メソッドの押し下げ ・クラスのインターフェース不一致(Alternative Classes w/ Different Interfaces)
-関数宣言の変更、関数の移動、スーパークラスの抽出 ・一時的属性(Temporary Field)
-関数の移動、クラスの抽出、特殊ケースの導入
-###〇Change Preventers
-・Divergent Change
-・変更の分散(Shotgun Surgery)
-関数群のクラスへの集約、関数群の変換への集約、関数の移動、関数のインライン化、クラスのインライン化、フィールドの移動、フェーズの分離 ・Parallel Inheritance Hierarchies
-###〇Dispensables
-・Lazy Class
-・疑わしき一般化(Speculative Generality)
-関数宣言の変更、関数のインライン化、クラス階層の平坦化、クラスのインライン化、デッドコードの削除
-・データクラス(Data Class)
-・重複したコード(Duplicated Code)
-関数の抽出、ステートメントのスライド、メソッドの引き上げ
-###〇Couplers
-・特性の横恋慕(Feature Envy)
-関数の移動、関数の抽出
-・Inappropriate Intimacy
-・メッセージの連鎖(Message Chains)
-委譲の隠蔽、関数の移動、関数の抽出
-・仲介人(Middle Man)">
+<meta name="description" content="code smell 〇Bloaters  長い関数(Long Method)
+オブジェクトそのものの受け渡し、関数の抽出、コマンドによる関数の置き換え、問い合わせによる一時変数の置き換え、 条件記述の分解、パラメータオブジェクトの導入、ポリモーフィズムによる条件記述の置き換え、ループの分離 巨大なクラス(Large Class)
+クラスの抽出、サブクスによるタイプコードの置き換え、スーパークラスの抽出 データの群れ(Data Clumps)
+オブジェクトそのものの受け渡し、クラスの抽出、パラメータオブジェクトの導入 長いパラメータリスト(Long Parameter List)
+オブジェクトそのものの受け渡し、関数群のクラスへの集約、問い合わせによるパラメータの置き換え、 パラメータオブジェクトの導入、フラグパラメータの削除 基本データ型への執着(Primitive Obsession)
+オブジェクトによるプリミティブの置き換え、クラスの抽出、サブクラスによるタイプコードの置き換え、 パラメータオブジェクトの導入、ポリモーフィズムによる条件記述の置き換え  〇Tool Abusers  Switch Statements 相続拒否(Refused Bequest)
+委譲によるサブクラスの置き換え、委譲によるスーパークラスの置き換え、フィールドの押し下げ、メソッドの押し下げ クラスのインターフェース不一致(Alternative Classes w/ Different Interfaces)
+関数宣言の変更、関数の移動、スーパークラスの抽出 一時的属性(Temporary Field)
+関数の移動、クラスの抽出、特殊ケースの導入  〇Change Preventers  Divergent Change 変更の分散(Shotgun Surgery)
+関数群のクラスへの集約、関数群の変換への集約、関数の移動、関数のインライン化、クラスのインライン化、フィールドの移動、フェーズの分離 Parallel Inheritance Hierarchies  〇Dispensables  Lazy Class 疑わしき一般化(Speculative Generality)
+関数宣言の変更、関数のインライン化、クラス階層の平坦化、クラスのインライン化、デッドコードの削除 データクラス(Data Class) 重複したコード(Duplicated Code)
+関数の抽出、ステートメントのスライド、メソッドの引き上げ  〇Couplers   特性の横恋慕(Feature Envy)">
 <meta name="author" content="">
 <link rel="canonical" href="https://hirotoshimizu.github.io/posts/code-smells/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.d9015f4cb657fd3539b79b29ffbd11de4175ccd105ad7591beffaadfafb48488.css" integrity="sha256-2QFfTLZX/TU5t5sp/70R3kF1zNEFrXWRvv&#43;q36&#43;0hIg=" rel="preload stylesheet" as="style">
@@ -53,38 +33,18 @@
 <meta name="msapplication-TileColor" content="#2e2e33">
 <meta name="generator" content="Hugo 0.68.3" />
 <meta property="og:title" content="Code Smells" />
-<meta property="og:description" content="#code smell
-###〇Bloaters
-・長い関数(Long Method)
-オブジェクトそのものの受け渡し、関数の抽出、コマンドによる関数の置き換え、問い合わせによる一時変数の置き換え、 条件記述の分解、パラメータオブジェクトの導入、ポリモーフィズムによる条件記述の置き換え、ループの分離 ・巨大なクラス(Large Class)
-クラスの抽出、サブクスによるタイプコードの置き換え、スーパークラスの抽出 ・データの群れ(Data Clumps)
-オブジェクトそのものの受け渡し、クラスの抽出、パラメータオブジェクトの導入 ・長いパラメータリスト(Long Parameter List)
-オブジェクトそのものの受け渡し、関数群のクラスへの集約、問い合わせによるパラメータの置き換え、 パラメータオブジェクトの導入、フラグパラメータの削除 ・基本データ型への執着(Primitive Obsession)
-オブジェクトによるプリミティブの置き換え、クラスの抽出、サブクラスによるタイプコードの置き換え、 パラメータオブジェクトの導入、ポリモーフィズムによる条件記述の置き換え
-###〇Tool Abusers
-・Switch Statements
-・相続拒否(Refused Bequest)
-委譲によるサブクラスの置き換え、委譲によるスーパークラスの置き換え、フィールドの押し下げ、メソッドの押し下げ ・クラスのインターフェース不一致(Alternative Classes w/ Different Interfaces)
-関数宣言の変更、関数の移動、スーパークラスの抽出 ・一時的属性(Temporary Field)
-関数の移動、クラスの抽出、特殊ケースの導入
-###〇Change Preventers
-・Divergent Change
-・変更の分散(Shotgun Surgery)
-関数群のクラスへの集約、関数群の変換への集約、関数の移動、関数のインライン化、クラスのインライン化、フィールドの移動、フェーズの分離 ・Parallel Inheritance Hierarchies
-###〇Dispensables
-・Lazy Class
-・疑わしき一般化(Speculative Generality)
-関数宣言の変更、関数のインライン化、クラス階層の平坦化、クラスのインライン化、デッドコードの削除
-・データクラス(Data Class)
-・重複したコード(Duplicated Code)
-関数の抽出、ステートメントのスライド、メソッドの引き上げ
-###〇Couplers
-・特性の横恋慕(Feature Envy)
-関数の移動、関数の抽出
-・Inappropriate Intimacy
-・メッセージの連鎖(Message Chains)
-委譲の隠蔽、関数の移動、関数の抽出
-・仲介人(Middle Man)" />
+<meta property="og:description" content="code smell 〇Bloaters  長い関数(Long Method)
+オブジェクトそのものの受け渡し、関数の抽出、コマンドによる関数の置き換え、問い合わせによる一時変数の置き換え、 条件記述の分解、パラメータオブジェクトの導入、ポリモーフィズムによる条件記述の置き換え、ループの分離 巨大なクラス(Large Class)
+クラスの抽出、サブクスによるタイプコードの置き換え、スーパークラスの抽出 データの群れ(Data Clumps)
+オブジェクトそのものの受け渡し、クラスの抽出、パラメータオブジェクトの導入 長いパラメータリスト(Long Parameter List)
+オブジェクトそのものの受け渡し、関数群のクラスへの集約、問い合わせによるパラメータの置き換え、 パラメータオブジェクトの導入、フラグパラメータの削除 基本データ型への執着(Primitive Obsession)
+オブジェクトによるプリミティブの置き換え、クラスの抽出、サブクラスによるタイプコードの置き換え、 パラメータオブジェクトの導入、ポリモーフィズムによる条件記述の置き換え  〇Tool Abusers  Switch Statements 相続拒否(Refused Bequest)
+委譲によるサブクラスの置き換え、委譲によるスーパークラスの置き換え、フィールドの押し下げ、メソッドの押し下げ クラスのインターフェース不一致(Alternative Classes w/ Different Interfaces)
+関数宣言の変更、関数の移動、スーパークラスの抽出 一時的属性(Temporary Field)
+関数の移動、クラスの抽出、特殊ケースの導入  〇Change Preventers  Divergent Change 変更の分散(Shotgun Surgery)
+関数群のクラスへの集約、関数群の変換への集約、関数の移動、関数のインライン化、クラスのインライン化、フィールドの移動、フェーズの分離 Parallel Inheritance Hierarchies  〇Dispensables  Lazy Class 疑わしき一般化(Speculative Generality)
+関数宣言の変更、関数のインライン化、クラス階層の平坦化、クラスのインライン化、デッドコードの削除 データクラス(Data Class) 重複したコード(Duplicated Code)
+関数の抽出、ステートメントのスライド、メソッドの引き上げ  〇Couplers   特性の横恋慕(Feature Envy)" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hirotoshimizu.github.io/posts/code-smells/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-02-17T15:14:16&#43;09:00" />
@@ -92,38 +52,18 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Code Smells"/>
-<meta name="twitter:description" content="#code smell
-###〇Bloaters
-・長い関数(Long Method)
-オブジェクトそのものの受け渡し、関数の抽出、コマンドによる関数の置き換え、問い合わせによる一時変数の置き換え、 条件記述の分解、パラメータオブジェクトの導入、ポリモーフィズムによる条件記述の置き換え、ループの分離 ・巨大なクラス(Large Class)
-クラスの抽出、サブクスによるタイプコードの置き換え、スーパークラスの抽出 ・データの群れ(Data Clumps)
-オブジェクトそのものの受け渡し、クラスの抽出、パラメータオブジェクトの導入 ・長いパラメータリスト(Long Parameter List)
-オブジェクトそのものの受け渡し、関数群のクラスへの集約、問い合わせによるパラメータの置き換え、 パラメータオブジェクトの導入、フラグパラメータの削除 ・基本データ型への執着(Primitive Obsession)
-オブジェクトによるプリミティブの置き換え、クラスの抽出、サブクラスによるタイプコードの置き換え、 パラメータオブジェクトの導入、ポリモーフィズムによる条件記述の置き換え
-###〇Tool Abusers
-・Switch Statements
-・相続拒否(Refused Bequest)
-委譲によるサブクラスの置き換え、委譲によるスーパークラスの置き換え、フィールドの押し下げ、メソッドの押し下げ ・クラスのインターフェース不一致(Alternative Classes w/ Different Interfaces)
-関数宣言の変更、関数の移動、スーパークラスの抽出 ・一時的属性(Temporary Field)
-関数の移動、クラスの抽出、特殊ケースの導入
-###〇Change Preventers
-・Divergent Change
-・変更の分散(Shotgun Surgery)
-関数群のクラスへの集約、関数群の変換への集約、関数の移動、関数のインライン化、クラスのインライン化、フィールドの移動、フェーズの分離 ・Parallel Inheritance Hierarchies
-###〇Dispensables
-・Lazy Class
-・疑わしき一般化(Speculative Generality)
-関数宣言の変更、関数のインライン化、クラス階層の平坦化、クラスのインライン化、デッドコードの削除
-・データクラス(Data Class)
-・重複したコード(Duplicated Code)
-関数の抽出、ステートメントのスライド、メソッドの引き上げ
-###〇Couplers
-・特性の横恋慕(Feature Envy)
-関数の移動、関数の抽出
-・Inappropriate Intimacy
-・メッセージの連鎖(Message Chains)
-委譲の隠蔽、関数の移動、関数の抽出
-・仲介人(Middle Man)"/>
+<meta name="twitter:description" content="code smell 〇Bloaters  長い関数(Long Method)
+オブジェクトそのものの受け渡し、関数の抽出、コマンドによる関数の置き換え、問い合わせによる一時変数の置き換え、 条件記述の分解、パラメータオブジェクトの導入、ポリモーフィズムによる条件記述の置き換え、ループの分離 巨大なクラス(Large Class)
+クラスの抽出、サブクスによるタイプコードの置き換え、スーパークラスの抽出 データの群れ(Data Clumps)
+オブジェクトそのものの受け渡し、クラスの抽出、パラメータオブジェクトの導入 長いパラメータリスト(Long Parameter List)
+オブジェクトそのものの受け渡し、関数群のクラスへの集約、問い合わせによるパラメータの置き換え、 パラメータオブジェクトの導入、フラグパラメータの削除 基本データ型への執着(Primitive Obsession)
+オブジェクトによるプリミティブの置き換え、クラスの抽出、サブクラスによるタイプコードの置き換え、 パラメータオブジェクトの導入、ポリモーフィズムによる条件記述の置き換え  〇Tool Abusers  Switch Statements 相続拒否(Refused Bequest)
+委譲によるサブクラスの置き換え、委譲によるスーパークラスの置き換え、フィールドの押し下げ、メソッドの押し下げ クラスのインターフェース不一致(Alternative Classes w/ Different Interfaces)
+関数宣言の変更、関数の移動、スーパークラスの抽出 一時的属性(Temporary Field)
+関数の移動、クラスの抽出、特殊ケースの導入  〇Change Preventers  Divergent Change 変更の分散(Shotgun Surgery)
+関数群のクラスへの集約、関数群の変換への集約、関数の移動、関数のインライン化、クラスのインライン化、フィールドの移動、フェーズの分離 Parallel Inheritance Hierarchies  〇Dispensables  Lazy Class 疑わしき一般化(Speculative Generality)
+関数宣言の変更、関数のインライン化、クラス階層の平坦化、クラスのインライン化、デッドコードの削除 データクラス(Data Class) 重複したコード(Duplicated Code)
+関数の抽出、ステートメントのスライド、メソッドの引き上げ  〇Couplers   特性の横恋慕(Feature Envy)"/>
 
 
 <script type="application/ld+json">
@@ -146,11 +86,11 @@
   "@type": "BlogPosting",
   "headline": "Code Smells",
   "name": "Code Smells",
-  "description": "#code smell\n###〇Bloaters\n・長い関数(Long Method)\nオブジェクトそのものの受け渡し、関数の抽出、コマンドによる関数の置き換え、問い合わせによる一時変数の置き換え、 条件記述の分解、パラメータオブジェクトの導入、ポリモーフィズムによる条件記述の置き換え、ループの分離 ・巨大なクラス(Large Class)\nクラスの抽出、サブクスによるタイプコードの置き換え、スーパークラスの抽出 ・データの群れ(Data Clumps)\nオブジェクトそのものの受け渡し、クラスの抽出、パラメータオブジェクトの導入 ・長いパラメータリスト(Long Parameter List)\nオブジェクトそのものの受け渡し、関数群のクラスへの集約、問い合わせによるパラメータの置き換え、 パラメータオブジェクトの導入、フラグパラメータの削除 ・基本データ型への執着(Primitive Obsession)\nオブジェクトによるプリミティブの置き換え、クラスの抽出、サブクラスによるタイプコードの置き換え、 パラメータオブジェクトの導入、ポリモーフィズムによる条件記述の置き換え\n###〇Tool Abusers\n・Switch Statements\n・相続拒否(Refused Bequest)\n委譲によるサブクラスの置き換え、委譲によるスーパークラスの置き換え、フィールドの押し下げ、メソッドの押し下げ ・クラスのインターフェース不一致(Alternative Classes w/ Different Interfaces)\n関数宣言の変更、関数の移動、スーパークラスの抽出 ・一時的属性(Temporary Field)\n関数の移動、クラスの抽出、特殊ケースの導入\n###〇Change Preventers\n・Divergent Change\n・変更の分散(Shotgun Surgery)\n関数群のクラスへの集約、関数群の変換への集約、関数の移動、関数のインライン化、クラスのインライン化、フィールドの移動、フェーズの分離 ・Parallel Inheritance Hierarchies\n###〇Dispensables\n・Lazy Class\n・疑わしき一般化(Speculative Generality)\n関数宣言の変更、関数のインライン化、クラス階層の平坦化、クラスのインライン化、デッドコードの削除\n・データクラス(Data Class)\n・重複したコード(Duplicated Code)\n関数の抽出、ステートメントのスライド、メソッドの引き上げ\n###〇Couplers\n・特性の横恋慕(Feature Envy)\n関数の移動、関数の抽出\n・Inappropriate Intimacy\n・メッセージの連鎖(Message Chains)\n委譲の隠蔽、関数の移動、関数の抽出\n・仲介人(Middle Man)",
+  "description": "code smell 〇Bloaters  長い関数(Long Method)\nオブジェクトそのものの受け渡し、関数の抽出、コマンドによる関数の置き換え、問い合わせによる一時変数の置き換え、 条件記述の分解、パラメータオブジェクトの導入、ポリモーフィズムによる条件記述の置き換え、ループの分離 巨大なクラス(Large Class)\nクラスの抽出、サブクスによるタイプコードの置き換え、スーパークラスの抽出 データの群れ(Data Clumps)\nオブジェクトそのものの受け渡し、クラスの抽出、パラメータオブジェクトの導入 長いパラメータリスト(Long Parameter List)\nオブジェクトそのものの受け渡し、関数群のクラスへの集約、問い合わせによるパラメータの置き換え、 パラメータオブジェクトの導入、フラグパラメータの削除 基本データ型への執着(Primitive Obsession)\nオブジェクトによるプリミティブの置き換え、クラスの抽出、サブクラスによるタイプコードの置き換え、 パラメータオブジェクトの導入、ポリモーフィズムによる条件記述の置き換え  〇Tool Abusers  Switch Statements 相続拒否(Refused Bequest)\n委譲によるサブクラスの置き換え、委譲によるスーパークラスの置き換え、フィールドの押し下げ、メソッドの押し下げ クラスのインターフェース不一致(Alternative Classes w/ Different Interfaces)\n関数宣言の変更、関数の移動、スーパークラスの抽出 一時的属性(Temporary Field)\n関数の移動、クラスの抽出、特殊ケースの導入  〇Change Preventers  Divergent Change 変更の分散(Shotgun Surgery)\n関数群のクラスへの集約、関数群の変換への集約、関数の移動、関数のインライン化、クラスのインライン化、フィールドの移動、フェーズの分離 Parallel Inheritance Hierarchies  〇Dispensables  Lazy Class 疑わしき一般化(Speculative Generality)\n関数宣言の変更、関数のインライン化、クラス階層の平坦化、クラスのインライン化、デッドコードの削除 データクラス(Data Class) 重複したコード(Duplicated Code)\n関数の抽出、ステートメントのスライド、メソッドの引き上げ  〇Couplers   特性の横恋慕(Feature Envy)",
   "keywords": [
     "Refactoring"
   ],
-  "articleBody": "#code smell\n###〇Bloaters\n・長い関数(Long Method)\nオブジェクトそのものの受け渡し、関数の抽出、コマンドによる関数の置き換え、問い合わせによる一時変数の置き換え、 条件記述の分解、パラメータオブジェクトの導入、ポリモーフィズムによる条件記述の置き換え、ループの分離 ・巨大なクラス(Large Class)\nクラスの抽出、サブクスによるタイプコードの置き換え、スーパークラスの抽出 ・データの群れ(Data Clumps)\nオブジェクトそのものの受け渡し、クラスの抽出、パラメータオブジェクトの導入 ・長いパラメータリスト(Long Parameter List)\nオブジェクトそのものの受け渡し、関数群のクラスへの集約、問い合わせによるパラメータの置き換え、 パラメータオブジェクトの導入、フラグパラメータの削除 ・基本データ型への執着(Primitive Obsession)\nオブジェクトによるプリミティブの置き換え、クラスの抽出、サブクラスによるタイプコードの置き換え、 パラメータオブジェクトの導入、ポリモーフィズムによる条件記述の置き換え\n###〇Tool Abusers\n・Switch Statements\n・相続拒否(Refused Bequest)\n委譲によるサブクラスの置き換え、委譲によるスーパークラスの置き換え、フィールドの押し下げ、メソッドの押し下げ ・クラスのインターフェース不一致(Alternative Classes w/ Different Interfaces)\n関数宣言の変更、関数の移動、スーパークラスの抽出 ・一時的属性(Temporary Field)\n関数の移動、クラスの抽出、特殊ケースの導入\n###〇Change Preventers\n・Divergent Change\n・変更の分散(Shotgun Surgery)\n関数群のクラスへの集約、関数群の変換への集約、関数の移動、関数のインライン化、クラスのインライン化、フィールドの移動、フェーズの分離 ・Parallel Inheritance Hierarchies\n###〇Dispensables\n・Lazy Class\n・疑わしき一般化(Speculative Generality)\n関数宣言の変更、関数のインライン化、クラス階層の平坦化、クラスのインライン化、デッドコードの削除\n・データクラス(Data Class)\n・重複したコード(Duplicated Code)\n関数の抽出、ステートメントのスライド、メソッドの引き上げ\n###〇Couplers\n・特性の横恋慕(Feature Envy)\n関数の移動、関数の抽出\n・Inappropriate Intimacy\n・メッセージの連鎖(Message Chains)\n委譲の隠蔽、関数の移動、関数の抽出\n・仲介人(Middle Man)\n関数のインライン化、仲介人の除去\nComent(コメント)\nアサーションの導入、関数宣言の変更、関数の抽出\nMysterious Name(不可思議な名前)\n関数宣言の変更、フィールド名の変更、変数名の変更\nGlobal Data(グローバルなデータ)\n変数のカプセル化\nMutable Data(変更可能なデータ)\nsetter の削除、関数群のクラスへの集約、関数群の変換への集約、関数の抽出、参照から値への変更、\nステートメントのスライド、問い合わせと更新の分離、問い合わせによる導入変数の置き換え、変数のカプセル化、変数の分離\nDivergent Change(変更の偏り)\nRepeated Switches(重複したスイッチ文)\nポリモーフィズムによる条件記述の置き換え\nLoop(ループ)\nパイプラインによるループの置き換え\nLazy Element(怠け者要素)\n関数のインライン化、クラス階層の平坦化、クラスのインライン化\nInsider Trading(インサイダー取引)\n委譲によるサブクラスの置き換え、委譲によるスーパークラスの置き換え、委譲の隠匿\n関数の移動、フィールドの移動\n",
+  "articleBody": "code smell 〇Bloaters  長い関数(Long Method)\nオブジェクトそのものの受け渡し、関数の抽出、コマンドによる関数の置き換え、問い合わせによる一時変数の置き換え、 条件記述の分解、パラメータオブジェクトの導入、ポリモーフィズムによる条件記述の置き換え、ループの分離 巨大なクラス(Large Class)\nクラスの抽出、サブクスによるタイプコードの置き換え、スーパークラスの抽出 データの群れ(Data Clumps)\nオブジェクトそのものの受け渡し、クラスの抽出、パラメータオブジェクトの導入 長いパラメータリスト(Long Parameter List)\nオブジェクトそのものの受け渡し、関数群のクラスへの集約、問い合わせによるパラメータの置き換え、 パラメータオブジェクトの導入、フラグパラメータの削除 基本データ型への執着(Primitive Obsession)\nオブジェクトによるプリミティブの置き換え、クラスの抽出、サブクラスによるタイプコードの置き換え、 パラメータオブジェクトの導入、ポリモーフィズムによる条件記述の置き換え  〇Tool Abusers  Switch Statements 相続拒否(Refused Bequest)\n委譲によるサブクラスの置き換え、委譲によるスーパークラスの置き換え、フィールドの押し下げ、メソッドの押し下げ クラスのインターフェース不一致(Alternative Classes w/ Different Interfaces)\n関数宣言の変更、関数の移動、スーパークラスの抽出 一時的属性(Temporary Field)\n関数の移動、クラスの抽出、特殊ケースの導入  〇Change Preventers  Divergent Change 変更の分散(Shotgun Surgery)\n関数群のクラスへの集約、関数群の変換への集約、関数の移動、関数のインライン化、クラスのインライン化、フィールドの移動、フェーズの分離 Parallel Inheritance Hierarchies  〇Dispensables  Lazy Class 疑わしき一般化(Speculative Generality)\n関数宣言の変更、関数のインライン化、クラス階層の平坦化、クラスのインライン化、デッドコードの削除 データクラス(Data Class) 重複したコード(Duplicated Code)\n関数の抽出、ステートメントのスライド、メソッドの引き上げ  〇Couplers   特性の横恋慕(Feature Envy)\n関数の移動、関数の抽出\n  Inappropriate Intimacy\n  メッセージの連鎖(Message Chains)\n委譲の隠蔽、関数の移動、関数の抽出\n  仲介人(Middle Man)\n関数のインライン化、仲介人の除去\n  Coment(コメント)\nアサーションの導入、関数宣言の変更、関数の抽出\n  Mysterious Name(不可思議な名前)\n関数宣言の変更、フィールド名の変更、変数名の変更\n  Global Data(グローバルなデータ)\n変数のカプセル化\n  Mutable Data(変更可能なデータ)\nsetter の削除、関数群のクラスへの集約、関数群の変換への集約、関数の抽出、参照から値への変更、\nステートメントのスライド、問い合わせと更新の分離、問い合わせによる導入変数の置き換え、変数のカプセル化、変数の分離\n  Divergent Change(変更の偏り)\n  Repeated Switches(重複したスイッチ文)\nポリモーフィズムによる条件記述の置き換え\n  Loop(ループ)\nパイプラインによるループの置き換え\n  Lazy Element(怠け者要素)\n関数のインライン化、クラス階層の平坦化、クラスのインライン化\n  Insider Trading(インサイダー取引)\n委譲によるサブクラスの置き換え、委譲によるスーパークラスの置き換え、委譲の隠匿\n関数の移動、フィールドの移動\n  ",
   "wordCount" : "98",
   "inLanguage": "en",
   "datePublished": "2022-02-17T15:14:16+09:00",
@@ -282,68 +222,104 @@
     <div class="post-meta">February 17, 2022
 </div>
   </header> 
-  <div class="post-content"><p>#code smell<br>
-###〇Bloaters<br>
-・長い関数(Long Method)<br>
+  <div class="post-content"><h1 id="code-smell">code smell<a hidden class="anchor" aria-hidden="true" href="#code-smell">#</a></h1>
+<h3 id="bloaters">〇Bloaters<a hidden class="anchor" aria-hidden="true" href="#bloaters">#</a></h3>
+<ul>
+<li>長い関数(Long Method)<br>
 　オブジェクトそのものの受け渡し、関数の抽出、コマンドによる関数の置き換え、問い合わせによる一時変数の置き換え、
-　条件記述の分解、パラメータオブジェクトの導入、ポリモーフィズムによる条件記述の置き換え、ループの分離
-・巨大なクラス(Large Class)<br>
-　クラスの抽出、サブクスによるタイプコードの置き換え、スーパークラスの抽出
-・データの群れ(Data Clumps)<br>
-　オブジェクトそのものの受け渡し、クラスの抽出、パラメータオブジェクトの導入
-・長いパラメータリスト(Long Parameter List)<br>
+　条件記述の分解、パラメータオブジェクトの導入、ポリモーフィズムによる条件記述の置き換え、ループの分離</li>
+<li>巨大なクラス(Large Class)<br>
+　クラスの抽出、サブクスによるタイプコードの置き換え、スーパークラスの抽出</li>
+<li>データの群れ(Data Clumps)<br>
+　オブジェクトそのものの受け渡し、クラスの抽出、パラメータオブジェクトの導入</li>
+<li>長いパラメータリスト(Long Parameter List)<br>
 　オブジェクトそのものの受け渡し、関数群のクラスへの集約、問い合わせによるパラメータの置き換え、
-　パラメータオブジェクトの導入、フラグパラメータの削除
-・基本データ型への執着(Primitive Obsession)<br>
+　パラメータオブジェクトの導入、フラグパラメータの削除</li>
+<li>基本データ型への執着(Primitive Obsession)<br>
 　オブジェクトによるプリミティブの置き換え、クラスの抽出、サブクラスによるタイプコードの置き換え、
-　パラメータオブジェクトの導入、ポリモーフィズムによる条件記述の置き換え</p>
-<p>###〇Tool Abusers<br>
-・Switch Statements<br>
-・相続拒否(Refused Bequest)<br>
-　 委譲によるサブクラスの置き換え、委譲によるスーパークラスの置き換え、フィールドの押し下げ、メソッドの押し下げ
-・クラスのインターフェース不一致(Alternative Classes w/ Different Interfaces)<br>
-　関数宣言の変更、関数の移動、スーパークラスの抽出
-・一時的属性(Temporary Field)<br>
-　関数の移動、クラスの抽出、特殊ケースの導入</p>
-<p>###〇Change Preventers<br>
-・Divergent Change<br>
-・変更の分散(Shotgun Surgery)<br>
-　関数群のクラスへの集約、関数群の変換への集約、関数の移動、関数のインライン化、クラスのインライン化、フィールドの移動、フェーズの分離
-・Parallel Inheritance Hierarchies</p>
-<p>###〇Dispensables<br>
-・Lazy Class<br>
-・疑わしき一般化(Speculative Generality)<br>
-　関数宣言の変更、関数のインライン化、クラス階層の平坦化、クラスのインライン化、デッドコードの削除<br>
-・データクラス(Data Class)<br>
-・重複したコード(Duplicated Code)<br>
-　関数の抽出、ステートメントのスライド、メソッドの引き上げ</p>
-<p>###〇Couplers<br>
-・特性の横恋慕(Feature Envy)<br>
-　関数の移動、関数の抽出<br>
-・Inappropriate Intimacy<br>
-・メッセージの連鎖(Message Chains)<br>
-　委譲の隠蔽、関数の移動、関数の抽出<br>
-・仲介人(Middle Man)<br>
+　パラメータオブジェクトの導入、ポリモーフィズムによる条件記述の置き換え</li>
+</ul>
+<h3 id="tool-abusers">〇Tool Abusers<a hidden class="anchor" aria-hidden="true" href="#tool-abusers">#</a></h3>
+<ul>
+<li>Switch Statements</li>
+<li>相続拒否(Refused Bequest)<br>
+　 委譲によるサブクラスの置き換え、委譲によるスーパークラスの置き換え、フィールドの押し下げ、メソッドの押し下げ</li>
+<li>クラスのインターフェース不一致(Alternative Classes w/ Different Interfaces)<br>
+　関数宣言の変更、関数の移動、スーパークラスの抽出</li>
+<li>一時的属性(Temporary Field)<br>
+　関数の移動、クラスの抽出、特殊ケースの導入</li>
+</ul>
+<h3 id="change-preventers">〇Change Preventers<a hidden class="anchor" aria-hidden="true" href="#change-preventers">#</a></h3>
+<ul>
+<li>Divergent Change</li>
+<li>変更の分散(Shotgun Surgery)<br>
+　関数群のクラスへの集約、関数群の変換への集約、関数の移動、関数のインライン化、クラスのインライン化、フィールドの移動、フェーズの分離</li>
+<li>Parallel Inheritance Hierarchies</li>
+</ul>
+<h3 id="dispensables">〇Dispensables<a hidden class="anchor" aria-hidden="true" href="#dispensables">#</a></h3>
+<ul>
+<li>Lazy Class</li>
+<li>疑わしき一般化(Speculative Generality)<br>
+　関数宣言の変更、関数のインライン化、クラス階層の平坦化、クラスのインライン化、デッドコードの削除</li>
+<li>データクラス(Data Class)</li>
+<li>重複したコード(Duplicated Code)<br>
+　関数の抽出、ステートメントのスライド、メソッドの引き上げ</li>
+</ul>
+<h3 id="couplers">〇Couplers<a hidden class="anchor" aria-hidden="true" href="#couplers">#</a></h3>
+<ul>
+<li>
+<p>特性の横恋慕(Feature Envy)<br>
+　関数の移動、関数の抽出</p>
+</li>
+<li>
+<p>Inappropriate Intimacy</p>
+</li>
+<li>
+<p>メッセージの連鎖(Message Chains)<br>
+　委譲の隠蔽、関数の移動、関数の抽出</p>
+</li>
+<li>
+<p>仲介人(Middle Man)<br>
 　関数のインライン化、仲介人の除去</p>
+</li>
+<li>
 <p>Coment(コメント)<br>
-　アサーションの導入、関数宣言の変更、関数の抽出<br>
-Mysterious Name(不可思議な名前)<br>
-　関数宣言の変更、フィールド名の変更、変数名の変更<br>
-Global Data(グローバルなデータ)<br>
-　変数のカプセル化<br>
-Mutable Data(変更可能なデータ)<br>
+　アサーションの導入、関数宣言の変更、関数の抽出</p>
+</li>
+<li>
+<p>Mysterious Name(不可思議な名前)<br>
+　関数宣言の変更、フィールド名の変更、変数名の変更</p>
+</li>
+<li>
+<p>Global Data(グローバルなデータ)<br>
+　変数のカプセル化</p>
+</li>
+<li>
+<p>Mutable Data(変更可能なデータ)<br>
 　setter の削除、関数群のクラスへの集約、関数群の変換への集約、関数の抽出、参照から値への変更、<br>
-　ステートメントのスライド、問い合わせと更新の分離、問い合わせによる導入変数の置き換え、変数のカプセル化、変数の分離<br>
-Divergent Change(変更の偏り)<br>
-Repeated Switches(重複したスイッチ文)<br>
-　ポリモーフィズムによる条件記述の置き換え<br>
-Loop(ループ)<br>
-　パイプラインによるループの置き換え<br>
-Lazy Element(怠け者要素)<br>
-　関数のインライン化、クラス階層の平坦化、クラスのインライン化<br>
-Insider Trading(インサイダー取引)<br>
+　ステートメントのスライド、問い合わせと更新の分離、問い合わせによる導入変数の置き換え、変数のカプセル化、変数の分離</p>
+</li>
+<li>
+<p>Divergent Change(変更の偏り)</p>
+</li>
+<li>
+<p>Repeated Switches(重複したスイッチ文)<br>
+　ポリモーフィズムによる条件記述の置き換え</p>
+</li>
+<li>
+<p>Loop(ループ)<br>
+　パイプラインによるループの置き換え</p>
+</li>
+<li>
+<p>Lazy Element(怠け者要素)<br>
+　関数のインライン化、クラス階層の平坦化、クラスのインライン化</p>
+</li>
+<li>
+<p>Insider Trading(インサイダー取引)<br>
 　委譲によるサブクラスの置き換え、委譲によるスーパークラスの置き換え、委譲の隠匿<br>
 　関数の移動、フィールドの移動</p>
+</li>
+</ul>
 
 
   </div>
