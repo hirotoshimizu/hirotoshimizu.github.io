@@ -5,7 +5,19 @@
     <link>https://hirotoshimizu.github.io/</link>
     <description>Recent content on Shiglass</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 19 Feb 2022 11:52:20 +0900</lastBuildDate><atom:link href="https://hirotoshimizu.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 20 Feb 2022 07:55:49 +0900</lastBuildDate><atom:link href="https://hirotoshimizu.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Inline Function</title>
+      <link>https://hirotoshimizu.github.io/posts/inline-function/</link>
+      <pubDate>Sun, 20 Feb 2022 07:55:49 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/inline-function/</guid>
+      <description>動機 意図がわかるように命名された短い関数を使うことはコードを読みやすくする。しかし、関数の本体がその名前と同じくらいわかりやすいことがある。そうしたときには関数を取り除く。
+「関数のインライン化」は、うまく分割できない関数群があるときにも使われる。こうしたときは、それらを1つの大きな関数にインライン化してから、望ましい形の関数群として再抽出すればよい。
+通常、「関数のインライン化」を使うのは、間接化しすぎた結果、どの関数も別の関数へ委譲しているだけにしか見えず、委譲に次ぐ委譲の途中で迷っている状態。
+手順  関数がポリモーフィックなメソッドでないことを確認する。 ⋅⋅⋅クラスのメソッドで、サブクラスでオーバーライドされている場合はインライン化できない。 この関数の呼び出し元をすべて見つける。 関数の各呼び出し元をすべて見つける。 1つ置き換えるごとにですとする。 ⋅⋅⋅すべてのインライン化を一度にする必要はない。一部のインライン化がやりにくいようなら、機会を持って徐々に進めてもよい。 関数の定義を取り除く   Before def say_state(self): print_state(self) def print_state(self): print(f&amp;#34;I&amp;#39;m going {self.speed} kph!&amp;#34;) After def say_state(self): print(&amp;#34;I&amp;#39;m going {} kph!&amp;#34;.format(self.speed)) </description>
+    </item>
+    
     <item>
       <title>Why We Sleep</title>
       <link>https://hirotoshimizu.github.io/posts/why-we-sleep/</link>

@@ -149,6 +149,21 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Min Stack</h2>
+  </header>
+  <section class="entry-content">
+    <p>https://leetcode.com/problems/min-stack/solution/
+2つの stack を使う。 1つ目の stack は普通のstackを使うように扱う。(Stack) 2つ目の stack は現在の minimum をトラックするのに使う。(MinStack)
+MinStack の pushメソッドは現在の値が stack の top より小さい場合、 push される。
+popメソッドは Stack のみからpopすると MinStack と合わなくなるので、 If top of main_stack == top of min_tracker_stack: min_tracker_stack.pop() の処理が必要になる。
+class MinStack: def __init__(self): self.stack = [] self.min_stack = [] def push(self, x: int) -&gt; None: self.stack.append(x) if not self.min_stack or x &lt;= self.min_stack[-1]: self.min_stack.append(x) def pop(self) -&gt; None: if self.min_stack[-1] == self.stack[-1]: self.min_stack.pop() self....</p>
+  </section>
+  <footer class="entry-footer">October 20, 2021</footer>
+  <a class="entry-link" aria-label="post link to Min Stack" href="https://hirotoshimizu.github.io/posts/min-stack/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>Valid Anagram</h2>
   </header>
   <section class="entry-content">
@@ -212,19 +227,6 @@ step.2 prev = 1 curr = 2 temp = 3...</p>
   </section>
   <footer class="entry-footer">October 18, 2021</footer>
   <a class="entry-link" aria-label="post link to Palindrome Linked List" href="https://hirotoshimizu.github.io/posts/palindrome-linked-list/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Merge Sorted Array</h2>
-  </header>
-  <section class="entry-content">
-    <p>https://leetcode.com/problems/merge-sorted-array/
-この問題は pointer を 3つ使う。 1つ目は、nums1 の最後に pointer を設定。 2つ目は、nums1 の m に pointer を設定。 3つ目は、nums2 の 最後に pointer を設定。
- | 1 | 2 | 3 | 0 | 0 | 0 |  ↑ ↑   | 2 | 5 | 6 |  ↑  nums1[m - 1] と nums2[n - 1] の値を比べて、 nums2[n - 1] の値が大きいので、 nums1[last] = nums2[n - 1] を設定する。 そして nums2 の n の pointer を -1 してずらす。 また nums1 の last の pointer も -1 する。...</p>
-  </section>
-  <footer class="entry-footer">October 18, 2021</footer>
-  <a class="entry-link" aria-label="post link to Merge Sorted Array" href="https://hirotoshimizu.github.io/posts/merge-sorted-array/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

@@ -153,6 +153,22 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Search Insert Position</h2>
+  </header>
+  <section class="entry-content">
+    <p>https://leetcode.com/problems/search-insert-position/
+algorithm の runtime は O(log n) である必要があるため、 binary search で target の数の位置を調べる。
+変数 left に 0、 right に len(nums) - 1 を設定する。
+(left &#43; right) // 2 で真ん中の値が取得出来るので、 真ん中の位置を mid とする。
+nums の mid の値が target なら、mid の index の値を返す。 もし、target の値が mid より大きい場合、 left を mid &#43; 1 にする。 target の値が mid より小さい場合、 right を mid - 1 にする。
+[1, 3, 5, 6] で target = 2 の場合、...</p>
+  </section>
+  <footer class="entry-footer">October 21, 2021</footer>
+  <a class="entry-link" aria-label="post link to Search Insert Position" href="https://hirotoshimizu.github.io/posts/search-insert-position/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>Remove Duplicates From Sorted Array</h2>
   </header>
   <section class="entry-content">
@@ -216,21 +232,6 @@ class Solution: def isIsomorphic(self, s: str, t: str) -&gt; bool: mapST, mapTS 
   </section>
   <footer class="entry-footer">October 21, 2021</footer>
   <a class="entry-link" aria-label="post link to Isomorphic Strings" href="https://hirotoshimizu.github.io/posts/isomorphic-strings/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Min Stack</h2>
-  </header>
-  <section class="entry-content">
-    <p>https://leetcode.com/problems/min-stack/solution/
-2つの stack を使う。 1つ目の stack は普通のstackを使うように扱う。(Stack) 2つ目の stack は現在の minimum をトラックするのに使う。(MinStack)
-MinStack の pushメソッドは現在の値が stack の top より小さい場合、 push される。
-popメソッドは Stack のみからpopすると MinStack と合わなくなるので、 If top of main_stack == top of min_tracker_stack: min_tracker_stack.pop() の処理が必要になる。
-class MinStack: def __init__(self): self.stack = [] self.min_stack = [] def push(self, x: int) -&gt; None: self.stack.append(x) if not self.min_stack or x &lt;= self.min_stack[-1]: self.min_stack.append(x) def pop(self) -&gt; None: if self.min_stack[-1] == self.stack[-1]: self.min_stack.pop() self....</p>
-  </section>
-  <footer class="entry-footer">October 20, 2021</footer>
-  <a class="entry-link" aria-label="post link to Min Stack" href="https://hirotoshimizu.github.io/posts/min-stack/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

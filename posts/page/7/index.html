@@ -153,6 +153,21 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Same Tree</h2>
+  </header>
+  <section class="entry-content">
+    <p>DFS recursive
+Base Case は p,q が Null の場合同じ Tree なので return する。
+もし p,q のどちらかの値が違う場合、その Tree は同じではないので、 False を return する。 また、どちらかの値が Null の場合同じ Tree ではないので、この場合も False を　return する。
+Time complexity: O(n) Mem complexity: O(n)
+# Definition for a binary tree node. # class TreeNode(object): # def __init__(self, val=0, left=None, right=None): # self.val = val # self.left = left # self.right = right class Solution(object): def isSameTree(self, p, q): &#34;&#34;&#34; :type p: TreeNode :type q: TreeNode :rtype: bool &#34;&#34;&#34; if not p and not q: return True if not p or not q or p....</p>
+  </section>
+  <footer class="entry-footer">October 1, 2021</footer>
+  <a class="entry-link" aria-label="post link to Same Tree" href="https://hirotoshimizu.github.io/posts/same-tree/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>Maximum Depth of Binary Tree</h2>
   </header>
   <section class="entry-content">
@@ -220,21 +235,6 @@ class Solution(object): def canAttendMeetings(self, intervals): &#34;&#34;&#34; 
   </section>
   <footer class="entry-footer">September 25, 2021</footer>
   <a class="entry-link" aria-label="post link to Meeting Rooms" href="https://hirotoshimizu.github.io/posts/meeting-rooms/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Merge Two Sorted Lists</h2>
-  </header>
-  <section class="entry-content">
-    <p>https://leetcode.com/problems/merge-two-sorted-lists/
-ダミー Node を作って edge case の 空の Linked List が挿入されても大丈夫なようにする。
-その後はループで l1 と l2 の val を比べ、 小さい値を tail.next に入れる。 その後、 next をずらす。
-ループ後 l1, l2 のどちらかのリストが empty の場合、 Linked List に追加する必要があるので、 リストが empty か確認し、値があれば Linked List に追加する。
-# Definition for singly-linked list. # class ListNode(object): # def __init__(self, val=0, next=None): # self.val = val # self.next = next class Solution(object): def mergeTwoLists(self, l1, l2): &#34;&#34;&#34; :type l1: ListNode :type l2: ListNode :rtype: ListNode &#34;&#34;&#34; dummy = ListNode() tail = dummy while l1 and l2: if l1....</p>
-  </section>
-  <footer class="entry-footer">September 24, 2021</footer>
-  <a class="entry-link" aria-label="post link to Merge Two Sorted Lists" href="https://hirotoshimizu.github.io/posts/merge-two-sorted-lists/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

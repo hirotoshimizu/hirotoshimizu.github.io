@@ -5,7 +5,16 @@
     <link>https://hirotoshimizu.github.io/categories/</link>
     <description>Recent content in Categories on Shiglass</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 19 Feb 2022 11:52:20 +0900</lastBuildDate><atom:link href="https://hirotoshimizu.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 20 Feb 2022 07:55:49 +0900</lastBuildDate><atom:link href="https://hirotoshimizu.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Refactoring</title>
+      <link>https://hirotoshimizu.github.io/categories/refactoring/</link>
+      <pubDate>Sun, 20 Feb 2022 07:55:49 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/categories/refactoring/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Book</title>
       <link>https://hirotoshimizu.github.io/categories/book/</link>
@@ -21,15 +30,6 @@
       <pubDate>Fri, 18 Feb 2022 18:26:32 +0900</pubDate>
       
       <guid>https://hirotoshimizu.github.io/categories/clean-code/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Refactoring</title>
-      <link>https://hirotoshimizu.github.io/categories/refactoring/</link>
-      <pubDate>Fri, 18 Feb 2022 10:33:01 +0900</pubDate>
-      
-      <guid>https://hirotoshimizu.github.io/categories/refactoring/</guid>
       <description></description>
     </item>
     

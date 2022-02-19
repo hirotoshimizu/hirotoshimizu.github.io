@@ -138,6 +138,20 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
+    <h2>Inline Function</h2>
+  </header>
+  <section class="entry-content">
+    <p>動機 意図がわかるように命名された短い関数を使うことはコードを読みやすくする。しかし、関数の本体がその名前と同じくらいわかりやすいことがある。そうしたときには関数を取り除く。
+「関数のインライン化」は、うまく分割できない関数群があるときにも使われる。こうしたときは、それらを1つの大きな関数にインライン化してから、望ましい形の関数群として再抽出すればよい。
+通常、「関数のインライン化」を使うのは、間接化しすぎた結果、どの関数も別の関数へ委譲しているだけにしか見えず、委譲に次ぐ委譲の途中で迷っている状態。
+手順  関数がポリモーフィックなメソッドでないことを確認する。 ⋅⋅⋅クラスのメソッドで、サブクラスでオーバーライドされている場合はインライン化できない。 この関数の呼び出し元をすべて見つける。 関数の各呼び出し元をすべて見つける。 1つ置き換えるごとにですとする。 ⋅⋅⋅すべてのインライン化を一度にする必要はない。一部のインライン化がやりにくいようなら、機会を持って徐々に進めてもよい。 関数の定義を取り除く   Before def say_state(self): print_state(self) def print_state(self): print(f&#34;I&#39;m going {self.speed} kph!&#34;) After def say_state(self): print(&#34;I&#39;m going {} kph!&#34;.format(self.speed)) </p>
+  </section>
+  <footer class="entry-footer">February 20, 2022</footer>
+  <a class="entry-link" aria-label="post link to Inline Function" href="https://hirotoshimizu.github.io/posts/inline-function/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
     <h2>Dependency Inversion Principle</h2>
   </header>
   <section class="entry-content">
@@ -183,19 +197,6 @@ Before class Order: def __init__(self) -&gt; None: self.items = [] self.quantiti
   </section>
   <footer class="entry-footer">February 18, 2022</footer>
   <a class="entry-link" aria-label="post link to Open Closed Principle" href="https://hirotoshimizu.github.io/posts/open-closed-principle/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2>Single Responsibility Principle</h2>
-  </header>
-  <section class="entry-content">
-    <p>個々のモジュールを変更する理由がたったひとつだけになるように、ソフトウェアシステムの構造がそれを使う組織の社会的構造に大きな影響を受けるようにする。
-モジュールはたったひとつのアクターに対して責務を負うべきである。
-Before class Order: def __init__(self) -&gt; None: self.items = [] self.quantities = [] self.prices = [] self.status = &#39;open&#39; def add_item(self, name: str, quantity: int, price: int) -&gt; None: self.items.append(name) self.quantities.append(quantity) self.prices.append(price) def total_price(self) -&gt; int: total = 0 for i in range(len(self.prices)): total &#43;= self.quantities[i] * self.prices[i] return total def pay(self, payment_type: str, security_code: str) -&gt; None: if payment_type == &#39;debit&#39;: print(&#39;Proccessing debit payment type&#39;) print(f&#39;Verifying security code: {security_code}&#39;) self....</p>
-  </section>
-  <footer class="entry-footer">February 18, 2022</footer>
-  <a class="entry-link" aria-label="post link to Single Responsibility Principle" href="https://hirotoshimizu.github.io/posts/single-responsibility-principle/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

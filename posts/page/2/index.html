@@ -153,6 +153,19 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Open Closed Principle</h2>
+  </header>
+  <section class="entry-content">
+    <p>ソフトウェアの構成要素は拡張に対しては開いていて、修正に対しては閉じていなければならない。
+ソフトウェアの振る舞いは、既存の成果物を変更せず拡張できるようにすべき。
+Before class Order: def __init__(self) -&gt; None: self.items = [] self.quantities = [] self.prices = [] self.status = &#34;open&#34; def add_item(self, name: str, quantity: int, price: int) -&gt; None: self.items.append(name) self.quantities.append(quantity) self.prices.append(price) def total_price(self) -&gt; int: total = 0 for i in range(len(self.prices)): total &#43;= self.quantities[i] * self.prices[i] return total class PaymentProcessor: def pay_debit(self, order: Order, security_code: str) -&gt; None: print(&#34;Processing debit payment type&#34;) print(f&#34;Verifying security code: {security_code}&#34;) order....</p>
+  </section>
+  <footer class="entry-footer">February 18, 2022</footer>
+  <a class="entry-link" aria-label="post link to Open Closed Principle" href="https://hirotoshimizu.github.io/posts/open-closed-principle/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>Single Responsibility Principle</h2>
   </header>
   <section class="entry-content">
@@ -207,29 +220,6 @@ Dependency Inversion Principle ソースコードの依存関係が（具象で�
   </section>
   <footer class="entry-footer">February 17, 2022</footer>
   <a class="entry-link" aria-label="post link to Clean Code" href="https://hirotoshimizu.github.io/posts/clean-code/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Code Smells</h2>
-  </header>
-  <section class="entry-content">
-    <p>Bloaters  長い関数(Long Method)
-オブジェクトそのものの受け渡し、関数の抽出、コマンドによる関数の置き換え、問い合わせによる一時変数の置き換え、条件記述の分解、パラメータオブジェクトの導入、ポリモーフィズムによる条件記述の置き換え、ループの分離 巨大なクラス(Large Class)
-クラスの抽出、サブクスによるタイプコードの置き換え、スーパークラスの抽出 データの群れ(Data Clumps)
-オブジェクトそのものの受け渡し、クラスの抽出、パラメータオブジェクトの導入 長いパラメータリスト(Long Parameter List)
-オブジェクトそのものの受け渡し、関数群のクラスへの集約、問い合わせによるパラメータの置き換え、パラメータオブジェクトの導入、フラグパラメータの削除 基本データ型への執着(Primitive Obsession)
-オブジェクトによるプリミティブの置き換え、クラスの抽出、サブクラスによるタイプコードの置き換え、パラメータオブジェクトの導入、ポリモーフィズムによる条件記述の置き換え  Tool Abusers  Switch Statements 相続拒否(Refused Bequest)
-委譲によるサブクラスの置き換え、委譲によるスーパークラスの置き換え、フィールドの押し下げ、メソッドの押し下げ クラスのインターフェース不一致(Alternative Classes w/ Different Interfaces)
-関数宣言の変更、関数の移動、スーパークラスの抽出 一時的属性(Temporary Field)
-関数の移動、クラスの抽出、特殊ケースの導入  Change Preventers  Divergent Change 変更の分散(Shotgun Surgery)
-関数群のクラスへの集約、関数群の変換への集約、関数の移動、関数のインライン化、クラスのインライン化、フィールドの移動、フェーズの分離 Parallel Inheritance Hierarchies  Dispensables  Lazy Class 疑わしき一般化(Speculative Generality)
-関数宣言の変更、関数のインライン化、クラス階層の平坦化、クラスのインライン化、デッドコードの削除 データクラス(Data Class) 重複したコード(Duplicated Code)
-関数の抽出、ステートメントのスライド、メソッドの引き上げ  Couplers  特性の横恋慕(Feature Envy)
-関数の移動、関数の抽出 Inappropriate Intimacy メッセージの連鎖(Message Chains)...</p>
-  </section>
-  <footer class="entry-footer">February 17, 2022</footer>
-  <a class="entry-link" aria-label="post link to Code Smells" href="https://hirotoshimizu.github.io/posts/code-smells/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

@@ -153,6 +153,27 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Djnagoの管理画面からCSVファイルをアップしてデータ登録</h2>
+  </header>
+  <section class="entry-content">
+    <p>今回は restaurants というアプリを作成し進めていきます。
+CSVのファイルは管理画面のレストランの一覧画面 http://127.0.0.1:8000/admin/restaurants/restaurant/ からアップ。
+アプリの作成
+python manage.py startapp restaurants モデルは restaurant で作成。
+Admin テンプレートの Override templatesフォルダは manage.py と同じ階層に作成。
+templates/admin/restaurants/restaurant/change_list.html を作成
+{% extends &#39;admin/change_list.html&#39; %} {% load static %} {% block content %} &lt;a href=&#34;upload-csv/&#34;&gt;Upload a csv file&lt;/a&gt; {{ block.super }} {% endblock %} {{ block.super }} は親のテンプレートコンテンツ。
+Django change_list.html
+Custom Admin Page の作成 上記で作成したリンク先の upload-csv/ の URL を設定
+restaurants/admin.py の RestaurantAdmin で get_urls()を設定。
+def get_urls(self): urls = super().get_urls() new_urls = [ path(&#39;upload-csv/&#39;, self....</p>
+  </section>
+  <footer class="entry-footer">July 19, 2021</footer>
+  <a class="entry-link" aria-label="post link to Djnagoの管理画面からCSVファイルをアップしてデータ登録" href="https://hirotoshimizu.github.io/posts/2021-07-19/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>2021 07 13</h2>
   </header>
   <section class="entry-content">
@@ -206,23 +227,6 @@ json.dumps json.dumps()に入れた変数を JSON string に変換する。
   </section>
   <footer class="entry-footer">July 9, 2021</footer>
   <a class="entry-link" aria-label="post link to APIの設計" href="https://hirotoshimizu.github.io/posts/2021-07-09/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>2021 07 08</h2>
-  </header>
-  <section class="entry-content">
-    <p>DRFでオブジェクトを作成したとき、 デフォルトで、 作成したオブジェクトを含むディクショナリー型でデータを返す。
-keys() Pythonの組み込み関数。
-keys() dict = {&#34;A&#34;: &#34;Abalone&#34;, &#34;B&#34;: &#34;bluefin tuna&#34;, &#34;C&#34;: &#34;cod&#34;} print(dict.keys()) &gt;&gt;&gt;dict_keys([&#39;A&#39;, &#39;B&#39;, &#39;C&#39;]) dict = {&#34;A&#34;: &#34;Abalone&#34;, &#34;B&#34;: &#34;bluefin tuna&#34;, &#34;C&#34;: &#34;cod&#34;} for key in dict.keys(): print(key) &gt;&gt;&gt;A &gt;&gt;&gt;B &gt;&gt;&gt;C getattr Pythonの組み込み関数。
-getattr(object, name[,default]) 第一引数に指定された object の値を返す。 第二引数の name は文字列である必要があり、文字列が object の属性の一つの名前であった場合、戻り値はその属性の値になる。
-query_params request.GETと同義語。
-DRF では query_params を使用することを推奨。
-DRF ドキュメント</p>
-  </section>
-  <footer class="entry-footer">July 8, 2021</footer>
-  <a class="entry-link" aria-label="post link to 2021 07 08" href="https://hirotoshimizu.github.io/posts/2021-07-08/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

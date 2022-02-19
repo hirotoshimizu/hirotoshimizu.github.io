@@ -153,6 +153,20 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Inline Function</h2>
+  </header>
+  <section class="entry-content">
+    <p>動機 意図がわかるように命名された短い関数を使うことはコードを読みやすくする。しかし、関数の本体がその名前と同じくらいわかりやすいことがある。そうしたときには関数を取り除く。
+「関数のインライン化」は、うまく分割できない関数群があるときにも使われる。こうしたときは、それらを1つの大きな関数にインライン化してから、望ましい形の関数群として再抽出すればよい。
+通常、「関数のインライン化」を使うのは、間接化しすぎた結果、どの関数も別の関数へ委譲しているだけにしか見えず、委譲に次ぐ委譲の途中で迷っている状態。
+手順  関数がポリモーフィックなメソッドでないことを確認する。 ⋅⋅⋅クラスのメソッドで、サブクラスでオーバーライドされている場合はインライン化できない。 この関数の呼び出し元をすべて見つける。 関数の各呼び出し元をすべて見つける。 1つ置き換えるごとにですとする。 ⋅⋅⋅すべてのインライン化を一度にする必要はない。一部のインライン化がやりにくいようなら、機会を持って徐々に進めてもよい。 関数の定義を取り除く   Before def say_state(self): print_state(self) def print_state(self): print(f&#34;I&#39;m going {self.speed} kph!&#34;) After def say_state(self): print(&#34;I&#39;m going {} kph!&#34;.format(self.speed)) </p>
+  </section>
+  <footer class="entry-footer">February 20, 2022</footer>
+  <a class="entry-link" aria-label="post link to Inline Function" href="https://hirotoshimizu.github.io/posts/inline-function/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>Why We Sleep</h2>
   </header>
   <section class="entry-content">
@@ -227,19 +241,6 @@ Before from abc import ABC, abstractmethod class Order: def __init__(self) -&gt;
   </section>
   <footer class="entry-footer">February 18, 2022</footer>
   <a class="entry-link" aria-label="post link to Liskov Substitution Principle" href="https://hirotoshimizu.github.io/posts/liskov-substitution-principle/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Open Closed Principle</h2>
-  </header>
-  <section class="entry-content">
-    <p>ソフトウェアの構成要素は拡張に対しては開いていて、修正に対しては閉じていなければならない。
-ソフトウェアの振る舞いは、既存の成果物を変更せず拡張できるようにすべき。
-Before class Order: def __init__(self) -&gt; None: self.items = [] self.quantities = [] self.prices = [] self.status = &#34;open&#34; def add_item(self, name: str, quantity: int, price: int) -&gt; None: self.items.append(name) self.quantities.append(quantity) self.prices.append(price) def total_price(self) -&gt; int: total = 0 for i in range(len(self.prices)): total &#43;= self.quantities[i] * self.prices[i] return total class PaymentProcessor: def pay_debit(self, order: Order, security_code: str) -&gt; None: print(&#34;Processing debit payment type&#34;) print(f&#34;Verifying security code: {security_code}&#34;) order....</p>
-  </section>
-  <footer class="entry-footer">February 18, 2022</footer>
-  <a class="entry-link" aria-label="post link to Open Closed Principle" href="https://hirotoshimizu.github.io/posts/open-closed-principle/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

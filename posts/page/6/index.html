@@ -153,6 +153,19 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Merge Sorted Array</h2>
+  </header>
+  <section class="entry-content">
+    <p>https://leetcode.com/problems/merge-sorted-array/
+この問題は pointer を 3つ使う。 1つ目は、nums1 の最後に pointer を設定。 2つ目は、nums1 の m に pointer を設定。 3つ目は、nums2 の 最後に pointer を設定。
+ | 1 | 2 | 3 | 0 | 0 | 0 |  ↑ ↑   | 2 | 5 | 6 |  ↑  nums1[m - 1] と nums2[n - 1] の値を比べて、 nums2[n - 1] の値が大きいので、 nums1[last] = nums2[n - 1] を設定する。 そして nums2 の n の pointer を -1 してずらす。 また nums1 の last の pointer も -1 する。...</p>
+  </section>
+  <footer class="entry-footer">October 18, 2021</footer>
+  <a class="entry-link" aria-label="post link to Merge Sorted Array" href="https://hirotoshimizu.github.io/posts/merge-sorted-array/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>House Robber</h2>
   </header>
   <section class="entry-content">
@@ -221,21 +234,6 @@ Mem complexity: O(n)
   </section>
   <footer class="entry-footer">October 1, 2021</footer>
   <a class="entry-link" aria-label="post link to Invert Binary Tree" href="https://hirotoshimizu.github.io/posts/invert-binary-tree/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Same Tree</h2>
-  </header>
-  <section class="entry-content">
-    <p>DFS recursive
-Base Case は p,q が Null の場合同じ Tree なので return する。
-もし p,q のどちらかの値が違う場合、その Tree は同じではないので、 False を return する。 また、どちらかの値が Null の場合同じ Tree ではないので、この場合も False を　return する。
-Time complexity: O(n) Mem complexity: O(n)
-# Definition for a binary tree node. # class TreeNode(object): # def __init__(self, val=0, left=None, right=None): # self.val = val # self.left = left # self.right = right class Solution(object): def isSameTree(self, p, q): &#34;&#34;&#34; :type p: TreeNode :type q: TreeNode :rtype: bool &#34;&#34;&#34; if not p and not q: return True if not p or not q or p....</p>
-  </section>
-  <footer class="entry-footer">October 1, 2021</footer>
-  <a class="entry-link" aria-label="post link to Same Tree" href="https://hirotoshimizu.github.io/posts/same-tree/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
