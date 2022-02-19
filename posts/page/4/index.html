@@ -153,87 +153,84 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Merge Sorted Array</h2>
+    <h2>Remove Duplicates From Sorted Array</h2>
   </header>
   <section class="entry-content">
-    <p>https://leetcode.com/problems/merge-sorted-array/
-この問題は pointer を 3つ使う。 1つ目は、nums1 の最後に pointer を設定。 2つ目は、nums1 の m に pointer を設定。 3つ目は、nums2 の 最後に pointer を設定。
- | 1 | 2 | 3 | 0 | 0 | 0 |  ↑ ↑   | 2 | 5 | 6 |  ↑  nums1[m - 1] と nums2[n - 1] の値を比べて、 nums2[n - 1] の値が大きいので、 nums1[last] = nums2[n - 1] を設定する。 そして nums2 の n の pointer を -1 してずらす。 また nums1 の last の pointer も -1 する。...</p>
+    <p>nums = [0,0,1,1,1,2,2,3,3,4] の重複をなくすようにするので、下記のようになる。
+nums = [0,1,2,3,4,,,,,_]
+pointer を 2つ使う。
+最初の数字は必ずユニークになるので、 left = 1　とする。
+right は for でループさせながら icrement していく。
+non-decreasing order なので、 right の値と right - 1　を比較して、 違う値なら一番初めに現れるユニークの数字だとわかる。
+そのためその数字を left pointer がある位置に入れる。 その後、 left pointer をicrementする。
+最終的に left pointer の位置がユニークな数の出現回数となるので、 その値を return する。
+class Solution: def removeDuplicates(self, nums: List[int]) -&gt; int: left = 1 for right in range(1, len(nums)): if nums[right] != nums[right - 1]: nums[left] = nums[right] left &#43;= 1 return left </p>
   </section>
-  <footer class="entry-footer">October 18, 2021</footer>
-  <a class="entry-link" aria-label="post link to Merge Sorted Array" href="https://hirotoshimizu.github.io/posts/merge-sorted-array/"></a>
+  <footer class="entry-footer">October 21, 2021</footer>
+  <a class="entry-link" aria-label="post link to Remove Duplicates From Sorted Array" href="https://hirotoshimizu.github.io/posts/remove-duplicates-from-sorted-array/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>House Robber</h2>
+    <h2>Remove Linked List Elements</h2>
   </header>
   <section class="entry-content">
-    <p>https://leetcode.com/problems/house-robber/
-隣り合った家は訪れることが出来ないので、 変数 rob1 と rob2 を用意する。
-for で全ての家を訪れ、 pointer のある位置＋rob1 と rob2 の大きい値を temp に入れる。
-rob1 pointerのある位置の前の前の家 rob2 pointerのある位置のは前の家
-rob2 が nums の最後の位置まで行くとループが終わるので return で rob2 を返す。
-class Solution: def rob(self, num: List[int])-&gt; int: rob1, rob2 = 0, 0 for n in num: temp = max(rob1 &#43; n, rob2) rob1 = rob2 rob2 = temp return rob2 </p>
+    <p>sentinel ノードは Linked List を空にせず、ヘッドレスにしないようにする。
+アルゴリズムは
+sentinel ノードをセットする。
+curr と prev のポインターを設定する。
+curr が null でない場合、ループする。
+curr.val が 削除する値の場合、
+class Solution: def removeElements(self, head: Optional[ListNode], val: int) -&gt; Optional[ListNode]: sentinel = ListNode(next=head) prev, curr = sentinel, head while curr: if curr.val == val: prev.next = curr.next else: prev = curr curr = curr.next return sentinel.next </p>
   </section>
-  <footer class="entry-footer">October 18, 2021</footer>
-  <a class="entry-link" aria-label="post link to House Robber" href="https://hirotoshimizu.github.io/posts/house-robber/"></a>
+  <footer class="entry-footer">October 21, 2021</footer>
+  <a class="entry-link" aria-label="post link to Remove Linked List Elements" href="https://hirotoshimizu.github.io/posts/remove-linked-list-elements/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Two Sum Ii Input Array Is Sorted</h2>
+    <h2>Path Sum</h2>
   </header>
   <section class="entry-content">
-    <p>https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
-この問題は pointer を2つ使い target になる数を探していく。
-pointer を left と right に置き、 left と right の合計が target の値と同じかを計算する。
-合計が大きい場合は right の pointer を左にずらし、 合計が小さい場合は left の pointer を右にずらしていく。
-合計がtarget の値になるまでループして index の位置を返す。
-target = 9
- | 1 | 3 | 4 | 5 | 7 | 11 | 　↑　↑
-1 &#43; 11 = 12 &gt; 9
- | 1 | 3 | 4 | 5 | 7 | 11 | 　↑　↑...</p>
+    <p>https://leetcode.com/problems/path-sum/solution/
+ノードがリーフでない場合は、子に対してhasPathSumメソッドを再帰的に呼び出し、合計を現在のノードの値だけ減らす。
+ノードがリーフの場合、現在の合計がゼロであるかどうか、つまり最初の合計が検出されたかどうかを確認します。
+Base case は、root が none ということはリーフの下の node を確認してるので、sum が 0 になっていないので False を返す。
+class Solution: def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -&gt; bool: if not root: return False targetSum -= root.val if not root.left and not root.right: # if reach a leaf return targetSum == 0 return self.hasPathSum(root.left, targetSum) or self.hasPathSum(root.right, targetSum) </p>
   </section>
-  <footer class="entry-footer">October 18, 2021</footer>
-  <a class="entry-link" aria-label="post link to Two Sum Ii Input Array Is Sorted" href="https://hirotoshimizu.github.io/posts/two-sum-ii-input-array-is-sorted/"></a>
+  <footer class="entry-footer">October 21, 2021</footer>
+  <a class="entry-link" aria-label="post link to Path Sum" href="https://hirotoshimizu.github.io/posts/path-sum/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Find the Town Judge</h2>
+    <h2>Isomorphic Strings</h2>
   </header>
   <section class="entry-content">
-    <p>https://leetcode.com/problems/find-the-town-judge/
-graphの問題で、trust のペア, [a, b] は a から b に向かう directed edge である。
-例えば、 N = 5 で trust trust = [[1,3],[2,3],[4,3],[4,1],[5,3],[5,1],[5,4]] の場合下記のような graph になる。
-3 は 1,2,4,5 から信頼されていて、 誰も信頼していない。 そのため、judge は 3 になる。
-この graph theory の、 outdegree の辺は、 その人が他の人を信頼している数になる。
-indegree の辺は他の人から信頼されている数になる。
-そのため indegree と outdegree によって誰が judge か判断できる。
-judge は outdegree が 0 で indegree が N - 1 となる。
-trust をループして全員の indegree, outdegree の数を調査できる。
-indegree = [0] * (N &#43; 1) outdegree = [0] * (N &#43; 1) for a, b in trust: outdegree[a] &#43;= 1 indegree[b] &#43;= 1 そして、1 ～ N 人全員をループして、チェックすれば、 judge がわかる。...</p>
+    <p>https://leetcode.com/problems/isomorphic-strings/
+s と t をマッピングして考える。 この際、同じ文字なのに違う文字がマッピングされる場合
+isomorphic にならない。
+ex. foo bar
+ | f → b | | o → a | | o → r |  | b → f | | a → o | | r → o | o が a と r にマッピングされているので、 isomorphic にならず、false になる。
+class Solution: def isIsomorphic(self, s: str, t: str) -&gt; bool: mapST, mapTS = {}, {} for c1, c2 in zip(s, t): if((c1 in mapST and mapST[c1] !...</p>
   </section>
-  <footer class="entry-footer">October 17, 2021</footer>
-  <a class="entry-link" aria-label="post link to Find the Town Judge" href="https://hirotoshimizu.github.io/posts/find-the-town-judge/"></a>
+  <footer class="entry-footer">October 21, 2021</footer>
+  <a class="entry-link" aria-label="post link to Isomorphic Strings" href="https://hirotoshimizu.github.io/posts/isomorphic-strings/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Invert Binary Tree</h2>
+    <h2>Min Stack</h2>
   </header>
   <section class="entry-content">
-    <p>DFS
-Base Case root が Null は None を返す。
-Tree を反転して値が同じなら True を返すので、
-children node の値を swap して同じか確かめる。
-Time complexity: O(n)
-Mem complexity: O(n)
-# Definition for a binary tree node. # class TreeNode(object): # def __init__(self, val=0, left=None, right=None): # self.val = val # self.left = left # self.right = right class Solution(object): def invertTree(self, root): &#34;&#34;&#34; :type root: TreeNode :rtype: TreeNode &#34;&#34;&#34; if not root: return None tmp = root....</p>
+    <p>https://leetcode.com/problems/min-stack/solution/
+2つの stack を使う。 1つ目の stack は普通のstackを使うように扱う。(Stack) 2つ目の stack は現在の minimum をトラックするのに使う。(MinStack)
+MinStack の pushメソッドは現在の値が stack の top より小さい場合、 push される。
+popメソッドは Stack のみからpopすると MinStack と合わなくなるので、 If top of main_stack == top of min_tracker_stack: min_tracker_stack.pop() の処理が必要になる。
+class MinStack: def __init__(self): self.stack = [] self.min_stack = [] def push(self, x: int) -&gt; None: self.stack.append(x) if not self.min_stack or x &lt;= self.min_stack[-1]: self.min_stack.append(x) def pop(self) -&gt; None: if self.min_stack[-1] == self.stack[-1]: self.min_stack.pop() self....</p>
   </section>
-  <footer class="entry-footer">October 1, 2021</footer>
-  <a class="entry-link" aria-label="post link to Invert Binary Tree" href="https://hirotoshimizu.github.io/posts/invert-binary-tree/"></a>
+  <footer class="entry-footer">October 20, 2021</footer>
+  <a class="entry-link" aria-label="post link to Min Stack" href="https://hirotoshimizu.github.io/posts/min-stack/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

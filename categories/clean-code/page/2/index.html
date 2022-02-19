@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Clean Code | Shiglass</title>
+<meta name="keywords" content="" />
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="canonical" href="https://hirotoshimizu.github.io/categories/clean-code/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.d9015f4cb657fd3539b79b29ffbd11de4175ccd105ad7591beffaadfafb48488.css" integrity="sha256-2QFfTLZX/TU5t5sp/70R3kF1zNEFrXWRvv&#43;q36&#43;0hIg=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://hirotoshimizu.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://hirotoshimizu.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://hirotoshimizu.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://hirotoshimizu.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://hirotoshimizu.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.68.3" />
+<link rel="alternate" type="application/rss+xml" href="https://hirotoshimizu.github.io/categories/clean-code/index.xml">
+<meta property="og:title" content="Clean Code" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://hirotoshimizu.github.io/categories/clean-code/" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Clean Code"/>
+<meta name="twitter:description" content=""/>
+
+</head>
+
+<body class="list" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<noscript>
+    <style type="text/css">
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: #1d1e20;
+                --entry: #2e2e33;
+                --primary: rgba(255, 255, 255, 0.84);
+                --secondary: rgba(255, 255, 255, 0.56);
+                --tertiary: rgba(255, 255, 255, 0.16);
+                --content: rgba(255, 255, 255, 0.74);
+                --hljs-bg: #2e2e33;
+                --code-bg: #37383e;
+                --border: #333;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://hirotoshimizu.github.io" accesskey="h" title="Shiglass (Alt + H)">Shiglass</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://hirotoshimizu.github.io/about/" title="about">
+                    <span>about</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hirotoshimizu.github.io/archives/" title="archives">
+                    <span>archives</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hirotoshimizu.github.io/categories/" title="categories">
+                    <span>categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hirotoshimizu.github.io/tags/" title="tags">
+                    <span>tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header">
+  <h1>Clean Code</h1>
+</header>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>Clean Code</h2>
+  </header>
+  <section class="entry-content">
+    <p>意味のある名前  意図が明確な名前にする 意味のある対比を行う 発音可能な名前を使用する 検索可能な名前を用いる マジックナンバーは定数に メンタルマッピングを避ける 抽象レベルに適切な名前を選ぶ 広いスコープには長い名前を エンコーディングを避ける 名前で副作用を示すべき  関数  小さいこと！ 1つのことを行う 内容をよく表す名前を使う 引数は少なく フラグ引数は使わず、メソッドを分割する 副作用をさける try/catchブロックの分離 DRY(Don’t Repeat Yourself) 死んだ関数は削除すべき  コメント 「ダメなコードをコメントで取り繕ってはいけない。書き直すのだ」
+ コメントで、ダメなコードを取り繕うことはできない 自分自身をコードで説明する 意図の説明 結果に対する警告  書式化  縦方向の書式化 垂直概念分離性 垂直密度 垂直距離 水平分離性と密度  オブジェクトとデータ構造    テスト  1つのテストに1つのアサート 1つのテストでは1つの概念を扱う カバレッジツールを使用する ささいなテストを省略しない 無視することを指定されたテストは、あいまいさへの問いかけである 境界条件テストには注意払う バグの周辺は徹底的にテストを 失敗パターンは何かを語る テストカバレッジパターンは何かを語る テストは高速に実行できるべき  </p>
+  </section>
+  <footer class="entry-footer">February 17, 2022</footer>
+  <a class="entry-link" aria-label="post link to Clean Code" href="https://hirotoshimizu.github.io/posts/clean-code/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="https://hirotoshimizu.github.io/categories/clean-code/">« Prev Page</a>
+  </nav>
+</footer>
+    </main>
+    <footer class="footer">
+    <span>&copy; 2022 <a href="https://hirotoshimizu.github.io">Shiglass</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
+    <button class="top-link" id="top-link" type="button" accesskey="g">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z" />
+        </svg>
+    </button>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+    menu.onscroll = function () {
+        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

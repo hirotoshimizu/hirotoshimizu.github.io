@@ -153,80 +153,88 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Djnagoの管理画面からCSVファイルをアップしてデータ登録</h2>
+    <h2>Linked List Cycle</h2>
   </header>
   <section class="entry-content">
-    <p>今回は restaurants というアプリを作成し進めていきます。
-CSVのファイルは管理画面のレストランの一覧画面 http://127.0.0.1:8000/admin/restaurants/restaurant/ からアップ。
-アプリの作成
-python manage.py startapp restaurants モデルは restaurant で作成。
-Admin テンプレートの Override templatesフォルダは manage.py と同じ階層に作成。
-templates/admin/restaurants/restaurant/change_list.html を作成
-{% extends &#39;admin/change_list.html&#39; %} {% load static %} {% block content %} &lt;a href=&#34;upload-csv/&#34;&gt;Upload a csv file&lt;/a&gt; {{ block.super }} {% endblock %} {{ block.super }} は親のテンプレートコンテンツ。
-Django change_list.html
-Custom Admin Page の作成 上記で作成したリンク先の upload-csv/ の URL を設定
-restaurants/admin.py の RestaurantAdmin で get_urls()を設定。
-def get_urls(self): urls = super().get_urls() new_urls = [ path(&#39;upload-csv/&#39;, self....</p>
+    <p>https://leetcode.com/problems/linked-list-cycle/
+Linked List が Cycle なのかを確認する。
+Linked List が Cycle な場合、 2つのポインターを使う。 (1つめのポインターは 1つずつ進み、 2つめのポインターは 2つずつ進む。) Cycle な場合どこかの時点で2つ進むポインター が1つしか進まないポインターに追いつくので Cycle だとわかる。
+Cycle ではない場合 いずれかの時点で ポインターが Null になる。
+Time complexity: O(n) Mem complexity: O(1)
+# Definition for singly-linked list. # class ListNode(object): # def __init__(self, x): # self.val = x # self.next = None class Solution(object): def hasCycle(self, head): &#34;&#34;&#34; :type head: ListNode :rtype: bool &#34;&#34;&#34; slow, fast = head, head while fast and fast....</p>
   </section>
-  <footer class="entry-footer">July 19, 2021</footer>
-  <a class="entry-link" aria-label="post link to Djnagoの管理画面からCSVファイルをアップしてデータ登録" href="https://hirotoshimizu.github.io/posts/2021-07-19/"></a>
+  <footer class="entry-footer">September 24, 2021</footer>
+  <a class="entry-link" aria-label="post link to Linked List Cycle" href="https://hirotoshimizu.github.io/posts/linked-list-cycle/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>2021 07 13</h2>
+    <h2>Reverse Linked List</h2>
   </header>
   <section class="entry-content">
-    <p>PrimaryKeyRelatedField PrimaryKeyRelatedField を使用することでリレーションのあるテーブルのプライマリーキーを取得することが出来る。
-class StatusSerializer(serializers.ModelSerializer): uri = serializers.SerializerMethodField(read_only=True) user = UserPublicSerializer(read_only=True) user_id = serializers.PrimaryKeyRelatedField(source=&#39;user&#39;, read_only=True) class Meta: model = Status fields = [ &#39;uri&#39;, &#39;user_id&#39;, &#39;id&#39;, &#39;user&#39;, &#39;content&#39;, &#39;image&#39; ] read_only_fields = [&#39;user&#39;]  &#34;results&#34;: [ { &#34;uri&#34;: &#34;http://127.0.0.1:8000/api/status/1/&#34;, &#34;id&#34;: 7, &#34;user_id&#34;: 1, &#34;user&#34;: { &#34;id&#34;: 1, &#34;username&#34;: &#34;test&#34;, &#34;uri&#34;: &#34;http://127.0.0.1:8000/api/user/test/&#34; }, &#34;content&#34;: &#34;do some stuff here&#34;, &#34;image&#34;: &#34;http://127.0.0.1:8000/media/status/test/images.png&#34; }, DRF ドキュメント
-HyperlinkedRelatedField PrimaryKeyRelatedField を使用することでリレーションのあるテーブルのターゲットのハイパーリンクを取得することが出来る。
-class StatusSerializer(serializers.ModelSerializer): uri = serializers.SerializerMethodField(read_only=True) user = UserPublicSerializer(read_only=True) user_id = serializers....</p>
+    <p>https://leetcode.com/problems/reverse-linked-list/
+考え方としては、
+1 → 2 → 3 → 4 → 5
+1 ← 2 ← 3 ← 4 ← 5
+とするように考える。
+回答方法は iterative なやり方と recursive なやり方がある。 iterative なやり方は 2つの pointer を使う。
+prev と curr
+まず prev に　None を設定する。 curr は head にする
+Null → 1 → 2 → 3 → 4 → 5 ↑ ↑ prev curr
+ループしている間 Linked List の 矢印の向き (curr.next) をずらしつつ、prev と next の pointer もずらしていく。...</p>
   </section>
-  <footer class="entry-footer">July 13, 2021</footer>
-  <a class="entry-link" aria-label="post link to 2021 07 13" href="https://hirotoshimizu.github.io/posts/2021-07-14/"></a>
+  <footer class="entry-footer">September 24, 2021</footer>
+  <a class="entry-link" aria-label="post link to Reverse Linked List" href="https://hirotoshimizu.github.io/posts/reverse-linked-list/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>2021 07 12</h2>
+    <h2>Valid Parentheses</h2>
   </header>
   <section class="entry-content">
-    <p>Authenticating users authenticate(request=None, **credentials)
-authenticate() は認証の承認のために使用する関数。 デフォルトでは keyword arguments で username と password で認証し、 User オブジェクトを返す。
-set_password(raw_password)
-パスワードをハッシュ化するのに使う。</p>
+    <p>https://leetcode.com/problems/valid-parentheses/
+Prerequisite Hash Map Stack
+最初にどのカッコがどの 括弧閉じ にマッチしているかわかるために HashMap を作る必要がある。 この際、括弧閉じ をキーにする。
+for 文で list の中を確認し、 括弧開きは stack に入れる。
+stack は 最後に入れたものから出すので、 括弧開き と 括弧閉じ がマッチしていれば、 stack から pop できる。
+最後に stack に何も残らなければ、 全てがマッチして True を return する。
+Time complexity: O(n) Mem complexity: O(n)
+class Solution(object): def isValid(self, s): &#34;&#34;&#34; :type s: str :rtype: bool &#34;&#34;&#34; stack = [] closeToOpen = { &#39;)&#39; : &#39;(&#39;, &#39;]&#39; : &#39;[&#39;, &#39;}&#39; : &#39;{&#39; } for c in s: if c in closeToOpen: if stack and stack[-1] == closeToOpen[c]: stack....</p>
   </section>
-  <footer class="entry-footer">July 11, 2021</footer>
-  <a class="entry-link" aria-label="post link to 2021 07 12" href="https://hirotoshimizu.github.io/posts/2021-07-12/"></a>
+  <footer class="entry-footer">September 22, 2021</footer>
+  <a class="entry-link" aria-label="post link to Valid Parentheses" href="https://hirotoshimizu.github.io/posts/valid-parentheses/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>2021 07 11</h2>
+    <h2>Missing Number</h2>
   </header>
   <section class="entry-content">
-    <p>python での JSON の扱いについてわすれるのでメモ。
-json.dumps json.dumps()に入れた変数を JSON string に変換する。
-&gt;&gt;&gt; import json &gt;&gt;&gt; data = {&#39;abc&#39;: 123} &gt;&gt;&gt; type(data_json) &lt;class &#39;str&#39;&gt; &gt;&gt;&gt; data_json = json.dumps(data) &gt;&gt;&gt; data_json &#39;{&#34;abc&#34;: 123}&#39; json.loads json.loads(JSON string) で python dictionary に型を変換する。
-&gt;&gt;&gt; import json &gt;&gt;&gt; data = {&#39;abc&#39;: 123} &gt;&gt;&gt; type(data_json) &lt;class &#39;str&#39;&gt; &gt;&gt;&gt; data_json = json.dumps(data) &gt;&gt;&gt; data_json &#39;{&#34;abc&#34;: 123}&#39; &gt;&gt;&gt; load_json = json.loads(data_json) &gt;&gt;&gt; load_json {&#39;abc&#39;: 123} &gt;&gt;&gt; type(load_json) &lt;class &#39;dict&#39;&gt; &gt;&gt;&gt; load_json[&#39;abc&#39;] 123 Django Rest Framework...</p>
+    <p>https://leetcode.com/problems/missing-number/
+sum([0,1,2,3]) - sum([3,0,1]) = 2 2がない数字なので、2が残る。
+最初に result に len(nums) を代入する。 nums が [3,0,1] の場合、 result に 3 が代入される。
+これは for で回す時に range(len(nums)) だと 0, 1, 2 としかならないため。 result に len(nums) の代入が必要。
+result &#43;= (i - nums[i]) をすることで、2 が return 出来る。
+Time complexity: O(n) Mem complexity: O(1)
+class Solution(object): def missingNumber(self, nums): &#34;&#34;&#34; :type nums: List[int] :rtype: int &#34;&#34;&#34; result = len(nums) for i in range(len(nums)): result &#43;= (i - nums[i]) return result </p>
   </section>
-  <footer class="entry-footer">July 9, 2021</footer>
-  <a class="entry-link" aria-label="post link to 2021 07 11" href="https://hirotoshimizu.github.io/posts/2021-07-11/"></a>
+  <footer class="entry-footer">September 21, 2021</footer>
+  <a class="entry-link" aria-label="post link to Missing Number" href="https://hirotoshimizu.github.io/posts/missing-number/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>APIの設計</h2>
+    <h2>Maximum Subarray</h2>
   </header>
   <section class="entry-content">
-    <p>Web API the good parts
-エンドポイントの基本的な設計 覚えやすく、どんな機能を持つURIなのかがひと目でわかる  短くて入力しやすいURI 人間が読んで理解できるURL 大文字小文字が混在していないURI 改造しやすい（Hackableな）URI サーバー側のアーキテクチャが反映されていないURI  どんなソフトウェア、言語を利用しているのか。 ディレクトリやシステム構成がどうなっているのか。   ルールが統一されたURI  リソースにアクセスするための設計の注意点  複数形の名詞を利用する 利用する単語に気をつける スペースやエンコードを必要とする文字を使わない 単語をつなげる必要がある場合はハイフンを利用する  リソースの一覧取得のエンドポイントが検索を兼ねる。 絞り込み検索はパラメーターを設定する。
-検索に相対位置を利用する問題点 データ数が膨大になるとpageやoffsetを指定されていると「先頭から何件目か」を調べるために先頭から数を数える処理が行われるため遅くなる。 また、更新頻度が高いデータの場合データに不整合が生じる。
-絶対位置でデータを問題点 絶対位置指定とは、オフセットで相対位置を指定する代わりに、これまで取得した最後のデータのIDや時間を記録しておいて、「このIDより前のもの」や「この時刻より古いもの」と言った指定を行う方法。　配列とフォーマット オブジェクトで配列を包むメリット  レスポンスデータが何をしていものかがわかりやすくなる レスポンスデータをオブジェクトに統一することができる。 セキュリティ上のリスクを避けることができる  トップれべるが配列であるJSONは、JSONインジェクションに対するリスクが大きくなる。
-続きがある場合どうデータを返すべきか 例えば20件データを返すためには最大21件の取得を行ってみて、実際に21件取得できれば、 「hasNext」といった名前で結果を含めてあげれば良い。</p>
+    <p>https://leetcode.com/problems/maximum-subarray/
+ | -2 | 1 | -3 | 4 | -1 | 2 | 1 | -5 | 4 | 最初の3つの合計(-2 &#43; 1 -3)はマイナスになるので、 そのため subarray のスタートは 4 もしくは 4以降の数字になる。
+合計が正の数になる場合は保持しておく。 変数に0 を代入して、 iterate しながら数字を追加していく。 合計がマイナスになる場合は保持する必要がないので、0 にする。
+Time complexity: O(n) Mem complexity: O(1)
+class Solution(object): def maxSubArray(self, nums): &#34;&#34;&#34; :type nums: List[int] :rtype: int &#34;&#34;&#34; max_subarray = nums[0] current_subarray = 0 for n in nums: if current_subarray &lt; 0: current_subarray = 0 current_subarray &#43;= n max_subarray = max(max_subarray, current_subarray) return max_subarray </p>
   </section>
-  <footer class="entry-footer">July 9, 2021</footer>
-  <a class="entry-link" aria-label="post link to APIの設計" href="https://hirotoshimizu.github.io/posts/2021-07-09/"></a>
+  <footer class="entry-footer">September 21, 2021</footer>
+  <a class="entry-link" aria-label="post link to Maximum Subarray" href="https://hirotoshimizu.github.io/posts/maximum-subarray/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

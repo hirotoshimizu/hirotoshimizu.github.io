@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Refactoring | Shiglass</title>
+<meta name="keywords" content="" />
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="canonical" href="https://hirotoshimizu.github.io/tags/refactoring/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.d9015f4cb657fd3539b79b29ffbd11de4175ccd105ad7591beffaadfafb48488.css" integrity="sha256-2QFfTLZX/TU5t5sp/70R3kF1zNEFrXWRvv&#43;q36&#43;0hIg=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://hirotoshimizu.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://hirotoshimizu.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://hirotoshimizu.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://hirotoshimizu.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://hirotoshimizu.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.68.3" />
+<link rel="alternate" type="application/rss+xml" href="https://hirotoshimizu.github.io/tags/refactoring/index.xml">
+<meta property="og:title" content="Refactoring" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://hirotoshimizu.github.io/tags/refactoring/" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Refactoring"/>
+<meta name="twitter:description" content=""/>
+
+</head>
+
+<body class="list" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<noscript>
+    <style type="text/css">
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: #1d1e20;
+                --entry: #2e2e33;
+                --primary: rgba(255, 255, 255, 0.84);
+                --secondary: rgba(255, 255, 255, 0.56);
+                --tertiary: rgba(255, 255, 255, 0.16);
+                --content: rgba(255, 255, 255, 0.74);
+                --hljs-bg: #2e2e33;
+                --code-bg: #37383e;
+                --border: #333;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://hirotoshimizu.github.io" accesskey="h" title="Shiglass (Alt + H)">Shiglass</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://hirotoshimizu.github.io/about/" title="about">
+                    <span>about</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hirotoshimizu.github.io/archives/" title="archives">
+                    <span>archives</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hirotoshimizu.github.io/categories/" title="categories">
+                    <span>categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hirotoshimizu.github.io/tags/" title="tags">
+                    <span>tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header">
+  <h1>Refactoring</h1>
+</header>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>Solid</h2>
+  </header>
+  <section class="entry-content">
+    <p>よくできたソフトウェアシステムは、クリーンなコードを書くことから始まる。レンガの出来が悪ければ、その建築は優れたものにはならない。一方、たとえよくできたレンガを使っても、ぐちゃぐちゃなもの作ってしまうことがあり得る。そこで登場するのが「SOLID」原則。
+SOLID原則は、関数やデータ構造をどのようにクラスに組み込むのか、そしてクラスの相互接続をどのようにするのかといったことを教えてくれる。　SOLID原則の目的は、以下のような性質を持つ中間レベルのソフトウェア構造を作ること。
+ 変更につよいこと 理解しやすいこと コンポーネントの基盤として、多くのソフトウェアシステムで利用できること  Single Responsibility Principle 個々のモジュールを変更する理由がたったひとつだけになるように、ソフトウェアシステムの構造がそれを使う組織の社会的構造に大きな影響を受けるようにする。
+モジュールはたったひとつのアクターに対して責務を負うべきである。
+Opne Closed Principle ソフトウェアの構成要素は拡張に対しては開いていて、修正に対しては閉じていなければならない。
+ソフトウェアの振る舞いは、既存の成果物を変更せず拡張できるようにすべき。
+Liskov Substitution Principle サブクラスは、スーパークラスと置換可能でなければならない。
+Interface Segregation Principle 包括的なインターフェースがあるより、いくつかの特定のインターフェースに分割すべき。
+Dependency Inversion Principle ソースコードの依存関係が（具象ではなく）抽象だけを参照しているシステムが最も柔軟である。</p>
+  </section>
+  <footer class="entry-footer">February 18, 2022</footer>
+  <a class="entry-link" aria-label="post link to Solid" href="https://hirotoshimizu.github.io/posts/solid/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>Extract Function</h2>
+  </header>
+  <section class="entry-content">
+    <p>動機 「関数の抽出」はきわめて頻繁に行われるリファクタリング。
+いつ独立した関数として取り出すかというは「2回以上使われるコードはそれ自体を関数にすべき」のように、再利用に基づいている。
+しかし、最も納得できるのは意図と実装の分離です。何をしているか調べなければわからないコードの断片があるとしたら、「何」をしているかを示す名前の関数として抽出すべきです。そうすれば関数を読み返すだけで関数の目的がすぐに伝わってきます。
+手順  新たな関数を作り、その意図に沿って命名する（どうやるかではなく、何をするかによって名づける。） 抽出したいコードを、元の関数から新たな関数にコピーする。 抽出したコードを調べて、元の関数ではスコープ内だったが抽出後の関数ではスコープ外になった変数を特定する。それらをパラメータとして渡す。 全ての変数を処置したらコンパイルする。 元の関数に残った抽出前のコードを、抽出された関数への呼び出しに置き換える。 テストする。 残りのコードを見て、抽出したコードと同じまたは類似したコードを探し、「関数呼び出しによるインラインコードの置き換え」を適用し、新しい関数を呼ぶ形にできないか検討する。  Before from enum import Enum class Category(Enum): A = 1 B = 2 C = 3 def calculate_tax(category: Category, income: int) -&gt; int: if category == Category.A: discount = 10 elif category == Category.B: discount = 5 else: discount = 0 return income * (100 - discount) // 100 After from enum import Enum class Category(Enum): A = 1 B = 2 C = 3 def calculate_tax(category: Category, income: int) -&gt; int: discount = calc_discount(category) return income * (100 - discount) // 100 def calc_discount(category: Category) -&gt; int: if category == Category....</p>
+  </section>
+  <footer class="entry-footer">February 18, 2022</footer>
+  <a class="entry-link" aria-label="post link to Extract Function" href="https://hirotoshimizu.github.io/posts/extract-function/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>Clean Code</h2>
+  </header>
+  <section class="entry-content">
+    <p>意味のある名前  意図が明確な名前にする 意味のある対比を行う 発音可能な名前を使用する 検索可能な名前を用いる マジックナンバーは定数に メンタルマッピングを避ける 抽象レベルに適切な名前を選ぶ 広いスコープには長い名前を エンコーディングを避ける 名前で副作用を示すべき  関数  小さいこと！ 1つのことを行う 内容をよく表す名前を使う 引数は少なく フラグ引数は使わず、メソッドを分割する 副作用をさける try/catchブロックの分離 DRY(Don’t Repeat Yourself) 死んだ関数は削除すべき  コメント 「ダメなコードをコメントで取り繕ってはいけない。書き直すのだ」
+ コメントで、ダメなコードを取り繕うことはできない 自分自身をコードで説明する 意図の説明 結果に対する警告  書式化  縦方向の書式化 垂直概念分離性 垂直密度 垂直距離 水平分離性と密度  オブジェクトとデータ構造    テスト  1つのテストに1つのアサート 1つのテストでは1つの概念を扱う カバレッジツールを使用する ささいなテストを省略しない 無視することを指定されたテストは、あいまいさへの問いかけである 境界条件テストには注意払う バグの周辺は徹底的にテストを 失敗パターンは何かを語る テストカバレッジパターンは何かを語る テストは高速に実行できるべき  </p>
+  </section>
+  <footer class="entry-footer">February 17, 2022</footer>
+  <a class="entry-link" aria-label="post link to Clean Code" href="https://hirotoshimizu.github.io/posts/clean-code/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>Code Smells</h2>
+  </header>
+  <section class="entry-content">
+    <p>Bloaters  長い関数(Long Method)
+オブジェクトそのものの受け渡し、関数の抽出、コマンドによる関数の置き換え、問い合わせによる一時変数の置き換え、条件記述の分解、パラメータオブジェクトの導入、ポリモーフィズムによる条件記述の置き換え、ループの分離 巨大なクラス(Large Class)
+クラスの抽出、サブクスによるタイプコードの置き換え、スーパークラスの抽出 データの群れ(Data Clumps)
+オブジェクトそのものの受け渡し、クラスの抽出、パラメータオブジェクトの導入 長いパラメータリスト(Long Parameter List)
+オブジェクトそのものの受け渡し、関数群のクラスへの集約、問い合わせによるパラメータの置き換え、パラメータオブジェクトの導入、フラグパラメータの削除 基本データ型への執着(Primitive Obsession)
+オブジェクトによるプリミティブの置き換え、クラスの抽出、サブクラスによるタイプコードの置き換え、パラメータオブジェクトの導入、ポリモーフィズムによる条件記述の置き換え  Tool Abusers  Switch Statements 相続拒否(Refused Bequest)
+委譲によるサブクラスの置き換え、委譲によるスーパークラスの置き換え、フィールドの押し下げ、メソッドの押し下げ クラスのインターフェース不一致(Alternative Classes w/ Different Interfaces)
+関数宣言の変更、関数の移動、スーパークラスの抽出 一時的属性(Temporary Field)
+関数の移動、クラスの抽出、特殊ケースの導入  Change Preventers  Divergent Change 変更の分散(Shotgun Surgery)
+関数群のクラスへの集約、関数群の変換への集約、関数の移動、関数のインライン化、クラスのインライン化、フィールドの移動、フェーズの分離 Parallel Inheritance Hierarchies  Dispensables  Lazy Class 疑わしき一般化(Speculative Generality)
+関数宣言の変更、関数のインライン化、クラス階層の平坦化、クラスのインライン化、デッドコードの削除 データクラス(Data Class) 重複したコード(Duplicated Code)
+関数の抽出、ステートメントのスライド、メソッドの引き上げ  Couplers  特性の横恋慕(Feature Envy)
+関数の移動、関数の抽出 Inappropriate Intimacy メッセージの連鎖(Message Chains)...</p>
+  </section>
+  <footer class="entry-footer">February 17, 2022</footer>
+  <a class="entry-link" aria-label="post link to Code Smells" href="https://hirotoshimizu.github.io/posts/code-smells/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="https://hirotoshimizu.github.io/tags/refactoring/">« Prev Page</a>
+  </nav>
+</footer>
+    </main>
+    <footer class="footer">
+    <span>&copy; 2022 <a href="https://hirotoshimizu.github.io">Shiglass</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
+    <button class="top-link" id="top-link" type="button" accesskey="g">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z" />
+        </svg>
+    </button>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+    menu.onscroll = function () {
+        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

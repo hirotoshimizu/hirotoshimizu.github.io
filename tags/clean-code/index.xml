@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Clean Code on Shiglass</title>
+    <link>https://hirotoshimizu.github.io/tags/clean-code/</link>
+    <description>Recent content in Clean Code on Shiglass</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 18 Feb 2022 18:26:32 +0900</lastBuildDate><atom:link href="https://hirotoshimizu.github.io/tags/clean-code/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Dependency Inversion Principle</title>
+      <link>https://hirotoshimizu.github.io/posts/dependency-inversion-principle/</link>
+      <pubDate>Fri, 18 Feb 2022 18:26:32 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/dependency-inversion-principle/</guid>
+      <description>ソースコードの依存関係が（具象ではなく）抽象だけを参照しているシステムが最も柔軟である。
+Before from abc import ABC, abstractmethod class Order: def __init__(self): self.items = [] self.quantities = [] self.prices = [] self.status = &amp;#39;open&amp;#39; def add_item(self, name, quantity, price): self.items.append(name) self.quantities.append(quantity) self.prices.append(price) def total_price(self): total = 0 for i in range(len(self.prices)): total += self.quantities[i] * self.prices[i] return total class Authorizer(ABC): @abstractmethod def is_authorized(self) -&amp;gt; bool: pass class Authorizer_SMS(Authorizer): def __init__(self): self.authorized = False def verify_code(self, code): print(f&amp;#39;Verifying SMS code {code}&amp;#39;) self.authorized = True def is_authorized(self) -&amp;gt; bool: return self.</description>
+    </item>
+    
+    <item>
+      <title>Interface Segregation Principle</title>
+      <link>https://hirotoshimizu.github.io/posts/interface-segregation-principle/</link>
+      <pubDate>Fri, 18 Feb 2022 14:09:01 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/interface-segregation-principle/</guid>
+      <description>包括的なインターフェースがあるより、いくつかの特定のインターフェースに分割すべき。
+Before from abc import ABC, abstractmethod class Order: def __init__(self): self.items = [] self.quantities = [] self.prices = [] self.status = &amp;#39;open&amp;#39; def add_item(self, name, quantity, price): self.items.append(name) self.quantities.append(quantity) self.prices.append(price) def total_price(self): total = 0 for i in range(len(self.prices)): total += self.quantities[i] * self.prices[i] return total class PaymentProcessor(ABC): @abstractmethod def auth_sms(self, code): pass @abstractmethod def pay(self, order): pass class DebitPaymentProcessor(PaymentProcessor): def __init__(self, security_code): self.security_code = security_code self.verified = False def auth_sms(self, code): print(f&amp;#39;Verifying SMS code {code}&amp;#39;) self.</description>
+    </item>
+    
+    <item>
+      <title>Liskov Substitution Principle</title>
+      <link>https://hirotoshimizu.github.io/posts/liskov-substitution-principle/</link>
+      <pubDate>Fri, 18 Feb 2022 12:34:00 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/liskov-substitution-principle/</guid>
+      <description>サブクラスは、スーパークラスと置換可能でなければならない。
+Before from abc import ABC, abstractmethod class Order: def __init__(self) -&amp;gt; None: self.items = [] self.quantities = [] self.prices = [] self.status = &amp;#39;open&amp;#39; def add_item(self, name: str, quantity: int, price: int) -&amp;gt; None: self.items.append(name) self.quantities.append(quantity) self.prices.append(price) def total_price(self) -&amp;gt; int: total = 0 for i in range(len(self.prices)): total += self.quantities[i] * self.prices[i] return total class PaymentProcessor(ABC): @abstractmethod def pay(self, order: Order, security_code: str) -&amp;gt; None: pass class DebitPaymentProcessor(PaymentProcessor): def pay(self, order: Order, security_code: str) -&amp;gt; None: print(&amp;#39;Processing debit payment type&amp;#39;) print(f&amp;#39;Verifying security code: {security_code}&amp;#39;) order.</description>
+    </item>
+    
+    <item>
+      <title>Open Closed Principle</title>
+      <link>https://hirotoshimizu.github.io/posts/open-closed-principle/</link>
+      <pubDate>Fri, 18 Feb 2022 12:02:55 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/open-closed-principle/</guid>
+      <description>ソフトウェアの構成要素は拡張に対しては開いていて、修正に対しては閉じていなければならない。
+ソフトウェアの振る舞いは、既存の成果物を変更せず拡張できるようにすべき。
+Before class Order: def __init__(self) -&amp;gt; None: self.items = [] self.quantities = [] self.prices = [] self.status = &amp;#34;open&amp;#34; def add_item(self, name: str, quantity: int, price: int) -&amp;gt; None: self.items.append(name) self.quantities.append(quantity) self.prices.append(price) def total_price(self) -&amp;gt; int: total = 0 for i in range(len(self.prices)): total += self.quantities[i] * self.prices[i] return total class PaymentProcessor: def pay_debit(self, order: Order, security_code: str) -&amp;gt; None: print(&amp;#34;Processing debit payment type&amp;#34;) print(f&amp;#34;Verifying security code: {security_code}&amp;#34;) order.</description>
+    </item>
+    
+    <item>
+      <title>Single Responsibility Principle</title>
+      <link>https://hirotoshimizu.github.io/posts/single-responsibility-principle/</link>
+      <pubDate>Fri, 18 Feb 2022 10:50:17 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/single-responsibility-principle/</guid>
+      <description>個々のモジュールを変更する理由がたったひとつだけになるように、ソフトウェアシステムの構造がそれを使う組織の社会的構造に大きな影響を受けるようにする。
+モジュールはたったひとつのアクターに対して責務を負うべきである。
+Before class Order: def __init__(self) -&amp;gt; None: self.items = [] self.quantities = [] self.prices = [] self.status = &amp;#39;open&amp;#39; def add_item(self, name: str, quantity: int, price: int) -&amp;gt; None: self.items.append(name) self.quantities.append(quantity) self.prices.append(price) def total_price(self) -&amp;gt; int: total = 0 for i in range(len(self.prices)): total += self.quantities[i] * self.prices[i] return total def pay(self, payment_type: str, security_code: str) -&amp;gt; None: if payment_type == &amp;#39;debit&amp;#39;: print(&amp;#39;Proccessing debit payment type&amp;#39;) print(f&amp;#39;Verifying security code: {security_code}&amp;#39;) self.</description>
+    </item>
+    
+    <item>
+      <title>Clean Code</title>
+      <link>https://hirotoshimizu.github.io/posts/clean-code/</link>
+      <pubDate>Thu, 17 Feb 2022 17:38:45 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/clean-code/</guid>
+      <description>意味のある名前  意図が明確な名前にする 意味のある対比を行う 発音可能な名前を使用する 検索可能な名前を用いる マジックナンバーは定数に メンタルマッピングを避ける 抽象レベルに適切な名前を選ぶ 広いスコープには長い名前を エンコーディングを避ける 名前で副作用を示すべき  関数  小さいこと！ 1つのことを行う 内容をよく表す名前を使う 引数は少なく フラグ引数は使わず、メソッドを分割する 副作用をさける try/catchブロックの分離 DRY(Don&amp;rsquo;t Repeat Yourself) 死んだ関数は削除すべき  コメント 「ダメなコードをコメントで取り繕ってはいけない。書き直すのだ」
+ コメントで、ダメなコードを取り繕うことはできない 自分自身をコードで説明する 意図の説明 結果に対する警告  書式化  縦方向の書式化 垂直概念分離性 垂直密度 垂直距離 水平分離性と密度  オブジェクトとデータ構造    テスト  1つのテストに1つのアサート 1つのテストでは1つの概念を扱う カバレッジツールを使用する ささいなテストを省略しない 無視することを指定されたテストは、あいまいさへの問いかけである 境界条件テストには注意払う バグの周辺は徹底的にテストを 失敗パターンは何かを語る テストカバレッジパターンは何かを語る テストは高速に実行できるべき  </description>
+    </item>
+    
+  </channel>
+</rss>

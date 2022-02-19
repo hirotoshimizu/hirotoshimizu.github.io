@@ -153,88 +153,82 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Same Tree</h2>
+    <h2>Valid Anagram</h2>
   </header>
   <section class="entry-content">
-    <p>DFS recursive
-Base Case は p,q が Null の場合同じ Tree なので return する。
-もし p,q のどちらかの値が違う場合、その Tree は同じではないので、 False を return する。 また、どちらかの値が Null の場合同じ Tree ではないので、この場合も False を　return する。
-Time complexity: O(n) Mem complexity: O(n)
-# Definition for a binary tree node. # class TreeNode(object): # def __init__(self, val=0, left=None, right=None): # self.val = val # self.left = left # self.right = right class Solution(object): def isSameTree(self, p, q): &#34;&#34;&#34; :type p: TreeNode :type q: TreeNode :rtype: bool &#34;&#34;&#34; if not p and not q: return True if not p or not q or p....</p>
+    <p>anagram かどうかを調べるには s, t の出現する文字のカウントが同じなら anagram と言える。
+回答方法は
+ 文字数をカウントし、s と t を比較する 文字数をカウントし、s と t を比較する(Counter を使う) sorted を使う  Input: s = “anagram”, t = “nagaram”
+ 文字数をカウントし、s と t を比較する  class Solution: def isAnagram(self, s: str, t: str) -&gt; bool: if len(s)!= len(t): return False count_s, count_t = {}, {} for i in range(len(s)): count_s[s[i]] = 1 &#43; count_s.get(s[i], 0) count_t[t[i]] = 1 &#43; count_t.get(t[i], 0) for c in count_s: if count_s[c] !...</p>
   </section>
-  <footer class="entry-footer">October 1, 2021</footer>
-  <a class="entry-link" aria-label="post link to Same Tree" href="https://hirotoshimizu.github.io/posts/same-tree/"></a>
+  <footer class="entry-footer">October 20, 2021</footer>
+  <a class="entry-link" aria-label="post link to Valid Anagram" href="https://hirotoshimizu.github.io/posts/valid-anagram/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Maximum Depth of Binary Tree</h2>
+    <h2>Happy Number</h2>
   </header>
   <section class="entry-content">
-    <p>回答のアプローチは Recursive DFS BFS Iterative DFS
-Base case root が empty children が Null
-Recursive DFS
-Time complexity: O(n) Mem complexity: O(n)
-class Solution(object): def maxDepth(self, root): &#34;&#34;&#34; :type root: TreeNode :rtype: int &#34;&#34;&#34; if not root: return 0 return 1 &#43; max(self.maxDepth(root.left), self.maxDepth(root.right)) BFS
-BFS を使う場合は Queue を使う。
- 3  ／　＼ 9 20 ／＼ 15 7
- | 3 | 9 | 20 | 15 | 7 | 1 2 2 3 3 ← Level...</p>
+    <p>パターン1 7 → 49 → 97 → 130 → 10 → 1
+パターン2 2 → 4 → 16 → 37 → 30 → 9 → 81 → 65 → 61 → 37
+Algorithm
+  number n の次の数が何かを調べる
+  cycle に入ったかを調べる。
+  の調べ方 19 → 1^2 &#43; 9^2 = 82
+  変数 output に 0 を代入し、 while で n がある間
+n = 19 の場合、
+1の位を取得 19 % 10 = 9...</p>
   </section>
-  <footer class="entry-footer">September 30, 2021</footer>
-  <a class="entry-link" aria-label="post link to Maximum Depth of Binary Tree" href="https://hirotoshimizu.github.io/posts/maximum-depth-of-binary-tree/"></a>
+  <footer class="entry-footer">October 20, 2021</footer>
+  <a class="entry-link" aria-label="post link to Happy Number" href="https://hirotoshimizu.github.io/posts/happy-number/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Lowest Common Ancestor of a Binary Search Tree</h2>
+    <h2>Replace Elements With Greatest Element on Right Side</h2>
   </header>
   <section class="entry-content">
-    <p>https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
-この問題の回答方法としては Recursive と Iterative なアプローチがある。
-Recursive Approach
-アルゴリズム
- ルートの Node から始める。 p と q が右の subtree にある場合、1から右のsubtreeを探すようにする。 p と q が左の subtree にある場合、1から左のsubtreeを探すようにする。 もし 2 と 3 のステップが not true の場合、p と q の共通の Node を見つけたこととなる。  Time complexity: O(n)
-Mem complexity: O(n)
-# Definition for a binary tree node. # class TreeNode(object): # def __init__(self, x): # self.val = x # self.left = None # self.right = None class Solution(object): def lowestCommonAncestor(self, root, p, q): &#34;&#34;&#34; :type root: TreeNode :type p: TreeNode :type q: TreeNode :rtype: TreeNode &#34;&#34;&#34; parent_val = root....</p>
+    <p>https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/
+一番最後が -1 になるので、 変数 right_max に -1 を入れる。
+後ろからループしていき、 現在の値 と right_max の大きい値を new_max に入れる。 現在の値に right_max を代入し、 right_max の値に nex_max を代入しループを続ける。
+ | 17 | 18 | 5 | 4 | 6 | 1 | -1 18 6 6 6 1 -1
+class Solution: def replaceElements(self, arr: List[int]) -&gt; List[int]: right_max = -1 for i in range(len(arr) -1, -1, -1): new_max = max(right_max, arr[i]) arr[i] = right_max right_max = new_max </p>
   </section>
-  <footer class="entry-footer">September 30, 2021</footer>
-  <a class="entry-link" aria-label="post link to Lowest Common Ancestor of a Binary Search Tree" href="https://hirotoshimizu.github.io/posts/lowest-common-ancestor-of-a-binary-search-tree/"></a>
+  <footer class="entry-footer">October 18, 2021</footer>
+  <a class="entry-link" aria-label="post link to Replace Elements With Greatest Element on Right Side" href="https://hirotoshimizu.github.io/posts/replace-elements-with-greatest-element-on-right-side/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Climbing Stairs</h2>
+    <h2>Palindrome Linked List</h2>
   </header>
   <section class="entry-content">
-    <p>https://leetcode.com/problems/climbing-stairs/
-n = 5
- 0 ／　＼ 1 2 ／＼ ／＼ 2 3 3 4 ／＼ ／＼ ／＼ ／＼ 3 4 4 5 4 5 5 6  ／＼ ／＼ ／＼　／＼ 4 5 5 6 5 6　5 6 ／＼ 5 6
-n が 5 steps の場合、 8通りの選択が出来る。
-DFS でも出来るかが 2^n となる。
-そのため Dynamic Programming を使う。
-同じ計算をする値は memoize する
- | 8 | 5 | 3 | 2 | 1 | 1 | n に辿り着くまでの数 0 1 2 3 4 5(step) one two...</p>
+    <p>この問題の解き方は pointer を2つ使う。
+  真ん中を探す Pointer を2つ使い、fast pointer と fast.next が null になるまで Pinter を進める。 その際 slow pointer が真ん中に位置する。
+  後ろ半分を反転させる slow pointer が真ん中に位置しているので、 slow が null になるまでループさせる。
+step.1 1 → 2 → 3 → null
+prev と curr を憶えておく必要がある。
+prev = null curr = 1
+curr の next node を temp に入れておく。 temp = 2
+null ← 1 2 → 3 → null
+step.2 prev = 1 curr = 2 temp = 3...</p>
   </section>
-  <footer class="entry-footer">September 26, 2021</footer>
-  <a class="entry-link" aria-label="post link to Climbing Stairs" href="https://hirotoshimizu.github.io/posts/climbing-stairs/"></a>
+  <footer class="entry-footer">October 18, 2021</footer>
+  <a class="entry-link" aria-label="post link to Palindrome Linked List" href="https://hirotoshimizu.github.io/posts/palindrome-linked-list/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Meeting Rooms</h2>
+    <h2>Merge Sorted Array</h2>
   </header>
   <section class="entry-content">
-    <p>https://leetcode.com/problems/meeting-rooms/
-先ず始めに intervals のスタート時間でソートする。
-intervals の時間がソートされたため、 ループで最初の会議の終わりの時間と次の会議の始まりの時間を比較し、 最初の会議の終わりの時間 が 次の会議の始まりの時間より大きい場合、 会議の時間が重なっているので、False を返す。
-次の会議の開始時間 が 前の会議の終わり時間より小さい場合ループを続ける。
-ループする際、次のリストと比較するため for の range で -1 をする。
-ソートをするので Time complexity は O(n log n) となる。
-Time complexity: O(n log n) Mem complexity: O(1)
-class Solution(object): def canAttendMeetings(self, intervals): &#34;&#34;&#34; :type intervals: List[List[int]] :rtype: bool &#34;&#34;&#34; intervals.sort() for i in range(len(intervals) -1): if intervals[i][1] &gt; intervals[i &#43; 1][0]: return False return True </p>
+    <p>https://leetcode.com/problems/merge-sorted-array/
+この問題は pointer を 3つ使う。 1つ目は、nums1 の最後に pointer を設定。 2つ目は、nums1 の m に pointer を設定。 3つ目は、nums2 の 最後に pointer を設定。
+ | 1 | 2 | 3 | 0 | 0 | 0 |  ↑ ↑   | 2 | 5 | 6 |  ↑  nums1[m - 1] と nums2[n - 1] の値を比べて、 nums2[n - 1] の値が大きいので、 nums1[last] = nums2[n - 1] を設定する。 そして nums2 の n の pointer を -1 してずらす。 また nums1 の last の pointer も -1 する。...</p>
   </section>
-  <footer class="entry-footer">September 25, 2021</footer>
-  <a class="entry-link" aria-label="post link to Meeting Rooms" href="https://hirotoshimizu.github.io/posts/meeting-rooms/"></a>
+  <footer class="entry-footer">October 18, 2021</footer>
+  <a class="entry-link" aria-label="post link to Merge Sorted Array" href="https://hirotoshimizu.github.io/posts/merge-sorted-array/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

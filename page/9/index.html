@@ -149,79 +149,95 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>2021 07 08</h2>
+    <h2>Best Time to Buy and Sell Stock</h2>
   </header>
   <section class="entry-content">
-    <p>DRFでオブジェクトを作成したとき、 デフォルトで、 作成したオブジェクトを含むディクショナリー型でデータを返す。
-keys() Pythonの組み込み関数。
-keys() dict = {&#34;A&#34;: &#34;Abalone&#34;, &#34;B&#34;: &#34;bluefin tuna&#34;, &#34;C&#34;: &#34;cod&#34;} print(dict.keys()) &gt;&gt;&gt;dict_keys([&#39;A&#39;, &#39;B&#39;, &#39;C&#39;]) dict = {&#34;A&#34;: &#34;Abalone&#34;, &#34;B&#34;: &#34;bluefin tuna&#34;, &#34;C&#34;: &#34;cod&#34;} for key in dict.keys(): print(key) &gt;&gt;&gt;A &gt;&gt;&gt;B &gt;&gt;&gt;C getattr Pythonの組み込み関数。
-getattr(object, name[,default]) 第一引数に指定された object の値を返す。 第二引数の name は文字列である必要があり、文字列が object の属性の一つの名前であった場合、戻り値はその属性の値になる。
-query_params request.GETと同義語。
-DRF では query_params を使用することを推奨。
-DRF ドキュメント</p>
+    <p>https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+pointer を2つ使う。 left が right より低い時点で売る可能性あり。 max_profit に最大の profit を格納。
+right の pointer は右に移動し続け
+left の　pointer は prices[l] が prices[r] より大きい際に、 left の pointer を right の pointer の位置に移動する。
+Time complexity: O(n)
+Mem complexity: O(1)
+class Solution(object): def maxProfit(self, prices): &#34;&#34;&#34; :type prices: List[int] :rtype: int &#34;&#34;&#34; l, r = 0, 1 max_profit = 0 while r &lt; len(prices): if prices[l] &lt; prices[r]: profit = prices[r] - prices[l] max_profit = max(max_profit, profit) else: l = r r &#43;= 1 return max_profit </p>
   </section>
-  <footer class="entry-footer">July 8, 2021</footer>
-  <a class="entry-link" aria-label="post link to 2021 07 08" href="https://hirotoshimizu.github.io/posts/2021-07-08/"></a>
+  <footer class="entry-footer">September 21, 2021</footer>
+  <a class="entry-link" aria-label="post link to Best Time to Buy and Sell Stock" href="https://hirotoshimizu.github.io/posts/best-time-to-buy-and-sell-stock/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Django Rest Framework</h2>
+    <h2>Two Sum</h2>
   </header>
   <section class="entry-content">
-    <p>APIClient APIClientは Djang の Clientクラスを拡張したもの .get()、.post()、.put()、.pathch()、.delete()、.head()、.options()が利用可能。
-例
-from rest_framework.test import APIClient client = APIClient() client.post(&#39;/notes/&#39;, {&#39;title&#39;: &#39;new idea&#39;}, format=&#39;json&#39;) status from rest_framework import status 人間が読むことができるステータスコードを含む。 テストの際に理解が簡単 github
-refresh_from_db() モデルのバリューをリフレッシュ使うのに使用。 このメソッドが引数なしで呼ばれると
- モデル上の遅延評価されない全てのフィールドはその時点でデータベース上に存在する値に更新されます。 キャッシュされたリレーションはリロードされたインスタンスに削除される。 Django ドキュメント  force_authenticate() テストする際に強制的に認証をリクエストする
-force_authenticate(request, user=None, token=None)が呼ばれる時 user か token のいずれか、または両方を設定できる。
-GenericViewSet GenericViewSet クラスは GenericAPIView の継承し、get_object、get_queryset を提供し、デフォルトでは
-GenericViewSetクラスを使用するには、クラスをオーバーライドして、必要なmixinクラスをミックスインするか、アクションの実装を明示的に定義します。
-DRF ドキュメント
-ModelSerializer ModelSerializerクラスはSerializer  class とモデルの一致するフィールドを自動で作成する
-ModelSerializer クラスは Serializer と同じだが、 *モデルを基にフィールドを自動で作成する *unique_together のようなserializerのためのvalidatorを自動で作成する *デフォルトで .create() .update() 含む。...</p>
+    <p>https://leetcode.com/problems/two-sum/
+ | 2 | 7 | 11 | 15 | 　↑　↑ 全てのコンビネーションを確認しようと Brute Force で問題を解こうとすると ループの中でループをするのでo(n^2)となる。
+ | 2 | 7 | 11 | 15 | そのため HashMapを使う必要がある。 ループして array の中を確認する際に、 HashMap に val と key を持たせる。 ループ時に target - val の値が HashMap にあれば、 合計の値を持つ index が return できる。
+ | 2 | 7 | 11 | 15 |  ↑   | HashMap | | val : index | | 2 : 1 |  | HashMap | | val : index | | 2 : 1 | | 7 : 2 |← | 11 : 3 | | 15 : 4 | target は 9 なので val 7 を確認時に HashMap にすでに 2 が入っているので この時点で return できる。...</p>
   </section>
-  <footer class="entry-footer">July 7, 2021</footer>
-  <a class="entry-link" aria-label="post link to Django Rest Framework" href="https://hirotoshimizu.github.io/posts/django-rest-framework/"></a>
+  <footer class="entry-footer">September 21, 2021</footer>
+  <a class="entry-link" aria-label="post link to Two Sum" href="https://hirotoshimizu.github.io/posts/two-sum/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>GitHub Pages で静的サイトの公開方法</h2>
+    <h2>2021 07 29</h2>
   </header>
   <section class="entry-content">
-    <p>公開したいページのあるリポジトリの Settings をクリック。
-サイドナビの　Pages をクリック。
-公開したいブランチを選択
-事前にCNAMEでドメインを設定しておいて
-設定したドメインを適用</p>
+    <p>Responses HttpResponse オブジェクトと違い、レンダリングされたコンテンツでResponseオブジェクトをインスタンス化する必要がない。 その代わりにレンダリングされていないデータをパスする必要がある。
+Responseクラスで使用されるレンダラーは、Djangoモデルインスタンスなどの複雑なデータ型をネイティブに処理できないため、Responseオブジェクトを作成する前に、データをプリミティブデータ型にシリアル化する必要があります。
+REST frameworkのSerializerクラスを使ってこのデータをシリアライズするか、カスタムシリアライザーを使用する。
+引数
+ data : レスポンス用のシリアライズされたデータ status : レスポンス用のステータスコード　デフォルトでは 200 template_name : HTMLRenderer が選択されているならテンプレート名 header : レスポンス用の辞書型 HTTP ヘッダー content_type : レスポンス用のコンテンツタイプ。一般的にコンテンツネゴシエーションのrenderer によって自動的に設定される。しかし、場合によっては明示的にコンテンツタイプを特定する必要もある。  プロジェクトが既にある場合 ユーザーモデルは拡張する。
+最初から作成する場合は モデルをオーバーライドして独自のカスタムモデルを作成
+カスタムユーザーモデルは</p>
   </section>
-  <footer class="entry-footer">July 6, 2021</footer>
-  <a class="entry-link" aria-label="post link to GitHub Pages で静的サイトの公開方法" href="https://hirotoshimizu.github.io/posts/host-a-website-on-github/"></a>
+  <footer class="entry-footer">July 28, 2021</footer>
+  <a class="entry-link" aria-label="post link to 2021 07 29" href="https://hirotoshimizu.github.io/posts/2021-07-29/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Hugo の始め方</h2>
+    <h2>2021 07 28</h2>
   </header>
   <section class="entry-content">
-    <p>日々学んだ事を記録に残そうと始めました。
-Word Press や Django でブログを作成しようと思いましたが、
-速度やメンテナンスを楽にしたかったので、Hugoで作成。
-設定環境
- Win 10 WSL2 Ubuntu 20.04  1. Hugoのインストール Ubuntuでのインストール
-sudo apt-get install hugo 2. サイトの作成 hugo new site sitename sitename は自分の好きな名前に置き換えてください。
-3. テーマの追加 Hugo のテーマ から好きなテンプレートを選択。
-PaperMod を選択したので、 インストラクションに沿ってgit clone
-git clone https://github.com/adityatelange/hugo-PaperMod themes/PaperMod --depth=1 4. コンテンツの追加 hugo new posts/my-first-post.md --- title: &#34;My First Post&#34; date: 2019-03-26T08:47:11&#43;01:00 draft: true --- ※draft: false に変更で公開
-5. Hugo server を起動 hugo server </p>
+    <p>APIView REST frameworkは Djangoの View class のサブクラスである、 APIViewclassを提供する。
+APIViewclass は下記のようにView classとは異なる。
+  handler methods を通ったRequests は REST frameworkの Request インスタンスになり。 Django の HttpRequestインスタンスではない。
+  handler methods の return は REST frameworkの Responseとなり、 その view は content negotiation と response に一致した renderer を返す。
+  どの APIException のエクセプションは正しいレスポンスに仲介される。
+  来るリクエストは認証され、handler methodsに送る前に、 適切な権限やスロットルチェックが行われる。
+  DRF ドキュメント
+ViewSet viewSet classは APIViewを継承している。 viewsetで API policy をコントロールするにあたり、 スタンダードの属性であるpermission_classes,authentication_classesが使える。
+viewSet classはどのアクションも含んでいないので、 クラスをオーバーライドして明示的に定義する必要がある。...</p>
   </section>
-  <footer class="entry-footer">July 5, 2021</footer>
-  <a class="entry-link" aria-label="post link to Hugo の始め方" href="https://hirotoshimizu.github.io/posts/how-to-start-hugo/"></a>
+  <footer class="entry-footer">July 27, 2021</footer>
+  <a class="entry-link" aria-label="post link to 2021 07 28" href="https://hirotoshimizu.github.io/posts/2021-07-28/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Djnagoの管理画面からCSVファイルをアップしてデータ登録</h2>
+  </header>
+  <section class="entry-content">
+    <p>今回は restaurants というアプリを作成し進めていきます。
+CSVのファイルは管理画面のレストランの一覧画面 http://127.0.0.1:8000/admin/restaurants/restaurant/ からアップ。
+アプリの作成
+python manage.py startapp restaurants モデルは restaurant で作成。
+Admin テンプレートの Override templatesフォルダは manage.py と同じ階層に作成。
+templates/admin/restaurants/restaurant/change_list.html を作成
+{% extends &#39;admin/change_list.html&#39; %} {% load static %} {% block content %} &lt;a href=&#34;upload-csv/&#34;&gt;Upload a csv file&lt;/a&gt; {{ block.super }} {% endblock %} {{ block.super }} は親のテンプレートコンテンツ。
+Django change_list.html
+Custom Admin Page の作成 上記で作成したリンク先の upload-csv/ の URL を設定
+restaurants/admin.py の RestaurantAdmin で get_urls()を設定。
+def get_urls(self): urls = super().get_urls() new_urls = [ path(&#39;upload-csv/&#39;, self....</p>
+  </section>
+  <footer class="entry-footer">July 19, 2021</footer>
+  <a class="entry-link" aria-label="post link to Djnagoの管理画面からCSVファイルをアップしてデータ登録" href="https://hirotoshimizu.github.io/posts/2021-07-19/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
     <a class="prev" href="https://hirotoshimizu.github.io/page/8/">« Prev Page</a>
+    <a class="next" href="https://hirotoshimizu.github.io/page/10/">Next Page »</a>
   </nav>
 </footer>
     </main>

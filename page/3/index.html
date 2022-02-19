@@ -149,84 +149,76 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Min Stack</h2>
+    <h2>Longest Palindromic Substring</h2>
   </header>
   <section class="entry-content">
-    <p>https://leetcode.com/problems/min-stack/solution/
-2つの stack を使う。 1つ目の stack は普通のstackを使うように扱う。(Stack) 2つ目の stack は現在の minimum をトラックするのに使う。(MinStack)
-MinStack の pushメソッドは現在の値が stack の top より小さい場合、 push される。
-popメソッドは Stack のみからpopすると MinStack と合わなくなるので、 If top of main_stack == top of min_tracker_stack: min_tracker_stack.pop() の処理が必要になる。
-class MinStack: def __init__(self): self.stack = [] self.min_stack = [] def push(self, x: int) -&gt; None: self.stack.append(x) if not self.min_stack or x &lt;= self.min_stack[-1]: self.min_stack.append(x) def pop(self) -&gt; None: if self.min_stack[-1] == self.stack[-1]: self.min_stack.pop() self....</p>
+    <p>https://leetcode.com/problems/longest-palindromic-substring/
+class Solution: def longestPalindrome(self, s: str) -&gt; str: res = &#39;&#39; for i in range(len(s)): # odd case tmp = self.helper(s, i, i) if len(tmp) &gt; len(res): res = tmp # even tmp = self.helper(s, i, i&#43;1) if len(tmp) &gt; len(res): res = tmp return res def helper(self, s, l, r): while l &gt;= 0 and r &lt; len(s) and s[l] == s[r]: l -= 1 r &#43;= 1 return s[l&#43;1:r] </p>
   </section>
-  <footer class="entry-footer">October 20, 2021</footer>
-  <a class="entry-link" aria-label="post link to Min Stack" href="https://hirotoshimizu.github.io/posts/min-stack/"></a>
+  <footer class="entry-footer">December 12, 2021</footer>
+  <a class="entry-link" aria-label="post link to Longest Palindromic Substring" href="https://hirotoshimizu.github.io/posts/longest-palindromic-substring/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Valid Anagram</h2>
+    <h2>Longest Increasing Subsequence</h2>
   </header>
   <section class="entry-content">
-    <p>anagram かどうかを調べるには s, t の出現する文字のカウントが同じなら anagram と言える。
-回答方法は
- 文字数をカウントし、s と t を比較する 文字数をカウントし、s と t を比較する(Counter を使う) sorted を使う  Input: s = “anagram”, t = “nagaram”
- 文字数をカウントし、s と t を比較する  class Solution: def isAnagram(self, s: str, t: str) -&gt; bool: if len(s)!= len(t): return False count_s, count_t = {}, {} for i in range(len(s)): count_s[s[i]] = 1 &#43; count_s.get(s[i], 0) count_t[t[i]] = 1 &#43; count_t.get(t[i], 0) for c in count_s: if count_s[c] !...</p>
+    <p>https://leetcode.com/problems/longest-increasing-subsequence/
+LIS はどんな場合でも最低1になるので、 1を入れた、list を作る。
+reverse order でループし、 ネストしたループで最初にループしている i 以降の数と比較する。
+nums[i] と nums[j] で nums[i] が小さい場合、 subsequence となるので、 LIS[i] に max(LIS[i], 1 &#43; LIS[j]) を入れる。 j は i 以降の数字を見ているので、max()を使わないと LISの最後の 1 で置き換えて 2 となってしまうので注意。
+class Solution: def lengthOfLIS(self, nums: List[int]) -&gt; int: LIS = [1] * len(nums) for i in range(len(nums) - 1, -1, -1): for j in range(i &#43; 1, len(nums)): if nums[i] &lt; nums[j]: LIS[i] = max(LIS[i], 1 &#43; LIS[j]) return max(LIS) </p>
   </section>
-  <footer class="entry-footer">October 20, 2021</footer>
-  <a class="entry-link" aria-label="post link to Valid Anagram" href="https://hirotoshimizu.github.io/posts/valid-anagram/"></a>
+  <footer class="entry-footer">December 12, 2021</footer>
+  <a class="entry-link" aria-label="post link to Longest Increasing Subsequence" href="https://hirotoshimizu.github.io/posts/longest-increasing-subsequence/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Happy Number</h2>
+    <h2>Longest Common Subsequence</h2>
   </header>
   <section class="entry-content">
-    <p>パターン1 7 → 49 → 97 → 130 → 10 → 1
-パターン2 2 → 4 → 16 → 37 → 30 → 9 → 81 → 65 → 61 → 37
-Algorithm
-  number n の次の数が何かを調べる
-  cycle に入ったかを調べる。
-  の調べ方 19 → 1^2 &#43; 9^2 = 82
-  変数 output に 0 を代入し、 while で n がある間
-n = 19 の場合、
-1の位を取得 19 % 10 = 9...</p>
+    <p>https://leetcode.com/problems/longest-common-subsequence/
+2d grid を作る。 row, col にそれぞれ、1行、1列追加して 0 を入れる。
+grid の右下からループし、 縦横が同じ文字でマッチしたら、斜め左上に進む。 その際に1を足す。
+マッチしなかったら、右横か下のどちらか大きい数字を入れる。
+ループが終わりgrid[0][0] の箇所に 1番長い subsequence の数が入る。
+class Solution: def longestCommonSubsequence(self, text1: str, text2: str) -&gt; int: dp = [[0 for j in range(len(text2) &#43; 1)] for i in range(len(text1) &#43; 1)] for i in range(len(text1) - 1, -1, -1): for j in range(len(text2) - 1, -1, -1): if text1[i] == text2[j]: dp[i][j] = 1 &#43; dp[i &#43; 1][j &#43; 1] else: dp[i][j] = max(dp[i &#43; 1][j], dp[i][j &#43; 1]) return dp[0][0] </p>
   </section>
-  <footer class="entry-footer">October 20, 2021</footer>
-  <a class="entry-link" aria-label="post link to Happy Number" href="https://hirotoshimizu.github.io/posts/happy-number/"></a>
+  <footer class="entry-footer">December 11, 2021</footer>
+  <a class="entry-link" aria-label="post link to Longest Common Subsequence" href="https://hirotoshimizu.github.io/posts/longest-common-subsequence/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Replace Elements With Greatest Element on Right Side</h2>
+    <h2>Traverse a Tree</h2>
   </header>
   <section class="entry-content">
-    <p>https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/
-一番最後が -1 になるので、 変数 right_max に -1 を入れる。
-後ろからループしていき、 現在の値 と right_max の大きい値を new_max に入れる。 現在の値に right_max を代入し、 right_max の値に nex_max を代入しループを続ける。
- | 17 | 18 | 5 | 4 | 6 | 1 | -1 18 6 6 6 1 -1
-class Solution: def replaceElements(self, arr: List[int]) -&gt; List[int]: right_max = -1 for i in range(len(arr) -1, -1, -1): new_max = max(right_max, arr[i]) arr[i] = right_max right_max = new_max </p>
+    <p>F / \ B G / \ \ A D I / \ / C E H  Pre-order Traversal root left subtree right subtree
+F B A D C E G I H
+https://leetcode.com/problems/binary-tree-preorder-traversal/
+Iterative approach
+class Solution(object): def preorderTraversal(self, root: Optional[TreeNode]) -&gt; List[int]: &#34;&#34;&#34; :type root: TreeNode :rtype: List[int] &#34;&#34;&#34; res, stack = [], [(root, False)] while stack: node, visited = stack.pop() if node: if visited: res.append(node.val) else: stack....</p>
   </section>
-  <footer class="entry-footer">October 18, 2021</footer>
-  <a class="entry-link" aria-label="post link to Replace Elements With Greatest Element on Right Side" href="https://hirotoshimizu.github.io/posts/replace-elements-with-greatest-element-on-right-side/"></a>
+  <footer class="entry-footer">October 22, 2021</footer>
+  <a class="entry-link" aria-label="post link to Traverse a Tree" href="https://hirotoshimizu.github.io/posts/traverse-a-tree/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Palindrome Linked List</h2>
+    <h2>Search Insert Position</h2>
   </header>
   <section class="entry-content">
-    <p>この問題の解き方は pointer を2つ使う。
-  真ん中を探す Pointer を2つ使い、fast pointer と fast.next が null になるまで Pinter を進める。 その際 slow pointer が真ん中に位置する。
-  後ろ半分を反転させる slow pointer が真ん中に位置しているので、 slow が null になるまでループさせる。
-step.1 1 → 2 → 3 → null
-prev と curr を憶えておく必要がある。
-prev = null curr = 1
-curr の next node を temp に入れておく。 temp = 2
-null ← 1 2 → 3 → null
-step.2 prev = 1 curr = 2 temp = 3...</p>
+    <p>https://leetcode.com/problems/search-insert-position/
+algorithm の runtime は O(log n) である必要があるため、 binary search で target の数の位置を調べる。
+変数 left に 0、 right に len(nums) - 1 を設定する。
+(left &#43; right) // 2 で真ん中の値が取得出来るので、 真ん中の位置を mid とする。
+nums の mid の値が target なら、mid の index の値を返す。 もし、target の値が mid より大きい場合、 left を mid &#43; 1 にする。 target の値が mid より小さい場合、 right を mid - 1 にする。
+[1, 3, 5, 6] で target = 2 の場合、...</p>
   </section>
-  <footer class="entry-footer">October 18, 2021</footer>
-  <a class="entry-link" aria-label="post link to Palindrome Linked List" href="https://hirotoshimizu.github.io/posts/palindrome-linked-list/"></a>
+  <footer class="entry-footer">October 21, 2021</footer>
+  <a class="entry-link" aria-label="post link to Search Insert Position" href="https://hirotoshimizu.github.io/posts/search-insert-position/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
