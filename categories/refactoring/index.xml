@@ -5,17 +5,33 @@
     <link>https://hirotoshimizu.github.io/categories/refactoring/</link>
     <description>Recent content in Refactoring on Shiglass</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 20 Feb 2022 07:55:49 +0900</lastBuildDate><atom:link href="https://hirotoshimizu.github.io/categories/refactoring/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 20 Feb 2022 09:32:33 +0900</lastBuildDate><atom:link href="https://hirotoshimizu.github.io/categories/refactoring/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Change Function Declaration</title>
+      <link>https://hirotoshimizu.github.io/posts/change-function-declaration/</link>
+      <pubDate>Sun, 20 Feb 2022 09:32:33 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/change-function-declaration/</guid>
+      <description>関数宣言の変更 動機 関数宣言はソフトウェアシステムにおける継ぎ目となる。多くの部分が継ぎ目に依存し、良い継ぎ目があればシステムに新たな部品を追加するのは簡単。悪い継ぎ目は常に問題の発生源になる。
+継ぎ目の要素で最も重要なのは関数名です。もし間違った名前の関数を見たら、少しでも名前がわかり次第、断固として変更していかなければなりません。
+関数の名前を改善していくための良い方法は、関数の目的をコメントとして書くこと。そのコメントを名前に変更する。
+手順 変更内容を吟味して、宣言と呼び出しとを一度で簡単に変更できるかを検討する。もしできるなら簡易な手順を実行する。 そうでなければ移行手順を選択して呼び出し側より漸進的に変更していく。 この手順が大きな意味を持つのは、呼び出し箇所が多い場合や（公開されたAPIのように）呼び出し箇所が手の届かないところにある場合、関数がポリモーフィックなメソッドである場合、関数宣言に複雑な変更を加える場合です。
+簡易な手順  パラメータを削除する場合、それが関数内部で参照されていないことを確認する。 関数宣言を望ましいものに変更する。 古い関数宣言へのすべての参照を探し、新しいものに変更する。 テスト 名前の変更とパラメータの追加の両方がある場合には、それぞれ別のステップで実施する。  移行手順  必要なら関数の本体をリファクタリングして、移行の抽出のステップを実施しやすくしておく。 関数本体に関数の抽出を施して、新たな関数を作る。
+新たな関数の名前を古いものと同じにする予定なら、新たな関数に判別しやすい名前を一時的に付けておく。 抽出した関数が追加のパラメータを必要とする場合、簡易な手順により追加を行う。 古い関数に「関数のインライン化」を施す。 一時的な名前を使った場合、「関数宣言の変更」を再び実施し、元の名前に戻す。 テスト  </description>
+    </item>
+    
     <item>
       <title>Inline Function</title>
       <link>https://hirotoshimizu.github.io/posts/inline-function/</link>
       <pubDate>Sun, 20 Feb 2022 07:55:49 +0900</pubDate>
       
       <guid>https://hirotoshimizu.github.io/posts/inline-function/</guid>
-      <description>動機 意図がわかるように命名された短い関数を使うことはコードを読みやすくする。しかし、関数の本体がその名前と同じくらいわかりやすいことがある。そうしたときには関数を取り除く。
+      <description>関数のインライン化 動機 意図がわかるように命名された短い関数を使うことはコードを読みやすくする。しかし、関数の本体がその名前と同じくらいわかりやすいことがある。そうしたときには関数を取り除く。
 「関数のインライン化」は、うまく分割できない関数群があるときにも使われる。こうしたときは、それらを1つの大きな関数にインライン化してから、望ましい形の関数群として再抽出すればよい。
 通常、「関数のインライン化」を使うのは、間接化しすぎた結果、どの関数も別の関数へ委譲しているだけにしか見えず、委譲に次ぐ委譲の途中で迷っている状態。
-手順  関数がポリモーフィックなメソッドでないことを確認する。 ⋅⋅⋅クラスのメソッドで、サブクラスでオーバーライドされている場合はインライン化できない。 この関数の呼び出し元をすべて見つける。 関数の各呼び出し元をすべて見つける。 1つ置き換えるごとにですとする。 ⋅⋅⋅すべてのインライン化を一度にする必要はない。一部のインライン化がやりにくいようなら、機会を持って徐々に進めてもよい。 関数の定義を取り除く   Before def say_state(self): print_state(self) def print_state(self): print(f&amp;#34;I&amp;#39;m going {self.speed} kph!&amp;#34;) After def say_state(self): print(&amp;#34;I&amp;#39;m going {} kph!&amp;#34;.format(self.speed)) </description>
+手順  関数がポリモーフィックなメソッドでないことを確認する。
+クラスのメソッドで、サブクラスでオーバーライドされている場合はインライン化できない。 この関数の呼び出し元をすべて見つける。 関数の各呼び出し元をすべて見つける。 1つ置き換えるごとにですとする。
+すべてのインライン化を一度にする必要はない。一部のインライン化がやりにくいようなら、機会を持って徐々に進めてもよい。 関数の定義を取り除く   Before def say_state(self): print_state(self) def print_state(self): print(f&amp;#34;I&amp;#39;m going {self.speed} kph!&amp;#34;) After def say_state(self): print(&amp;#34;I&amp;#39;m going {} kph!&amp;#34;.format(self.speed)) </description>
     </item>
     
     <item>

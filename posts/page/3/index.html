@@ -153,6 +153,18 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Clean Code</h2>
+  </header>
+  <section class="entry-content">
+    <p>意味のある名前  意図が明確な名前にする 意味のある対比を行う 発音可能な名前を使用する 検索可能な名前を用いる マジックナンバーは定数に メンタルマッピングを避ける 抽象レベルに適切な名前を選ぶ 広いスコープには長い名前を エンコーディングを避ける 名前で副作用を示すべき  関数  小さいこと！ 1つのことを行う 内容をよく表す名前を使う 引数は少なく フラグ引数は使わず、メソッドを分割する 副作用をさける try/catchブロックの分離 DRY(Don’t Repeat Yourself) 死んだ関数は削除すべき  コメント 「ダメなコードをコメントで取り繕ってはいけない。書き直すのだ」
+ コメントで、ダメなコードを取り繕うことはできない 自分自身をコードで説明する 意図の説明 結果に対する警告  書式化  縦方向の書式化 垂直概念分離性 垂直密度 垂直距離 水平分離性と密度  オブジェクトとデータ構造    テスト  1つのテストに1つのアサート 1つのテストでは1つの概念を扱う カバレッジツールを使用する ささいなテストを省略しない 無視することを指定されたテストは、あいまいさへの問いかけである 境界条件テストには注意払う バグの周辺は徹底的にテストを 失敗パターンは何かを語る テストカバレッジパターンは何かを語る テストは高速に実行できるべき  </p>
+  </section>
+  <footer class="entry-footer">February 17, 2022</footer>
+  <a class="entry-link" aria-label="post link to Clean Code" href="https://hirotoshimizu.github.io/posts/clean-code/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>Code Smells</h2>
   </header>
   <section class="entry-content">
@@ -215,21 +227,6 @@ class Solution: def longestCommonSubsequence(self, text1: str, text2: str) -&gt;
   </section>
   <footer class="entry-footer">December 11, 2021</footer>
   <a class="entry-link" aria-label="post link to Longest Common Subsequence" href="https://hirotoshimizu.github.io/posts/longest-common-subsequence/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Traverse a Tree</h2>
-  </header>
-  <section class="entry-content">
-    <p>F / \ B G / \ \ A D I / \ / C E H  Pre-order Traversal root left subtree right subtree
-F B A D C E G I H
-https://leetcode.com/problems/binary-tree-preorder-traversal/
-Iterative approach
-class Solution(object): def preorderTraversal(self, root: Optional[TreeNode]) -&gt; List[int]: &#34;&#34;&#34; :type root: TreeNode :rtype: List[int] &#34;&#34;&#34; res, stack = [], [(root, False)] while stack: node, visited = stack.pop() if node: if visited: res.append(node.val) else: stack....</p>
-  </section>
-  <footer class="entry-footer">October 22, 2021</footer>
-  <a class="entry-link" aria-label="post link to Traverse a Tree" href="https://hirotoshimizu.github.io/posts/traverse-a-tree/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

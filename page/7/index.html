@@ -149,6 +149,23 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Invert Binary Tree</h2>
+  </header>
+  <section class="entry-content">
+    <p>DFS
+Base Case root が Null は None を返す。
+Tree を反転して値が同じなら True を返すので、
+children node の値を swap して同じか確かめる。
+Time complexity: O(n)
+Mem complexity: O(n)
+# Definition for a binary tree node. # class TreeNode(object): # def __init__(self, val=0, left=None, right=None): # self.val = val # self.left = left # self.right = right class Solution(object): def invertTree(self, root): &#34;&#34;&#34; :type root: TreeNode :rtype: TreeNode &#34;&#34;&#34; if not root: return None tmp = root....</p>
+  </section>
+  <footer class="entry-footer">October 1, 2021</footer>
+  <a class="entry-link" aria-label="post link to Invert Binary Tree" href="https://hirotoshimizu.github.io/posts/invert-binary-tree/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>Same Tree</h2>
   </header>
   <section class="entry-content">
@@ -213,24 +230,6 @@ DFS でも出来るかが 2^n となる。
   </section>
   <footer class="entry-footer">September 26, 2021</footer>
   <a class="entry-link" aria-label="post link to Climbing Stairs" href="https://hirotoshimizu.github.io/posts/climbing-stairs/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Meeting Rooms</h2>
-  </header>
-  <section class="entry-content">
-    <p>https://leetcode.com/problems/meeting-rooms/
-先ず始めに intervals のスタート時間でソートする。
-intervals の時間がソートされたため、 ループで最初の会議の終わりの時間と次の会議の始まりの時間を比較し、 最初の会議の終わりの時間 が 次の会議の始まりの時間より大きい場合、 会議の時間が重なっているので、False を返す。
-次の会議の開始時間 が 前の会議の終わり時間より小さい場合ループを続ける。
-ループする際、次のリストと比較するため for の range で -1 をする。
-ソートをするので Time complexity は O(n log n) となる。
-Time complexity: O(n log n) Mem complexity: O(1)
-class Solution(object): def canAttendMeetings(self, intervals): &#34;&#34;&#34; :type intervals: List[List[int]] :rtype: bool &#34;&#34;&#34; intervals.sort() for i in range(len(intervals) -1): if intervals[i][1] &gt; intervals[i &#43; 1][0]: return False return True </p>
-  </section>
-  <footer class="entry-footer">September 25, 2021</footer>
-  <a class="entry-link" aria-label="post link to Meeting Rooms" href="https://hirotoshimizu.github.io/posts/meeting-rooms/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

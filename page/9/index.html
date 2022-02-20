@@ -149,6 +149,23 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Missing Number</h2>
+  </header>
+  <section class="entry-content">
+    <p>https://leetcode.com/problems/missing-number/
+sum([0,1,2,3]) - sum([3,0,1]) = 2 2がない数字なので、2が残る。
+最初に result に len(nums) を代入する。 nums が [3,0,1] の場合、 result に 3 が代入される。
+これは for で回す時に range(len(nums)) だと 0, 1, 2 としかならないため。 result に len(nums) の代入が必要。
+result &#43;= (i - nums[i]) をすることで、2 が return 出来る。
+Time complexity: O(n) Mem complexity: O(1)
+class Solution(object): def missingNumber(self, nums): &#34;&#34;&#34; :type nums: List[int] :rtype: int &#34;&#34;&#34; result = len(nums) for i in range(len(nums)): result &#43;= (i - nums[i]) return result </p>
+  </section>
+  <footer class="entry-footer">September 21, 2021</footer>
+  <a class="entry-link" aria-label="post link to Missing Number" href="https://hirotoshimizu.github.io/posts/missing-number/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>Maximum Subarray</h2>
   </header>
   <section class="entry-content">
@@ -208,25 +225,6 @@ REST frameworkのSerializerクラスを使ってこのデータをシリアラ�
   </section>
   <footer class="entry-footer">July 28, 2021</footer>
   <a class="entry-link" aria-label="post link to 2021 07 29" href="https://hirotoshimizu.github.io/posts/2021-07-29/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>2021 07 28</h2>
-  </header>
-  <section class="entry-content">
-    <p>APIView REST frameworkは Djangoの View class のサブクラスである、 APIViewclassを提供する。
-APIViewclass は下記のようにView classとは異なる。
-  handler methods を通ったRequests は REST frameworkの Request インスタンスになり。 Django の HttpRequestインスタンスではない。
-  handler methods の return は REST frameworkの Responseとなり、 その view は content negotiation と response に一致した renderer を返す。
-  どの APIException のエクセプションは正しいレスポンスに仲介される。
-  来るリクエストは認証され、handler methodsに送る前に、 適切な権限やスロットルチェックが行われる。
-  DRF ドキュメント
-ViewSet viewSet classは APIViewを継承している。 viewsetで API policy をコントロールするにあたり、 スタンダードの属性であるpermission_classes,authentication_classesが使える。
-viewSet classはどのアクションも含んでいないので、 クラスをオーバーライドして明示的に定義する必要がある。...</p>
-  </section>
-  <footer class="entry-footer">July 27, 2021</footer>
-  <a class="entry-link" aria-label="post link to 2021 07 28" href="https://hirotoshimizu.github.io/posts/2021-07-28/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

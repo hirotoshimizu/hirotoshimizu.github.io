@@ -153,6 +153,18 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Liskov Substitution Principle</h2>
+  </header>
+  <section class="entry-content">
+    <p>サブクラスは、スーパークラスと置換可能でなければならない。
+Before from abc import ABC, abstractmethod class Order: def __init__(self) -&gt; None: self.items = [] self.quantities = [] self.prices = [] self.status = &#39;open&#39; def add_item(self, name: str, quantity: int, price: int) -&gt; None: self.items.append(name) self.quantities.append(quantity) self.prices.append(price) def total_price(self) -&gt; int: total = 0 for i in range(len(self.prices)): total &#43;= self.quantities[i] * self.prices[i] return total class PaymentProcessor(ABC): @abstractmethod def pay(self, order: Order, security_code: str) -&gt; None: pass class DebitPaymentProcessor(PaymentProcessor): def pay(self, order: Order, security_code: str) -&gt; None: print(&#39;Processing debit payment type&#39;) print(f&#39;Verifying security code: {security_code}&#39;) order....</p>
+  </section>
+  <footer class="entry-footer">February 18, 2022</footer>
+  <a class="entry-link" aria-label="post link to Liskov Substitution Principle" href="https://hirotoshimizu.github.io/posts/liskov-substitution-principle/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>Open Closed Principle</h2>
   </header>
   <section class="entry-content">
@@ -208,18 +220,6 @@ Dependency Inversion Principle ソースコードの依存関係が（具象で�
   </section>
   <footer class="entry-footer">February 18, 2022</footer>
   <a class="entry-link" aria-label="post link to Extract Function" href="https://hirotoshimizu.github.io/posts/extract-function/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Clean Code</h2>
-  </header>
-  <section class="entry-content">
-    <p>意味のある名前  意図が明確な名前にする 意味のある対比を行う 発音可能な名前を使用する 検索可能な名前を用いる マジックナンバーは定数に メンタルマッピングを避ける 抽象レベルに適切な名前を選ぶ 広いスコープには長い名前を エンコーディングを避ける 名前で副作用を示すべき  関数  小さいこと！ 1つのことを行う 内容をよく表す名前を使う 引数は少なく フラグ引数は使わず、メソッドを分割する 副作用をさける try/catchブロックの分離 DRY(Don’t Repeat Yourself) 死んだ関数は削除すべき  コメント 「ダメなコードをコメントで取り繕ってはいけない。書き直すのだ」
- コメントで、ダメなコードを取り繕うことはできない 自分自身をコードで説明する 意図の説明 結果に対する警告  書式化  縦方向の書式化 垂直概念分離性 垂直密度 垂直距離 水平分離性と密度  オブジェクトとデータ構造    テスト  1つのテストに1つのアサート 1つのテストでは1つの概念を扱う カバレッジツールを使用する ささいなテストを省略しない 無視することを指定されたテストは、あいまいさへの問いかけである 境界条件テストには注意払う バグの周辺は徹底的にテストを 失敗パターンは何かを語る テストカバレッジパターンは何かを語る テストは高速に実行できるべき  </p>
-  </section>
-  <footer class="entry-footer">February 17, 2022</footer>
-  <a class="entry-link" aria-label="post link to Clean Code" href="https://hirotoshimizu.github.io/posts/clean-code/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

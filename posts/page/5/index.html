@@ -153,6 +153,22 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Isomorphic Strings</h2>
+  </header>
+  <section class="entry-content">
+    <p>https://leetcode.com/problems/isomorphic-strings/
+s と t をマッピングして考える。 この際、同じ文字なのに違う文字がマッピングされる場合
+isomorphic にならない。
+ex. foo bar
+ | f → b | | o → a | | o → r |  | b → f | | a → o | | r → o | o が a と r にマッピングされているので、 isomorphic にならず、false になる。
+class Solution: def isIsomorphic(self, s: str, t: str) -&gt; bool: mapST, mapTS = {}, {} for c1, c2 in zip(s, t): if((c1 in mapST and mapST[c1] !...</p>
+  </section>
+  <footer class="entry-footer">October 21, 2021</footer>
+  <a class="entry-link" aria-label="post link to Isomorphic Strings" href="https://hirotoshimizu.github.io/posts/isomorphic-strings/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>Min Stack</h2>
   </header>
   <section class="entry-content">
@@ -212,25 +228,6 @@ class Solution: def replaceElements(self, arr: List[int]) -&gt; List[int]: right
   </section>
   <footer class="entry-footer">October 18, 2021</footer>
   <a class="entry-link" aria-label="post link to Replace Elements With Greatest Element on Right Side" href="https://hirotoshimizu.github.io/posts/replace-elements-with-greatest-element-on-right-side/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Palindrome Linked List</h2>
-  </header>
-  <section class="entry-content">
-    <p>この問題の解き方は pointer を2つ使う。
-  真ん中を探す Pointer を2つ使い、fast pointer と fast.next が null になるまで Pinter を進める。 その際 slow pointer が真ん中に位置する。
-  後ろ半分を反転させる slow pointer が真ん中に位置しているので、 slow が null になるまでループさせる。
-step.1 1 → 2 → 3 → null
-prev と curr を憶えておく必要がある。
-prev = null curr = 1
-curr の next node を temp に入れておく。 temp = 2
-null ← 1 2 → 3 → null
-step.2 prev = 1 curr = 2 temp = 3...</p>
-  </section>
-  <footer class="entry-footer">October 18, 2021</footer>
-  <a class="entry-link" aria-label="post link to Palindrome Linked List" href="https://hirotoshimizu.github.io/posts/palindrome-linked-list/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

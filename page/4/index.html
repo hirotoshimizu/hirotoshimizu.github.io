@@ -149,6 +149,21 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Traverse a Tree</h2>
+  </header>
+  <section class="entry-content">
+    <p>F / \ B G / \ \ A D I / \ / C E H  Pre-order Traversal root left subtree right subtree
+F B A D C E G I H
+https://leetcode.com/problems/binary-tree-preorder-traversal/
+Iterative approach
+class Solution(object): def preorderTraversal(self, root: Optional[TreeNode]) -&gt; List[int]: &#34;&#34;&#34; :type root: TreeNode :rtype: List[int] &#34;&#34;&#34; res, stack = [], [(root, False)] while stack: node, visited = stack.pop() if node: if visited: res.append(node.val) else: stack....</p>
+  </section>
+  <footer class="entry-footer">October 22, 2021</footer>
+  <a class="entry-link" aria-label="post link to Traverse a Tree" href="https://hirotoshimizu.github.io/posts/traverse-a-tree/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>Search Insert Position</h2>
   </header>
   <section class="entry-content">
@@ -212,22 +227,6 @@ class Solution: def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -
   </section>
   <footer class="entry-footer">October 21, 2021</footer>
   <a class="entry-link" aria-label="post link to Path Sum" href="https://hirotoshimizu.github.io/posts/path-sum/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Isomorphic Strings</h2>
-  </header>
-  <section class="entry-content">
-    <p>https://leetcode.com/problems/isomorphic-strings/
-s と t をマッピングして考える。 この際、同じ文字なのに違う文字がマッピングされる場合
-isomorphic にならない。
-ex. foo bar
- | f → b | | o → a | | o → r |  | b → f | | a → o | | r → o | o が a と r にマッピングされているので、 isomorphic にならず、false になる。
-class Solution: def isIsomorphic(self, s: str, t: str) -&gt; bool: mapST, mapTS = {}, {} for c1, c2 in zip(s, t): if((c1 in mapST and mapST[c1] !...</p>
-  </section>
-  <footer class="entry-footer">October 21, 2021</footer>
-  <a class="entry-link" aria-label="post link to Isomorphic Strings" href="https://hirotoshimizu.github.io/posts/isomorphic-strings/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

@@ -153,6 +153,25 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Palindrome Linked List</h2>
+  </header>
+  <section class="entry-content">
+    <p>この問題の解き方は pointer を2つ使う。
+  真ん中を探す Pointer を2つ使い、fast pointer と fast.next が null になるまで Pinter を進める。 その際 slow pointer が真ん中に位置する。
+  後ろ半分を反転させる slow pointer が真ん中に位置しているので、 slow が null になるまでループさせる。
+step.1 1 → 2 → 3 → null
+prev と curr を憶えておく必要がある。
+prev = null curr = 1
+curr の next node を temp に入れておく。 temp = 2
+null ← 1 2 → 3 → null
+step.2 prev = 1 curr = 2 temp = 3...</p>
+  </section>
+  <footer class="entry-footer">October 18, 2021</footer>
+  <a class="entry-link" aria-label="post link to Palindrome Linked List" href="https://hirotoshimizu.github.io/posts/palindrome-linked-list/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>Merge Sorted Array</h2>
   </header>
   <section class="entry-content">
@@ -217,23 +236,6 @@ indegree = [0] * (N &#43; 1) outdegree = [0] * (N &#43; 1) for a, b in trust: ou
   </section>
   <footer class="entry-footer">October 17, 2021</footer>
   <a class="entry-link" aria-label="post link to Find the Town Judge" href="https://hirotoshimizu.github.io/posts/find-the-town-judge/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Invert Binary Tree</h2>
-  </header>
-  <section class="entry-content">
-    <p>DFS
-Base Case root が Null は None を返す。
-Tree を反転して値が同じなら True を返すので、
-children node の値を swap して同じか確かめる。
-Time complexity: O(n)
-Mem complexity: O(n)
-# Definition for a binary tree node. # class TreeNode(object): # def __init__(self, val=0, left=None, right=None): # self.val = val # self.left = left # self.right = right class Solution(object): def invertTree(self, root): &#34;&#34;&#34; :type root: TreeNode :rtype: TreeNode &#34;&#34;&#34; if not root: return None tmp = root....</p>
-  </section>
-  <footer class="entry-footer">October 1, 2021</footer>
-  <a class="entry-link" aria-label="post link to Invert Binary Tree" href="https://hirotoshimizu.github.io/posts/invert-binary-tree/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

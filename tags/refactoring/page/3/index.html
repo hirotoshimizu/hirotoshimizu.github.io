@@ -9,7 +9,7 @@
 <meta name="keywords" content="" />
 <meta name="description" content="">
 <meta name="author" content="">
-<link rel="canonical" href="https://hirotoshimizu.github.io/categories/refactoring/" />
+<link rel="canonical" href="https://hirotoshimizu.github.io/tags/refactoring/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.d9015f4cb657fd3539b79b29ffbd11de4175ccd105ad7591beffaadfafb48488.css" integrity="sha256-2QFfTLZX/TU5t5sp/70R3kF1zNEFrXWRvv&#43;q36&#43;0hIg=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://hirotoshimizu.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://hirotoshimizu.github.io/favicon-16x16.png">
@@ -19,11 +19,11 @@
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
 <meta name="generator" content="Hugo 0.68.3" />
-<link rel="alternate" type="application/rss+xml" href="https://hirotoshimizu.github.io/categories/refactoring/index.xml">
+<link rel="alternate" type="application/rss+xml" href="https://hirotoshimizu.github.io/tags/refactoring/index.xml">
 <meta property="og:title" content="Refactoring" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://hirotoshimizu.github.io/categories/refactoring/" />
+<meta property="og:url" content="https://hirotoshimizu.github.io/tags/refactoring/" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Refactoring"/>
@@ -138,71 +138,6 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
-    <h2>Change Function Declaration</h2>
-  </header>
-  <section class="entry-content">
-    <p>関数宣言の変更 動機 関数宣言はソフトウェアシステムにおける継ぎ目となる。多くの部分が継ぎ目に依存し、良い継ぎ目があればシステムに新たな部品を追加するのは簡単。悪い継ぎ目は常に問題の発生源になる。
-継ぎ目の要素で最も重要なのは関数名です。もし間違った名前の関数を見たら、少しでも名前がわかり次第、断固として変更していかなければなりません。
-関数の名前を改善していくための良い方法は、関数の目的をコメントとして書くこと。そのコメントを名前に変更する。
-手順 変更内容を吟味して、宣言と呼び出しとを一度で簡単に変更できるかを検討する。もしできるなら簡易な手順を実行する。 そうでなければ移行手順を選択して呼び出し側より漸進的に変更していく。 この手順が大きな意味を持つのは、呼び出し箇所が多い場合や（公開されたAPIのように）呼び出し箇所が手の届かないところにある場合、関数がポリモーフィックなメソッドである場合、関数宣言に複雑な変更を加える場合です。
-簡易な手順  パラメータを削除する場合、それが関数内部で参照されていないことを確認する。 関数宣言を望ましいものに変更する。 古い関数宣言へのすべての参照を探し、新しいものに変更する。 テスト 名前の変更とパラメータの追加の両方がある場合には、それぞれ別のステップで実施する。  移行手順  必要なら関数の本体をリファクタリングして、移行の抽出のステップを実施しやすくしておく。 関数本体に関数の抽出を施して、新たな関数を作る。
-新たな関数の名前を古いものと同じにする予定なら、新たな関数に判別しやすい名前を一時的に付けておく。 抽出した関数が追加のパラメータを必要とする場合、簡易な手順により追加を行う。 古い関数に「関数のインライン化」を施す。 一時的な名前を使った場合、「関数宣言の変更」を再び実施し、元の名前に戻す。 テスト  </p>
-  </section>
-  <footer class="entry-footer">February 20, 2022</footer>
-  <a class="entry-link" aria-label="post link to Change Function Declaration" href="https://hirotoshimizu.github.io/posts/change-function-declaration/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2>Inline Function</h2>
-  </header>
-  <section class="entry-content">
-    <p>関数のインライン化 動機 意図がわかるように命名された短い関数を使うことはコードを読みやすくする。しかし、関数の本体がその名前と同じくらいわかりやすいことがある。そうしたときには関数を取り除く。
-「関数のインライン化」は、うまく分割できない関数群があるときにも使われる。こうしたときは、それらを1つの大きな関数にインライン化してから、望ましい形の関数群として再抽出すればよい。
-通常、「関数のインライン化」を使うのは、間接化しすぎた結果、どの関数も別の関数へ委譲しているだけにしか見えず、委譲に次ぐ委譲の途中で迷っている状態。
-手順  関数がポリモーフィックなメソッドでないことを確認する。
-クラスのメソッドで、サブクラスでオーバーライドされている場合はインライン化できない。 この関数の呼び出し元をすべて見つける。 関数の各呼び出し元をすべて見つける。 1つ置き換えるごとにですとする。
-すべてのインライン化を一度にする必要はない。一部のインライン化がやりにくいようなら、機会を持って徐々に進めてもよい。 関数の定義を取り除く   Before def say_state(self): print_state(self) def print_state(self): print(f&#34;I&#39;m going {self.speed} kph!&#34;) After def say_state(self): print(&#34;I&#39;m going {} kph!&#34;.format(self.speed)) </p>
-  </section>
-  <footer class="entry-footer">February 20, 2022</footer>
-  <a class="entry-link" aria-label="post link to Inline Function" href="https://hirotoshimizu.github.io/posts/inline-function/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2>Solid</h2>
-  </header>
-  <section class="entry-content">
-    <p>よくできたソフトウェアシステムは、クリーンなコードを書くことから始まる。レンガの出来が悪ければ、その建築は優れたものにはならない。一方、たとえよくできたレンガを使っても、ぐちゃぐちゃなもの作ってしまうことがあり得る。そこで登場するのが「SOLID」原則。
-SOLID原則は、関数やデータ構造をどのようにクラスに組み込むのか、そしてクラスの相互接続をどのようにするのかといったことを教えてくれる。　SOLID原則の目的は、以下のような性質を持つ中間レベルのソフトウェア構造を作ること。
- 変更につよいこと 理解しやすいこと コンポーネントの基盤として、多くのソフトウェアシステムで利用できること  Single Responsibility Principle 個々のモジュールを変更する理由がたったひとつだけになるように、ソフトウェアシステムの構造がそれを使う組織の社会的構造に大きな影響を受けるようにする。
-モジュールはたったひとつのアクターに対して責務を負うべきである。
-Opne Closed Principle ソフトウェアの構成要素は拡張に対しては開いていて、修正に対しては閉じていなければならない。
-ソフトウェアの振る舞いは、既存の成果物を変更せず拡張できるようにすべき。
-Liskov Substitution Principle サブクラスは、スーパークラスと置換可能でなければならない。
-Interface Segregation Principle 包括的なインターフェースがあるより、いくつかの特定のインターフェースに分割すべき。
-Dependency Inversion Principle ソースコードの依存関係が（具象ではなく）抽象だけを参照しているシステムが最も柔軟である。</p>
-  </section>
-  <footer class="entry-footer">February 18, 2022</footer>
-  <a class="entry-link" aria-label="post link to Solid" href="https://hirotoshimizu.github.io/posts/solid/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2>Extract Function</h2>
-  </header>
-  <section class="entry-content">
-    <p>動機 「関数の抽出」はきわめて頻繁に行われるリファクタリング。
-いつ独立した関数として取り出すかというは「2回以上使われるコードはそれ自体を関数にすべき」のように、再利用に基づいている。
-しかし、最も納得できるのは意図と実装の分離です。何をしているか調べなければわからないコードの断片があるとしたら、「何」をしているかを示す名前の関数として抽出すべきです。そうすれば関数を読み返すだけで関数の目的がすぐに伝わってきます。
-手順  新たな関数を作り、その意図に沿って命名する（どうやるかではなく、何をするかによって名づける。） 抽出したいコードを、元の関数から新たな関数にコピーする。 抽出したコードを調べて、元の関数ではスコープ内だったが抽出後の関数ではスコープ外になった変数を特定する。それらをパラメータとして渡す。 全ての変数を処置したらコンパイルする。 元の関数に残った抽出前のコードを、抽出された関数への呼び出しに置き換える。 テストする。 残りのコードを見て、抽出したコードと同じまたは類似したコードを探し、「関数呼び出しによるインラインコードの置き換え」を適用し、新しい関数を呼ぶ形にできないか検討する。  Before from enum import Enum class Category(Enum): A = 1 B = 2 C = 3 def calculate_tax(category: Category, income: int) -&gt; int: if category == Category.A: discount = 10 elif category == Category.B: discount = 5 else: discount = 0 return income * (100 - discount) // 100 After from enum import Enum class Category(Enum): A = 1 B = 2 C = 3 def calculate_tax(category: Category, income: int) -&gt; int: discount = calc_discount(category) return income * (100 - discount) // 100 def calc_discount(category: Category) -&gt; int: if category == Category....</p>
-  </section>
-  <footer class="entry-footer">February 18, 2022</footer>
-  <a class="entry-link" aria-label="post link to Extract Function" href="https://hirotoshimizu.github.io/posts/extract-function/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
     <h2>Code Smells</h2>
   </header>
   <section class="entry-content">
@@ -223,6 +158,11 @@ Dependency Inversion Principle ソースコードの依存関係が（具象で�
   <footer class="entry-footer">February 17, 2022</footer>
   <a class="entry-link" aria-label="post link to Code Smells" href="https://hirotoshimizu.github.io/posts/code-smells/"></a>
 </article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="https://hirotoshimizu.github.io/tags/refactoring/page/2/">« Prev Page</a>
+  </nav>
+</footer>
     </main>
     <footer class="footer">
     <span>&copy; 2022 <a href="https://hirotoshimizu.github.io">Shiglass</a></span>
