@@ -149,6 +149,37 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Longest Increasing Subsequence</h2>
+  </header>
+  <section class="entry-content">
+    <p>https://leetcode.com/problems/longest-increasing-subsequence/
+LIS はどんな場合でも最低1になるので、 1を入れた、list を作る。
+reverse order でループし、 ネストしたループで最初にループしている i 以降の数と比較する。
+nums[i] と nums[j] で nums[i] が小さい場合、 subsequence となるので、 LIS[i] に max(LIS[i], 1 &#43; LIS[j]) を入れる。 j は i 以降の数字を見ているので、max()を使わないと LISの最後の 1 で置き換えて 2 となってしまうので注意。
+class Solution: def lengthOfLIS(self, nums: List[int]) -&gt; int: LIS = [1] * len(nums) for i in range(len(nums) - 1, -1, -1): for j in range(i &#43; 1, len(nums)): if nums[i] &lt; nums[j]: LIS[i] = max(LIS[i], 1 &#43; LIS[j]) return max(LIS) </p>
+  </section>
+  <footer class="entry-footer">December 12, 2021</footer>
+  <a class="entry-link" aria-label="post link to Longest Increasing Subsequence" href="https://hirotoshimizu.github.io/posts/longest-increasing-subsequence/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Longest Common Subsequence</h2>
+  </header>
+  <section class="entry-content">
+    <p>https://leetcode.com/problems/longest-common-subsequence/
+2d grid を作る。 row, col にそれぞれ、1行、1列追加して 0 を入れる。
+grid の右下からループし、 縦横が同じ文字でマッチしたら、斜め左上に進む。 その際に1を足す。
+マッチしなかったら、右横か下のどちらか大きい数字を入れる。
+ループが終わりgrid[0][0] の箇所に 1番長い subsequence の数が入る。
+class Solution: def longestCommonSubsequence(self, text1: str, text2: str) -&gt; int: dp = [[0 for j in range(len(text2) &#43; 1)] for i in range(len(text1) &#43; 1)] for i in range(len(text1) - 1, -1, -1): for j in range(len(text2) - 1, -1, -1): if text1[i] == text2[j]: dp[i][j] = 1 &#43; dp[i &#43; 1][j &#43; 1] else: dp[i][j] = max(dp[i &#43; 1][j], dp[i][j &#43; 1]) return dp[0][0] </p>
+  </section>
+  <footer class="entry-footer">December 11, 2021</footer>
+  <a class="entry-link" aria-label="post link to Longest Common Subsequence" href="https://hirotoshimizu.github.io/posts/longest-common-subsequence/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>Traverse a Tree</h2>
   </header>
   <section class="entry-content">
@@ -195,38 +226,6 @@ class Solution: def removeDuplicates(self, nums: List[int]) -&gt; int: left = 1 
   </section>
   <footer class="entry-footer">October 21, 2021</footer>
   <a class="entry-link" aria-label="post link to Remove Duplicates From Sorted Array" href="https://hirotoshimizu.github.io/posts/remove-duplicates-from-sorted-array/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Remove Linked List Elements</h2>
-  </header>
-  <section class="entry-content">
-    <p>sentinel ノードは Linked List を空にせず、ヘッドレスにしないようにする。
-アルゴリズムは
-sentinel ノードをセットする。
-curr と prev のポインターを設定する。
-curr が null でない場合、ループする。
-curr.val が 削除する値の場合、
-class Solution: def removeElements(self, head: Optional[ListNode], val: int) -&gt; Optional[ListNode]: sentinel = ListNode(next=head) prev, curr = sentinel, head while curr: if curr.val == val: prev.next = curr.next else: prev = curr curr = curr.next return sentinel.next </p>
-  </section>
-  <footer class="entry-footer">October 21, 2021</footer>
-  <a class="entry-link" aria-label="post link to Remove Linked List Elements" href="https://hirotoshimizu.github.io/posts/remove-linked-list-elements/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Path Sum</h2>
-  </header>
-  <section class="entry-content">
-    <p>https://leetcode.com/problems/path-sum/solution/
-ノードがリーフでない場合は、子に対してhasPathSumメソッドを再帰的に呼び出し、合計を現在のノードの値だけ減らす。
-ノードがリーフの場合、現在の合計がゼロであるかどうか、つまり最初の合計が検出されたかどうかを確認します。
-Base case は、root が none ということはリーフの下の node を確認してるので、sum が 0 になっていないので False を返す。
-class Solution: def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -&gt; bool: if not root: return False targetSum -= root.val if not root.left and not root.right: # if reach a leaf return targetSum == 0 return self.hasPathSum(root.left, targetSum) or self.hasPathSum(root.right, targetSum) </p>
-  </section>
-  <footer class="entry-footer">October 21, 2021</footer>
-  <a class="entry-link" aria-label="post link to Path Sum" href="https://hirotoshimizu.github.io/posts/path-sum/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

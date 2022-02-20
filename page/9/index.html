@@ -149,6 +149,44 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Reverse Linked List</h2>
+  </header>
+  <section class="entry-content">
+    <p>https://leetcode.com/problems/reverse-linked-list/
+考え方としては、
+1 → 2 → 3 → 4 → 5
+1 ← 2 ← 3 ← 4 ← 5
+とするように考える。
+回答方法は iterative なやり方と recursive なやり方がある。 iterative なやり方は 2つの pointer を使う。
+prev と curr
+まず prev に　None を設定する。 curr は head にする
+Null → 1 → 2 → 3 → 4 → 5 ↑ ↑ prev curr
+ループしている間 Linked List の 矢印の向き (curr.next) をずらしつつ、prev と next の pointer もずらしていく。...</p>
+  </section>
+  <footer class="entry-footer">September 24, 2021</footer>
+  <a class="entry-link" aria-label="post link to Reverse Linked List" href="https://hirotoshimizu.github.io/posts/reverse-linked-list/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Valid Parentheses</h2>
+  </header>
+  <section class="entry-content">
+    <p>https://leetcode.com/problems/valid-parentheses/
+Prerequisite Hash Map Stack
+最初にどのカッコがどの 括弧閉じ にマッチしているかわかるために HashMap を作る必要がある。 この際、括弧閉じ をキーにする。
+for 文で list の中を確認し、 括弧開きは stack に入れる。
+stack は 最後に入れたものから出すので、 括弧開き と 括弧閉じ がマッチしていれば、 stack から pop できる。
+最後に stack に何も残らなければ、 全てがマッチして True を return する。
+Time complexity: O(n) Mem complexity: O(n)
+class Solution(object): def isValid(self, s): &#34;&#34;&#34; :type s: str :rtype: bool &#34;&#34;&#34; stack = [] closeToOpen = { &#39;)&#39; : &#39;(&#39;, &#39;]&#39; : &#39;[&#39;, &#39;}&#39; : &#39;{&#39; } for c in s: if c in closeToOpen: if stack and stack[-1] == closeToOpen[c]: stack....</p>
+  </section>
+  <footer class="entry-footer">September 22, 2021</footer>
+  <a class="entry-link" aria-label="post link to Valid Parentheses" href="https://hirotoshimizu.github.io/posts/valid-parentheses/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>Missing Number</h2>
   </header>
   <section class="entry-content">
@@ -194,37 +232,6 @@ class Solution(object): def maxProfit(self, prices): &#34;&#34;&#34; :type price
   </section>
   <footer class="entry-footer">September 21, 2021</footer>
   <a class="entry-link" aria-label="post link to Best Time to Buy and Sell Stock" href="https://hirotoshimizu.github.io/posts/best-time-to-buy-and-sell-stock/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Two Sum</h2>
-  </header>
-  <section class="entry-content">
-    <p>https://leetcode.com/problems/two-sum/
- | 2 | 7 | 11 | 15 | 　↑　↑ 全てのコンビネーションを確認しようと Brute Force で問題を解こうとすると ループの中でループをするのでo(n^2)となる。
- | 2 | 7 | 11 | 15 | そのため HashMapを使う必要がある。 ループして array の中を確認する際に、 HashMap に val と key を持たせる。 ループ時に target - val の値が HashMap にあれば、 合計の値を持つ index が return できる。
- | 2 | 7 | 11 | 15 |  ↑   | HashMap | | val : index | | 2 : 1 |  | HashMap | | val : index | | 2 : 1 | | 7 : 2 |← | 11 : 3 | | 15 : 4 | target は 9 なので val 7 を確認時に HashMap にすでに 2 が入っているので この時点で return できる。...</p>
-  </section>
-  <footer class="entry-footer">September 21, 2021</footer>
-  <a class="entry-link" aria-label="post link to Two Sum" href="https://hirotoshimizu.github.io/posts/two-sum/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>2021 07 29</h2>
-  </header>
-  <section class="entry-content">
-    <p>Responses HttpResponse オブジェクトと違い、レンダリングされたコンテンツでResponseオブジェクトをインスタンス化する必要がない。 その代わりにレンダリングされていないデータをパスする必要がある。
-Responseクラスで使用されるレンダラーは、Djangoモデルインスタンスなどの複雑なデータ型をネイティブに処理できないため、Responseオブジェクトを作成する前に、データをプリミティブデータ型にシリアル化する必要があります。
-REST frameworkのSerializerクラスを使ってこのデータをシリアライズするか、カスタムシリアライザーを使用する。
-引数
- data : レスポンス用のシリアライズされたデータ status : レスポンス用のステータスコード　デフォルトでは 200 template_name : HTMLRenderer が選択されているならテンプレート名 header : レスポンス用の辞書型 HTTP ヘッダー content_type : レスポンス用のコンテンツタイプ。一般的にコンテンツネゴシエーションのrenderer によって自動的に設定される。しかし、場合によっては明示的にコンテンツタイプを特定する必要もある。  プロジェクトが既にある場合 ユーザーモデルは拡張する。
-最初から作成する場合は モデルをオーバーライドして独自のカスタムモデルを作成
-カスタムユーザーモデルは</p>
-  </section>
-  <footer class="entry-footer">July 28, 2021</footer>
-  <a class="entry-link" aria-label="post link to 2021 07 29" href="https://hirotoshimizu.github.io/posts/2021-07-29/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

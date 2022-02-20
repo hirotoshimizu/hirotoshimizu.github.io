@@ -138,6 +138,35 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
+    <h2>Rename Variable</h2>
+  </header>
+  <section class="entry-content">
+    <p>変数名の変更 動機 変数はうまく名前を付けさえすれば、目的説明する上で非常に役立ちます。しかし注意深く考えていない場合やユーザーのニーズが変わってプログラムの目的が変わったから、などがあり不適切な名前となることがある。
+手順  変数が広く使われている場合、「変数のカプセル化」を検討する。 変数への参照をくまなく探し、それらをすべて変更数。
+変数が別のコードベースから参照されている場合、その変数は公開されているので、このリファクタリングを行うことはできない。
+変数が変更されない場合、変数を新たな名前の変数にコピーしてから、徐々に置き換えていき、その都度テストする テスト  </p>
+  </section>
+  <footer class="entry-footer">February 20, 2022</footer>
+  <a class="entry-link" aria-label="post link to Rename Variable" href="https://hirotoshimizu.github.io/posts/rename-variable/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>Encapsulate Variable</h2>
+  </header>
+  <section class="entry-content">
+    <p>変数のカプセル化 動機 スコープが大きくなるにつれて変更が困難になっていく。そのため広い範囲でデータを移動したいといは、カプセル化して、変数へのアクセスを関数経由にするのが非常に良いやり方。これでデータの再構成という困難な作業を、関数の再構成というより簡単な作業に変えることができる。
+それ以外にデータの変更や参照を監視できるという明確な利点を得られる。データ更新の際の検証や後処理を追加するのも簡単。
+スコープが1つの関数より大きいものは、関数を通じてのみアクセスできるようにし、データのスコープが大きくなるほどカプセル化はより重要になる。
+手順  変数を参照・更新するためのカプセル化用関数を作る。 静的チェックを実行する。 変数への参照を、1つひとつ適切なカプセル化関数の呼び出しに置き換える。置き換えるごとにテストする。 変数の可視性を制限する。
+変数への直接アクセスを防げないことがよくある。その場合、変数名を変更してテストすることで、置き換えが漏れた参照を見つけることができる。 テスト 変数の値がレコードの場合、「レコードのカプセル化」を検討する。  </p>
+  </section>
+  <footer class="entry-footer">February 20, 2022</footer>
+  <a class="entry-link" aria-label="post link to Encapsulate Variable" href="https://hirotoshimizu.github.io/posts/encapsulate-variable/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
     <h2>Change Function Declaration</h2>
   </header>
   <section class="entry-content">
@@ -186,43 +215,11 @@ Dependency Inversion Principle ソースコードの依存関係が（具象で�
   <footer class="entry-footer">February 18, 2022</footer>
   <a class="entry-link" aria-label="post link to Solid" href="https://hirotoshimizu.github.io/posts/solid/"></a>
 </article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2>Extract Function</h2>
-  </header>
-  <section class="entry-content">
-    <p>動機 「関数の抽出」はきわめて頻繁に行われるリファクタリング。
-いつ独立した関数として取り出すかというは「2回以上使われるコードはそれ自体を関数にすべき」のように、再利用に基づいている。
-しかし、最も納得できるのは意図と実装の分離です。何をしているか調べなければわからないコードの断片があるとしたら、「何」をしているかを示す名前の関数として抽出すべきです。そうすれば関数を読み返すだけで関数の目的がすぐに伝わってきます。
-手順  新たな関数を作り、その意図に沿って命名する（どうやるかではなく、何をするかによって名づける。） 抽出したいコードを、元の関数から新たな関数にコピーする。 抽出したコードを調べて、元の関数ではスコープ内だったが抽出後の関数ではスコープ外になった変数を特定する。それらをパラメータとして渡す。 全ての変数を処置したらコンパイルする。 元の関数に残った抽出前のコードを、抽出された関数への呼び出しに置き換える。 テストする。 残りのコードを見て、抽出したコードと同じまたは類似したコードを探し、「関数呼び出しによるインラインコードの置き換え」を適用し、新しい関数を呼ぶ形にできないか検討する。  Before from enum import Enum class Category(Enum): A = 1 B = 2 C = 3 def calculate_tax(category: Category, income: int) -&gt; int: if category == Category.A: discount = 10 elif category == Category.B: discount = 5 else: discount = 0 return income * (100 - discount) // 100 After from enum import Enum class Category(Enum): A = 1 B = 2 C = 3 def calculate_tax(category: Category, income: int) -&gt; int: discount = calc_discount(category) return income * (100 - discount) // 100 def calc_discount(category: Category) -&gt; int: if category == Category....</p>
-  </section>
-  <footer class="entry-footer">February 18, 2022</footer>
-  <a class="entry-link" aria-label="post link to Extract Function" href="https://hirotoshimizu.github.io/posts/extract-function/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2>Code Smells</h2>
-  </header>
-  <section class="entry-content">
-    <p>Bloaters  長い関数(Long Method)
-オブジェクトそのものの受け渡し、関数の抽出、コマンドによる関数の置き換え、問い合わせによる一時変数の置き換え、条件記述の分解、パラメータオブジェクトの導入、ポリモーフィズムによる条件記述の置き換え、ループの分離 巨大なクラス(Large Class)
-クラスの抽出、サブクスによるタイプコードの置き換え、スーパークラスの抽出 データの群れ(Data Clumps)
-オブジェクトそのものの受け渡し、クラスの抽出、パラメータオブジェクトの導入 長いパラメータリスト(Long Parameter List)
-オブジェクトそのものの受け渡し、関数群のクラスへの集約、問い合わせによるパラメータの置き換え、パラメータオブジェクトの導入、フラグパラメータの削除 基本データ型への執着(Primitive Obsession)
-オブジェクトによるプリミティブの置き換え、クラスの抽出、サブクラスによるタイプコードの置き換え、パラメータオブジェクトの導入、ポリモーフィズムによる条件記述の置き換え  Tool Abusers  Switch Statements 相続拒否(Refused Bequest)
-委譲によるサブクラスの置き換え、委譲によるスーパークラスの置き換え、フィールドの押し下げ、メソッドの押し下げ クラスのインターフェース不一致(Alternative Classes w/ Different Interfaces)
-関数宣言の変更、関数の移動、スーパークラスの抽出 一時的属性(Temporary Field)
-関数の移動、クラスの抽出、特殊ケースの導入  Change Preventers  Divergent Change 変更の分散(Shotgun Surgery)
-関数群のクラスへの集約、関数群の変換への集約、関数の移動、関数のインライン化、クラスのインライン化、フィールドの移動、フェーズの分離 Parallel Inheritance Hierarchies  Dispensables  Lazy Class 疑わしき一般化(Speculative Generality)
-関数宣言の変更、関数のインライン化、クラス階層の平坦化、クラスのインライン化、デッドコードの削除 データクラス(Data Class) 重複したコード(Duplicated Code)
-関数の抽出、ステートメントのスライド、メソッドの引き上げ  Couplers  特性の横恋慕(Feature Envy)
-関数の移動、関数の抽出 Inappropriate Intimacy メッセージの連鎖(Message Chains)...</p>
-  </section>
-  <footer class="entry-footer">February 17, 2022</footer>
-  <a class="entry-link" aria-label="post link to Code Smells" href="https://hirotoshimizu.github.io/posts/code-smells/"></a>
-</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="next" href="https://hirotoshimizu.github.io/categories/refactoring/page/2/">Next Page »</a>
+  </nav>
+</footer>
     </main>
     <footer class="footer">
     <span>&copy; 2022 <a href="https://hirotoshimizu.github.io">Shiglass</a></span>

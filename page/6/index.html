@@ -149,6 +149,40 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Happy Number</h2>
+  </header>
+  <section class="entry-content">
+    <p>パターン1 7 → 49 → 97 → 130 → 10 → 1
+パターン2 2 → 4 → 16 → 37 → 30 → 9 → 81 → 65 → 61 → 37
+Algorithm
+  number n の次の数が何かを調べる
+  cycle に入ったかを調べる。
+  の調べ方 19 → 1^2 &#43; 9^2 = 82
+  変数 output に 0 を代入し、 while で n がある間
+n = 19 の場合、
+1の位を取得 19 % 10 = 9...</p>
+  </section>
+  <footer class="entry-footer">October 20, 2021</footer>
+  <a class="entry-link" aria-label="post link to Happy Number" href="https://hirotoshimizu.github.io/posts/happy-number/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Replace Elements With Greatest Element on Right Side</h2>
+  </header>
+  <section class="entry-content">
+    <p>https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/
+一番最後が -1 になるので、 変数 right_max に -1 を入れる。
+後ろからループしていき、 現在の値 と right_max の大きい値を new_max に入れる。 現在の値に right_max を代入し、 right_max の値に nex_max を代入しループを続ける。
+ | 17 | 18 | 5 | 4 | 6 | 1 | -1 18 6 6 6 1 -1
+class Solution: def replaceElements(self, arr: List[int]) -&gt; List[int]: right_max = -1 for i in range(len(arr) -1, -1, -1): new_max = max(right_max, arr[i]) arr[i] = right_max right_max = new_max </p>
+  </section>
+  <footer class="entry-footer">October 18, 2021</footer>
+  <a class="entry-link" aria-label="post link to Replace Elements With Greatest Element on Right Side" href="https://hirotoshimizu.github.io/posts/replace-elements-with-greatest-element-on-right-side/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>Palindrome Linked List</h2>
   </header>
   <section class="entry-content">
@@ -193,45 +227,6 @@ class Solution: def rob(self, num: List[int])-&gt; int: rob1, rob2 = 0, 0 for n 
   </section>
   <footer class="entry-footer">October 18, 2021</footer>
   <a class="entry-link" aria-label="post link to House Robber" href="https://hirotoshimizu.github.io/posts/house-robber/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Two Sum Ii Input Array Is Sorted</h2>
-  </header>
-  <section class="entry-content">
-    <p>https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
-この問題は pointer を2つ使い target になる数を探していく。
-pointer を left と right に置き、 left と right の合計が target の値と同じかを計算する。
-合計が大きい場合は right の pointer を左にずらし、 合計が小さい場合は left の pointer を右にずらしていく。
-合計がtarget の値になるまでループして index の位置を返す。
-target = 9
- | 1 | 3 | 4 | 5 | 7 | 11 | 　↑　↑
-1 &#43; 11 = 12 &gt; 9
- | 1 | 3 | 4 | 5 | 7 | 11 | 　↑　↑...</p>
-  </section>
-  <footer class="entry-footer">October 18, 2021</footer>
-  <a class="entry-link" aria-label="post link to Two Sum Ii Input Array Is Sorted" href="https://hirotoshimizu.github.io/posts/two-sum-ii-input-array-is-sorted/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Find the Town Judge</h2>
-  </header>
-  <section class="entry-content">
-    <p>https://leetcode.com/problems/find-the-town-judge/
-graphの問題で、trust のペア, [a, b] は a から b に向かう directed edge である。
-例えば、 N = 5 で trust trust = [[1,3],[2,3],[4,3],[4,1],[5,3],[5,1],[5,4]] の場合下記のような graph になる。
-3 は 1,2,4,5 から信頼されていて、 誰も信頼していない。 そのため、judge は 3 になる。
-この graph theory の、 outdegree の辺は、 その人が他の人を信頼している数になる。
-indegree の辺は他の人から信頼されている数になる。
-そのため indegree と outdegree によって誰が judge か判断できる。
-judge は outdegree が 0 で indegree が N - 1 となる。
-trust をループして全員の indegree, outdegree の数を調査できる。
-indegree = [0] * (N &#43; 1) outdegree = [0] * (N &#43; 1) for a, b in trust: outdegree[a] &#43;= 1 indegree[b] &#43;= 1 そして、1 ～ N 人全員をループして、チェックすれば、 judge がわかる。...</p>
-  </section>
-  <footer class="entry-footer">October 17, 2021</footer>
-  <a class="entry-link" aria-label="post link to Find the Town Judge" href="https://hirotoshimizu.github.io/posts/find-the-town-judge/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

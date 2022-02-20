@@ -149,6 +149,34 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>2021 07 12</h2>
+  </header>
+  <section class="entry-content">
+    <p>Authenticating users authenticate(request=None, **credentials)
+authenticate() は認証の承認のために使用する関数。 デフォルトでは keyword arguments で username と password で認証し、 User オブジェクトを返す。
+set_password(raw_password)
+パスワードをハッシュ化するのに使う。</p>
+  </section>
+  <footer class="entry-footer">July 11, 2021</footer>
+  <a class="entry-link" aria-label="post link to 2021 07 12" href="https://hirotoshimizu.github.io/posts/2021-07-12/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>2021 07 11</h2>
+  </header>
+  <section class="entry-content">
+    <p>python での JSON の扱いについてわすれるのでメモ。
+json.dumps json.dumps()に入れた変数を JSON string に変換する。
+&gt;&gt;&gt; import json &gt;&gt;&gt; data = {&#39;abc&#39;: 123} &gt;&gt;&gt; type(data_json) &lt;class &#39;str&#39;&gt; &gt;&gt;&gt; data_json = json.dumps(data) &gt;&gt;&gt; data_json &#39;{&#34;abc&#34;: 123}&#39; json.loads json.loads(JSON string) で python dictionary に型を変換する。
+&gt;&gt;&gt; import json &gt;&gt;&gt; data = {&#39;abc&#39;: 123} &gt;&gt;&gt; type(data_json) &lt;class &#39;str&#39;&gt; &gt;&gt;&gt; data_json = json.dumps(data) &gt;&gt;&gt; data_json &#39;{&#34;abc&#34;: 123}&#39; &gt;&gt;&gt; load_json = json.loads(data_json) &gt;&gt;&gt; load_json {&#39;abc&#39;: 123} &gt;&gt;&gt; type(load_json) &lt;class &#39;dict&#39;&gt; &gt;&gt;&gt; load_json[&#39;abc&#39;] 123 Django Rest Framework...</p>
+  </section>
+  <footer class="entry-footer">July 9, 2021</footer>
+  <a class="entry-link" aria-label="post link to 2021 07 11" href="https://hirotoshimizu.github.io/posts/2021-07-11/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>APIの設計</h2>
   </header>
   <section class="entry-content">
@@ -199,44 +227,10 @@ ModelSerializer クラスは Serializer と同じだが、 *モデルを基に�
   <footer class="entry-footer">July 7, 2021</footer>
   <a class="entry-link" aria-label="post link to Django Rest Framework" href="https://hirotoshimizu.github.io/posts/django-rest-framework/"></a>
 </article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>GitHub Pages で静的サイトの公開方法</h2>
-  </header>
-  <section class="entry-content">
-    <p>公開したいページのあるリポジトリの Settings をクリック。
-サイドナビの　Pages をクリック。
-公開したいブランチを選択
-事前にCNAMEでドメインを設定しておいて
-設定したドメインを適用</p>
-  </section>
-  <footer class="entry-footer">July 6, 2021</footer>
-  <a class="entry-link" aria-label="post link to GitHub Pages で静的サイトの公開方法" href="https://hirotoshimizu.github.io/posts/host-a-website-on-github/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Hugo の始め方</h2>
-  </header>
-  <section class="entry-content">
-    <p>日々学んだ事を記録に残そうと始めました。
-Word Press や Django でブログを作成しようと思いましたが、
-速度やメンテナンスを楽にしたかったので、Hugoで作成。
-設定環境
- Win 10 WSL2 Ubuntu 20.04  1. Hugoのインストール Ubuntuでのインストール
-sudo apt-get install hugo 2. サイトの作成 hugo new site sitename sitename は自分の好きな名前に置き換えてください。
-3. テーマの追加 Hugo のテーマ から好きなテンプレートを選択。
-PaperMod を選択したので、 インストラクションに沿ってgit clone
-git clone https://github.com/adityatelange/hugo-PaperMod themes/PaperMod --depth=1 4. コンテンツの追加 hugo new posts/my-first-post.md --- title: &#34;My First Post&#34; date: 2019-03-26T08:47:11&#43;01:00 draft: true --- ※draft: false に変更で公開
-5. Hugo server を起動 hugo server </p>
-  </section>
-  <footer class="entry-footer">July 5, 2021</footer>
-  <a class="entry-link" aria-label="post link to Hugo の始め方" href="https://hirotoshimizu.github.io/posts/how-to-start-hugo/"></a>
-</article>
 <footer class="page-footer">
   <nav class="pagination">
     <a class="prev" href="https://hirotoshimizu.github.io/page/10/">« Prev Page</a>
+    <a class="next" href="https://hirotoshimizu.github.io/page/12/">Next Page »</a>
   </nav>
 </footer>
     </main>

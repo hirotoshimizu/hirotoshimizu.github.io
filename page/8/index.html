@@ -149,6 +149,41 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Lowest Common Ancestor of a Binary Search Tree</h2>
+  </header>
+  <section class="entry-content">
+    <p>https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
+この問題の回答方法としては Recursive と Iterative なアプローチがある。
+Recursive Approach
+アルゴリズム
+ ルートの Node から始める。 p と q が右の subtree にある場合、1から右のsubtreeを探すようにする。 p と q が左の subtree にある場合、1から左のsubtreeを探すようにする。 もし 2 と 3 のステップが not true の場合、p と q の共通の Node を見つけたこととなる。  Time complexity: O(n)
+Mem complexity: O(n)
+# Definition for a binary tree node. # class TreeNode(object): # def __init__(self, x): # self.val = x # self.left = None # self.right = None class Solution(object): def lowestCommonAncestor(self, root, p, q): &#34;&#34;&#34; :type root: TreeNode :type p: TreeNode :type q: TreeNode :rtype: TreeNode &#34;&#34;&#34; parent_val = root....</p>
+  </section>
+  <footer class="entry-footer">September 30, 2021</footer>
+  <a class="entry-link" aria-label="post link to Lowest Common Ancestor of a Binary Search Tree" href="https://hirotoshimizu.github.io/posts/lowest-common-ancestor-of-a-binary-search-tree/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Climbing Stairs</h2>
+  </header>
+  <section class="entry-content">
+    <p>https://leetcode.com/problems/climbing-stairs/
+n = 5
+ 0 ／　＼ 1 2 ／＼ ／＼ 2 3 3 4 ／＼ ／＼ ／＼ ／＼ 3 4 4 5 4 5 5 6  ／＼ ／＼ ／＼　／＼ 4 5 5 6 5 6　5 6 ／＼ 5 6
+n が 5 steps の場合、 8通りの選択が出来る。
+DFS でも出来るかが 2^n となる。
+そのため Dynamic Programming を使う。
+同じ計算をする値は memoize する
+ | 8 | 5 | 3 | 2 | 1 | 1 | n に辿り着くまでの数 0 1 2 3 4 5(step) one two...</p>
+  </section>
+  <footer class="entry-footer">September 26, 2021</footer>
+  <a class="entry-link" aria-label="post link to Climbing Stairs" href="https://hirotoshimizu.github.io/posts/climbing-stairs/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>Meeting Rooms</h2>
   </header>
   <section class="entry-content">
@@ -194,44 +229,6 @@ Time complexity: O(n) Mem complexity: O(1)
   </section>
   <footer class="entry-footer">September 24, 2021</footer>
   <a class="entry-link" aria-label="post link to Linked List Cycle" href="https://hirotoshimizu.github.io/posts/linked-list-cycle/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Reverse Linked List</h2>
-  </header>
-  <section class="entry-content">
-    <p>https://leetcode.com/problems/reverse-linked-list/
-考え方としては、
-1 → 2 → 3 → 4 → 5
-1 ← 2 ← 3 ← 4 ← 5
-とするように考える。
-回答方法は iterative なやり方と recursive なやり方がある。 iterative なやり方は 2つの pointer を使う。
-prev と curr
-まず prev に　None を設定する。 curr は head にする
-Null → 1 → 2 → 3 → 4 → 5 ↑ ↑ prev curr
-ループしている間 Linked List の 矢印の向き (curr.next) をずらしつつ、prev と next の pointer もずらしていく。...</p>
-  </section>
-  <footer class="entry-footer">September 24, 2021</footer>
-  <a class="entry-link" aria-label="post link to Reverse Linked List" href="https://hirotoshimizu.github.io/posts/reverse-linked-list/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Valid Parentheses</h2>
-  </header>
-  <section class="entry-content">
-    <p>https://leetcode.com/problems/valid-parentheses/
-Prerequisite Hash Map Stack
-最初にどのカッコがどの 括弧閉じ にマッチしているかわかるために HashMap を作る必要がある。 この際、括弧閉じ をキーにする。
-for 文で list の中を確認し、 括弧開きは stack に入れる。
-stack は 最後に入れたものから出すので、 括弧開き と 括弧閉じ がマッチしていれば、 stack から pop できる。
-最後に stack に何も残らなければ、 全てがマッチして True を return する。
-Time complexity: O(n) Mem complexity: O(n)
-class Solution(object): def isValid(self, s): &#34;&#34;&#34; :type s: str :rtype: bool &#34;&#34;&#34; stack = [] closeToOpen = { &#39;)&#39; : &#39;(&#39;, &#39;]&#39; : &#39;[&#39;, &#39;}&#39; : &#39;{&#39; } for c in s: if c in closeToOpen: if stack and stack[-1] == closeToOpen[c]: stack....</p>
-  </section>
-  <footer class="entry-footer">September 22, 2021</footer>
-  <a class="entry-link" aria-label="post link to Valid Parentheses" href="https://hirotoshimizu.github.io/posts/valid-parentheses/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

@@ -5,7 +5,32 @@
     <link>https://hirotoshimizu.github.io/</link>
     <description>Recent content on Shiglass</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 20 Feb 2022 09:32:33 +0900</lastBuildDate><atom:link href="https://hirotoshimizu.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 20 Feb 2022 14:59:37 +0900</lastBuildDate><atom:link href="https://hirotoshimizu.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Rename Variable</title>
+      <link>https://hirotoshimizu.github.io/posts/rename-variable/</link>
+      <pubDate>Sun, 20 Feb 2022 14:59:37 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/rename-variable/</guid>
+      <description>変数名の変更 動機 変数はうまく名前を付けさえすれば、目的説明する上で非常に役立ちます。しかし注意深く考えていない場合やユーザーのニーズが変わってプログラムの目的が変わったから、などがあり不適切な名前となることがある。
+手順  変数が広く使われている場合、「変数のカプセル化」を検討する。 変数への参照をくまなく探し、それらをすべて変更数。
+変数が別のコードベースから参照されている場合、その変数は公開されているので、このリファクタリングを行うことはできない。
+変数が変更されない場合、変数を新たな名前の変数にコピーしてから、徐々に置き換えていき、その都度テストする テスト  </description>
+    </item>
+    
+    <item>
+      <title>Encapsulate Variable</title>
+      <link>https://hirotoshimizu.github.io/posts/encapsulate-variable/</link>
+      <pubDate>Sun, 20 Feb 2022 12:05:14 +0900</pubDate>
+      
+      <guid>https://hirotoshimizu.github.io/posts/encapsulate-variable/</guid>
+      <description>変数のカプセル化 動機 スコープが大きくなるにつれて変更が困難になっていく。そのため広い範囲でデータを移動したいといは、カプセル化して、変数へのアクセスを関数経由にするのが非常に良いやり方。これでデータの再構成という困難な作業を、関数の再構成というより簡単な作業に変えることができる。
+それ以外にデータの変更や参照を監視できるという明確な利点を得られる。データ更新の際の検証や後処理を追加するのも簡単。
+スコープが1つの関数より大きいものは、関数を通じてのみアクセスできるようにし、データのスコープが大きくなるほどカプセル化はより重要になる。
+手順  変数を参照・更新するためのカプセル化用関数を作る。 静的チェックを実行する。 変数への参照を、1つひとつ適切なカプセル化関数の呼び出しに置き換える。置き換えるごとにテストする。 変数の可視性を制限する。
+変数への直接アクセスを防げないことがよくある。その場合、変数名を変更してテストすることで、置き換えが漏れた参照を見つけることができる。 テスト 変数の値がレコードの場合、「レコードのカプセル化」を検討する。  </description>
+    </item>
+    
     <item>
       <title>Change Function Declaration</title>
       <link>https://hirotoshimizu.github.io/posts/change-function-declaration/</link>

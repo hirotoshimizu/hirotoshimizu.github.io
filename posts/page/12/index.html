@@ -153,91 +153,41 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Lowest Common Ancestor of a Binary Search Tree</h2>
+    <h2>GitHub Pages で静的サイトの公開方法</h2>
   </header>
   <section class="entry-content">
-    <p>https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
-この問題の回答方法としては Recursive と Iterative なアプローチがある。
-Recursive Approach
-アルゴリズム
- ルートの Node から始める。 p と q が右の subtree にある場合、1から右のsubtreeを探すようにする。 p と q が左の subtree にある場合、1から左のsubtreeを探すようにする。 もし 2 と 3 のステップが not true の場合、p と q の共通の Node を見つけたこととなる。  Time complexity: O(n)
-Mem complexity: O(n)
-# Definition for a binary tree node. # class TreeNode(object): # def __init__(self, x): # self.val = x # self.left = None # self.right = None class Solution(object): def lowestCommonAncestor(self, root, p, q): &#34;&#34;&#34; :type root: TreeNode :type p: TreeNode :type q: TreeNode :rtype: TreeNode &#34;&#34;&#34; parent_val = root....</p>
+    <p>公開したいページのあるリポジトリの Settings をクリック。
+サイドナビの　Pages をクリック。
+公開したいブランチを選択
+事前にCNAMEでドメインを設定しておいて
+設定したドメインを適用</p>
   </section>
-  <footer class="entry-footer">September 30, 2021</footer>
-  <a class="entry-link" aria-label="post link to Lowest Common Ancestor of a Binary Search Tree" href="https://hirotoshimizu.github.io/posts/lowest-common-ancestor-of-a-binary-search-tree/"></a>
+  <footer class="entry-footer">July 6, 2021</footer>
+  <a class="entry-link" aria-label="post link to GitHub Pages で静的サイトの公開方法" href="https://hirotoshimizu.github.io/posts/host-a-website-on-github/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Climbing Stairs</h2>
+    <h2>Hugo の始め方</h2>
   </header>
   <section class="entry-content">
-    <p>https://leetcode.com/problems/climbing-stairs/
-n = 5
- 0 ／　＼ 1 2 ／＼ ／＼ 2 3 3 4 ／＼ ／＼ ／＼ ／＼ 3 4 4 5 4 5 5 6  ／＼ ／＼ ／＼　／＼ 4 5 5 6 5 6　5 6 ／＼ 5 6
-n が 5 steps の場合、 8通りの選択が出来る。
-DFS でも出来るかが 2^n となる。
-そのため Dynamic Programming を使う。
-同じ計算をする値は memoize する
- | 8 | 5 | 3 | 2 | 1 | 1 | n に辿り着くまでの数 0 1 2 3 4 5(step) one two...</p>
+    <p>日々学んだ事を記録に残そうと始めました。
+Word Press や Django でブログを作成しようと思いましたが、
+速度やメンテナンスを楽にしたかったので、Hugoで作成。
+設定環境
+ Win 10 WSL2 Ubuntu 20.04  1. Hugoのインストール Ubuntuでのインストール
+sudo apt-get install hugo 2. サイトの作成 hugo new site sitename sitename は自分の好きな名前に置き換えてください。
+3. テーマの追加 Hugo のテーマ から好きなテンプレートを選択。
+PaperMod を選択したので、 インストラクションに沿ってgit clone
+git clone https://github.com/adityatelange/hugo-PaperMod themes/PaperMod --depth=1 4. コンテンツの追加 hugo new posts/my-first-post.md --- title: &#34;My First Post&#34; date: 2019-03-26T08:47:11&#43;01:00 draft: true --- ※draft: false に変更で公開
+5. Hugo server を起動 hugo server </p>
   </section>
-  <footer class="entry-footer">September 26, 2021</footer>
-  <a class="entry-link" aria-label="post link to Climbing Stairs" href="https://hirotoshimizu.github.io/posts/climbing-stairs/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Meeting Rooms</h2>
-  </header>
-  <section class="entry-content">
-    <p>https://leetcode.com/problems/meeting-rooms/
-先ず始めに intervals のスタート時間でソートする。
-intervals の時間がソートされたため、 ループで最初の会議の終わりの時間と次の会議の始まりの時間を比較し、 最初の会議の終わりの時間 が 次の会議の始まりの時間より大きい場合、 会議の時間が重なっているので、False を返す。
-次の会議の開始時間 が 前の会議の終わり時間より小さい場合ループを続ける。
-ループする際、次のリストと比較するため for の range で -1 をする。
-ソートをするので Time complexity は O(n log n) となる。
-Time complexity: O(n log n) Mem complexity: O(1)
-class Solution(object): def canAttendMeetings(self, intervals): &#34;&#34;&#34; :type intervals: List[List[int]] :rtype: bool &#34;&#34;&#34; intervals.sort() for i in range(len(intervals) -1): if intervals[i][1] &gt; intervals[i &#43; 1][0]: return False return True </p>
-  </section>
-  <footer class="entry-footer">September 25, 2021</footer>
-  <a class="entry-link" aria-label="post link to Meeting Rooms" href="https://hirotoshimizu.github.io/posts/meeting-rooms/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Merge Two Sorted Lists</h2>
-  </header>
-  <section class="entry-content">
-    <p>https://leetcode.com/problems/merge-two-sorted-lists/
-ダミー Node を作って edge case の 空の Linked List が挿入されても大丈夫なようにする。
-その後はループで l1 と l2 の val を比べ、 小さい値を tail.next に入れる。 その後、 next をずらす。
-ループ後 l1, l2 のどちらかのリストが empty の場合、 Linked List に追加する必要があるので、 リストが empty か確認し、値があれば Linked List に追加する。
-# Definition for singly-linked list. # class ListNode(object): # def __init__(self, val=0, next=None): # self.val = val # self.next = next class Solution(object): def mergeTwoLists(self, l1, l2): &#34;&#34;&#34; :type l1: ListNode :type l2: ListNode :rtype: ListNode &#34;&#34;&#34; dummy = ListNode() tail = dummy while l1 and l2: if l1....</p>
-  </section>
-  <footer class="entry-footer">September 24, 2021</footer>
-  <a class="entry-link" aria-label="post link to Merge Two Sorted Lists" href="https://hirotoshimizu.github.io/posts/merge-two-sorted-lists/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Linked List Cycle</h2>
-  </header>
-  <section class="entry-content">
-    <p>https://leetcode.com/problems/linked-list-cycle/
-Linked List が Cycle なのかを確認する。
-Linked List が Cycle な場合、 2つのポインターを使う。 (1つめのポインターは 1つずつ進み、 2つめのポインターは 2つずつ進む。) Cycle な場合どこかの時点で2つ進むポインター が1つしか進まないポインターに追いつくので Cycle だとわかる。
-Cycle ではない場合 いずれかの時点で ポインターが Null になる。
-Time complexity: O(n) Mem complexity: O(1)
-# Definition for singly-linked list. # class ListNode(object): # def __init__(self, x): # self.val = x # self.next = None class Solution(object): def hasCycle(self, head): &#34;&#34;&#34; :type head: ListNode :rtype: bool &#34;&#34;&#34; slow, fast = head, head while fast and fast....</p>
-  </section>
-  <footer class="entry-footer">September 24, 2021</footer>
-  <a class="entry-link" aria-label="post link to Linked List Cycle" href="https://hirotoshimizu.github.io/posts/linked-list-cycle/"></a>
+  <footer class="entry-footer">July 5, 2021</footer>
+  <a class="entry-link" aria-label="post link to Hugo の始め方" href="https://hirotoshimizu.github.io/posts/how-to-start-hugo/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
-    <a class="prev" href="https://hirotoshimizu.github.io/posts/page/7/">« Prev Page</a>
-    <a class="next" href="https://hirotoshimizu.github.io/posts/page/9/">Next Page »</a>
+    <a class="prev" href="https://hirotoshimizu.github.io/posts/page/11/">« Prev Page</a>
   </nav>
 </footer>
     </main>

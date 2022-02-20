@@ -149,6 +149,30 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Dependency Inversion Principle</h2>
+  </header>
+  <section class="entry-content">
+    <p>ソースコードの依存関係が（具象ではなく）抽象だけを参照しているシステムが最も柔軟である。
+Before from abc import ABC, abstractmethod class Order: def __init__(self): self.items = [] self.quantities = [] self.prices = [] self.status = &#39;open&#39; def add_item(self, name, quantity, price): self.items.append(name) self.quantities.append(quantity) self.prices.append(price) def total_price(self): total = 0 for i in range(len(self.prices)): total &#43;= self.quantities[i] * self.prices[i] return total class Authorizer(ABC): @abstractmethod def is_authorized(self) -&gt; bool: pass class Authorizer_SMS(Authorizer): def __init__(self): self.authorized = False def verify_code(self, code): print(f&#39;Verifying SMS code {code}&#39;) self.authorized = True def is_authorized(self) -&gt; bool: return self....</p>
+  </section>
+  <footer class="entry-footer">February 18, 2022</footer>
+  <a class="entry-link" aria-label="post link to Dependency Inversion Principle" href="https://hirotoshimizu.github.io/posts/dependency-inversion-principle/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Interface Segregation Principle</h2>
+  </header>
+  <section class="entry-content">
+    <p>包括的なインターフェースがあるより、いくつかの特定のインターフェースに分割すべき。
+Before from abc import ABC, abstractmethod class Order: def __init__(self): self.items = [] self.quantities = [] self.prices = [] self.status = &#39;open&#39; def add_item(self, name, quantity, price): self.items.append(name) self.quantities.append(quantity) self.prices.append(price) def total_price(self): total = 0 for i in range(len(self.prices)): total &#43;= self.quantities[i] * self.prices[i] return total class PaymentProcessor(ABC): @abstractmethod def auth_sms(self, code): pass @abstractmethod def pay(self, order): pass class DebitPaymentProcessor(PaymentProcessor): def __init__(self, security_code): self.security_code = security_code self.verified = False def auth_sms(self, code): print(f&#39;Verifying SMS code {code}&#39;) self....</p>
+  </section>
+  <footer class="entry-footer">February 18, 2022</footer>
+  <a class="entry-link" aria-label="post link to Interface Segregation Principle" href="https://hirotoshimizu.github.io/posts/interface-segregation-principle/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>Liskov Substitution Principle</h2>
   </header>
   <section class="entry-content">
@@ -183,39 +207,6 @@ Before class Order: def __init__(self) -&gt; None: self.items = [] self.quantiti
   </section>
   <footer class="entry-footer">February 18, 2022</footer>
   <a class="entry-link" aria-label="post link to Single Responsibility Principle" href="https://hirotoshimizu.github.io/posts/single-responsibility-principle/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Solid</h2>
-  </header>
-  <section class="entry-content">
-    <p>よくできたソフトウェアシステムは、クリーンなコードを書くことから始まる。レンガの出来が悪ければ、その建築は優れたものにはならない。一方、たとえよくできたレンガを使っても、ぐちゃぐちゃなもの作ってしまうことがあり得る。そこで登場するのが「SOLID」原則。
-SOLID原則は、関数やデータ構造をどのようにクラスに組み込むのか、そしてクラスの相互接続をどのようにするのかといったことを教えてくれる。　SOLID原則の目的は、以下のような性質を持つ中間レベルのソフトウェア構造を作ること。
- 変更につよいこと 理解しやすいこと コンポーネントの基盤として、多くのソフトウェアシステムで利用できること  Single Responsibility Principle 個々のモジュールを変更する理由がたったひとつだけになるように、ソフトウェアシステムの構造がそれを使う組織の社会的構造に大きな影響を受けるようにする。
-モジュールはたったひとつのアクターに対して責務を負うべきである。
-Opne Closed Principle ソフトウェアの構成要素は拡張に対しては開いていて、修正に対しては閉じていなければならない。
-ソフトウェアの振る舞いは、既存の成果物を変更せず拡張できるようにすべき。
-Liskov Substitution Principle サブクラスは、スーパークラスと置換可能でなければならない。
-Interface Segregation Principle 包括的なインターフェースがあるより、いくつかの特定のインターフェースに分割すべき。
-Dependency Inversion Principle ソースコードの依存関係が（具象ではなく）抽象だけを参照しているシステムが最も柔軟である。</p>
-  </section>
-  <footer class="entry-footer">February 18, 2022</footer>
-  <a class="entry-link" aria-label="post link to Solid" href="https://hirotoshimizu.github.io/posts/solid/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Extract Function</h2>
-  </header>
-  <section class="entry-content">
-    <p>動機 「関数の抽出」はきわめて頻繁に行われるリファクタリング。
-いつ独立した関数として取り出すかというは「2回以上使われるコードはそれ自体を関数にすべき」のように、再利用に基づいている。
-しかし、最も納得できるのは意図と実装の分離です。何をしているか調べなければわからないコードの断片があるとしたら、「何」をしているかを示す名前の関数として抽出すべきです。そうすれば関数を読み返すだけで関数の目的がすぐに伝わってきます。
-手順  新たな関数を作り、その意図に沿って命名する（どうやるかではなく、何をするかによって名づける。） 抽出したいコードを、元の関数から新たな関数にコピーする。 抽出したコードを調べて、元の関数ではスコープ内だったが抽出後の関数ではスコープ外になった変数を特定する。それらをパラメータとして渡す。 全ての変数を処置したらコンパイルする。 元の関数に残った抽出前のコードを、抽出された関数への呼び出しに置き換える。 テストする。 残りのコードを見て、抽出したコードと同じまたは類似したコードを探し、「関数呼び出しによるインラインコードの置き換え」を適用し、新しい関数を呼ぶ形にできないか検討する。  Before from enum import Enum class Category(Enum): A = 1 B = 2 C = 3 def calculate_tax(category: Category, income: int) -&gt; int: if category == Category.A: discount = 10 elif category == Category.B: discount = 5 else: discount = 0 return income * (100 - discount) // 100 After from enum import Enum class Category(Enum): A = 1 B = 2 C = 3 def calculate_tax(category: Category, income: int) -&gt; int: discount = calc_discount(category) return income * (100 - discount) // 100 def calc_discount(category: Category) -&gt; int: if category == Category....</p>
-  </section>
-  <footer class="entry-footer">February 18, 2022</footer>
-  <a class="entry-link" aria-label="post link to Extract Function" href="https://hirotoshimizu.github.io/posts/extract-function/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
