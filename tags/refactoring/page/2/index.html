@@ -138,71 +138,75 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
-    <h2>Interface Segregation Principle</h2>
+    <h2>Combine Functions Transform</h2>
   </header>
   <section class="entry-content">
-    <p>包括的なインターフェースがあるより、いくつかの特定のインターフェースに分割すべき。
-Before from abc import ABC, abstractmethod class Order: def __init__(self): self.items = [] self.quantities = [] self.prices = [] self.status = &#39;open&#39; def add_item(self, name, quantity, price): self.items.append(name) self.quantities.append(quantity) self.prices.append(price) def total_price(self): total = 0 for i in range(len(self.prices)): total &#43;= self.quantities[i] * self.prices[i] return total class PaymentProcessor(ABC): @abstractmethod def auth_sms(self, code): pass @abstractmethod def pay(self, order): pass class DebitPaymentProcessor(PaymentProcessor): def __init__(self, security_code): self.security_code = security_code self.verified = False def auth_sms(self, code): print(f&#39;Verifying SMS code {code}&#39;) self....</p>
+    <p>関数群の変換への集約 動機 ソフトウェアの多くは、プログラムにデータを投入して、そこからさまざまな派生情報を計算する処理を含んでいる。派生値はさまざまな箇所で必要になり、派生値が参照されるたびに繰り返される。 こうした派生値はまとめるのが望ましく、一貫した探しやすい場所で更新がおこなわれるようにして、重複したロジックは避けるべき。
+その1つの方法はデータ変換関数を使うことです。これは元データを入力としてすべての派生値を計算し、それらを出力データのフィールドとして設定するものです。そうすることで、派生値について調べたいときは変換関数だけを見ればよくなる。
+もう1つの方法が「関数群のクラスへの集約」。元データに基づいてクラスを構成し、ロジックをそのクラスのメソッドに移す。
+重要な違いは、元データがコード内で更新される場合は、クラスを使うほうが良い。変換関数を使うと派生データが新たなレコードに保持されます。そのため元のデータが変更されると不整合が生じる。
+関数群を集約したい理由として、派生値を求めるロジックの重複をさけたいということがある。それだけなら、単に「関数の抽出」をロジックに適用する手もあるが、関数が扱うデータ構造と近い位置に置かれていないと、関数を見つけ出すのが難しくなる。変換関数を使うと、探すのが容易になり利用もしやすくなる。
+手順  変換されるレコードを入力とし、同じ値を返す変換関数を作る。
+通常、この関数の中ではレコードのディープコピーが行われる。この変換によって元のレコードが変更されていないことを確認するテストを書くとよい。 ロジックを選んでその本体を変換関数側に移し、レコードに新たなフィールドを設ける。そのフィールドを使うようにクライアント側のコードを変更する。 ロジックが複雑ならば、まず「関数の抽出」を施す。 テスト その他の関連した関数群について上記の手順を繰り返す。  </p>
   </section>
-  <footer class="entry-footer">February 18, 2022</footer>
-  <a class="entry-link" aria-label="post link to Interface Segregation Principle" href="https://hirotoshimizu.github.io/posts/interface-segregation-principle/"></a>
+  <footer class="entry-footer">February 21, 2022</footer>
+  <a class="entry-link" aria-label="post link to Combine Functions Transform" href="https://hirotoshimizu.github.io/posts/combine-functions-transform/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
-    <h2>Liskov Substitution Principle</h2>
+    <h2>Combine Functions Into Class</h2>
   </header>
   <section class="entry-content">
-    <p>サブクラスは、スーパークラスと置換可能でなければならない。
-Before from abc import ABC, abstractmethod class Order: def __init__(self) -&gt; None: self.items = [] self.quantities = [] self.prices = [] self.status = &#39;open&#39; def add_item(self, name: str, quantity: int, price: int) -&gt; None: self.items.append(name) self.quantities.append(quantity) self.prices.append(price) def total_price(self) -&gt; int: total = 0 for i in range(len(self.prices)): total &#43;= self.quantities[i] * self.prices[i] return total class PaymentProcessor(ABC): @abstractmethod def pay(self, order: Order, security_code: str) -&gt; None: pass class DebitPaymentProcessor(PaymentProcessor): def pay(self, order: Order, security_code: str) -&gt; None: print(&#39;Processing debit payment type&#39;) print(f&#39;Verifying security code: {security_code}&#39;) order....</p>
+    <p>関数群のクラスへの集約 動機 共通のデータに対して互いに関わりの深い処理を行う一群の関数があれば、クラスを定義するチャンスと考える。（共通データは通常は関数呼び出しの際に引数として渡さる。）クラスを使うことで、これらの関数が共有する環境がより明示的になり、関数の引数が大幅に減ることで、オブジェクト内の関数呼び出しを単純化できます。そうしたオブジェクトをシステムの他の部分に参照として渡すのも容易になる。
+このリファクタリングは既存の関数群を体系化するだけではなく、他で断片的に計算を行っている箇所を特定し、新たなクラスのメソッドとしてリファクタリングする良い機会も与えてくれる。
+手順  関数間で共有しているデータのレコードに「レコードのカプセル化」を施す。
+関数間で共有しているデータが、レコード構造としてまとめられていない場合は、「パラメータオブジェクトの導入」を施し、それらをまとめるレコードを作る。 「関数の移動」を適用して、共通のレコードを扱う関数をそれぞれ、新たなクラスへと移す。
+関数呼び出しの引数のうち、クラスのメンバになっているものは、引数のリストから取り除くことができる。 データを操作するロジックの断片があればそれぞれ、「関数の抽出」で抽出してクラスに移す。  </p>
   </section>
-  <footer class="entry-footer">February 18, 2022</footer>
-  <a class="entry-link" aria-label="post link to Liskov Substitution Principle" href="https://hirotoshimizu.github.io/posts/liskov-substitution-principle/"></a>
+  <footer class="entry-footer">February 20, 2022</footer>
+  <a class="entry-link" aria-label="post link to Combine Functions Into Class" href="https://hirotoshimizu.github.io/posts/combine-functions-into-class/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
-    <h2>Open Closed Principle</h2>
+    <h2>Introduce Parameter Object</h2>
   </header>
   <section class="entry-content">
-    <p>ソフトウェアの構成要素は拡張に対しては開いていて、修正に対しては閉じていなければならない。
-ソフトウェアの振る舞いは、既存の成果物を変更せず拡張できるようにすべき。
-Before class Order: def __init__(self) -&gt; None: self.items = [] self.quantities = [] self.prices = [] self.status = &#34;open&#34; def add_item(self, name: str, quantity: int, price: int) -&gt; None: self.items.append(name) self.quantities.append(quantity) self.prices.append(price) def total_price(self) -&gt; int: total = 0 for i in range(len(self.prices)): total &#43;= self.quantities[i] * self.prices[i] return total class PaymentProcessor: def pay_debit(self, order: Order, security_code: str) -&gt; None: print(&#34;Processing debit payment type&#34;) print(f&#34;Verifying security code: {security_code}&#34;) order....</p>
+    <p>パラメータオブジェクトの導入 動機 データ構造体にまとめることには意味があり、データ項目間の関係を明示するとができる。 新たな構造体を使えば、関数のパラメータ数は少なくて済みます。その構造体を使うすべての関数が、構造体の要素を取得するのに同じ名前を使うことで、一貫性の向上にも役立ちます。 このリファクタリングの真価は、コードにより深い変化を引き起こすことにあります。新たな構造体を特定したら、その構造体を使うようにプログラムの振る舞いを改めます。一連の共通関数群になることも、データ構造とそれらの関数を組み合わせたクラスになることもあります。この過程でコードの概念的な構図が変化することもある。そうした構造体を新たな抽象に引き上げると、問題領域の理解がすっきりする。
+手順  ふさわしい構造体がまだ存在しないなら、作成する。 後で振る舞いをまとめやすいのでクラスにすることが多い、構造体が「値オブジェクト」なのか確認するとよい。 テスト 関数宣言の変更を施し、新たな構造体用のパラメータを追加する テスト 新たな構造体の正しいインスタンスを渡すように各呼び出し側を修正する。1つの呼び出しを修正するごとにテストする 元のパラメータを使用している箇所を、新たな構造体の要素を使うように1つひとつ置き換える。元のパラメータを削除し、テストする。  </p>
   </section>
-  <footer class="entry-footer">February 18, 2022</footer>
-  <a class="entry-link" aria-label="post link to Open Closed Principle" href="https://hirotoshimizu.github.io/posts/open-closed-principle/"></a>
+  <footer class="entry-footer">February 20, 2022</footer>
+  <a class="entry-link" aria-label="post link to Introduce Parameter Object" href="https://hirotoshimizu.github.io/posts/introduce-parameter-object/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
-    <h2>Single Responsibility Principle</h2>
+    <h2>Rename Variable</h2>
   </header>
   <section class="entry-content">
-    <p>個々のモジュールを変更する理由がたったひとつだけになるように、ソフトウェアシステムの構造がそれを使う組織の社会的構造に大きな影響を受けるようにする。
-モジュールはたったひとつのアクターに対して責務を負うべきである。
-Before class Order: def __init__(self) -&gt; None: self.items = [] self.quantities = [] self.prices = [] self.status = &#39;open&#39; def add_item(self, name: str, quantity: int, price: int) -&gt; None: self.items.append(name) self.quantities.append(quantity) self.prices.append(price) def total_price(self) -&gt; int: total = 0 for i in range(len(self.prices)): total &#43;= self.quantities[i] * self.prices[i] return total def pay(self, payment_type: str, security_code: str) -&gt; None: if payment_type == &#39;debit&#39;: print(&#39;Proccessing debit payment type&#39;) print(f&#39;Verifying security code: {security_code}&#39;) self....</p>
+    <p>変数名の変更 動機 変数はうまく名前を付けさえすれば、目的説明する上で非常に役立ちます。しかし注意深く考えていない場合やユーザーのニーズが変わってプログラムの目的が変わったから、などがあり不適切な名前となることがある。
+手順  変数が広く使われている場合、「変数のカプセル化」を検討する。 変数への参照をくまなく探し、それらをすべて変更数。
+変数が別のコードベースから参照されている場合、その変数は公開されているので、このリファクタリングを行うことはできない。
+変数が変更されない場合、変数を新たな名前の変数にコピーしてから、徐々に置き換えていき、その都度テストする テスト  </p>
   </section>
-  <footer class="entry-footer">February 18, 2022</footer>
-  <a class="entry-link" aria-label="post link to Single Responsibility Principle" href="https://hirotoshimizu.github.io/posts/single-responsibility-principle/"></a>
+  <footer class="entry-footer">February 20, 2022</footer>
+  <a class="entry-link" aria-label="post link to Rename Variable" href="https://hirotoshimizu.github.io/posts/rename-variable/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
-    <h2>Solid</h2>
+    <h2>Encapsulate Variable</h2>
   </header>
   <section class="entry-content">
-    <p>よくできたソフトウェアシステムは、クリーンなコードを書くことから始まる。レンガの出来が悪ければ、その建築は優れたものにはならない。一方、たとえよくできたレンガを使っても、ぐちゃぐちゃなもの作ってしまうことがあり得る。そこで登場するのが「SOLID」原則。
-SOLID原則は、関数やデータ構造をどのようにクラスに組み込むのか、そしてクラスの相互接続をどのようにするのかといったことを教えてくれる。　SOLID原則の目的は、以下のような性質を持つ中間レベルのソフトウェア構造を作ること。
- 変更につよいこと 理解しやすいこと コンポーネントの基盤として、多くのソフトウェアシステムで利用できること  Single Responsibility Principle 個々のモジュールを変更する理由がたったひとつだけになるように、ソフトウェアシステムの構造がそれを使う組織の社会的構造に大きな影響を受けるようにする。
-モジュールはたったひとつのアクターに対して責務を負うべきである。
-Opne Closed Principle ソフトウェアの構成要素は拡張に対しては開いていて、修正に対しては閉じていなければならない。
-ソフトウェアの振る舞いは、既存の成果物を変更せず拡張できるようにすべき。
-Liskov Substitution Principle サブクラスは、スーパークラスと置換可能でなければならない。
-Interface Segregation Principle 包括的なインターフェースがあるより、いくつかの特定のインターフェースに分割すべき。
-Dependency Inversion Principle ソースコードの依存関係が（具象ではなく）抽象だけを参照しているシステムが最も柔軟である。</p>
+    <p>変数のカプセル化 動機 スコープが大きくなるにつれて変更が困難になっていく。そのため広い範囲でデータを移動したいといは、カプセル化して、変数へのアクセスを関数経由にするのが非常に良いやり方。これでデータの再構成という困難な作業を、関数の再構成というより簡単な作業に変えることができる。
+それ以外にデータの変更や参照を監視できるという明確な利点を得られる。データ更新の際の検証や後処理を追加するのも簡単。
+スコープが1つの関数より大きいものは、関数を通じてのみアクセスできるようにし、データのスコープが大きくなるほどカプセル化はより重要になる。
+手順  変数を参照・更新するためのカプセル化用関数を作る。 静的チェックを実行する。 変数への参照を、1つひとつ適切なカプセル化関数の呼び出しに置き換える。置き換えるごとにテストする。 変数の可視性を制限する。
+変数への直接アクセスを防げないことがよくある。その場合、変数名を変更してテストすることで、置き換えが漏れた参照を見つけることができる。 テスト 変数の値がレコードの場合、「レコードのカプセル化」を検討する。  </p>
   </section>
-  <footer class="entry-footer">February 18, 2022</footer>
-  <a class="entry-link" aria-label="post link to Solid" href="https://hirotoshimizu.github.io/posts/solid/"></a>
+  <footer class="entry-footer">February 20, 2022</footer>
+  <a class="entry-link" aria-label="post link to Encapsulate Variable" href="https://hirotoshimizu.github.io/posts/encapsulate-variable/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

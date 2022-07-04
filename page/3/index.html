@@ -149,82 +149,74 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Solid</h2>
+    <h2>Combine Functions Into Class</h2>
   </header>
   <section class="entry-content">
-    <p>よくできたソフトウェアシステムは、クリーンなコードを書くことから始まる。レンガの出来が悪ければ、その建築は優れたものにはならない。一方、たとえよくできたレンガを使っても、ぐちゃぐちゃなもの作ってしまうことがあり得る。そこで登場するのが「SOLID」原則。
-SOLID原則は、関数やデータ構造をどのようにクラスに組み込むのか、そしてクラスの相互接続をどのようにするのかといったことを教えてくれる。　SOLID原則の目的は、以下のような性質を持つ中間レベルのソフトウェア構造を作ること。
- 変更につよいこと 理解しやすいこと コンポーネントの基盤として、多くのソフトウェアシステムで利用できること  Single Responsibility Principle 個々のモジュールを変更する理由がたったひとつだけになるように、ソフトウェアシステムの構造がそれを使う組織の社会的構造に大きな影響を受けるようにする。
-モジュールはたったひとつのアクターに対して責務を負うべきである。
-Opne Closed Principle ソフトウェアの構成要素は拡張に対しては開いていて、修正に対しては閉じていなければならない。
-ソフトウェアの振る舞いは、既存の成果物を変更せず拡張できるようにすべき。
-Liskov Substitution Principle サブクラスは、スーパークラスと置換可能でなければならない。
-Interface Segregation Principle 包括的なインターフェースがあるより、いくつかの特定のインターフェースに分割すべき。
-Dependency Inversion Principle ソースコードの依存関係が（具象ではなく）抽象だけを参照しているシステムが最も柔軟である。</p>
+    <p>関数群のクラスへの集約 動機 共通のデータに対して互いに関わりの深い処理を行う一群の関数があれば、クラスを定義するチャンスと考える。（共通データは通常は関数呼び出しの際に引数として渡さる。）クラスを使うことで、これらの関数が共有する環境がより明示的になり、関数の引数が大幅に減ることで、オブジェクト内の関数呼び出しを単純化できます。そうしたオブジェクトをシステムの他の部分に参照として渡すのも容易になる。
+このリファクタリングは既存の関数群を体系化するだけではなく、他で断片的に計算を行っている箇所を特定し、新たなクラスのメソッドとしてリファクタリングする良い機会も与えてくれる。
+手順  関数間で共有しているデータのレコードに「レコードのカプセル化」を施す。
+関数間で共有しているデータが、レコード構造としてまとめられていない場合は、「パラメータオブジェクトの導入」を施し、それらをまとめるレコードを作る。 「関数の移動」を適用して、共通のレコードを扱う関数をそれぞれ、新たなクラスへと移す。
+関数呼び出しの引数のうち、クラスのメンバになっているものは、引数のリストから取り除くことができる。 データを操作するロジックの断片があればそれぞれ、「関数の抽出」で抽出してクラスに移す。  </p>
   </section>
-  <footer class="entry-footer">February 18, 2022</footer>
-  <a class="entry-link" aria-label="post link to Solid" href="https://hirotoshimizu.github.io/posts/solid/"></a>
+  <footer class="entry-footer">February 20, 2022</footer>
+  <a class="entry-link" aria-label="post link to Combine Functions Into Class" href="https://hirotoshimizu.github.io/posts/combine-functions-into-class/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Extract Function</h2>
+    <h2>Introduce Parameter Object</h2>
   </header>
   <section class="entry-content">
-    <p>動機 「関数の抽出」はきわめて頻繁に行われるリファクタリング。
-いつ独立した関数として取り出すかというは「2回以上使われるコードはそれ自体を関数にすべき」のように、再利用に基づいている。
-しかし、最も納得できるのは意図と実装の分離です。何をしているか調べなければわからないコードの断片があるとしたら、「何」をしているかを示す名前の関数として抽出すべきです。そうすれば関数を読み返すだけで関数の目的がすぐに伝わってきます。
-手順  新たな関数を作り、その意図に沿って命名する（どうやるかではなく、何をするかによって名づける。） 抽出したいコードを、元の関数から新たな関数にコピーする。 抽出したコードを調べて、元の関数ではスコープ内だったが抽出後の関数ではスコープ外になった変数を特定する。それらをパラメータとして渡す。 全ての変数を処置したらコンパイルする。 元の関数に残った抽出前のコードを、抽出された関数への呼び出しに置き換える。 テストする。 残りのコードを見て、抽出したコードと同じまたは類似したコードを探し、「関数呼び出しによるインラインコードの置き換え」を適用し、新しい関数を呼ぶ形にできないか検討する。  Before from enum import Enum class Category(Enum): A = 1 B = 2 C = 3 def calculate_tax(category: Category, income: int) -&gt; int: if category == Category.A: discount = 10 elif category == Category.B: discount = 5 else: discount = 0 return income * (100 - discount) // 100 After from enum import Enum class Category(Enum): A = 1 B = 2 C = 3 def calculate_tax(category: Category, income: int) -&gt; int: discount = calc_discount(category) return income * (100 - discount) // 100 def calc_discount(category: Category) -&gt; int: if category == Category....</p>
+    <p>パラメータオブジェクトの導入 動機 データ構造体にまとめることには意味があり、データ項目間の関係を明示するとができる。 新たな構造体を使えば、関数のパラメータ数は少なくて済みます。その構造体を使うすべての関数が、構造体の要素を取得するのに同じ名前を使うことで、一貫性の向上にも役立ちます。 このリファクタリングの真価は、コードにより深い変化を引き起こすことにあります。新たな構造体を特定したら、その構造体を使うようにプログラムの振る舞いを改めます。一連の共通関数群になることも、データ構造とそれらの関数を組み合わせたクラスになることもあります。この過程でコードの概念的な構図が変化することもある。そうした構造体を新たな抽象に引き上げると、問題領域の理解がすっきりする。
+手順  ふさわしい構造体がまだ存在しないなら、作成する。 後で振る舞いをまとめやすいのでクラスにすることが多い、構造体が「値オブジェクト」なのか確認するとよい。 テスト 関数宣言の変更を施し、新たな構造体用のパラメータを追加する テスト 新たな構造体の正しいインスタンスを渡すように各呼び出し側を修正する。1つの呼び出しを修正するごとにテストする 元のパラメータを使用している箇所を、新たな構造体の要素を使うように1つひとつ置き換える。元のパラメータを削除し、テストする。  </p>
   </section>
-  <footer class="entry-footer">February 18, 2022</footer>
-  <a class="entry-link" aria-label="post link to Extract Function" href="https://hirotoshimizu.github.io/posts/extract-function/"></a>
+  <footer class="entry-footer">February 20, 2022</footer>
+  <a class="entry-link" aria-label="post link to Introduce Parameter Object" href="https://hirotoshimizu.github.io/posts/introduce-parameter-object/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Clean Code</h2>
+    <h2>Rename Variable</h2>
   </header>
   <section class="entry-content">
-    <p>意味のある名前  意図が明確な名前にする 意味のある対比を行う 発音可能な名前を使用する 検索可能な名前を用いる マジックナンバーは定数に メンタルマッピングを避ける 抽象レベルに適切な名前を選ぶ 広いスコープには長い名前を エンコーディングを避ける 名前で副作用を示すべき  関数  小さいこと！ 1つのことを行う 内容をよく表す名前を使う 引数は少なく フラグ引数は使わず、メソッドを分割する 副作用をさける try/catchブロックの分離 DRY(Don’t Repeat Yourself) 死んだ関数は削除すべき  コメント 「ダメなコードをコメントで取り繕ってはいけない。書き直すのだ」
- コメントで、ダメなコードを取り繕うことはできない 自分自身をコードで説明する 意図の説明 結果に対する警告  書式化  縦方向の書式化 垂直概念分離性 垂直密度 垂直距離 水平分離性と密度  オブジェクトとデータ構造    テスト  1つのテストに1つのアサート 1つのテストでは1つの概念を扱う カバレッジツールを使用する ささいなテストを省略しない 無視することを指定されたテストは、あいまいさへの問いかけである 境界条件テストには注意払う バグの周辺は徹底的にテストを 失敗パターンは何かを語る テストカバレッジパターンは何かを語る テストは高速に実行できるべき  </p>
+    <p>変数名の変更 動機 変数はうまく名前を付けさえすれば、目的説明する上で非常に役立ちます。しかし注意深く考えていない場合やユーザーのニーズが変わってプログラムの目的が変わったから、などがあり不適切な名前となることがある。
+手順  変数が広く使われている場合、「変数のカプセル化」を検討する。 変数への参照をくまなく探し、それらをすべて変更数。
+変数が別のコードベースから参照されている場合、その変数は公開されているので、このリファクタリングを行うことはできない。
+変数が変更されない場合、変数を新たな名前の変数にコピーしてから、徐々に置き換えていき、その都度テストする テスト  </p>
   </section>
-  <footer class="entry-footer">February 17, 2022</footer>
-  <a class="entry-link" aria-label="post link to Clean Code" href="https://hirotoshimizu.github.io/posts/clean-code/"></a>
+  <footer class="entry-footer">February 20, 2022</footer>
+  <a class="entry-link" aria-label="post link to Rename Variable" href="https://hirotoshimizu.github.io/posts/rename-variable/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Code Smells</h2>
+    <h2>Encapsulate Variable</h2>
   </header>
   <section class="entry-content">
-    <p>Bloaters  長い関数(Long Method)
-オブジェクトそのものの受け渡し、関数の抽出、コマンドによる関数の置き換え、問い合わせによる一時変数の置き換え、条件記述の分解、パラメータオブジェクトの導入、ポリモーフィズムによる条件記述の置き換え、ループの分離 巨大なクラス(Large Class)
-クラスの抽出、サブクスによるタイプコードの置き換え、スーパークラスの抽出 データの群れ(Data Clumps)
-オブジェクトそのものの受け渡し、クラスの抽出、パラメータオブジェクトの導入 長いパラメータリスト(Long Parameter List)
-オブジェクトそのものの受け渡し、関数群のクラスへの集約、問い合わせによるパラメータの置き換え、パラメータオブジェクトの導入、フラグパラメータの削除 基本データ型への執着(Primitive Obsession)
-オブジェクトによるプリミティブの置き換え、クラスの抽出、サブクラスによるタイプコードの置き換え、パラメータオブジェクトの導入、ポリモーフィズムによる条件記述の置き換え  Tool Abusers  Switch Statements 相続拒否(Refused Bequest)
-委譲によるサブクラスの置き換え、委譲によるスーパークラスの置き換え、フィールドの押し下げ、メソッドの押し下げ クラスのインターフェース不一致(Alternative Classes w/ Different Interfaces)
-関数宣言の変更、関数の移動、スーパークラスの抽出 一時的属性(Temporary Field)
-関数の移動、クラスの抽出、特殊ケースの導入  Change Preventers  Divergent Change 変更の分散(Shotgun Surgery)
-関数群のクラスへの集約、関数群の変換への集約、関数の移動、関数のインライン化、クラスのインライン化、フィールドの移動、フェーズの分離 Parallel Inheritance Hierarchies  Dispensables  Lazy Class 疑わしき一般化(Speculative Generality)
-関数宣言の変更、関数のインライン化、クラス階層の平坦化、クラスのインライン化、デッドコードの削除 データクラス(Data Class) 重複したコード(Duplicated Code)
-関数の抽出、ステートメントのスライド、メソッドの引き上げ  Couplers  特性の横恋慕(Feature Envy)
-関数の移動、関数の抽出 Inappropriate Intimacy メッセージの連鎖(Message Chains)...</p>
+    <p>変数のカプセル化 動機 スコープが大きくなるにつれて変更が困難になっていく。そのため広い範囲でデータを移動したいといは、カプセル化して、変数へのアクセスを関数経由にするのが非常に良いやり方。これでデータの再構成という困難な作業を、関数の再構成というより簡単な作業に変えることができる。
+それ以外にデータの変更や参照を監視できるという明確な利点を得られる。データ更新の際の検証や後処理を追加するのも簡単。
+スコープが1つの関数より大きいものは、関数を通じてのみアクセスできるようにし、データのスコープが大きくなるほどカプセル化はより重要になる。
+手順  変数を参照・更新するためのカプセル化用関数を作る。 静的チェックを実行する。 変数への参照を、1つひとつ適切なカプセル化関数の呼び出しに置き換える。置き換えるごとにテストする。 変数の可視性を制限する。
+変数への直接アクセスを防げないことがよくある。その場合、変数名を変更してテストすることで、置き換えが漏れた参照を見つけることができる。 テスト 変数の値がレコードの場合、「レコードのカプセル化」を検討する。  </p>
   </section>
-  <footer class="entry-footer">February 17, 2022</footer>
-  <a class="entry-link" aria-label="post link to Code Smells" href="https://hirotoshimizu.github.io/posts/code-smells/"></a>
+  <footer class="entry-footer">February 20, 2022</footer>
+  <a class="entry-link" aria-label="post link to Encapsulate Variable" href="https://hirotoshimizu.github.io/posts/encapsulate-variable/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Longest Palindromic Substring</h2>
+    <h2>Change Function Declaration</h2>
   </header>
   <section class="entry-content">
-    <p>https://leetcode.com/problems/longest-palindromic-substring/
-class Solution: def longestPalindrome(self, s: str) -&gt; str: res = &#39;&#39; for i in range(len(s)): # odd case tmp = self.helper(s, i, i) if len(tmp) &gt; len(res): res = tmp # even tmp = self.helper(s, i, i&#43;1) if len(tmp) &gt; len(res): res = tmp return res def helper(self, s, l, r): while l &gt;= 0 and r &lt; len(s) and s[l] == s[r]: l -= 1 r &#43;= 1 return s[l&#43;1:r] </p>
+    <p>関数宣言の変更 動機 関数宣言はソフトウェアシステムにおける継ぎ目となる。多くの部分が継ぎ目に依存し、良い継ぎ目があればシステムに新たな部品を追加するのは簡単。悪い継ぎ目は常に問題の発生源になる。
+継ぎ目の要素で最も重要なのは関数名です。もし間違った名前の関数を見たら、少しでも名前がわかり次第、断固として変更していかなければなりません。
+関数の名前を改善していくための良い方法は、関数の目的をコメントとして書くこと。そのコメントを名前に変更する。
+手順 変更内容を吟味して、宣言と呼び出しとを一度で簡単に変更できるかを検討する。もしできるなら簡易な手順を実行する。 そうでなければ移行手順を選択して呼び出し側より漸進的に変更していく。 この手順が大きな意味を持つのは、呼び出し箇所が多い場合や（公開されたAPIのように）呼び出し箇所が手の届かないところにある場合、関数がポリモーフィックなメソッドである場合、関数宣言に複雑な変更を加える場合です。
+簡易な手順  パラメータを削除する場合、それが関数内部で参照されていないことを確認する。 関数宣言を望ましいものに変更する。 古い関数宣言へのすべての参照を探し、新しいものに変更する。 テスト 名前の変更とパラメータの追加の両方がある場合には、それぞれ別のステップで実施する。  移行手順  必要なら関数の本体をリファクタリングして、移行の抽出のステップを実施しやすくしておく。 関数本体に関数の抽出を施して、新たな関数を作る。
+新たな関数の名前を古いものと同じにする予定なら、新たな関数に判別しやすい名前を一時的に付けておく。 抽出した関数が追加のパラメータを必要とする場合、簡易な手順により追加を行う。 古い関数に「関数のインライン化」を施す。 一時的な名前を使った場合、「関数宣言の変更」を再び実施し、元の名前に戻す。 テスト  </p>
   </section>
-  <footer class="entry-footer">December 12, 2021</footer>
-  <a class="entry-link" aria-label="post link to Longest Palindromic Substring" href="https://hirotoshimizu.github.io/posts/longest-palindromic-substring/"></a>
+  <footer class="entry-footer">February 20, 2022</footer>
+  <a class="entry-link" aria-label="post link to Change Function Declaration" href="https://hirotoshimizu.github.io/posts/change-function-declaration/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

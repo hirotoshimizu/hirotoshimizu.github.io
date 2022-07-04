@@ -153,64 +153,73 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Dependency Inversion Principle</h2>
+    <h2>Move Field</h2>
   </header>
   <section class="entry-content">
-    <p>ソースコードの依存関係が（具象ではなく）抽象だけを参照しているシステムが最も柔軟である。
-Before from abc import ABC, abstractmethod class Order: def __init__(self): self.items = [] self.quantities = [] self.prices = [] self.status = &#39;open&#39; def add_item(self, name, quantity, price): self.items.append(name) self.quantities.append(quantity) self.prices.append(price) def total_price(self): total = 0 for i in range(len(self.prices)): total &#43;= self.quantities[i] * self.prices[i] return total class Authorizer(ABC): @abstractmethod def is_authorized(self) -&gt; bool: pass class Authorizer_SMS(Authorizer): def __init__(self): self.authorized = False def verify_code(self, code): print(f&#39;Verifying SMS code {code}&#39;) self.authorized = True def is_authorized(self) -&gt; bool: return self....</p>
+    <p>フィールドの移動 動機 データ構造が正しくないとわかったら、すぐに変更することが重要です。データ構造の欠陥を放置すると、その後長きにわたって、思考を混乱させ、コードを複雑化する原因となる。
+あるレコードを関数に渡す際に、必ず別レコードのフィールドも渡す必要がある場合、フィールドを移動したくなります。まとめて関数に渡すデータは、通常なら同じレコードにまとめるべきで、それによりデータの関係が明確になる。あるレコードを更新するたびに別レコードのフィールドも更新していることは、フィールドの場所が間違っていることを示唆している。複数の場所にある同じフィールドを更新しなければならないことは、フィールドを別の場所に移動して一度だけで更新できるようにすべきことを示している。
+フィールドの移動は、通常、より広範囲な変更の一部として行います。フィールドの移動が完了すると、そのフィールドの利用プログラムの多くにとっては、移動先のオブジェクトのほうが移動元よりも適切なデータのアクセス先となる。しかし、そのリファクタリングは後回しにする。別のケースとして、データの利用方法がネックになり、その時点では「フィールドの移動」を行えない場合がある。そうしたときには最初にデータの利用側をリファクタリングし、その後でフィールドを移動する必要がある。
+手順  移動元のフィールドをカプセル化する。 テスト 移動先にフィールド（およびアクセサ）を作成する。 静的解析を実行する。 移動元のオブジェクトから移動先のオブジェクトを参照できるようにする。 移動先への参照として、既存のフィールドやメソッドが使えるかもしれない。使えない場合は、参照用メソッドを簡単に作れるかどうかを調べる。うまくいかない場合は、移動元のオブジェクトに移動先のオブジェクトを格納する新しいフィールドを作成する必要があるかもしれない。これを恒久的な変更としてもよいが、より広範囲のリファクタリングがある程度進むまでの一時的な変更としてもよい。 移動先のフィールドを使うようにアクセサを調整する。 移動先のオブジェクトが移動元のオブジェクト間で共有される場合は、移動先と移動元の両方のフィールドを更新するように setter を変更した上で「アサーションの導入」を施し矛盾する更新を検出できるようにする。矛盾する更新がないと判断できたら、移動先のフィールドを使うようにアクセサを変更する。 テスト 移動元のフィールドを削除する。 テスト  </p>
   </section>
-  <footer class="entry-footer">February 18, 2022</footer>
-  <a class="entry-link" aria-label="post link to Dependency Inversion Principle" href="https://hirotoshimizu.github.io/posts/dependency-inversion-principle/"></a>
+  <footer class="entry-footer">February 21, 2022</footer>
+  <a class="entry-link" aria-label="post link to Move Field" href="https://hirotoshimizu.github.io/posts/move-field/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Interface Segregation Principle</h2>
+    <h2>Move Function</h2>
   </header>
   <section class="entry-content">
-    <p>包括的なインターフェースがあるより、いくつかの特定のインターフェースに分割すべき。
-Before from abc import ABC, abstractmethod class Order: def __init__(self): self.items = [] self.quantities = [] self.prices = [] self.status = &#39;open&#39; def add_item(self, name, quantity, price): self.items.append(name) self.quantities.append(quantity) self.prices.append(price) def total_price(self): total = 0 for i in range(len(self.prices)): total &#43;= self.quantities[i] * self.prices[i] return total class PaymentProcessor(ABC): @abstractmethod def auth_sms(self, code): pass @abstractmethod def pay(self, order): pass class DebitPaymentProcessor(PaymentProcessor): def __init__(self, security_code): self.security_code = security_code self.verified = False def auth_sms(self, code): print(f&#39;Verifying SMS code {code}&#39;) self....</p>
+    <p>関数の移動 動機 関数を移動する最も直観的な理由は、その関数が存在するコンテキストの要素よりも他のコンテキストの要素を多く参照しえちる場合。移動によって、関数をそれらの要素と一緒にすると、カプセル化が改善することがよくある。別の関数内で定義されたヘルパー関数が単体で有用な場合は、よりアクセスしやすい場所に移動すると有意義。 関数の移動の判断はたいてい困難を伴います。その判断を下すには、その関数の現在のコンテキストを移動先候補のコンテキストを調べます。どの関数が移動したい関数を呼び出すか、移動したい関数がどのデータを使っているかを調べる必要がある。
+関数のグループのために新しいコンテキストが必要になるケースは多いため、「関数群のクラスへの集約」や「クラスの抽出」によって新しいコンテキストを作成する。関数をどこに配置するのが最適かを決めるのは難しいかもしれませんが、通常はその選択が難しければ難しいほど、配置先を決める重要性は下がる。関数をあるコンテキストに実際に移動してみて、どれだけうまく適合するかを調べることは有意義。うまく適合しなかったしても、後からいつでも移動できる。
+手順  移動対象の関数が現在のコンテキストで使用しているプログラム要素をすべて調べる。それらも移動すべきかどうかを検討する。 呼び出している関数にも移動すべきものがあった場合、通常、まずはその関数から移動する。こうすることで、一連の関数の移動を依存性の低い関数から抽出できる。
+上位レベルの関数がサブ関数群の唯一の呼び出し元だった場合、それらのサブ関数群を上位の関数にインライン化し、移動した後で再抽出してもよい。 選択した関数がポリモーフィックなメソッドかどうかを確認する。 オブジェクト指向言語の場合、スーパークラスとサブクラスに注意する必要がある。 関数を移動先のコンテキストにコピーする。新居となる移動先に関数が適合するように調整する。 コード本体が元のコンテキスト内の要素を使用する場合、それらの要素をパラメータとして渡すか、あるいは元のコンテキストへの参照を渡す必要がある。
+関数を移動すると、新しいコンテキストにうまく適合する別の名前を付けたくなることがよくある。 静的解析を実行する。 元のコンテキストから移動後の関数を参照できるようにする。 テスト 元の関数に対して「関数のインライン化」の適用を検討する。 元の関数は委譲関係として残しても良い。しかし、移動した関数を呼び出し元が簡単に呼び出せるなら、余分な仲介者は取り除くほうが良い。  </p>
   </section>
-  <footer class="entry-footer">February 18, 2022</footer>
-  <a class="entry-link" aria-label="post link to Interface Segregation Principle" href="https://hirotoshimizu.github.io/posts/interface-segregation-principle/"></a>
+  <footer class="entry-footer">February 21, 2022</footer>
+  <a class="entry-link" aria-label="post link to Move Function" href="https://hirotoshimizu.github.io/posts/move-function/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Liskov Substitution Principle</h2>
+    <h2>Encapsulate Record</h2>
   </header>
   <section class="entry-content">
-    <p>サブクラスは、スーパークラスと置換可能でなければならない。
-Before from abc import ABC, abstractmethod class Order: def __init__(self) -&gt; None: self.items = [] self.quantities = [] self.prices = [] self.status = &#39;open&#39; def add_item(self, name: str, quantity: int, price: int) -&gt; None: self.items.append(name) self.quantities.append(quantity) self.prices.append(price) def total_price(self) -&gt; int: total = 0 for i in range(len(self.prices)): total &#43;= self.quantities[i] * self.prices[i] return total class PaymentProcessor(ABC): @abstractmethod def pay(self, order: Order, security_code: str) -&gt; None: pass class DebitPaymentProcessor(PaymentProcessor): def pay(self, order: Order, security_code: str) -&gt; None: print(&#39;Processing debit payment type&#39;) print(f&#39;Verifying security code: {security_code}&#39;) order....</p>
+    <p>レコードのカプセル化 動機 レコード構造は、一般的な機能で、それらは関連するデータを一緒にグループ化する直観的な方法を提供し、緩いデータの群れの代わりに意味のあるデータ単位を渡すことを可能にする。 変更可能なデータについてはレコード化するよりオブジェクト化した方が良い。オブジェクトであれば、保持されているものを隠蔽し、値すべてに対するメソッドを用意できる。 オブジェクトのユーザーは、どれが保持され、どれが計算されるかを知る必要がない。このカプセル化は名前の変更にも役立つ。フィールド名を変更しても、新たな名前と古い名前の両方のメソッドが使えるため、呼び出し側を徐々に置き換えていくことが可能になる。
+手順  レコードを保持する変数に「変数のカプセル化」を施す。 コード名をカプセル化するための関数には、検索しやすい名前を付ける。 変数の中身を、レコードをラップする簡単なクラスに置き換える。レコードをそのまま返すアクセサをクラスに定義する。変数をカプセル化する関数を変更して、アクセサを使うようにする。 テスト レコードそのものではなくオブジェクトを返す関数を用意する。 レコードの使用箇所ごとに、レコードを返す関数の呼び出しを、オブジェクトを返す関数の呼び出しに置き換える。フィールドデータの取得にはオブジェクトのアクセサを使うようにする。必要ならばそのためのアクセサを作る。変更のたびにテストする。 入れ子構造を持つなど、レコードが複雑な場合は、まずデータを更新しているクライアントのコードに注目する。データを読むだけのクライアントについては、コピーやプロキシを返すことを検討する。 生データへのアクセサと、検索しやすくしておいたレコードそのままを返す関数をクラスから取り除く。 テスト レコードのフィールド自体が構造体である場合、「レコードのカプセル化」と「コレクションのカプセル化」を再帰的に施すことを検討する。  </p>
   </section>
-  <footer class="entry-footer">February 18, 2022</footer>
-  <a class="entry-link" aria-label="post link to Liskov Substitution Principle" href="https://hirotoshimizu.github.io/posts/liskov-substitution-principle/"></a>
+  <footer class="entry-footer">February 21, 2022</footer>
+  <a class="entry-link" aria-label="post link to Encapsulate Record" href="https://hirotoshimizu.github.io/posts/encapsulate-record/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Open Closed Principle</h2>
+    <h2>Split Phase</h2>
   </header>
   <section class="entry-content">
-    <p>ソフトウェアの構成要素は拡張に対しては開いていて、修正に対しては閉じていなければならない。
-ソフトウェアの振る舞いは、既存の成果物を変更せず拡張できるようにすべき。
-Before class Order: def __init__(self) -&gt; None: self.items = [] self.quantities = [] self.prices = [] self.status = &#34;open&#34; def add_item(self, name: str, quantity: int, price: int) -&gt; None: self.items.append(name) self.quantities.append(quantity) self.prices.append(price) def total_price(self) -&gt; int: total = 0 for i in range(len(self.prices)): total &#43;= self.quantities[i] * self.prices[i] return total class PaymentProcessor: def pay_debit(self, order: Order, security_code: str) -&gt; None: print(&#34;Processing debit payment type&#34;) print(f&#34;Verifying security code: {security_code}&#34;) order....</p>
+    <p>フェーズの分離 動機 1つのコードが異なる2つの処理を行っている場合、別々のモジュールに分離する方法がないか探す。 分離に力を咲くのは、トピックごとに分けて対処でき、両方を1度に頭に入れる必要がないから。
+振る舞いを順次的な2段階のフェーズに分けるという方法がある。 処理を始める前に、入力をメイン処理に都合の良い形式に整形する。
+手順  後半となるフェーズのコードを、関数として抽出する。 テスト 抽出した関数に追加される引数として、中間データ構造を導入する。 テスト 抽出した後半のフェーズの各パラメータを確認する。それらが前半のフェーズでも使われているなら、中間データ構造へと移す。1つ移すごとにテストする。 あるパラメータについては後半のフェーズで使うべきでないこともある。その場合は、そのパラメータを使用した結果を、中間データ構造のフィールドとして抽出する。その後「ステートメントの呼び出し側への移動」を施して、この中間データ構造に値を格納している行を移動する。 前半のフェーズのコードに「関数の抽出」を施し、中間データ構造を返すようにする。 前半のフェーズを変換オブジェクトとして抽出してもよい。  </p>
   </section>
-  <footer class="entry-footer">February 18, 2022</footer>
-  <a class="entry-link" aria-label="post link to Open Closed Principle" href="https://hirotoshimizu.github.io/posts/open-closed-principle/"></a>
+  <footer class="entry-footer">February 21, 2022</footer>
+  <a class="entry-link" aria-label="post link to Split Phase" href="https://hirotoshimizu.github.io/posts/split-phase/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Single Responsibility Principle</h2>
+    <h2>Combine Functions Transform</h2>
   </header>
   <section class="entry-content">
-    <p>個々のモジュールを変更する理由がたったひとつだけになるように、ソフトウェアシステムの構造がそれを使う組織の社会的構造に大きな影響を受けるようにする。
-モジュールはたったひとつのアクターに対して責務を負うべきである。
-Before class Order: def __init__(self) -&gt; None: self.items = [] self.quantities = [] self.prices = [] self.status = &#39;open&#39; def add_item(self, name: str, quantity: int, price: int) -&gt; None: self.items.append(name) self.quantities.append(quantity) self.prices.append(price) def total_price(self) -&gt; int: total = 0 for i in range(len(self.prices)): total &#43;= self.quantities[i] * self.prices[i] return total def pay(self, payment_type: str, security_code: str) -&gt; None: if payment_type == &#39;debit&#39;: print(&#39;Proccessing debit payment type&#39;) print(f&#39;Verifying security code: {security_code}&#39;) self....</p>
+    <p>関数群の変換への集約 動機 ソフトウェアの多くは、プログラムにデータを投入して、そこからさまざまな派生情報を計算する処理を含んでいる。派生値はさまざまな箇所で必要になり、派生値が参照されるたびに繰り返される。 こうした派生値はまとめるのが望ましく、一貫した探しやすい場所で更新がおこなわれるようにして、重複したロジックは避けるべき。
+その1つの方法はデータ変換関数を使うことです。これは元データを入力としてすべての派生値を計算し、それらを出力データのフィールドとして設定するものです。そうすることで、派生値について調べたいときは変換関数だけを見ればよくなる。
+もう1つの方法が「関数群のクラスへの集約」。元データに基づいてクラスを構成し、ロジックをそのクラスのメソッドに移す。
+重要な違いは、元データがコード内で更新される場合は、クラスを使うほうが良い。変換関数を使うと派生データが新たなレコードに保持されます。そのため元のデータが変更されると不整合が生じる。
+関数群を集約したい理由として、派生値を求めるロジックの重複をさけたいということがある。それだけなら、単に「関数の抽出」をロジックに適用する手もあるが、関数が扱うデータ構造と近い位置に置かれていないと、関数を見つけ出すのが難しくなる。変換関数を使うと、探すのが容易になり利用もしやすくなる。
+手順  変換されるレコードを入力とし、同じ値を返す変換関数を作る。
+通常、この関数の中ではレコードのディープコピーが行われる。この変換によって元のレコードが変更されていないことを確認するテストを書くとよい。 ロジックを選んでその本体を変換関数側に移し、レコードに新たなフィールドを設ける。そのフィールドを使うようにクライアント側のコードを変更する。 ロジックが複雑ならば、まず「関数の抽出」を施す。 テスト その他の関連した関数群について上記の手順を繰り返す。  </p>
   </section>
-  <footer class="entry-footer">February 18, 2022</footer>
-  <a class="entry-link" aria-label="post link to Single Responsibility Principle" href="https://hirotoshimizu.github.io/posts/single-responsibility-principle/"></a>
+  <footer class="entry-footer">February 21, 2022</footer>
+  <a class="entry-link" aria-label="post link to Combine Functions Transform" href="https://hirotoshimizu.github.io/posts/combine-functions-transform/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

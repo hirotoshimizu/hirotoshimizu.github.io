@@ -149,87 +149,88 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Two Sum</h2>
+    <h2>Same Tree</h2>
   </header>
   <section class="entry-content">
-    <p>https://leetcode.com/problems/two-sum/
- | 2 | 7 | 11 | 15 | 　↑　↑ 全てのコンビネーションを確認しようと Brute Force で問題を解こうとすると ループの中でループをするのでo(n^2)となる。
- | 2 | 7 | 11 | 15 | そのため HashMapを使う必要がある。 ループして array の中を確認する際に、 HashMap に val と key を持たせる。 ループ時に target - val の値が HashMap にあれば、 合計の値を持つ index が return できる。
- | 2 | 7 | 11 | 15 |  ↑   | HashMap | | val : index | | 2 : 1 |  | HashMap | | val : index | | 2 : 1 | | 7 : 2 |← | 11 : 3 | | 15 : 4 | target は 9 なので val 7 を確認時に HashMap にすでに 2 が入っているので この時点で return できる。...</p>
+    <p>DFS recursive
+Base Case は p,q が Null の場合同じ Tree なので return する。
+もし p,q のどちらかの値が違う場合、その Tree は同じではないので、 False を return する。 また、どちらかの値が Null の場合同じ Tree ではないので、この場合も False を　return する。
+Time complexity: O(n) Mem complexity: O(n)
+# Definition for a binary tree node. # class TreeNode(object): # def __init__(self, val=0, left=None, right=None): # self.val = val # self.left = left # self.right = right class Solution(object): def isSameTree(self, p, q): &#34;&#34;&#34; :type p: TreeNode :type q: TreeNode :rtype: bool &#34;&#34;&#34; if not p and not q: return True if not p or not q or p....</p>
   </section>
-  <footer class="entry-footer">September 21, 2021</footer>
-  <a class="entry-link" aria-label="post link to Two Sum" href="https://hirotoshimizu.github.io/posts/two-sum/"></a>
+  <footer class="entry-footer">October 1, 2021</footer>
+  <a class="entry-link" aria-label="post link to Same Tree" href="https://hirotoshimizu.github.io/posts/same-tree/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>2021 07 29</h2>
+    <h2>Maximum Depth of Binary Tree</h2>
   </header>
   <section class="entry-content">
-    <p>Responses HttpResponse オブジェクトと違い、レンダリングされたコンテンツでResponseオブジェクトをインスタンス化する必要がない。 その代わりにレンダリングされていないデータをパスする必要がある。
-Responseクラスで使用されるレンダラーは、Djangoモデルインスタンスなどの複雑なデータ型をネイティブに処理できないため、Responseオブジェクトを作成する前に、データをプリミティブデータ型にシリアル化する必要があります。
-REST frameworkのSerializerクラスを使ってこのデータをシリアライズするか、カスタムシリアライザーを使用する。
-引数
- data : レスポンス用のシリアライズされたデータ status : レスポンス用のステータスコード　デフォルトでは 200 template_name : HTMLRenderer が選択されているならテンプレート名 header : レスポンス用の辞書型 HTTP ヘッダー content_type : レスポンス用のコンテンツタイプ。一般的にコンテンツネゴシエーションのrenderer によって自動的に設定される。しかし、場合によっては明示的にコンテンツタイプを特定する必要もある。  プロジェクトが既にある場合 ユーザーモデルは拡張する。
-最初から作成する場合は モデルをオーバーライドして独自のカスタムモデルを作成
-カスタムユーザーモデルは</p>
+    <p>回答のアプローチは Recursive DFS BFS Iterative DFS
+Base case root が empty children が Null
+Recursive DFS
+Time complexity: O(n) Mem complexity: O(n)
+class Solution(object): def maxDepth(self, root): &#34;&#34;&#34; :type root: TreeNode :rtype: int &#34;&#34;&#34; if not root: return 0 return 1 &#43; max(self.maxDepth(root.left), self.maxDepth(root.right)) BFS
+BFS を使う場合は Queue を使う。
+ 3  ／　＼ 9 20 ／＼ 15 7
+ | 3 | 9 | 20 | 15 | 7 | 1 2 2 3 3 ← Level...</p>
   </section>
-  <footer class="entry-footer">July 28, 2021</footer>
-  <a class="entry-link" aria-label="post link to 2021 07 29" href="https://hirotoshimizu.github.io/posts/2021-07-29/"></a>
+  <footer class="entry-footer">September 30, 2021</footer>
+  <a class="entry-link" aria-label="post link to Maximum Depth of Binary Tree" href="https://hirotoshimizu.github.io/posts/maximum-depth-of-binary-tree/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>2021 07 28</h2>
+    <h2>Lowest Common Ancestor of a Binary Search Tree</h2>
   </header>
   <section class="entry-content">
-    <p>APIView REST frameworkは Djangoの View class のサブクラスである、 APIViewclassを提供する。
-APIViewclass は下記のようにView classとは異なる。
-  handler methods を通ったRequests は REST frameworkの Request インスタンスになり。 Django の HttpRequestインスタンスではない。
-  handler methods の return は REST frameworkの Responseとなり、 その view は content negotiation と response に一致した renderer を返す。
-  どの APIException のエクセプションは正しいレスポンスに仲介される。
-  来るリクエストは認証され、handler methodsに送る前に、 適切な権限やスロットルチェックが行われる。
-  DRF ドキュメント
-ViewSet viewSet classは APIViewを継承している。 viewsetで API policy をコントロールするにあたり、 スタンダードの属性であるpermission_classes,authentication_classesが使える。
-viewSet classはどのアクションも含んでいないので、 クラスをオーバーライドして明示的に定義する必要がある。...</p>
+    <p>https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
+この問題の回答方法としては Recursive と Iterative なアプローチがある。
+Recursive Approach
+アルゴリズム
+ ルートの Node から始める。 p と q が右の subtree にある場合、1から右のsubtreeを探すようにする。 p と q が左の subtree にある場合、1から左のsubtreeを探すようにする。 もし 2 と 3 のステップが not true の場合、p と q の共通の Node を見つけたこととなる。  Time complexity: O(n)
+Mem complexity: O(n)
+# Definition for a binary tree node. # class TreeNode(object): # def __init__(self, x): # self.val = x # self.left = None # self.right = None class Solution(object): def lowestCommonAncestor(self, root, p, q): &#34;&#34;&#34; :type root: TreeNode :type p: TreeNode :type q: TreeNode :rtype: TreeNode &#34;&#34;&#34; parent_val = root....</p>
   </section>
-  <footer class="entry-footer">July 27, 2021</footer>
-  <a class="entry-link" aria-label="post link to 2021 07 28" href="https://hirotoshimizu.github.io/posts/2021-07-28/"></a>
+  <footer class="entry-footer">September 30, 2021</footer>
+  <a class="entry-link" aria-label="post link to Lowest Common Ancestor of a Binary Search Tree" href="https://hirotoshimizu.github.io/posts/lowest-common-ancestor-of-a-binary-search-tree/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Djnagoの管理画面からCSVファイルをアップしてデータ登録</h2>
+    <h2>Climbing Stairs</h2>
   </header>
   <section class="entry-content">
-    <p>今回は restaurants というアプリを作成し進めていきます。
-CSVのファイルは管理画面のレストランの一覧画面 http://127.0.0.1:8000/admin/restaurants/restaurant/ からアップ。
-アプリの作成
-python manage.py startapp restaurants モデルは restaurant で作成。
-Admin テンプレートの Override templatesフォルダは manage.py と同じ階層に作成。
-templates/admin/restaurants/restaurant/change_list.html を作成
-{% extends &#39;admin/change_list.html&#39; %} {% load static %} {% block content %} &lt;a href=&#34;upload-csv/&#34;&gt;Upload a csv file&lt;/a&gt; {{ block.super }} {% endblock %} {{ block.super }} は親のテンプレートコンテンツ。
-Django change_list.html
-Custom Admin Page の作成 上記で作成したリンク先の upload-csv/ の URL を設定
-restaurants/admin.py の RestaurantAdmin で get_urls()を設定。
-def get_urls(self): urls = super().get_urls() new_urls = [ path(&#39;upload-csv/&#39;, self....</p>
+    <p>https://leetcode.com/problems/climbing-stairs/
+n = 5
+ 0 ／　＼ 1 2 ／＼ ／＼ 2 3 3 4 ／＼ ／＼ ／＼ ／＼ 3 4 4 5 4 5 5 6  ／＼ ／＼ ／＼　／＼ 4 5 5 6 5 6　5 6 ／＼ 5 6
+n が 5 steps の場合、 8通りの選択が出来る。
+DFS でも出来るかが 2^n となる。
+そのため Dynamic Programming を使う。
+同じ計算をする値は memoize する
+ | 8 | 5 | 3 | 2 | 1 | 1 | n に辿り着くまでの数 0 1 2 3 4 5(step) one two...</p>
   </section>
-  <footer class="entry-footer">July 19, 2021</footer>
-  <a class="entry-link" aria-label="post link to Djnagoの管理画面からCSVファイルをアップしてデータ登録" href="https://hirotoshimizu.github.io/posts/2021-07-19/"></a>
+  <footer class="entry-footer">September 26, 2021</footer>
+  <a class="entry-link" aria-label="post link to Climbing Stairs" href="https://hirotoshimizu.github.io/posts/climbing-stairs/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>2021 07 13</h2>
+    <h2>Meeting Rooms</h2>
   </header>
   <section class="entry-content">
-    <p>PrimaryKeyRelatedField PrimaryKeyRelatedField を使用することでリレーションのあるテーブルのプライマリーキーを取得することが出来る。
-class StatusSerializer(serializers.ModelSerializer): uri = serializers.SerializerMethodField(read_only=True) user = UserPublicSerializer(read_only=True) user_id = serializers.PrimaryKeyRelatedField(source=&#39;user&#39;, read_only=True) class Meta: model = Status fields = [ &#39;uri&#39;, &#39;user_id&#39;, &#39;id&#39;, &#39;user&#39;, &#39;content&#39;, &#39;image&#39; ] read_only_fields = [&#39;user&#39;]  &#34;results&#34;: [ { &#34;uri&#34;: &#34;http://127.0.0.1:8000/api/status/1/&#34;, &#34;id&#34;: 7, &#34;user_id&#34;: 1, &#34;user&#34;: { &#34;id&#34;: 1, &#34;username&#34;: &#34;test&#34;, &#34;uri&#34;: &#34;http://127.0.0.1:8000/api/user/test/&#34; }, &#34;content&#34;: &#34;do some stuff here&#34;, &#34;image&#34;: &#34;http://127.0.0.1:8000/media/status/test/images.png&#34; }, DRF ドキュメント
-HyperlinkedRelatedField PrimaryKeyRelatedField を使用することでリレーションのあるテーブルのターゲットのハイパーリンクを取得することが出来る。
-class StatusSerializer(serializers.ModelSerializer): uri = serializers.SerializerMethodField(read_only=True) user = UserPublicSerializer(read_only=True) user_id = serializers....</p>
+    <p>https://leetcode.com/problems/meeting-rooms/
+先ず始めに intervals のスタート時間でソートする。
+intervals の時間がソートされたため、 ループで最初の会議の終わりの時間と次の会議の始まりの時間を比較し、 最初の会議の終わりの時間 が 次の会議の始まりの時間より大きい場合、 会議の時間が重なっているので、False を返す。
+次の会議の開始時間 が 前の会議の終わり時間より小さい場合ループを続ける。
+ループする際、次のリストと比較するため for の range で -1 をする。
+ソートをするので Time complexity は O(n log n) となる。
+Time complexity: O(n log n) Mem complexity: O(1)
+class Solution(object): def canAttendMeetings(self, intervals): &#34;&#34;&#34; :type intervals: List[List[int]] :rtype: bool &#34;&#34;&#34; intervals.sort() for i in range(len(intervals) -1): if intervals[i][1] &gt; intervals[i &#43; 1][0]: return False return True </p>
   </section>
-  <footer class="entry-footer">July 13, 2021</footer>
-  <a class="entry-link" aria-label="post link to 2021 07 13" href="https://hirotoshimizu.github.io/posts/2021-07-14/"></a>
+  <footer class="entry-footer">September 25, 2021</footer>
+  <a class="entry-link" aria-label="post link to Meeting Rooms" href="https://hirotoshimizu.github.io/posts/meeting-rooms/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

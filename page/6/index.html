@@ -149,84 +149,83 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Happy Number</h2>
+    <h2>Code Smells</h2>
   </header>
   <section class="entry-content">
-    <p>パターン1 7 → 49 → 97 → 130 → 10 → 1
-パターン2 2 → 4 → 16 → 37 → 30 → 9 → 81 → 65 → 61 → 37
-Algorithm
-  number n の次の数が何かを調べる
-  cycle に入ったかを調べる。
-  の調べ方 19 → 1^2 &#43; 9^2 = 82
-  変数 output に 0 を代入し、 while で n がある間
-n = 19 の場合、
-1の位を取得 19 % 10 = 9...</p>
+    <p>Bloaters  長い関数(Long Method)
+オブジェクトそのものの受け渡し、関数の抽出、コマンドによる関数の置き換え、問い合わせによる一時変数の置き換え、条件記述の分解、パラメータオブジェクトの導入、ポリモーフィズムによる条件記述の置き換え、ループの分離 巨大なクラス(Large Class)
+クラスの抽出、サブクスによるタイプコードの置き換え、スーパークラスの抽出 データの群れ(Data Clumps)
+オブジェクトそのものの受け渡し、クラスの抽出、パラメータオブジェクトの導入 長いパラメータリスト(Long Parameter List)
+オブジェクトそのものの受け渡し、関数群のクラスへの集約、問い合わせによるパラメータの置き換え、パラメータオブジェクトの導入、フラグパラメータの削除 基本データ型への執着(Primitive Obsession)
+オブジェクトによるプリミティブの置き換え、クラスの抽出、サブクラスによるタイプコードの置き換え、パラメータオブジェクトの導入、ポリモーフィズムによる条件記述の置き換え  Tool Abusers  Switch Statements 相続拒否(Refused Bequest)
+委譲によるサブクラスの置き換え、委譲によるスーパークラスの置き換え、フィールドの押し下げ、メソッドの押し下げ クラスのインターフェース不一致(Alternative Classes w/ Different Interfaces)
+関数宣言の変更、関数の移動、スーパークラスの抽出 一時的属性(Temporary Field)
+関数の移動、クラスの抽出、特殊ケースの導入  Change Preventers  Divergent Change 変更の分散(Shotgun Surgery)
+関数群のクラスへの集約、関数群の変換への集約、関数の移動、関数のインライン化、クラスのインライン化、フィールドの移動、フェーズの分離 Parallel Inheritance Hierarchies  Dispensables  Lazy Class 疑わしき一般化(Speculative Generality)
+関数宣言の変更、関数のインライン化、クラス階層の平坦化、クラスのインライン化、デッドコードの削除 データクラス(Data Class) 重複したコード(Duplicated Code)
+関数の抽出、ステートメントのスライド、メソッドの引き上げ  Couplers  特性の横恋慕(Feature Envy)
+関数の移動、関数の抽出 Inappropriate Intimacy メッセージの連鎖(Message Chains)...</p>
   </section>
-  <footer class="entry-footer">October 20, 2021</footer>
-  <a class="entry-link" aria-label="post link to Happy Number" href="https://hirotoshimizu.github.io/posts/happy-number/"></a>
+  <footer class="entry-footer">February 17, 2022</footer>
+  <a class="entry-link" aria-label="post link to Code Smells" href="https://hirotoshimizu.github.io/posts/code-smells/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Replace Elements With Greatest Element on Right Side</h2>
+    <h2>Longest Palindromic Substring</h2>
   </header>
   <section class="entry-content">
-    <p>https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/
-一番最後が -1 になるので、 変数 right_max に -1 を入れる。
-後ろからループしていき、 現在の値 と right_max の大きい値を new_max に入れる。 現在の値に right_max を代入し、 right_max の値に nex_max を代入しループを続ける。
- | 17 | 18 | 5 | 4 | 6 | 1 | -1 18 6 6 6 1 -1
-class Solution: def replaceElements(self, arr: List[int]) -&gt; List[int]: right_max = -1 for i in range(len(arr) -1, -1, -1): new_max = max(right_max, arr[i]) arr[i] = right_max right_max = new_max </p>
+    <p>https://leetcode.com/problems/longest-palindromic-substring/
+class Solution: def longestPalindrome(self, s: str) -&gt; str: res = &#39;&#39; for i in range(len(s)): # odd case tmp = self.helper(s, i, i) if len(tmp) &gt; len(res): res = tmp # even tmp = self.helper(s, i, i&#43;1) if len(tmp) &gt; len(res): res = tmp return res def helper(self, s, l, r): while l &gt;= 0 and r &lt; len(s) and s[l] == s[r]: l -= 1 r &#43;= 1 return s[l&#43;1:r] </p>
   </section>
-  <footer class="entry-footer">October 18, 2021</footer>
-  <a class="entry-link" aria-label="post link to Replace Elements With Greatest Element on Right Side" href="https://hirotoshimizu.github.io/posts/replace-elements-with-greatest-element-on-right-side/"></a>
+  <footer class="entry-footer">December 12, 2021</footer>
+  <a class="entry-link" aria-label="post link to Longest Palindromic Substring" href="https://hirotoshimizu.github.io/posts/longest-palindromic-substring/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Palindrome Linked List</h2>
+    <h2>Longest Increasing Subsequence</h2>
   </header>
   <section class="entry-content">
-    <p>この問題の解き方は pointer を2つ使う。
-  真ん中を探す Pointer を2つ使い、fast pointer と fast.next が null になるまで Pinter を進める。 その際 slow pointer が真ん中に位置する。
-  後ろ半分を反転させる slow pointer が真ん中に位置しているので、 slow が null になるまでループさせる。
-step.1 1 → 2 → 3 → null
-prev と curr を憶えておく必要がある。
-prev = null curr = 1
-curr の next node を temp に入れておく。 temp = 2
-null ← 1 2 → 3 → null
-step.2 prev = 1 curr = 2 temp = 3...</p>
+    <p>https://leetcode.com/problems/longest-increasing-subsequence/
+LIS はどんな場合でも最低1になるので、 1を入れた、list を作る。
+reverse order でループし、 ネストしたループで最初にループしている i 以降の数と比較する。
+nums[i] と nums[j] で nums[i] が小さい場合、 subsequence となるので、 LIS[i] に max(LIS[i], 1 &#43; LIS[j]) を入れる。 j は i 以降の数字を見ているので、max()を使わないと LISの最後の 1 で置き換えて 2 となってしまうので注意。
+class Solution: def lengthOfLIS(self, nums: List[int]) -&gt; int: LIS = [1] * len(nums) for i in range(len(nums) - 1, -1, -1): for j in range(i &#43; 1, len(nums)): if nums[i] &lt; nums[j]: LIS[i] = max(LIS[i], 1 &#43; LIS[j]) return max(LIS) </p>
   </section>
-  <footer class="entry-footer">October 18, 2021</footer>
-  <a class="entry-link" aria-label="post link to Palindrome Linked List" href="https://hirotoshimizu.github.io/posts/palindrome-linked-list/"></a>
+  <footer class="entry-footer">December 12, 2021</footer>
+  <a class="entry-link" aria-label="post link to Longest Increasing Subsequence" href="https://hirotoshimizu.github.io/posts/longest-increasing-subsequence/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Merge Sorted Array</h2>
+    <h2>Longest Common Subsequence</h2>
   </header>
   <section class="entry-content">
-    <p>https://leetcode.com/problems/merge-sorted-array/
-この問題は pointer を 3つ使う。 1つ目は、nums1 の最後に pointer を設定。 2つ目は、nums1 の m に pointer を設定。 3つ目は、nums2 の 最後に pointer を設定。
- | 1 | 2 | 3 | 0 | 0 | 0 |  ↑ ↑   | 2 | 5 | 6 |  ↑  nums1[m - 1] と nums2[n - 1] の値を比べて、 nums2[n - 1] の値が大きいので、 nums1[last] = nums2[n - 1] を設定する。 そして nums2 の n の pointer を -1 してずらす。 また nums1 の last の pointer も -1 する。...</p>
+    <p>https://leetcode.com/problems/longest-common-subsequence/
+2d grid を作る。 row, col にそれぞれ、1行、1列追加して 0 を入れる。
+grid の右下からループし、 縦横が同じ文字でマッチしたら、斜め左上に進む。 その際に1を足す。
+マッチしなかったら、右横か下のどちらか大きい数字を入れる。
+ループが終わりgrid[0][0] の箇所に 1番長い subsequence の数が入る。
+class Solution: def longestCommonSubsequence(self, text1: str, text2: str) -&gt; int: dp = [[0 for j in range(len(text2) &#43; 1)] for i in range(len(text1) &#43; 1)] for i in range(len(text1) - 1, -1, -1): for j in range(len(text2) - 1, -1, -1): if text1[i] == text2[j]: dp[i][j] = 1 &#43; dp[i &#43; 1][j &#43; 1] else: dp[i][j] = max(dp[i &#43; 1][j], dp[i][j &#43; 1]) return dp[0][0] </p>
   </section>
-  <footer class="entry-footer">October 18, 2021</footer>
-  <a class="entry-link" aria-label="post link to Merge Sorted Array" href="https://hirotoshimizu.github.io/posts/merge-sorted-array/"></a>
+  <footer class="entry-footer">December 11, 2021</footer>
+  <a class="entry-link" aria-label="post link to Longest Common Subsequence" href="https://hirotoshimizu.github.io/posts/longest-common-subsequence/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>House Robber</h2>
+    <h2>Traverse a Tree</h2>
   </header>
   <section class="entry-content">
-    <p>https://leetcode.com/problems/house-robber/
-隣り合った家は訪れることが出来ないので、 変数 rob1 と rob2 を用意する。
-for で全ての家を訪れ、 pointer のある位置＋rob1 と rob2 の大きい値を temp に入れる。
-rob1 pointerのある位置の前の前の家 rob2 pointerのある位置のは前の家
-rob2 が nums の最後の位置まで行くとループが終わるので return で rob2 を返す。
-class Solution: def rob(self, num: List[int])-&gt; int: rob1, rob2 = 0, 0 for n in num: temp = max(rob1 &#43; n, rob2) rob1 = rob2 rob2 = temp return rob2 </p>
+    <p>F / \ B G / \ \ A D I / \ / C E H  Pre-order Traversal root left subtree right subtree
+F B A D C E G I H
+https://leetcode.com/problems/binary-tree-preorder-traversal/
+Iterative approach
+class Solution(object): def preorderTraversal(self, root: Optional[TreeNode]) -&gt; List[int]: &#34;&#34;&#34; :type root: TreeNode :rtype: List[int] &#34;&#34;&#34; res, stack = [], [(root, False)] while stack: node, visited = stack.pop() if node: if visited: res.append(node.val) else: stack....</p>
   </section>
-  <footer class="entry-footer">October 18, 2021</footer>
-  <a class="entry-link" aria-label="post link to House Robber" href="https://hirotoshimizu.github.io/posts/house-robber/"></a>
+  <footer class="entry-footer">October 22, 2021</footer>
+  <a class="entry-link" aria-label="post link to Traverse a Tree" href="https://hirotoshimizu.github.io/posts/traverse-a-tree/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

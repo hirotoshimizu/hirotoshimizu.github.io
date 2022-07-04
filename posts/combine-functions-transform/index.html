@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Combine Functions Transform | Shiglass</title>
+<meta name="keywords" content="Refactoring" />
+<meta name="description" content="関数群の変換への集約 動機 ソフトウェアの多くは、プログラムにデータを投入して、そこからさまざまな派生情報を計算する処理を含んでいる。派生値はさまざまな箇所で必要になり、派生値が参照されるたびに繰り返される。 こうした派生値はまとめるのが望ましく、一貫した探しやすい場所で更新がおこなわれるようにして、重複したロジックは避けるべき。
+その1つの方法はデータ変換関数を使うことです。これは元データを入力としてすべての派生値を計算し、それらを出力データのフィールドとして設定するものです。そうすることで、派生値について調べたいときは変換関数だけを見ればよくなる。
+もう1つの方法が「関数群のクラスへの集約」。元データに基づいてクラスを構成し、ロジックをそのクラスのメソッドに移す。
+重要な違いは、元データがコード内で更新される場合は、クラスを使うほうが良い。変換関数を使うと派生データが新たなレコードに保持されます。そのため元のデータが変更されると不整合が生じる。
+関数群を集約したい理由として、派生値を求めるロジックの重複をさけたいということがある。それだけなら、単に「関数の抽出」をロジックに適用する手もあるが、関数が扱うデータ構造と近い位置に置かれていないと、関数を見つけ出すのが難しくなる。変換関数を使うと、探すのが容易になり利用もしやすくなる。
+手順  変換されるレコードを入力とし、同じ値を返す変換関数を作る。
+通常、この関数の中ではレコードのディープコピーが行われる。この変換によって元のレコードが変更されていないことを確認するテストを書くとよい。 ロジックを選んでその本体を変換関数側に移し、レコードに新たなフィールドを設ける。そのフィールドを使うようにクライアント側のコードを変更する。 ロジックが複雑ならば、まず「関数の抽出」を施す。 テスト その他の関連した関数群について上記の手順を繰り返す。  ">
+<meta name="author" content="">
+<link rel="canonical" href="https://hirotoshimizu.github.io/posts/combine-functions-transform/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.d9015f4cb657fd3539b79b29ffbd11de4175ccd105ad7591beffaadfafb48488.css" integrity="sha256-2QFfTLZX/TU5t5sp/70R3kF1zNEFrXWRvv&#43;q36&#43;0hIg=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.27cd435cc9ed6abb4b496581b151804f79f366c412620272bb94e2f5f598ebcc.js" integrity="sha256-J81DXMntartLSWWBsVGAT3nzZsQSYgJyu5Ti9fWY68w="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://hirotoshimizu.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://hirotoshimizu.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://hirotoshimizu.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://hirotoshimizu.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://hirotoshimizu.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.68.3" />
+<meta property="og:title" content="Combine Functions Transform" />
+<meta property="og:description" content="関数群の変換への集約 動機 ソフトウェアの多くは、プログラムにデータを投入して、そこからさまざまな派生情報を計算する処理を含んでいる。派生値はさまざまな箇所で必要になり、派生値が参照されるたびに繰り返される。 こうした派生値はまとめるのが望ましく、一貫した探しやすい場所で更新がおこなわれるようにして、重複したロジックは避けるべき。
+その1つの方法はデータ変換関数を使うことです。これは元データを入力としてすべての派生値を計算し、それらを出力データのフィールドとして設定するものです。そうすることで、派生値について調べたいときは変換関数だけを見ればよくなる。
+もう1つの方法が「関数群のクラスへの集約」。元データに基づいてクラスを構成し、ロジックをそのクラスのメソッドに移す。
+重要な違いは、元データがコード内で更新される場合は、クラスを使うほうが良い。変換関数を使うと派生データが新たなレコードに保持されます。そのため元のデータが変更されると不整合が生じる。
+関数群を集約したい理由として、派生値を求めるロジックの重複をさけたいということがある。それだけなら、単に「関数の抽出」をロジックに適用する手もあるが、関数が扱うデータ構造と近い位置に置かれていないと、関数を見つけ出すのが難しくなる。変換関数を使うと、探すのが容易になり利用もしやすくなる。
+手順  変換されるレコードを入力とし、同じ値を返す変換関数を作る。
+通常、この関数の中ではレコードのディープコピーが行われる。この変換によって元のレコードが変更されていないことを確認するテストを書くとよい。 ロジックを選んでその本体を変換関数側に移し、レコードに新たなフィールドを設ける。そのフィールドを使うようにクライアント側のコードを変更する。 ロジックが複雑ならば、まず「関数の抽出」を施す。 テスト その他の関連した関数群について上記の手順を繰り返す。  " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hirotoshimizu.github.io/posts/combine-functions-transform/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-02-21T09:00:08&#43;09:00" />
+<meta property="article:modified_time" content="2022-02-21T09:00:08&#43;09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Combine Functions Transform"/>
+<meta name="twitter:description" content="関数群の変換への集約 動機 ソフトウェアの多くは、プログラムにデータを投入して、そこからさまざまな派生情報を計算する処理を含んでいる。派生値はさまざまな箇所で必要になり、派生値が参照されるたびに繰り返される。 こうした派生値はまとめるのが望ましく、一貫した探しやすい場所で更新がおこなわれるようにして、重複したロジックは避けるべき。
+その1つの方法はデータ変換関数を使うことです。これは元データを入力としてすべての派生値を計算し、それらを出力データのフィールドとして設定するものです。そうすることで、派生値について調べたいときは変換関数だけを見ればよくなる。
+もう1つの方法が「関数群のクラスへの集約」。元データに基づいてクラスを構成し、ロジックをそのクラスのメソッドに移す。
+重要な違いは、元データがコード内で更新される場合は、クラスを使うほうが良い。変換関数を使うと派生データが新たなレコードに保持されます。そのため元のデータが変更されると不整合が生じる。
+関数群を集約したい理由として、派生値を求めるロジックの重複をさけたいということがある。それだけなら、単に「関数の抽出」をロジックに適用する手もあるが、関数が扱うデータ構造と近い位置に置かれていないと、関数を見つけ出すのが難しくなる。変換関数を使うと、探すのが容易になり利用もしやすくなる。
+手順  変換されるレコードを入力とし、同じ値を返す変換関数を作る。
+通常、この関数の中ではレコードのディープコピーが行われる。この変換によって元のレコードが変更されていないことを確認するテストを書くとよい。 ロジックを選んでその本体を変換関数側に移し、レコードに新たなフィールドを設ける。そのフィールドを使うようにクライアント側のコードを変更する。 ロジックが複雑ならば、まず「関数の抽出」を施す。 テスト その他の関連した関数群について上記の手順を繰り返す。  "/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "Combine Functions Transform",
+      "item": "https://hirotoshimizu.github.io/posts/combine-functions-transform/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Combine Functions Transform",
+  "name": "Combine Functions Transform",
+  "description": "関数群の変換への集約 動機 ソフトウェアの多くは、プログラムにデータを投入して、そこからさまざまな派生情報を計算する処理を含んでいる。派生値はさまざまな箇所で必要になり、派生値が参照されるたびに繰り返される。 こうした派生値はまとめるのが望ましく、一貫した探しやすい場所で更新がおこなわれるようにして、重複したロジックは避けるべき。\nその1つの方法はデータ変換関数を使うことです。これは元データを入力としてすべての派生値を計算し、それらを出力データのフィールドとして設定するものです。そうすることで、派生値について調べたいときは変換関数だけを見ればよくなる。\nもう1つの方法が「関数群のクラスへの集約」。元データに基づいてクラスを構成し、ロジックをそのクラスのメソッドに移す。\n重要な違いは、元データがコード内で更新される場合は、クラスを使うほうが良い。変換関数を使うと派生データが新たなレコードに保持されます。そのため元のデータが変更されると不整合が生じる。\n関数群を集約したい理由として、派生値を求めるロジックの重複をさけたいということがある。それだけなら、単に「関数の抽出」をロジックに適用する手もあるが、関数が扱うデータ構造と近い位置に置かれていないと、関数を見つけ出すのが難しくなる。変換関数を使うと、探すのが容易になり利用もしやすくなる。\n手順  変換されるレコードを入力とし、同じ値を返す変換関数を作る。\n通常、この関数の中ではレコードのディープコピーが行われる。この変換によって元のレコードが変更されていないことを確認するテストを書くとよい。 ロジックを選んでその本体を変換関数側に移し、レコードに新たなフィールドを設ける。そのフィールドを使うようにクライアント側のコードを変更する。 ロジックが複雑ならば、まず「関数の抽出」を施す。 テスト その他の関連した関数群について上記の手順を繰り返す。  ",
+  "keywords": [
+    "Refactoring"
+  ],
+  "articleBody": "関数群の変換への集約 動機 ソフトウェアの多くは、プログラムにデータを投入して、そこからさまざまな派生情報を計算する処理を含んでいる。派生値はさまざまな箇所で必要になり、派生値が参照されるたびに繰り返される。 こうした派生値はまとめるのが望ましく、一貫した探しやすい場所で更新がおこなわれるようにして、重複したロジックは避けるべき。\nその1つの方法はデータ変換関数を使うことです。これは元データを入力としてすべての派生値を計算し、それらを出力データのフィールドとして設定するものです。そうすることで、派生値について調べたいときは変換関数だけを見ればよくなる。\nもう1つの方法が「関数群のクラスへの集約」。元データに基づいてクラスを構成し、ロジックをそのクラスのメソッドに移す。\n重要な違いは、元データがコード内で更新される場合は、クラスを使うほうが良い。変換関数を使うと派生データが新たなレコードに保持されます。そのため元のデータが変更されると不整合が生じる。\n関数群を集約したい理由として、派生値を求めるロジックの重複をさけたいということがある。それだけなら、単に「関数の抽出」をロジックに適用する手もあるが、関数が扱うデータ構造と近い位置に置かれていないと、関数を見つけ出すのが難しくなる。変換関数を使うと、探すのが容易になり利用もしやすくなる。\n手順  変換されるレコードを入力とし、同じ値を返す変換関数を作る。\n通常、この関数の中ではレコードのディープコピーが行われる。この変換によって元のレコードが変更されていないことを確認するテストを書くとよい。 ロジックを選んでその本体を変換関数側に移し、レコードに新たなフィールドを設ける。そのフィールドを使うようにクライアント側のコードを変更する。 ロジックが複雑ならば、まず「関数の抽出」を施す。 テスト その他の関連した関数群について上記の手順を繰り返す。  ",
+  "wordCount" : "15",
+  "inLanguage": "en",
+  "datePublished": "2022-02-21T09:00:08+09:00",
+  "dateModified": "2022-02-21T09:00:08+09:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hirotoshimizu.github.io/posts/combine-functions-transform/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Shiglass",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hirotoshimizu.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<noscript>
+    <style type="text/css">
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: #1d1e20;
+                --entry: #2e2e33;
+                --primary: rgba(255, 255, 255, 0.84);
+                --secondary: rgba(255, 255, 255, 0.56);
+                --tertiary: rgba(255, 255, 255, 0.16);
+                --content: rgba(255, 255, 255, 0.74);
+                --hljs-bg: #2e2e33;
+                --code-bg: #37383e;
+                --border: #333;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://hirotoshimizu.github.io" accesskey="h" title="Shiglass (Alt + H)">Shiglass</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://hirotoshimizu.github.io/about/" title="about">
+                    <span>about</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hirotoshimizu.github.io/archives/" title="archives">
+                    <span>archives</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hirotoshimizu.github.io/categories/" title="categories">
+                    <span>categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hirotoshimizu.github.io/tags/" title="tags">
+                    <span>tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title">
+      Combine Functions Transform
+    </h1>
+    <div class="post-meta">February 21, 2022
+</div>
+  </header> 
+  <div class="post-content"><h1 id="関数群の変換への集約">関数群の変換への集約<a hidden class="anchor" aria-hidden="true" href="#関数群の変換への集約">#</a></h1>
+<h3 id="動機">動機<a hidden class="anchor" aria-hidden="true" href="#動機">#</a></h3>
+<p>ソフトウェアの多くは、プログラムにデータを投入して、そこからさまざまな派生情報を計算する処理を含んでいる。派生値はさまざまな箇所で必要になり、派生値が参照されるたびに繰り返される。
+こうした派生値はまとめるのが望ましく、一貫した探しやすい場所で更新がおこなわれるようにして、重複したロジックは避けるべき。<br>
+その1つの方法はデータ変換関数を使うことです。これは元データを入力としてすべての派生値を計算し、それらを出力データのフィールドとして設定するものです。そうすることで、派生値について調べたいときは変換関数だけを見ればよくなる。<br>
+もう1つの方法が「関数群のクラスへの集約」。元データに基づいてクラスを構成し、ロジックをそのクラスのメソッドに移す。<br>
+重要な違いは、元データがコード内で更新される場合は、クラスを使うほうが良い。変換関数を使うと派生データが新たなレコードに保持されます。そのため元のデータが変更されると不整合が生じる。<br>
+関数群を集約したい理由として、派生値を求めるロジックの重複をさけたいということがある。それだけなら、単に「関数の抽出」をロジックに適用する手もあるが、関数が扱うデータ構造と近い位置に置かれていないと、関数を見つけ出すのが難しくなる。変換関数を使うと、探すのが容易になり利用もしやすくなる。</p>
+<h3 id="手順">手順<a hidden class="anchor" aria-hidden="true" href="#手順">#</a></h3>
+<ul>
+<li>変換されるレコードを入力とし、同じ値を返す変換関数を作る。<br>
+通常、この関数の中ではレコードのディープコピーが行われる。この変換によって元のレコードが変更されていないことを確認するテストを書くとよい。</li>
+<li>ロジックを選んでその本体を変換関数側に移し、レコードに新たなフィールドを設ける。そのフィールドを使うようにクライアント側のコードを変更する。
+ロジックが複雑ならば、まず「関数の抽出」を施す。</li>
+<li>テスト</li>
+<li>その他の関連した関数群について上記の手順を繰り返す。</li>
+</ul>
+
+
+  </div>
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://hirotoshimizu.github.io/tags/refactoring/">Refactoring</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    <footer class="footer">
+    <span>&copy; 2022 <a href="https://hirotoshimizu.github.io">Shiglass</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
+    <button class="top-link" id="top-link" type="button" accesskey="g">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z" />
+        </svg>
+    </button>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+    menu.onscroll = function () {
+        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
